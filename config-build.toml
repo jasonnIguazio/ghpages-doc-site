@@ -4,7 +4,7 @@
 # for Hugo-only configurations see config.toml.old.
 
 # Default unique base-URL directory (can be overwritten with --bdir)
-onlineBaseURLDir = "docs/latest-release/"
+onlineBaseURLDir = ""
 # [TODO-NEW-VER-RELEASE] When publishing documentation for a newer version,
 # change "latest-release" on this branch:
 #onlineBaseURLDir = "docs/v3.0/"

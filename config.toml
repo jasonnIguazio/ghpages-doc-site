@@ -7,7 +7,7 @@
 ## URL Configurations
 
 ## Base Site URL
-baseURL = "https://jasonniguazio.github.io/ghpages-doc-site/"
+baseURL = ""
 
 ## URLs Canonification
 canonifyURLs = true
