@@ -17,7 +17,7 @@ menu:
   part of the restructured-site publication.)
 - [TODO-SITE-RESTRUCT-P2] Consider removing this file and moving the data-path
   info for each API to a relevant data-layer/ API/data-type doc section (and
-  update the ghpages-doc-site and external doc references). We already have explanations
+  update the ghpages-ghpages-doc-site and external doc references). We already have explanations
   on how to set data paths for each API, perhaps we just need to edit it and
   ensure all the info from this overview doc is provided for each API.
 -->

@@ -1,5 +1,5 @@
 {
-  "name": "ghpages-doc-site",
+  "name": "ghpages-ghpages-doc-site",
   "version": "1.0.0",
   "description": "",
   "main": "buildSearchIndex.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iguazio/ghpages-doc-site.git"
+    "url": "git+https://github.com/iguazio/ghpages-ghpages-doc-site.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/iguazio/ghpages-doc-site/issues"
+    "url": "https://github.com/iguazio/ghpages-ghpages-doc-site/issues"
   },
-  "homepage": "https://github.com/iguazio/ghpages-doc-site#readme",
+  "homepage": "https://github.com/iguazio/ghpages-ghpages-doc-site#readme",
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",

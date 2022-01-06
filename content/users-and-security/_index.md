@@ -16,9 +16,9 @@ menu:
 - [TODO-SITE-RESTRUCT-P2] Split the users.md and security.md pages into
   multiple pages, and edit references. -->
 <!-- [IntInfo] (sharonl) (9.2.21) It was decided, in consultation with Adi and
-  Gilad, not to link to this section from the ghpages-doc-site home page. We link to it
+  Gilad, not to link to this section from the ghpages-ghpages-doc-site home page. We link to it
   in a note from the cluster-mgmt/_index.md page, which is linked to from the
-  ghpages-doc-site home page, and it's visible in the TOC side menu. -->
+  ghpages-ghpages-doc-site home page, and it's visible in the TOC side menu. -->
 {{< /comment >}}
 
 Learn about the {{< product full >}}'s user-management and security concepts and tools.

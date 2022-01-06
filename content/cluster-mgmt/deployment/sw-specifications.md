@@ -790,7 +790,7 @@ For full specifications and restrictions, see the [Nuclio documentation]({{< pub
       (retroactive) RNs - #ki-nuclio-function-name-dashboard
       [c-nuclio-function-name-dashboard]. The v3.0.0 resolution was to prevent
       using reserved names (including "dashboards") for Nuclio functions and
-      API gateways. As part of the v3.0.0 ghpages-doc-site restructure and the move of
+      API gateways. As part of the v3.0.0 ghpages-ghpages-doc-site restructure and the move of
       most of the platform's API reference documentation to the data-layer
       section, I decided to also cancel the Nuclio section in this reference
       (as this was the only non-data-layer API in this reference) and document

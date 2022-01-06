@@ -65,7 +65,7 @@
       margin: 0 auto;
       align-items: center;
 
-      /* ghpages-doc-site home-page link (for the current versioned site) */
+      /* ghpages-ghpages-doc-site home-page link (for the current versioned site) */
       .docs-home {
         @extend .top-menu-item-text;
         font-size: $font-size-top-menu-item;
@@ -88,7 +88,7 @@
       } /* [.top-menu .left .home-links .docs-home] */
     } /* [.top-menu .left .home-links] */
 
-    /* ghpages-doc-site section links */
+    /* ghpages-ghpages-doc-site section links */
     .section-links, .additional-links {
       display: none;
       align-items: center;

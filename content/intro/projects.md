@@ -13,7 +13,7 @@ publishDate:  2050-01-01
   this to the intro/ section and I set a future publication date (see
   `publishDate`) because it was decided, for now, to document projects only as
   part of the separate MLRun documentation, which is currently available in the
-  restructured ghpages-doc-site docs within an iframe on ds-and-mlops/_index.md - which
+  restructured ghpages-ghpages-doc-site docs within an iframe on ds-and-mlops/_index.md - which
   includes all the MLRun doc sections that we linked to from the previous
   Projects concepts page.
   (9.3.21) As part of the new v3.0.0 restructured-site .htaccess URL redirect
@@ -45,7 +45,7 @@ Projects are also a great way to collaborate with others: you can share your pro
 
 {{< comment >}}<!-- TODO: ADD CONTENT and either remove the following or move
   it to the end / to the "See Also" section.
-  Also add cross references to this page from other ghpages-doc-site pages. -->
+  Also add cross references to this page from other ghpages-ghpages-doc-site pages. -->
 {{< /comment >}}
 For more information about MLRun projects and their components and how to manage the project life cycle, see the {{< url v="mlrun_docs" k="text" link="1" >}}, and especially these topics:
 

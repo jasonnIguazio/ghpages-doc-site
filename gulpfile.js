@@ -567,9 +567,9 @@ function init() {
     // [ci-rel-docs-home-url-local-build] [InfraInfo] (sharonl) For local
     // builds, as there's no guarantee that a matching relative docs-home page
     // exists, I typically set relDocsHomeURL in config-build.toml to the
-    // public ghpages-doc-site home page and to the development staging ghpages-doc-site home
+    // public ghpages-ghpages-doc-site home page and to the development staging ghpages-ghpages-doc-site home
     // page for internal builds; (I don't use the staging URL for external
-    // builds because the link is also used in offline ghpages-doc-site builds, which
+    // builds because the link is also used in offline ghpages-ghpages-doc-site builds, which
     // might reach customers).
 
   // Default site port
@@ -912,7 +912,7 @@ gulp.task('generate-hugo-data-vars-file', [], function() {
   var content = '# This file is auto generated from gulpfile.js.\n';
   content += '## Build-Specific Data Variables\n';
   content += '\n';
-  content += '## Relative ghpages-doc-site home URL for the current build\n';
+  content += '## Relative ghpages-ghpages-doc-site home URL for the current build\n';
   content += '[docs_home_url]\n';
   content += '  full      = "' + relDocsHomeUrl + '"\n';
   content += '  text_home = "' + dataVarsShared.docs_home.text_home + '"\n';
@@ -985,16 +985,16 @@ gulp.task('clean', function() {
 // (regUsersOnlyDirs).
 // [ci-redirect] [InfraInfo] (sharonl) (4.5.20) When we moved to separate
 // versioned doc sites, I moved the sources for the .htaccess file for the root
-// ghpages-doc-site directory ($relDocsHomeURL), which contains the versioned doc
+// ghpages-ghpages-doc-site directory ($relDocsHomeURL), which contains the versioned doc
 // sites, to the iguazio/doc-assets repo (a public repo that contains the
 // $sharedVersionsFileURL shared versions file) - see htaccess/ in
 // https://github.com/iguazio/doc-assets,
 // [ci-redirect-from-ver-site] I kept the assets/htaccess/.htaccess* files in
-// the ghpages-doc-site repo and edited them for versioned ghpages-doc-site redirects. However,
+// the ghpages-ghpages-doc-site repo and edited them for versioned ghpages-ghpages-doc-site redirects. However,
 // in a small POC test I wasn't able to get redirects of this type to work (I'm
 // not sure why). Therefore, for now, the doc-assets repo's .htacess files also
 // handle the versioned-site redirects that I planned to handle from each
-// versioned doc site, and the versioned ghpages-doc-site .htaccess files are currently
+// versioned doc site, and the versioned ghpages-ghpages-doc-site .htaccess files are currently
 // unused. For now, I commented out the part of the `copy-assets` Gulp task
 // that copies these .htaccess files to the built site output directory.
 gulp.task('copy-assets', function() {

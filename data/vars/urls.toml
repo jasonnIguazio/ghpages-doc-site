@@ -378,7 +378,7 @@
 #   product.toml `ver.mlrun.docs.version_tag` variable key.
 #   (7.3.21) The MLRun documentation is now found at https://docs.mlrun.org,
 #   and the previous MLRun Read the Docs documentation URLs -
-#   https://mlrun.readthedocs.io - now redirect to the new MLRun ghpages-doc-site URL.
+#   https://mlrun.readthedocs.io - now redirect to the new MLRun ghpages-ghpages-doc-site URL.
 #   https://readthedocs.org/projects/mlrun/ - the `mlrun` package's projects
 #   Read the Docs page - still exists and has versioned documentation links to
 #   https://docs.mlrun.org.

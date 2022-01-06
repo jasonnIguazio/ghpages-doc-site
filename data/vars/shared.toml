@@ -4,7 +4,7 @@
 # [INFRA-VERSION-SITE] I added the following and related users such as in
 # gulpfile.js and nav.html.
 
-## ghpages-doc-site home page
+## ghpages-ghpages-doc-site home page
 # [InfraInfo] The site build adds a [docs_home_url] variable in the generated
 # data/vars/build.toml file with the docs_home keys and a "full" URL key.
 [docs_home]

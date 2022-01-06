@@ -14,7 +14,7 @@ menu:
 {{< comment >}}<!-- [SITE-RESTRUCT] This section replaces reference/presto/.
 - [TODO-SITE-RESTRUCT-P2] (sharonl) TODO: Separate reference and guide
   documentation and move no-NoSQL-specific guide documentation to
-  data-layer/nosql/presto/. Remember to check both ghpages-doc-site cross references
+  data-layer/nosql/presto/. Remember to check both ghpages-ghpages-doc-site cross references
   and external references to the Presto documentation. 
 - [TODO-SITE-RESTRUCT-EXTERNAL-REFS] After the publication of the restructured
   site, replace the v3io/tutorials references to this doc (from

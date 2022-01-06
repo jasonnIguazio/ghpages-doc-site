@@ -16,7 +16,7 @@ menu:
   basic-data-ingestion-and-preparation.ipynb v3io/tutorials notebook. I removed
   this reference in PR #342 (https://github.com/v3io/tutorials/pull/342), post
   the v3.0.0 publication. The old section URL will be redirected to an active
-  ghpages-doc-site page. -->
+  ghpages-ghpages-doc-site page. -->
 {{< /comment >}}
 {{< comment >}}
 <!-- [c-projects-default-container] [V3.0.0-TODO-P2] [IntInfo] (sharonl)

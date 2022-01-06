@@ -15,7 +15,7 @@ menu:
 {{< comment >}}<!-- [IntInfo] (sharonl) (3.11.19) In v2.5.0 I added section
   "Data Science Automation and Tracking" (#data-science-automation) to the
   app-services overview doc. The section title was suggested by Yaron H. See
-  info in DOC IG-11986. [SITE-RESTRUCT] (10.2.21) As part of the ghpages-doc-site
+  info in DOC IG-11986. [SITE-RESTRUCT] (10.2.21) As part of the ghpages-ghpages-doc-site
   restructure, I also split the app-services overview to separate pages and
   changed the title of the new page in light of recent changes to the MLRun
   documentation. -->
