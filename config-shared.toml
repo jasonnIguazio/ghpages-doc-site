@@ -1,5 +1,5 @@
 # Shared Hugo and Custom-Build Configurations
 # [InfraInfo] Use the --configShared Gulp build option to override this file.
 # For custom-build-only configurations, see config-build.toml, and for
-# Hugo-only configurations see config.toml.old.
+# Hugo-only configurations see config.yaml.old.
 

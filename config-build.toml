@@ -1,7 +1,7 @@
 # Custom-Build Configurations
 # [InfraInfo] Use the --configBuild build option to override this file.
 # For shared Hugo and custom-build configurations, see config-shared.toml, and
-# for Hugo-only configurations see config.toml.old.
+# for Hugo-only configurations see config.yaml.old.
 
 # Default unique base-URL directory (can be overwritten with --bdir)
 onlineBaseURLDir = "docs/latest-release/"
@@ -31,7 +31,7 @@ sharedVersionsFileURL = "https://api.github.com/repos/iguazio/doc-assets/content
 backupVersionsFile = "versions.json"
 
 # [c-reg-users-only] Password-protected registered-users-only directories.
-# See also the config.toml.old Params.sections is_reg_users_only section key.
+# See also the config.yaml.old Params.sections is_reg_users_only section key.
 regUsersOnlyDirs = [
   "cluster-mgmt/deployment/sw-specifications",
   "release-notes"

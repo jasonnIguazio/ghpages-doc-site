@@ -136,7 +136,7 @@
 ## Public Product GitHub Organization (v3io)
 [public_gh]
   full = "https://github.com/v3io"
-    # [InfraInfo] This URL is also set in Social.github in config.toml.old.
+    # [InfraInfo] This URL is also set in Social.github in config.yaml.old.
   text = "v3io"
 
 # Shortcode:  public-gh

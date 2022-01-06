@@ -869,7 +869,7 @@
 #   [INFRA-TODO] Check the option of using a shortcode to automatically form
 #   versioned URLs using the versions in the `ver` product data-var key
 #   (namely, for Spark and Hadoop URLs [c-spark-ver] [c-hadoop-ver]). 
-# - Edit the config.toml.old [Params.Filters] keys and values for the new release.
+# - Edit the config.yaml.old [Params.Filters] keys and values for the new release.
 # - Edit .htaccess redirect rules for new releases and for any URL change for
 #   published docs - currently done from the iguazio/doc-assets repo. See
 #   [ci-redirect] in gulpfile.js and the doc-assets htaccess/ directory.
