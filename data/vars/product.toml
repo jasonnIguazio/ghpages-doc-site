@@ -1573,7 +1573,7 @@
     # the description of IG-18294, to notify me when older customer
     # environments are reconfigured, and I noted this also in DOC IG-18295.
     # When this change is done, we should change the version of the monitoring
-    # service in the v3.0/v2.10 doc-site support matrix, retroactively, to the
+    # service in the v3.0/v2.10 ghpages-doc-site support matrix, retroactively, to the
     # version of the vanilla Prometheus service, to match the UI (even if some
     # customers aren't upgraded and will see a different service version in the
     # UI). => [TODO-PENDING-DEV] [V3.2.1-TODO] When the version of the
@@ -1696,9 +1696,9 @@
   # - The Presto SQL documentation moved from https://prestosql.io/docs/current/
   #   to https://trino.io/docs/current/ (https://prestosql.io/docs/.
   #   https://trino.io/docs/ redirects to the "current" docs, but the old
-  #   Presto SQL doc-site URLs aren't redirected automatically to the new Trino
+  #   Presto SQL ghpages-doc-site URLs aren't redirected automatically to the new Trino
   #   doc site but rather they produce XML error code with an `AccessDenied`
-  #   error. => I updated all Presto SQL doc-site links on the active doc sites
+  #   error. => I updated all Presto SQL ghpages-doc-site links on the active doc sites
   #   (v3.0.1, v2.10.0, v2.8.0, and v2.5.4), retroactively, and in
   #   v3io/tutorials to link to the Trino doc site instead, and I asked Eran N.
   #   to do the same for the product UI links. For other repos and non-Git

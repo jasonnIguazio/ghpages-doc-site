@@ -14,7 +14,7 @@ menu:
 {{< comment >}}<!-- [SITE-RESTRUCT] Replaces intro/ecosystem/ui.md.
   [InfInfo] (sharonl) (10.1.21) I edited the front matter and the contents to
   describe all the current main UI pages (side-menu options) and link to new
-  doc-site pages. -->
+  ghpages-doc-site pages. -->
 {{< /comment >}}
 
 The {{< productUI lc >}} is the {{< product lc >}}'s graphical user interface and is also your entry point to your {{< product lc >}} cluster.

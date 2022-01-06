@@ -16,7 +16,7 @@ A version of this tutorial is available also as a **README** notebook and Markdo
 After reading the tutorial, review and run from a Jupyter Notebook service the tutorial notebooks that are most relevant to your development needs.
 A good place to start is the <file>{{< verkey k="jupyter_notebook.tutorials.data_ingestion_and_preparation.basic_nb.file" >}}</file> notebook.
 If you don't already have a Jupyter Notebook service, {{< xref f="services/fundamentals.md" a="create-new-service" text="create one" >}} first.
-{{< comment >}}<!-- Doc-site-specific note -->
+{{< comment >}}<!-- ghpages-doc-site-specific note -->
 {{< /comment >}}
 {{< /note >}}
 
@@ -49,7 +49,7 @@ The tutorial includes an example of ingesting a CSV file from an AWS S3 bucket; 
   README.ipynb/.md + do a doc review of the referenced notebooks. (Note that we
   currently don't support the v3io-py simple-object API, only NoSQL and
   streaming - see DOC IG-15596.) For now, I only did basic editing and added
-  doc-site references only in the new v3.0.0 restructured doc-site
+  ghpages-doc-site references only in the new v3.0.0 restructured ghpages-doc-site
   documentation [SITE-RESTRUCT]. [TODO-SITE-RESTRUCT-P2] -->
 {{< /comment >}}
 
@@ -61,7 +61,7 @@ For detailed information, see the {{< xref f="data-layer/apis/overview.md" text=
 ### {{< product tc >}} Data Containers {#data-containers}
 {{< comment >}}<!-- [IntInfo] (sharonl) This section in the tutorials README
   (data-ingestion-and-preparation/README.ipynb/.NB) has more information, which
-  is available along with additional information in the referenced doc-site
+  is available along with additional information in the referenced ghpages-doc-site
   data-layer documentation, so there was no point repeating it here. -->
 {{< /comment >}}
 
@@ -294,7 +294,7 @@ You can use {{< company >}}'s {{< public-gh ghid="grafwiz" link="1" >}} Python l
   a requirement for supporting v3io/grafwiz and I don't have a doc task for this
   (neither in Jira or in Trello). I previously understood from Adrian, Or Z.,
   and Gilad that this was implemented in v2.10.0 and modified for v3.10.0; the
-  tutorial and doc-site reference were added only in v3.0.0. I asked Adi and
+  tutorial and ghpages-doc-site reference were added only in v3.0.0. I asked Adi and
   Gilad to open a requirement and a doc task for this and set prioritization;
   qualify the feature as Tech Preview in v3.0.0; add versioning to the
   v3io/grafwiz GitHub repo (which currently has only a single `master` branch

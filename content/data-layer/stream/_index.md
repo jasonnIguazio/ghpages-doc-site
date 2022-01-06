@@ -21,7 +21,7 @@ menu:
   [InfraInfo] I used `layout: "single"` to eliminate the auto section
   menu-pages links.
   [TODO-INFRA] 
-  - Update both internal doc-site and external references and add redirect
+  - Update both internal ghpages-doc-site and external references and add redirect
     rules for modified URLs.
   - Edit the front matter, including to change the `layout` value from "single"`
     to `section-list`.

@@ -10,7 +10,7 @@ menu:
 publishDate:  2050-01-01
 ---
 {{< comment >}}<!-- [SITE-RESTRUCT] [c-faq] [IntInfo] (sharonl) (8.2.21) This
-  section was added as part of the doc-site restructure. However, currently we
+  section was added as part of the ghpages-doc-site restructure. However, currently we
   don't have an FAQ yet - Nir (CS) can't provide a draft yet - and there's only
   one best-practice guide. => We moved the best-practice guide to the data-layer
   section and filtered out the section by using a future publication date and
@@ -24,7 +24,7 @@ publishDate:  2050-01-01
   best-practices-primary-keys-n-workload-distribution.md doc from the
   data-layer/ section to this section and edit all xrefs to this page, or
   otherwise change the section title unless we add other best-practice guides;
-  link to the support/ section from the doc-site home page (main _index.md),
+  link to the support/ section from the ghpages-doc-site home page (main _index.md),
   which already has the relevant code, currently filtered out with the "faq"
   filter. -->
 {{< /comment >}}

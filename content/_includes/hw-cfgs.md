@@ -10,7 +10,7 @@
   [InfraInfo] I created this include file to support the duplication.
   Currently, this file is always included from a "Hardware Configurations"
   section (id="hw-cfgs") but with different heading levels.
-  [SITE-RESTRUCT] (1.2.21) As part of the doc-site restructure, we no longer
+  [SITE-RESTRUCT] (1.2.21) As part of the ghpages-doc-site restructure, we no longer
   have a separate HW-specs section with a shared overview. We now have, under
   cluster-mgmt/deployment/, a cfg-options.md page and specific infrastructure
   spec pages under each deployment-method subsection, which all include this

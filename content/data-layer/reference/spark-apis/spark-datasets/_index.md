@@ -12,7 +12,7 @@ menu:
     weight:     10
 ---
 {{< comment >}}<!-- [SITE-RESTRUCT] [IntInfo] (sharonl) (2.2.21) As part of
-  the doc-site restructure, I also re-titled this section to add "NoSQL API".
+  the ghpages-doc-site restructure, I also re-titled this section to add "NoSQL API".
 -->
 {{< /comment >}}
 

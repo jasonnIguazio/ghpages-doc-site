@@ -1,5 +1,5 @@
 <!-- xref: Cross reference to another site page. See "fixed" to 1 to link to
-  refer to a relative path under the same parent doc-site - namely, to refer
+  refer to a relative path under the same parent ghpages-doc-site - namely, to refer
   to the docs for another product version or to non-versioned doc.
 PATH  - When "fixed="0" (default) - you can either set "f" to the path to the
 NOTE:   referenced site page (typically, a Markdown page; directory paths
@@ -13,7 +13,7 @@ NOTE:   referenced site page (typically, a Markdown page; directory paths
         `f="sec1/dir1/"` or `f="sec1/dir1/_index.md"` or `s="sec1" f="dir1/"` or
         `s="sec1" f="dir1/_index.md".
       - When "fixed"="1", "s" is ignored and "f" must be set to the referenced
-        URL path relative to the parent doc-site base URL -
+        URL path relative to the parent ghpages-doc-site base URL -
         .Site.Data.vars.build.docs_home_url.full.
         For example: `f="v2.2.0/sec1/dir1/file1/"` or `f="v2.2.0/sec1/dir1/"`.
       To refer to the home page of the referenced site (built-site base URL
@@ -24,7 +24,7 @@ Params
       The requirement depends on "f" and "fixed". See the PATH NOTE.
 "f"   The relative site path to the referenced page or a relative directory
       path to link to an _index.md file (when "fixed="0" - default), OR the
-      relative parent doc-site URL path (when "fixed"="1'), OR "CURRENTVER"
+      relative parent ghpages-doc-site URL path (when "fixed"="1'), OR "CURRENTVER"
       when s="release-notes" and "fixed="0" (default).
       Required except when linking to the site home. See the PATH NOTE.
 Optional Params

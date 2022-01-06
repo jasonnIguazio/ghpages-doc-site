@@ -52,7 +52,7 @@ menu:
   hard to work with. (17.5.20) I renamed the file for v2.8.0 to
   frames/tsdb.undocumented_tech_preview_features.IGNORED and edited it (see
   Requirement IG-14367 / DOC IG-14369 for the related v2.8.0 API changes).
-  (IGNORED directories are excluded from the doc-site build).
+  (IGNORED directories are excluded from the ghpages-doc-site build).
   (The ignored-doc changes were in the TSDB `create` & `read` references.
   The overview and `write` and `delete` references didn't change.) See the
   "Tech Preview Documentation" email thread from Apr 2020.
