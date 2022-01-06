@@ -3,11 +3,11 @@
 /public*
 
 # Gulp generated files
-data/vars/build.toml
-themes/*/static/css/style.css
-themes/*/static/js/vendor.js
-themes/*/static/js/app.js
-themes/*/layouts/partials/func/set-javascript-vars.html
+# data/vars/build.toml
+# themes/*/static/css/style.css
+# themes/*/static/js/vendor.js
+# themes/*/static/js/app.js
+# themes/*/layouts/partials/func/set-javascript-vars.html
 
 # Installation files
 node_modules
