@@ -18,3 +18,5 @@ The home page contains links to relevant documentation pages on this site.
 - Occasionally, temporary **documentation drafts** are uploaded to https://igzdocsdev.wpengine.com/doc-drafts/.
 
 For more information about the documentation infrastructure, including installation instructions, see the [doc-site Wiki](https://github.com/iguazio/doc-site/blob/development/README.md).
+
+Adding here.
