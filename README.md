@@ -13,6 +13,8 @@ https://www.iguazio.com/docs/ redirects to https://www.iguazio.com/docs/latest-r
 The doc-site **staging web server** is https://igzdocsdev.wpengine.com.
 The home page contains links to relevant documentation pages on this site.
 
+<a id="published-docs"</a>
+
 - **Currently published** doc-site copies are found under https://igzdocsdev.wpengine.com/docs/ ([latest-release](https://igzdocsdev.wpengine.com/docs/latest-release/),) and versions with **internal** comments are found at https://igzdocsdev.wpengine.com/internal/docs/ ([latest-release](https://igzdocsdev.wpengine.com/internal/docs/latest-release/)).
 - **Development** doc sites are found at https://igzdocsdev.wpengine.com/docs-dev/ ([latest-release](https://igzdocsdev.wpengine.com/docs-dev/latest-release/) &mdash; from the `deveopment` branch), and versions with **internal** comments are found at https://igzdocsdev.wpengine.com/internal/docs-dev/) ([latest-release](https://igzdocsdev.wpengine.com/internal/docs-dev/latest-release/)).
 - Occasionally, temporary **documentation drafts** are uploaded to https://igzdocsdev.wpengine.com/doc-drafts/.
