@@ -161,7 +161,7 @@ Following is an example configuration file.
 Replace the IP address and access key in the values of the <yamlkey>webApiEndpoint</yamlkey> and <yamlkey>accessKey</yamlkey> keys with your specific data; you can also select to replace the <yamlkey>accesskey</yamlkey> key with <yamlkey>username</yamlkey> and <yamlkey>password</yamlkey> keys:
 
 ```yaml
-# File:         v3io-tsdb-config.yaml
+# File:         v3io-tsdb-config.toml
 # Description:  V3IO TSDB Configuration File
 
 # Endpoint of an Iguazio MLOps Platform web APIs (web-gateway) service,

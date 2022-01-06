@@ -492,7 +492,7 @@ function init() {
   backupVersionsFile = configBuild.backupVersionsFile;
 
   // Hugo-only configuration files
-  configHugoOnlyFiles = "config.yaml.old";
+  configHugoOnlyFiles = "config.toml.old";
   if (argv['config']) {
     configHugoOnlyFiles = argv['config'];
   }
