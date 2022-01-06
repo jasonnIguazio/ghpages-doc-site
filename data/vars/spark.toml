@@ -1,0 +1,180 @@
+## Spark Variables
+
+# [InfraInfo] Use the `getvar` or `url` shortcodes to access variable keys in
+# this file.
+# USAGE:
+#   {{< getvar v="VAR" [m=true] >}}
+#   {{< getvar v="ARRAY_VAR" arr_key="ARRAY_KEY" [arr_item_id="ARR_ITEM_ID_KEY"] [arr_item_id_val="ARR_ITEM_ID_KEY_VALUE"] [m=true] >}}
+# Examples:
+#   {{< getvar v="spark.product_connector.full" >}}
+#   {{< url g="spark" v="home" k="text" link="1" >}}
+#   {{< getvar v="spark.doc.full" >}}
+#   {{< url g="spark" v="sql_n_ds_guide" k="full" >}}
+#   {{< getvar v="spark.sql_home.text_w_df" >}}
+#   {{< url g="spark" v="streaming_prog_guide" k="title" link="1" >}}
+
+# [c-spark-ver] [InfraInfo] The variable values (URLs etc.) are for the Spark
+# version supported by the current platform version - see ver.spark.version in
+# data/vars/product.toml. Use the `verkey` shortcode to get this version:
+#   {{< verkey k="spark.version" >}}
+# [TODO-VEW-VER] When changing the supported Spark version, edit the URLs.
+
+## ===== PRODUCT_SPARK_CONNECTOR_START =====
+## Product Spark Connector Home
+# [InfraInfo] Use {{< getvar v="spark.product_connector" k="<key>" >}} - for
+# example:
+#   {{< getvar v="spark.product_connector.full" >}})
+# In code blocks, use {{% getvar v="spark.product_connector" k="<key>" >}} -
+# for example:
+#   {{% getvar v="spark.product_connector.nosql_data_source" %}}
+[product_connector]
+  full    = "Iguazio Spark connector"
+  full_sc = "Iguazio Spark connector"
+  full_tc = "Iguazio Spark Connector"
+  nosql_data_source = "io.iguaz.v3io.spark.sql.kv"
+## ===== PRODUCT_SPARK_CONNECTOR_END =====
+
+## ===== SPARK_HOME_START =====
+## Spark Home
+[home]
+  full        = "https://spark.apache.org"
+  text        = "Apache Spark"
+  text_short  = "Spark"
+## ===== SPARK_HOME_END =====
+
+## ===== SPARK_API_REFS_START =====
+## Spark API References
+# (For specific references, such as streaming, see in the relevant section.)
+
+## Spark Python API Reference URL
+# Latest Supported Spark Version
+[python_api]
+  full = "http://spark.apache.org/docs/3.1.2/api/python/"
+
+# Spark PySpark Python API Package URL
+[pyspark_pkg]
+  full  = "http://spark.apache.org/docs/3.1.2/api/python/pyspark.html"
+  text  = "v3.1.2 pyspark package"
+  title = "pyspark package"
+
+## Spark Scala API Reference
+[scala_api]
+  full  = "http://spark.apache.org/docs/3.1.2/api/scala/"
+    # Redirects to http://spark.apache.org/docs/3.1.2/api/scala/#package
+  text  = "Scala v3.1.2 API reference"
+  title = "root package"
+
+## Spark Scala API Package Base URL (not a valid standalone URL)
+[scala_api_pkg_base]
+  full = "http://spark.apache.org/docs/3.1.2/api/scala/#org.apache.spark"
+## ===== SPARK_API_REFS_END =====
+
+## ===== SPARK_DOCS_START =====
+## Spark Docs
+[doc]
+  full = "https://spark.apache.org/docs/3.1.2/"
+  text = "Spark v3.1.2documentation"
+
+## spark-submit Documentation
+[spark_submit_doc]
+  full = "https://spark.apache.org/docs/3.1.2/submitting-applications.html"
+  text = "Spark submitting-applications documentation"
+  title = "Submitting Applications"
+## ===== SPARK_DOCS_END =====
+
+## ===== SPARK_GRAPHX_START =====
+## Spark GraphX (an Apache Spark API for graphs and graph-parallel computation)
+# [InfInfo] [c-graphx] (sharonl) (18.2.18) GraphX is pre-deployed in the
+# platform as part of the Spark installation, but we never tested it. Yoav
+# opened JIRA Requirement IG-6594 for R&D to test the support (currently
+# planned for v1.9.0). Adi said to keep the include a reference to this tool as
+# part of our pre-deployed Spark installation even though we hadn't tested it.
+
+[graphx_home]
+  full  = "https://spark.apache.org/graphx/"
+  text  = "GraphX"
+  title = "Apache Spark GraphX"
+## ===== SPARK_GRAPHX_END =====
+
+## ===== SPARK_MLLIB_START =====
+## Spark MLlib (an Apache Spark scalable machine learning library)
+
+[mllib_home]
+  full  = "https://spark.apache.org/mllib/"
+  text  = "MLlib"
+  title = "Apache Spark MLlib"
+## ===== SPARK_MLLIB_END =====
+
+## ===== SPARK_QS_START =====
+## Spark Quick Start
+
+[quickstart]
+  full  = "https://spark.apache.org/docs/3.1.2/quick-start.html"
+  text  = "Spark v3.1.2 quick-start guide"
+  title = "Quick Start"
+## ===== SPARK_QS_END =====
+
+## ===== SPARK_SQL_START =====
+## Spark SQL (an Apache Spark module for working with structured data)
+[sql_home]
+  full        = "https://spark.apache.org/sql/"
+  text        = "Spark SQL"
+  text_w_df   = "Spark SQL and DataFrames"
+  title       = "Apache Spark SQL"
+## ===== SPARK_SQL_END =====
+
+## ===== SPARK_SQL_n_DATASETS_START =====
+## Spark SQL & Datasets
+# Spark SQL, DataFrames and Datasets Guide
+[sql_n_ds_guide]
+  full  = "https://spark.apache.org/docs/3.1.2/sql-programming-guide.html"
+  text  = "Spark v3.1.2 SQL Datasets guide"
+  title = "Spark SQL, DataFrames and Datasets Guide"
+## ===== SPARK_SQL_n_DATASETS_END =====
+
+## ===== SPARKR_START =====
+## SparkR (R on Spark) (a light-weight frontend to use Apache Spark from R
+# (sharonl) [InfInfo] (24.2.18) Or Z. explained to me that the platform comes
+# with a SparkR installation but to use it you need to install the R
+# environment/language. See the "SparkR over Iguazio" email thread, starting
+# with Or's 18.2.18 email, for installation instructions.
+
+## "SparkR (R on Spark)" Apache Documentation
+[sparkr_doc]
+  full  = "https://spark.apache.org/docs/3.1.2/sparkr.html"
+  text  = "SparkR v3.1.2"
+  title = "SparkR (R on Spark)"
+# Latest docs
+[sparkr_doc_latest]
+  full  = "https://spark.apache.org/docs/latest/sparkr.html"
+  text  = "SparkR"
+  title = "SparkR (R on Spark)"
+## ===== SPARKR_END =====
+
+## ===== SPARK_STREAMING_START =====
+## Spark Streaming
+
+## Spark Streaming Home
+[streaming_home]
+  full  = "http://spark.apache.org/streaming/"
+  text  = "Spark Streaming"
+  title = "Apache Spark Streaming"
+
+# Spark Streaming Programming Guide
+# Latest-supported version
+[streaming_prog_guide]
+  full  = "https://spark.apache.org/docs/3.1.2/streaming-programming-guide.html"
+  text  = "v3.1.2 Spark Streaming Programming Guide"
+  title = "Spark Streaming Programming Guide"
+
+## Spark-Streaming Python API Reference
+[streaming_python_api]
+  full  = "http://spark.apache.org/docs/3.1.2/api/python/pyspark.streaming.html"
+  text  = "v3.1.2 Spark Python streaming API reference"
+  title = "pyspark.streaming module"
+
+## Spark-Streaming Scala API Reference Base URL (not valid as a standalone URL)
+[streaming_scala_api_base]
+  full = "http://spark.apache.org/docs/3.1.2/api/scala/#org.apache.spark.streaming"
+## ===== SPARK_STREAMING_END =====
+

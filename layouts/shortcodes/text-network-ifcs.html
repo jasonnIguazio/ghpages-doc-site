@@ -1,0 +1,10 @@
+The {{ $.Site.Data.vars.product.name.lc -}}'s data and application node VMs ("the {{ $.Site.Data.vars.product.name.lc }} nodes") are connected through three networks:
+
+<ul>
+    <li><b>Management network</b> &mdash; used for user access to the {{ $.Site.Data.vars.product.UI.short_lc }} and for direct access the {{ $.Site.Data.vars.product.name.lc }} nodes.
+    </li>
+    <li><b>Data-path (client) network</b> &mdash; used for internal communication among the data and application nodes.
+    </li>
+    <li><b>Interconnect network</b> &mdash; used for internal communication among the data nodes.
+    </li>
+</ul>

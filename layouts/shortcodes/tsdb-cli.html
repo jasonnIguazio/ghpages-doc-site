@@ -1,0 +1,51 @@
+<!-- Returns either the name of a V3IO TSDB CLI instance (with/wo a file
+  extension) or a pattern for such a name (using placeholders), or the full or
+  short version of the TSDB CLI that matches the shortcode call (default = the
+  compatible CLI version for the platform version of the active doc page).
+  By default (no params), the shortcode returns the base name of the CLI.
+  Otherwise, if "t"!="version"/"version_short", the shortcode returns a name or
+  name pattern that matches the released CLI names (with ver, OS, and arch).
+     
+  Optional Params
+  "t"       - Shortcode return type. Supported values -
+              "name"    - Default. Return the CLI name / binary file name.
+              "version" - Return the full X.Y.Z CLI version for the product
+                          version of the current page.
+              "version_short" - Return the short X.Y CLI version for the
+                          product version of the current page.
+  The following params are applicable only for the default "t"="name" type:
+  "arch"    - CPU architecture. Default = "amd64" or "<arch>" when"pattern"=1.
+  "file"    - 1 = include the file suffix of the CLI binary (if exists).
+              Currently, this is applicable only for "os"="windows".
+  "os"      - Operating system - "darwin" | "linux" | "windows".
+              The default is "linux" (the platform application-nodes OS) or
+              "<OS>" when "pattern"=1..
+  "pattern" - 1 = return the pattern (format) of a released CLI name.
+  "ver"     - TSDB CLI version (e.g., "0.9.6"). The default is the TSDB CLI
+              version for the product version of the current page or
+              "<version>" when "pattern"=1.
+-->
+{{- $name := $.Site.Data.vars.product.tsdb.cli.name -}}
+
+{{- if not (or (.Get "t") (or (.Get "arch") (or (.Get "os") (.Get "pattern"))) (.Get "ver")) -}}
+  {{- $name -}}
+{{- else -}}
+  {{- $arch := (.Get "arch") | default "amd64" -}}
+  {{- $tsdb_ver := .Site.Data.vars.product.ver.tsdb.version -}}
+
+  {{- if eq (.Get "t") "version" -}}
+    {{- printf "%s" $tsdb_ver -}}
+  {{- else if eq (.Get "t") "version_short" -}}
+    {{- printf "%s" .Site.Data.vars.product.ver.tsdb.version_short -}}
+  {{- else -}}
+    {{- $os := (.Get "os") | default "linux" -}}
+    {{- $suffix := (cond (and (eq (.Get "file") "1") (eq $os "windows")) ".exe" "") -}}
+
+    {{- if eq (.Get "pattern") "1" -}}
+      {{- printf "%s-v%s-%s-%s%s" $name (cond (eq "ver" "") "&lt;version&gt;" $tsdb_ver) (cond (eq (.Get "os") "") "&lt;OS&gt;" $os) (cond (eq (.Get "arch") "") "&lt;arch&gt;" $arch) $suffix | markdownify -}}
+    {{- else -}}
+      {{- printf "%s-v%s-%s-%s%s" $name $tsdb_ver $os $arch $suffix -}} 
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+

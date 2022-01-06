@@ -1,0 +1,19 @@
+# theme.toml: Configuration file for the Iguazio docs Hugo theme -
+# iguazio-docs-theme).
+# [InfraInfo] See the theme.toml section of the gohugoio/hugoThemes GitHub repo
+# README - https://github.com/gohugoio/hugoThemes#themetoml.
+
+name = "Iguazio docs Hugo Theme"
+license = "MIT"
+licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE.md"
+  # TODO: If we create a theme GitHub repository, update the license-file URL.
+description = "Hugo theme for Iguazio's online documentation."
+
+tags = ["", ""]
+features = ["", ""]
+min_version = 0.21
+
+[author]
+  name = "Iguazio"
+  homepage = "www.iguazio.com"
+

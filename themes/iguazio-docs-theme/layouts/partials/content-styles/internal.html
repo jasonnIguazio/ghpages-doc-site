@@ -1,0 +1,29 @@
+<!-- Internal-Info Note
+Mandatory "content" - The internal-info content (the admon .Inner).
+Optional Params
+  "class"     - The CSS admonition class' default = "internal-info".
+  "default_title" - [Optional] Default title (appended to "[INTERNAL]");
+                default - none.
+  "id"        - Anchor ID (note link target).
+  "pre_title" - Title prefix (prepended to $title/$default_title);
+                default - "[INTERNAL"]
+  "title"     - Title, appended to "pre_title"; the default full title is
+                "[INTERNAL]"; set to "none" for no title.
+
+[InfraInfo] [sharonl] I decided not to use the admon.html partial.
+Don't split this comment into multiple comments; it might disrupt the output.
+-->
+{{- if eq (getenv "IGZ_BUILD_INTERNAL") "true" -}}
+  {{- $title := .title | default (.default_title | default "") -}}
+  {{- $pre_title := .pre_title | default "[INTERNAL]" -}}
+
+  <div class='admonition {{ .class | default "internal-info" -}}'{{- with .id }} id="{{- . -}}"{{- end -}}>
+  {{- if not (eq $title "none") -}}
+    <div class="admonition-title">{{- printf "%s%s%s" $pre_title (cond (or (eq $title "") (eq $pre_title "")) "" " ") $title -}}</div>
+  {{- end -}}
+    <div class="admonition-content">
+      {{- .content -}}
+    </div>
+  </div>
+{{- end -}}
+

@@ -1,0 +1,17 @@
+<!-- Internal-Info Note
+Mandatory Content (.Inner)  - The internal-info text (the admon .Inner).
+Optional Params
+  "class"     - The CSS admonition class' default = "internal-info".
+  "default_title" - [Optional] Default title (appended to "[INTERNAL]");
+                default - none
+  "id"        - Anchor ID (note link target)
+  "pre_title" - Title prefix (prepended to $title/$default_title);
+                default - "[INTERNAL"]
+  "title"     - Title, appended to "pre_title"; the default full title is
+                "[INTERNAL]"; set to "none" for no title
+
+[InfraInfo] [sharonl] I decided not to use the admon.html partial.
+Don't split this comment into multiple comments; it might disrupt the output.
+-->
+{{- partial "content-styles/internal.html" (dict "content" (.Inner | markdownify) "title" (.Get "title") "id" (.Get "id")) -}}
+

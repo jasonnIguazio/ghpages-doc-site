@@ -1,0 +1,30 @@
+{{ partial "head" . }}
+
+<body>
+<div class="single-page">
+  {{ partial "nav" . }}
+</div>
+
+<!-- Doc Content -->
+<div class="documentation">
+  <!-- Side Menu -->
+  {{ if not .Params.isSideMenuHidden }}
+    {{ partial "side-menu.html" (dict "ctx" . "class" "home-side-menu") }}
+  {{ end }}
+
+  <section class="home-content">
+    <div class="home-containers">
+      <div class="home-header">
+          <div class="header-title">{{ .Page.Title }}</div>
+      </div>
+      {{ .Content }}
+    </div>
+  </section>
+</div>
+
+<!-- Scroll-to-top Button ("Back to Top") -->
+{{ partial "scroll-top-arrow" .}}
+
+<!-- Footer -->
+{{ partial "footer" .}}
+</body>

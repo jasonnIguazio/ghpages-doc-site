@@ -1,0 +1,63 @@
+<!-- get-var: Returns the value of a data variable (Data.vars.<var>) (default)
+  or site parameter ($Site.Params.<param> - "t" = "siteparams"/"sp").
+
+  Mandatory Dictionary Params
+  "ctx" The context of the calling template/partial/shortcode (`.`).
+  "v" A period (.) delimited string denoting the path to a data/vars/ variable
+      key - $Site.Data.<"v">. For example, "product.name.full".
+  Optional Dictionary Params
+  "t"             Variable type - one of the following:
+                    "data" | "d" (default)  -  Data
+                    "siteparams" | "sp"     - Site.Params
+  "arr_key"       The name of the array-item variable key to access.
+  "arr_item_id"   The name of an array-item key that should be used to locate
+                  the array item for which to return "arr_key" - "num" (default)
+                 or "num_short".
+  "arr_item_id_val"  The expected $arr_item_id key value (e.g., "2.0.0"). The
+                  default is the product version number of the format indicated
+                  by the "arr_item_id param ((data/vars/product.toml "ver"
+                  $arr_item_id key).
+  NOTE: To access an array-item key, "arr_key" and "arr_item_id" must be set.
+  "md"            `true` - process Markdown in the variable value (markdownify);
+                  note that shortcode calls in the value aren't processed.
+                  `false` (default) - don't process Markdown in the value.
+
+[INFRA-TODO] Improve the implementation.
+[InfraInfo] Don't move this note to a separate HTML comment, as it might affect
+the output in some cases. This note should ultimately be removed anyway.
+-->
+{{- $ctx := .ctx -}}
+{{- $arr_key := .arr_key -}}
+{{- $keys := split .v "." -}}
+{{- $value := $ctx.Site.Data.vars -}}
+
+{{- if or (eq .t "siteparams") (eq .t "sp") -}}
+  {{- $value = $ctx.Site.Params -}}
+{{- end -}}
+
+{{- range $keys -}}
+  {{- $value = index $value . -}}
+{{- end -}}
+
+{{- if $arr_key -}}
+  {{- $arr_item_id := (cond (eq .arr_item_id "") "num" .arr_item_id) -}}
+  {{- $arr_item_id_val := .arr_item_id_val -}}
+  {{- if eq $arr_item_id_val "" -}}
+    {{- $arr_item_id_val = index $ctx.Site.Data.vars.product.ver $arr_item_id -}}
+  {{- end -}}
+
+  {{- range where $value $arr_item_id $arr_item_id_val -}}
+    {{- $value = . -}}
+    {{- $keys = split $arr_key "." -}}
+    {{- range $keys -}}
+      {{- $value = index $value . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if .md -}}
+  {{- printf "%s" $value | markdownify -}}
+{{- else -}}
+  {{- printf "%s" $value -}}
+{{- end -}}
+

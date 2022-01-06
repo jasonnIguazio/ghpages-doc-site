@@ -1,0 +1,480 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "0.0.0.1",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    },
+    "systemId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "An optional system ID that appears, among other places, in the system's URL. Can only consist of lowercase letters, hyphens and numbers and match the regex: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$. Defaults to a random string."
+      }
+    },
+    "systemVersion": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "System version, if applicable"
+      }
+    },
+    "httpsCertKind": {
+      "type": "string",
+      "defaultValue": "prod",
+      "metadata": {
+        "description": "The HTTPS certificate kind. One of none, staging, prod"
+      }
+    },
+    "ownerName": {
+      "type": "string",
+      "defaultValue": "Undefined",
+      "metadata": {
+        "description": "The name of the system owner, for book keeping"
+      }
+    },
+    "vnetName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "An optional Virtual Network. If empty, a new Virtual Network is created"
+      }
+    },
+    "allocatePublicIpAddresses": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "If true, the Virtual Machine interfaces receive a public IP address"
+      }
+    },
+    "whitelistIguazioNetwork": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "If allocatePublicIpAddresses is true, this will punch holes through the security groups to allow access from Iguazio support"
+      }
+    },
+    "whitelistedCidrs": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "If allocatePublicIpAddresses is true, this will punch holes through the security groups to allow access from these CIDRs to the system service ports"
+      }
+    },
+    "vnetSubnetName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "If vnetName is passed, specifies the name of the subnet to use"
+      }
+    },
+    "vnetResourceGroup": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "If vnetName is set, this specifies the resource group of the Virtual Network. If empty, defaults to the resource group location"
+      }
+    },
+    "vnetAddressPrefix": {
+      "type": "string",
+      "defaultValue": "172.38.0.0/16",
+      "metadata": {
+        "description": "If vnetName is not passed, this is the subnet prefix for the new Virtual Network"
+      }
+    },
+    "vnetSecurityGroupName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The security group for the vnet (attached to the installer VM)"
+      }
+    },
+    "dataVmSize": {
+      "type": "string",
+      "defaultValue": "Standard_L16s_v2",
+      "allowedValues": [
+        "Standard_L16s_v2"
+      ],
+      "metadata": {
+        "description": "This is the size of your data VMs"
+      }
+    },
+    "appVmSize": {
+      "type": "string",
+      "defaultValue": "Standard_D16s_v3",
+      "allowedValues": [
+        "Standard_D16s_v3",
+        "Standard_D32s_v3",
+        "Standard_D64s_v3"
+      ],
+      "metadata": {
+        "description": "This is the size of your app VMs"
+      }
+    },
+    "numDataNodes": {
+      "type": "int",
+      "defaultValue": 1,
+      "metadata": {
+        "description": "Number of data nodes"
+      }
+    },
+    "numAppNodes": {
+      "type": "int",
+      "defaultValue": 1,
+      "metadata": {
+        "description": "Number of application nodes"
+      }
+    },
+    "provazioDashboardImage": {
+      "type": "string",
+      "defaultValue": "quay.io/iguazio/provazio-dashboard:az-market-0"
+    },
+    "vmOfferName": {
+      "type": "string",
+      "defaultValue": "iguazio-data-science-platform-vm"
+    },
+    "vmOfferVersion": {
+      "type": "string",
+      "defaultValue": "0.0.4"
+    },
+    "adminUsername": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "securestring"
+    },
+    "apiKey": {
+      "type": "string"
+    },
+    "vaultUrl": {
+      "type": "string",
+      "defaultValue": "https://vault.prod.provazio.iguazio.com"
+    },
+    "systemDomain": {
+      "type": "string",
+      "defaultValue": "iguazio-c0.com"
+    },
+    "intercomMode": {
+      "type": "string",
+      "defaultValue": "auto",
+      "allowedValues": [
+        "auto",
+        "enabled",
+        "disabled"
+      ],
+      "metadata": {
+        "description": "Whether or not the cluster registers itself to intercom"
+      }
+    },
+    "spTenantId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Service Principal Tenant ID"
+      }
+    },
+    "spSubscriptionId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Service Principal Subscription ID"
+      }
+    },
+    "spClientId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Service Principal Client ID"
+      }
+    },
+    "spClientSecret": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Service Principal Client Secret"
+      }
+    },
+    "createProximityPlacementGroup": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "If createProximityPlacementGroup is true, a proximity group is created and all instances are placed in it"
+      }
+    },
+    "downloadOfflinePackageS3AccessKeyId": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Override for S3 access key ID, in case Vault access is inhibited"
+      }
+    },
+    "downloadOfflinePackageS3SecretAccessKey": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Override for S3 secret access key, in case Vault access is inhibited"
+      }
+    },
+    "appClusterKubernetesKind": {
+      "type": "string",
+      "defaultValue": "vanilla",
+      "metadata": {
+        "description": "Kubernetes kind - vanilla/aks"
+      }
+    },
+    "appClusterKubernetesVersion": {
+      "type": "string",
+      "defaultValue": "1.18.17",
+      "metadata": {
+        "description": "Kubernetes version (e.g. 1.18.17)"
+      }
+    },
+    "dataClusterStorageEncryptionKind": {
+      "type": "string",
+      "defaultValue": "none",
+      "metadata": {
+        "description": "Encryption kind for storage of the data cluster (one of none, luks)"
+      }
+    }
+  },
+  "variables": {
+    "systemId": "[if(empty(parameters('systemId')), concat('az', toLower(uniqueString(subscription().subscriptionId, resourceGroup().id, deployment().name))), parameters('systemId'))]",
+    "systemVersion": "[if(empty(parameters('systemVersion')), '2.8_b142_20200426085608', parameters('systemVersion'))]",
+    "systemPublicIpAddressKind": "[if(parameters('allocatePublicIpAddresses'), 'static', 'none')]",
+    "vnetName": "[if(empty(parameters('vnetName')), concat(variables('systemId'), '-vnet'), parameters('vnetName'))]",
+    "vnetResourceGroup": "[if(empty(parameters('vnetResourceGroup')), resourceGroup().name, parameters('vnetResourceGroup'))]",
+    "vnetSubnetName": "[if(empty(parameters('vnetSubnetName')), concat(variables('systemId'),'-subnet'), parameters('vnetSubnetName'))]",
+    "vnetSecurityGroupName": "[if(empty(parameters('vnetSecurityGroupName')), concat(variables('systemId'),'-security-group'), parameters('vnetSecurityGroupName'))]",
+    "installerVmName": "[concat(variables('systemId'), '-installer-vm')]",
+    "installerNicName": "[concat(variables('systemId'), '-installer-nic')]",
+    "installerPublicIpAddressName": "[concat(variables('systemId'), '-installer-public-ip-address')]",
+    "temporaryAdminUsername": "iguazio",
+    "temporaryAdminPassword": "IguazioTemporaryAdminPass0!",
+    "provisionScriptFileUri": "https://gist.githubusercontent.com/pavius/a58b1b3e7dce95b357a277eddc2901c6/raw/75dded3872c9e3ad6be6377e09fcfd6c23cf13bc/install.py",
+    "servicePrincipalArguments": "[if(empty(parameters('spClientSecret')), '', concat(' --sp-tenant-id ', parameters('spTenantId'), ' --sp-subscription-id ', parameters('spSubscriptionId'), ' --sp-client-id ', parameters('spClientId'), ' --sp-client-secret ', parameters('spClientSecret')))]",
+    "whitelistIguazioNetworkArgument": "[if(and(parameters('allocatePublicIpAddresses'), parameters('whitelistIguazioNetwork')), ' --whitelist-iguazio-network', '')]",
+    "createProximityPlacementGroupArgument": "[if(parameters('createProximityPlacementGroup'), ' --system-create-proximity-placement-group', '')]",
+    "downloadOfflinePackageS3Argument": "[if(and(empty(parameters('downloadOfflinePackageS3AccessKeyId')), empty(parameters('downloadOfflinePackageS3SecretAccessKey'))), '', concat(' --system-download-offline-package-s3-access-key-id ', parameters('downloadOfflinePackageS3AccessKeyId'), ' --system-download-offline-package-s3-secret-access-key ', parameters('downloadOfflinePackageS3SecretAccessKey')))]",
+    "whitelistCidrsArgument": "[if(empty(parameters('whitelistedCidrs')), '', concat(' --whitelisted-cidrs ', parameters('whitelistedCidrs')))]",
+    "installerSecurityGroupName": "[concat(variables('systemId'), '-installer-security-group')]",
+    "defaultTags": {
+      "iguazio.systemId": "[variables('systemId')]"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2019-09-01",
+      "name": "pid-f411eedf-bb7e-527b-ae81-41951177ba9c",
+      "type": "Microsoft.Resources/deployments",
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": []
+        }
+      }
+    },
+    {
+      "name": "[variables('installerSecurityGroupName')]",
+      "type": "Microsoft.Network/applicationSecurityGroups",
+      "apiVersion": "2018-11-01",
+      "location": "[parameters('location')]",
+      "tags": "[variables('defaultTags')]",
+      "properties": {}
+    },
+    {
+      "name": "[variables('vnetSecurityGroupName')]",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2018-11-01",
+      "location": "[parameters('location')]",
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2018-11-01",
+      "condition": "[empty(parameters('vnetName'))]",
+      "name": "[variables('vnetName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('vnetSecurityGroupName'))]"
+      ],
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('vnetAddressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnetSubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('vnetAddressPrefix')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('vnetSecurityGroupName'))]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2018-11-01",
+      "condition": "[parameters('allocatePublicIpAddresses')]",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('installerPublicIpAddressName')]",
+      "location": "[parameters('location')]",
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "publicIPAllocationMethod": "Static"
+      }
+    },
+    {
+      "apiVersion": "2018-11-01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[variables('installerNicName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/applicationSecurityGroups', variables('installerSecurityGroupName'))]",
+        "[resourceId('Microsoft.Network/publicIPAddresses/', variables('installerPublicIpAddressName'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks/', variables('vnetName'))]"
+      ],
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "[concat(variables('installerNicName'), '-config')]",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": "[if(parameters('allocatePublicIpAddresses'), json(concat('{\"id\": \"', resourceId(resourceGroup().name, 'Microsoft.Network/publicIPAddresses', variables('installerPublicIpAddressName')), '\"}')), json('null'))]",
+              "subnet": {
+                "id": "[resourceId(variables('vnetResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), variables('vnetSubnetName'))]"
+              },
+              "applicationSecurityGroups": [
+                {
+                  "id": "[resourceId('Microsoft.Network/applicationSecurityGroups', variables('installerSecurityGroupName'))]"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2018-10-01",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[variables('installerVmName')]",
+      "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "plan": {
+        "name": "[parameters('vmOfferName')]",
+        "product": "[parameters('vmOfferName')]",
+        "publisher": "iguazio-5069960"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces/', variables('installerNicName'))]"
+      ],
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "Standard_D8s_v3"
+        },
+        "osProfile": {
+          "computerName": "[variables('installerVmName')]",
+          "adminUsername": "[variables('temporaryAdminUsername')]",
+          "adminPassword": "[variables('temporaryAdminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "offer": "[parameters('vmOfferName')]",
+            "publisher": "iguazio-5069960",
+            "sku": "[parameters('vmOfferName')]",
+            "version": "[parameters('vmOfferVersion')]"
+          },
+          "osDisk": {
+            "name": "[concat(variables('installerVmName'), '-os-disk')]",
+            "createOption": "FromImage",
+            "diskSizeGB": 32,
+            "managedDisk": {
+              "storageAccountType": "Premium_LRS"
+            }
+          }
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('installerNicName'))]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "apiVersion": "2018-07-01",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "condition": "[empty(parameters('spClientSecret'))]",
+      "name": "[guid(concat(variables('systemId'), '-installer-vm-role-assignment'))]",
+      "dependsOn": [
+        "[variables('installerVmName')]"
+      ],
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "roleDefinitionId": "[concat('/subscriptions/',subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
+        "principalId": "[reference(variables('installerVmName'), '2017-12-01', 'Full').identity.principalId]",
+        "scope": "[resourceGroup().id]"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "[concat(variables('installerVmName'), '/docker')]",
+      "apiVersion": "2019-12-01",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines/', variables('installerVmName'))]"
+      ],
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "DockerExtension",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {}
+      }
+    },
+    {
+      "name": "[concat(variables('installerVmName'), '/azure-provision')]",
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "location": "[parameters('location')]",
+      "apiVersion": "2018-10-01",
+      "dependsOn": [
+        "[variables('installerVmName')]",
+        "[concat('Microsoft.Compute/virtualMachines/', variables('installerVmName'), '/extensions/docker')]"
+      ],
+      "tags": "[variables('defaultTags')]",
+      "properties": {
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "CustomScript",
+        "typeHandlerVersion": "2.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {},
+        "protectedSettings": {
+          "commandToExecute": "[concat('chmod +x /var/lib/waagent/custom-script/download/0/install.py && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py && sudo python get-pip.py --no-cache-dir -U pip==20.3.4 && sudo pip install requests==2.25.1 delegator.py==0.1.1 && python /var/lib/waagent/custom-script/download/0/install.py ', ' --api-key ', parameters('apiKey'), ' --vault-url ', parameters('vaultUrl'), ' --provazio-dashboard-image ', parameters('provazioDashboardImage'), ' --system-id ', variables('systemId'), ' --system-description Azure', ' --system-version ', variables('systemVersion'), ' --system-domain ', parameters('systemDomain'), ' --system-region ', parameters('location'), ' --system-https-cert-kind ', parameters('httpsCertKind'), ' --system-resource-group-name ', resourceGroup().name, ' --system-vnet-name ', variables('vnetName'), ' --system-vnet-subnet-name ', variables('vnetSubnetName'), ' --system-vnet-resource-group-name ', variables('vnetResourceGroup'), ' --system-public-ip-address-kind ', variables('systemPublicIpAddressKind'), ' --data-cluster-num-instances ', parameters('numDataNodes'), ' --data-cluster-instance-size ', parameters('dataVmSize'), ' --app-cluster-num-instances ', parameters('numAppNodes'), ' --app-cluster-instance-size ', parameters('appVmSize'), ' --admin-username ', parameters('adminUsername'), ' --admin-password ', parameters('adminPassword'), ' --owner-full-name \"', parameters('ownerName'), '\" --owner-email azure@iguazio.com', ' --intercom-mode ', parameters('intercomMode'), variables('servicePrincipalArguments'), variables('whitelistIguazioNetworkArgument'), variables('whitelistCidrsArgument'), variables('createProximityPlacementGroupArgument'), variables('downloadOfflinePackageS3Argument'), ' --app-cluster-kubernetes-kind ', parameters('appClusterKubernetesKind'), ' --app-cluster-kubernetes-version ', parameters('appClusterKubernetesVersion'), ' --data-cluster-storage-encryption-kind ', parameters('dataClusterStorageEncryptionKind'))]",
+          "fileUris": [
+            "[variables('provisionScriptFileUri')]"
+          ]
+        }
+      }
+    }
+  ]
+}

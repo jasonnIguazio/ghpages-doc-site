@@ -1,0 +1,18 @@
+<!-- doc-frame: Create a doc-frame object within a doc-frames container (see
+                the `doc-frames-container` shortcode).
+Required Parameters: The following required parameters are mutually exclusive:
+  "url_var" - A urls.toml data variable from which to extract the source URL.
+  "src"     - The source path/URL. When "url_var" is set, "src" is ignored.
+Optional Parameters:
+  "name"    - A unique iframe name
+  "url_key" - The "url_var" URL map-variable key - applicable only when
+              "url_var" is set; default: "full".
+-->
+{{- $src := .Get "src" -}}
+{{- $name := .Get "name" | default "" -}}
+{{- $url_key := .Get "url_key" | default "latest" -}}
+{{- with .Get "url_var" -}}
+  {{- $src = index (index $.Site.Data.vars.urls .) $url_key -}}
+{{- end -}}
+<iframe src="{{- $src -}}"{{- if $name }} name="{{- $name -}}"{{- end -}}></iframe>
+

@@ -1,0 +1,7 @@
+<!-- Required Content (.Inner) - the heading text.
+Optional Parameters
+  "id"      Heading anchor id.
+  "allcaps" "1" for all-caps formatting; default = "0".
+-->
+<div class="small-heading"{{- with .id }} id="{{- . -}}"{{- end -}}{{- if eq .allcaps "1" }} style="text-transform: uppercase;"{{- end }}>{{- .content -}}</div>
+

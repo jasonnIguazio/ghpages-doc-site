@@ -1,0 +1,8 @@
+<!-- param-values: Valid parameter values bullet
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Required content (.Inner) - The valid values.
+Optional Params
+  "str" - The "heading" string; default: "Valid Values".
+-->
+{{- partial "doc/param-values.html" (dict "ctx" . "content" .Inner "str" (.Get "str")) -}}
+

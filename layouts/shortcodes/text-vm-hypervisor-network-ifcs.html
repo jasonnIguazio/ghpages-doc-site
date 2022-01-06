@@ -1,0 +1,11 @@
+<ul>
+    <li>A single-port 1 Gb (minimum) NIC for the management network
+    </li>
+    <li>For hosting data-node VMs &mdash; a dual-port 10 Gb (minimum) NIC for the data-path (client) and interconnect networks
+    </li>
+    <li>For hosting application-node VMs only &mdash; a single-port 10 Gb (minimum) NIC for the data-path (client) network
+    </li>
+</ul>
+{{- if eq (.Get "sw") "1" -}}<!-- $sw="1": additional SW-related information -->
+Each network must be on a different subnet, and the management network's subnet must be able to accommodate allocation of IP addresses for each of the {{ $.Site.Data.vars.product.name.lc -}}'s node VMs.
+{{- end -}}

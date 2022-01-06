@@ -1,0 +1,61 @@
+<!-- doc-tile:  Create a doc-tile object within a doc-tiles container (see the
+                `doc-tiles-container` shortcode).
+Required Content (.Inner): The content of the doc tile.
+Required Parameters:
+  "class" - Doc-tile CSS tile class- "sub class" for the "$type-tile" class.
+  "type"  - Doc-tiles type - "main" | "sub".
+Optional Parameters:
+  "icon-class"  - A CSS icon class to apply to the tile icon. This is currently
+                  used for Iguazio-font icons.
+  "title"       - The tile title.
+-->
+{{- $title := .Get "title" | default "" -}}
+{{- $icon_class := .Get "icon-class" | default "" -}}
+{{- $type := .Get "type" -}}
+{{- $class := .Get "class" -}}
+{{- $external_link := false -}}
+{{- $url := "" -}}
+{{- if (eq $class "getting-started-tutorial") -}}
+  <!-- [c-mlrun-gs-tutorial-ref] [ci-iframe-link-to-anchor] TODO: Update the
+    link to the MLRun docs once a new MLRun version is released; link to a
+    specific page in the embedded MLRun docs iframe if possible. See more info
+    for ver.mlrun.docs.gs_tutorial in product.toml. -->
+  {{- $url = printf "%s/tree/%s/%s/README.md" $.Site.Data.vars.urls.public_gh_mlrun_demos.full $.Site.Data.vars.product.ver.mlrun.demos.version_tag $.Site.Data.vars.product.ver.mlrun.demos.gs_tutorial.dir_name -}}
+  {{- $external_link = true -}}
+{{- else -}}
+  {{- $nav_url := "" -}}
+  {{ range .Site.Params.sections }}
+    {{- if eq .id $class -}}
+      {{- $nav_url = strings.TrimPrefix "/" .nav_url -}}
+      {{- with .start_page -}}
+        {{- $nav_url = printf "%s%s" $nav_url . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $url = partial "func/xref.html" (dict "ctx" . "f" $nav_url "t" "url") -}}
+{{- end -}}
+
+<!-- Main Doc Tiles -->
+{{- if (eq $type "main") -}}
+  <a class="main-tile {{ $class -}}{{- if eq $external_link false }} internal-link{{- end -}}"
+     href="{{- $url -}}"{{- if $external_link }} target="_blank"{{- end -}}>
+    <div class="main-tile-icon"></div>
+  {{- with $title -}}
+    <div class="main-tile-title">{{- . -}}</div>
+  {{- end -}}
+    <div class="main-tile-content">{{ .Inner }}</div>
+  </a>
+<!-- Secondary ("Sub") Doc Tiles -->
+{{- else if (eq $type "sub") -}}
+<a class="sub-tile {{ $class -}}{{- if eq $external_link false }} internal-link{{- end -}}"
+   href="{{- $url -}}"{{- if $external_link }} target="_blank"{{- end -}}>
+  <div class="sub-tiles-title-wrapper">
+    <div class="sub-tile-icon {{ $icon_class -}}"></div>
+    {{- with $title -}}
+    <div class="sub-tile-title">{{- . -}}</div>
+    {{- end -}}
+  </div>
+  <div class="sub-tile-content">{{ .Inner }}</div>
+</a>
+{{- end -}}
+

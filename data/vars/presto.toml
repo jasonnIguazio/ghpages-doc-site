@@ -1,0 +1,161 @@
+## Presto/Trino Variables
+# Presto/Trino is a distributed SQL query engine for big data.
+# [IntInfo] See [c-trino] for `ver.presto` in data/vars/product.toml regarding
+# the Presto SQL rebranding as Trino at the end of 2020.
+
+# [IntInfo] The heading on the Presto home page is "Distributed SQL Query
+# Engine for Big Data" and the first paragraph of the product description is
+# "Presto is an open source distributed SQL query engine for running
+# interactive analytic queries against data sources of all sizes ranging from
+# gigabytes to petabytes."
+
+# [InfraInfo] Use the `getvar` or `url` shortcodes to access variable keys in
+# this file.
+# USAGE:
+#   {{< getvar v="VAR" [m=true] >}}
+#   {{< getvar v="ARRAY_VAR" arr_key="ARRAY_KEY" [arr_item_id="ARR_ITEM_ID_KEY"] [arr_item_id_val="ARR_ITEM_ID_KEY_VALUE"] [m=true] >}}
+# Examples:
+#   {{< getvar v="presto.product_connector.full" >}}
+#   {{< url g="presto" v="home" k="text" link="1" >}}
+#   {{< getvar v="presto.home.full" >}}
+#   {{< getvar v="presto.doc.full" >}}
+#   {{< getvar v="presto.doc.sql.create_view.full" >}}
+#   {{< url g="presto" v="doc" k="hive_connector" k2="text_short" link="1" >}}
+#   {{< getvar v="presto.doc.cli.full" >}}
+
+# [c-presto-ver] [InfraInfo] The variable values (URLs etc.) are for the Presto
+# version supported by the current platform version - see ver.presto.version in
+# data/vars/product.toml. Use the `verkey` shortcode to get this version:
+#   {{< verkey k="presto.version" >}}
+#
+## ===== PRODUCT_PRESTO_CONNECTOR_START =====
+## Product Presto/Trino Connector Home
+# [InfraInfo] Use {{< presto v="product_connector" k="<key>" >}} (e.g.,
+# {{< presto v="product_connector" k="full" >}} <=>
+# {{< getvar v="presto.product_connector.full" >}}
+[product_connector]
+  full    = "Iguazio Presto connector"
+  full_sc = "Iguazio Presto connector"
+  full_tc = "Iguazio Presto Connector"
+## ===== PRODUCT_PRESTO_CONNECTOR_END =====
+
+## ===== PRESTO_HOME_START =====
+## Presto/Trino Home
+# [IntInfo] (sharonl) See [c-trino] and [c-prestosql] in data/vars/product.toml.
+# https://trino.io/docs/ automatically redirects to
+# https://trino.io/docs/current/, and I didn't find documentation for
+# earlier releases online (similar to the previous https://prestosql.io/docs/ >
+# https://prestosql.io/docs/current/ doc site). => I decided to use the
+# current-docs URL directly (as we did before for the "prestosql" and
+# "prestodb" doc URLs, even though "prestodb" has a base docs page with a link
+# to the current docs.)
+# (6.5.20) I updated the URLs and page titles according to the current
+# "prestosql" docs (v333). (21.3.21) I replaced the prestosql.io URLs with the
+# trino.io URLs [c-trino].
+[home]
+  full = "https://trino.io/"
+  text = "Presto"
+## ===== PRESTO_HOME_END =====
+
+## ===== PRESTO_DOCS_START =====
+## Presto/Trino Documentation
+# [IntInfo] See the info for the `home` variable.
+# (sharonl )(8.10.20) Previously, the Presto documentation had section numbers
+# and we had related `title_w_section` variable keys for the titles with the
+# section number (although they were unused). Now, I see that the section
+# numbers have bee removed from the Presto SQL documentation. => I removed the
+# `title_w_section` fields. [c-trino] (21.3.21) The Trino doc is like the old
+# Presto SQL doc, without section numbers.
+
+[doc]
+  full            = "https://trino.io/docs/current/"
+  text            = "Presto documentation"
+  title           = "Presto Documentation"
+
+  # CLI
+  [doc.cli]
+    full            = "https://trino.io/docs/current/installation/cli.html"
+    text            = "Presto CLI"
+    title           = "Command Line Interface"
+
+  # Hive Connector
+  [doc.hive_connector]
+    full            = "https://trino.io/docs/current/connector/hive.html"
+    text            = "Presto Hive connector"
+    text_short      = "Hive connector"
+    title           = "Hive Connector"
+    # [c-presto-hive-connector-sup-file-types] [IntInfo] (sharonl) (13.6.19)
+    # The "Supported File Types" section (#supported-file-types) in the latest
+    # Presto v0.2xx doc (v0.220) lists these types: ORC, Parquet, Avro, RCFile,
+    # SequenceFile, JSON, and Text.
+
+  # Oracle Connector
+  [doc.oracle_connector]
+    full            = "https://trino.io/docs/current/connector/oracle.html"
+    text            = "Presto Oracle connector"
+    text_short      = "Oracle connector"
+    title           = "Oracle Connector"
+
+  # Web UI
+  # [IntInfo] (12.5.20) In previously versions of the Presto documentation the
+  # terminology was "web interface", but currently it's "web UI".
+  [doc.web_ifc]
+    full            = "https://trino.io/docs/current/admin/web-interface.html"
+    text            = "Presto web UI documentation"
+    title           = "Web UI"
+
+  # Presto SQL Queries
+  [doc.sql]
+    # CREATE VIEW Query
+    [doc.sql.create_view]
+      full            = "https://trino.io/docs/current/sql/create-view.html"
+      text            = "Presto CREATE VIEW documentation"
+      title           = "CREATE VIEW"
+
+    # DROP VIEW Query
+    [doc.sql.drop_view]
+      full            = "https://trino.io/docs/current/sql/drop-view.html"
+      text            = "Presto DROP VIEW documentation"
+      title           = "DROP VIEW"
+
+
+    # SELECT Query
+    [doc.sql.select]
+      full            = "https://trino.io/docs/current/sql/select.html"
+      text            = "Presto SELECT documentation"
+      title           = "SELECT"
+
+    # SHOW CATALOGS Query
+    [doc.sql.show_catalogs]
+      full            = "https://trino.io/docs/current/sql/show-catalogs.html"
+      text            = "Presto SHOW CATALOGS documentation"
+      title           = "SHOW CATALOGS"
+
+    # SHOW FUNCTIONS Query
+    [doc.sql.show_functions]
+      full            = "https://trino.io/docs/current/sql/show-functions.html"
+      text            = "Presto SHOW FUNCTIONS documentation"
+      title           = "SHOW FUNCTIONS"
+
+    # SHOW CREATE VIEW Query
+    [doc.sql.show_create_view]
+      full            = "https://trino.io/docs/current/sql/show-create-view.html"
+      text            = "Presto SHOW CREATE VIEW documentation"
+      title           = "SHOW CREATE VIEW"
+
+    # SHOW SCHEMAS Query
+    [doc.sql.show_schemas]
+      full            = "https://trino.io/docs/current/sql/show-schemas.html"
+      text            = "Presto SHOW SCHEMAS documentation"
+      title           = "SHOW SCHEMAS"
+
+    # SHOW TABLES Query
+    # [IntInfo] (sharonl) `SHOW TABLES` also shows saved views.
+    # The syntax is `SHOW TABLES in <schema>` (e.g., `SHOW TABLES in users;`);
+    # if a default schema is configured, it can be omitted.
+    [doc.sql.show_tables]
+      full            = "https://trino.io/docs/current/sql/show-tables.html"
+      text            = "Presto SHOW TABLES documentation"
+      title           = "SHOW TABLES"
+## ===== PRESTO_DOCS_END =====
+

@@ -1,0 +1,15 @@
+{{- $ctx := .ctx -}}<!-- [Required] Context of the calling element (.) -->
+{{- $htag := (printf "h%s" .hlevel) -}}<!-- [Required] Heading level (e.g., "2" for h2), or "small" for the small-heading class -->
+{{- $group := .group -}}<!-- [Required] data/vars/headings.toml group key (e.g., "apiref") -->
+{{- $type := .type -}}<!-- [Required] Heading type - Data.vars.headings.$group key (e.g., "params") -->
+{{- $id := .id -}}<!-- [Optional] Heading anchor id; default = $type -->
+{{- $pre := .pre -}}<!-- [Optional] Text to prepend to the default text, including the space at the end -->
+{{- $post := .post -}}<!-- [Optional] Text to append to the default text, including the space at the beginning -->
+{{- $none := .none -}}<!-- [Optional] 1 = add a "None" paragraph under the heading -->
+
+{{- $group_headings := (index (index $ctx.Site.Data.vars.headings $group) "headings") -}}
+{{- range where $group_headings "type" $type -}}
+  {{- (printf "<%s id='%s'>%s%s%s</%s>" (cond (eq $htag "hsmall") "div class='small-heading'" $htag) ($id | default .type) ($pre | default "") .text ($post | default "") (cond (eq $htag "hsmall") "div" $htag)) | safeHTML -}}
+{{- end -}}
+{{- if eq .none "1" }}<p>None</p>{{- end -}}
+

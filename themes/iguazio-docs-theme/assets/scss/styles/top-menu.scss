@@ -1,0 +1,284 @@
+/* ================================== */
+/* Top Menu */
+
+/* ================================== */
+/* Top Menu */
+.top-menu {
+  transition: none;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+  width: 100%;
+  padding: 10px;
+  background-color: $color-top-menu-bg;
+  z-index: 15;
+  box-shadow: $top-menu-box-shadow;
+
+  /* ================================== */
+  /* Remove all text decoration on links */
+  a {
+    text-decoration: none;
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* Top-Menu Items - Common Attributes */
+  .top-menu-item {
+    display: flex;
+    align-items: center;
+  } /* [.top-menu .top-menu-item] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Textual Top-Menu-Items - Common Attributes */
+  .top-menu-item-text {
+    @extend .top-menu-item;
+    color: $color-top-menu-item;
+    font-family: $font-top-menu-item;
+    font-weight: $top-menu-item-font-weight;
+    text-transform: $top-menu-hover-text-transform;
+    text-align: center;
+    text-decoration: none;
+    padding: 0 30px;
+  } /* [.top-menu .top-menu-item-text] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Left Top-Menu Items */
+  .left {
+    @extend .top-menu-item;
+
+    /* Logo (currently used from home-links to link to main site home page) */
+    .logo {
+      display: block;
+      height: 35px;
+      width: 135px;
+      background: url($top-menu-logo) no-repeat center;
+      background-size: contain;
+    }
+
+    /* Home links (main site / doc site / other versioned doc sites) */
+    .home-links {
+      display: flex;
+      width: 75%;
+      margin: 0 auto;
+      align-items: center;
+
+      /* Doc-site home-page link (for the current versioned site) */
+      .docs-home {
+        @extend .top-menu-item-text;
+        font-size: $font-size-top-menu-item;
+        border-left: $top-menu-docs-home-border;
+        height: 85%;
+
+        &:hover {
+          color: $color-top-menu-hover;
+          text-decoration: $top-menu-hover-decoration;
+        }
+
+        &.active {
+          color: $color-top-menu-active;
+          text-decoration: $top-menu-active-decoration;
+          font-weight: $top-menu-active-font-weight;
+          &:hover {
+            text-decoration: $top-menu-hover-decoration;
+          }
+        }
+      } /* [.top-menu .left .home-links .docs-home] */
+    } /* [.top-menu .left .home-links] */
+
+    /* Doc-site section links */
+    .section-links, .additional-links {
+      display: none;
+      align-items: center;
+    } /* [.top-menu .left .section-links] */
+
+    /* ================================== */
+    /* Side-Menu Fly-Out (Hamburger) Menu (Mobile View) */
+    .hamburger-side-menu {
+      font-size: 26px;
+      color: $color-left-nav-menu-icon;
+      cursor: pointer;
+      font-style: normal;
+    } /* [.top-menu .left .hamburger-side-menu (mobile view)] */
+    /* ================================== */
+
+    @media all and (max-width: $container-width-desktop) {
+      /* ================================== */
+      /* Logo (Laptop and Smaller) */
+      .logo {
+        height: 30px;
+        width: 90px;
+      } /* [.top .left .logo (laptop and smaller)] */
+      /* ================================== */
+
+      /* ================================== */
+      /* Top-Menu Items (Laptop and Smaller) */
+      .top-menu-main-item {
+        padding: 0 10px;
+      } /* [.top .left .top-menu-main-item (laptop and smaller)] */
+      /* ================================== */
+    }
+
+    /* ================================== */
+    /* Larger-Views Customizations (Laptop and Larger) */
+    @media all and (min-width: $container-width-laptop) {
+      .hamburger-side-menu {
+        display: none;
+      }
+    } /* [Larger-Views Customizations (Laptop and Larger)] */
+
+    /* Larger-Views Customizations (Tablet and Larger) */
+    @media all and (min-width: $container-width-tablet) {
+      .home-links {
+        margin: 0;
+        width: auto;
+      }
+
+      .hamburger-side-menu {
+        margin-right: 50px;
+      }
+
+      .section-links, .additional-links {
+        display: flex;
+      }
+    } /* [Larger-Views Customizations (Tablet and Larger)] */
+    /* ================================== */
+
+    @media all and (max-width: $container-width-mobile) {
+      .home-links {
+        width: 80%;
+
+        .docs-home {
+          padding: 0 15px;
+        }
+      }
+    }
+
+    @media all and (max-width: $container-width-mobile-medium) {
+      .home-links {
+        .docs-home {
+          padding: 0 10px;
+          font-size: 0.9em;
+        }
+
+        .logo {
+          width: 80px;
+        }
+      }
+
+      #version-box {
+        font-size: 13px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    }
+  } /* [.top-menu .left (mobile view)] */
+  /* ================================== */
+
+  /* ================================== */
+  /* "Main-Menu" Top-Menu Items (Page Links etc.) */
+  .top-menu-main-items {
+    margin: 0;
+    display: inherit;
+    align-items: center;
+  } /* [.top-menu .center .top-menu-main-items] */
+  /* ================================== */
+
+  /* ================================== */
+  /* "Main-Menu" Top-Menu Item */
+  .top-menu-main-item {
+    @extend .top-menu-item-text;
+    font-size: $font-size-top-menu-item;
+
+    &:hover {
+      color: $color-top-menu-hover;
+    }
+
+    &.active {
+      color: $color-top-menu-active;
+      text-decoration: $top-menu-active-decoration;
+      font-weight: $top-menu-active-font-weight;
+
+      &:hover {
+        text-decoration: $top-menu-hover-decoration;
+      }
+    }
+  } /* [.top-menu .top-menu-main-item] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Right Top-Menu Items */
+  .right {
+    @extend .top-menu-item;
+    position: relative;
+    height: 100%;
+
+    /* Search Icon (Small Views) */
+    .search-icon {
+      &:before {
+        margin-top: 12px;
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        content: "";
+        background: url($top-menu-search-toggle-icon-mobile) no-repeat 0 0;
+        background-size: 100%;
+      } /* [.top-menu .right .search-icon] */
+
+      color: $color-right-nav-menu-icon;
+      margin: 4px 8px 4px 4px;
+      cursor: pointer;
+    }
+
+    /* Larger Views Customization (Tablet and Larger) */
+    @media all and (min-width: $container-width-tablet) {
+      /* Hide the search icon on larger views (display full search instead) */
+      .search-icon {
+        display: none;
+      }
+    } /* [.top-menu .right Larger Views Customization] */
+  } /* [.top-menu .right] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Tooltips */
+
+  .tooltip-inner {
+    background-color: $color-tooltip-bg;
+    color: $color-tooltip-text;
+  } /* [.top-menu .tooltipinner] */
+
+  .tooltip.bottom .tooltip-arrow {
+    border-bottom-color: $color-tooltip-bg;
+  } /* [.top-menu .tooltip.bottom .tooltip-arrow] */
+
+  /* [Tooltips] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Medium- and Small-View (Laptop and Smaller) Customizations */
+  @media all and (max-width: $container-width-desktop) {
+    height: 40px;
+
+    /* ================================== */
+    /* Right Top-Menu Items (Laptop and Smaller) */
+    .right {
+      margin: 0;
+    } /* [.top-menu .right (laptop and smaller)] */
+    /* ================================== */
+
+  } /* [Medium- and Small-View (Laptop and Smaller) Customizations] */
+  /* ================================== */
+
+} /* top-menu */
+/* ================================== */
+
+/* [Top Menu] */
+/* ================================== */
+
+// Additional top-menu configurations are done in right-nav-menu.scss.
+

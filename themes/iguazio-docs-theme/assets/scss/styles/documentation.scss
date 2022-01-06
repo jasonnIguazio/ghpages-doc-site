@@ -1,0 +1,59 @@
+/* ================================== */
+/* Documentation */
+.documentation {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  /* ================================== */
+  /* Documentation-Page Content */
+  .content {
+    display: block;
+    position: relative;
+    margin-top: 56px;
+    margin-left: 20%;
+    padding: 0 8px 8px 18px;
+    min-height: 100vh;
+    width: 60%;
+
+    &.wide-width {
+      margin-left: 5%;
+      width: 75%;
+    }
+
+    /* main class used for index page */
+    &.main {
+      width: 80%;
+      margin: 56px auto auto;
+    }
+
+    /* iframe content */
+    &.iframe-content {
+      width: auto;
+    }
+
+    @media all and (max-width: $container-width-desktop) {
+      width: 72%;
+
+    }
+
+    @media all and (max-width: $container-width-laptop + 110) {
+      margin-left: 235px;
+    }
+
+    @media all and (max-width: $container-width-laptop) {
+      margin-top: 40px;
+      &.main {
+        margin: 40px auto auto;
+      }
+    }
+
+    @media all and (max-width: $container-width-laptop) {
+      margin: 40px auto auto;
+    }
+  } /* content */
+  /* ================================== */
+
+} /* [documentation] */
+/* ================================== */
+

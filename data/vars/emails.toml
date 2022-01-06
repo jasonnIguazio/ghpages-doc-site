@@ -1,0 +1,36 @@
+## Email Addresses and Mail-To Links
+
+# [InfraInfo] Use the `email` shortcode to access email variables in this file
+# and optionally create related "mailto" links.
+# USAGE:  {{< email id=VAR [link=ISLINK] [text=LINKTEXT] >}}
+# Examples:
+#   {{< email id="support" >}}
+#   {{< email id="doc" link="1" >}}
+#   {{< email id="support" link="1" text="support team" >}}
+# You can also use the `getvar` shortcode to access variable keys in this file.
+# USAGE:
+#   {{< getvar v="VAR" >}}
+#   {{< getvar v="ARRAY_VAR" arr_key="ARRAY_KEY" [arr_item_id="ARR_ITEM_ID_KEY"] [arr_item_id_val="ARR_ITEM_ID_KEY_VALUE"] >}}
+# Examples:
+#  {{< getvar v="url.product_home.full" >}}
+# Examples:
+#  {{< getvar v="emails.docs" >}}
+
+## Cloud Trial
+cloud_trial = "trial@iguazio.com"
+
+## Documentation
+docs = "docs@iguazio.com"
+
+## Information
+info = "info@iguazio.com"
+
+## Customer Success (currently <=> support email)
+# [IntInfo] (sharonl) (15.4.19) Yaron S. asked to change the use of the
+# "Professional Services" terminology to "Customer Success". I changed the
+# relevant instances in the doc, but I didn't change the variable name.
+prof_services = "support@iguazio.com"
+
+## Support
+support = "support@iguazio.com"
+

@@ -1,0 +1,22 @@
+<!-- frames-param-backend: Frames "backend" parameter documentation.
+     (The link-anchor ID is set hardcoded to "param-backend".)
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Optional content (.Inner) - Text to append to the default param description.
+Required Params
+  "backend_name"  - The backend name - "NoSQL" | "TSDB" | "stream" | "CSV".
+  "backend_type"  - The backend type - "kv"/"nosql" | "tsdb" | "stream" | "csv".
+-->
+{{- $ctx := . -}}
+{{- $backend_type := .Get "backend_type" -}}
+{{- if or (eq $backend_type "kv") (eq $backend_type "nosql") -}} 
+  {{- $backend_type = "<code>&quot;nosql&quot;</code> or <code>&quot;kv&quot;</code>" -}}
+{{- else -}}
+  {{- $backend_type = printf "<code>&quot;%s&quot;</code>" $backend_type -}}
+{{- end -}}
+{{- $backend_name := .Get "backend_name" -}}
+{{- $desc := printf "The backend type &mdash; %s for the %s backend. See [Backend Types](%s#backend-types)." $backend_type $backend_name (relref . "../overview.md") -}}
+
+{{- $content := printf "%s%s%s%s" $desc .Inner (partial "doc/param-type.html" (dict "ctx" $ctx "content" "`str`" "pre" "" )) (partial "doc/param-req.html" (dict "ctx" $ctx "req" "R" "content" "" )) | markdownify -}}
+
+{{- partial "doc/param-doc.html" (dict "ctx" . "content" $content "name" "backend" "id" "param-backend") -}}
+

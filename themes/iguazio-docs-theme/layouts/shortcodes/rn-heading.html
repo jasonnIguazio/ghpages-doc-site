@@ -1,0 +1,42 @@
+<!-- Parameters - optional except where otherwise specified
+"type" | "t"  Heading type - .Data.vars.headings.$group key (e.g., "params").
+              You must set either "type"|"t" or "text".
+"h"           Optional heading-level number (e.g., "3" for h3); when $type|$t
+              is set, can also be "small" to use the small-heading class.
+              The default is "2" (h2) when $type|$t is set / "3" (h3) otherwise.
+"text"        Heading text. Required if $type|$t isn't set; ignored otherwise.
+"techpreview" "1" = add a Tech Preview mark (.Site.Params.techpreview_mark)
+              after $text; default = "0".
+"beta"        "1" = add a beta mark (.Site.Params.beta_mark) after $text;
+              default = "0".
+"id"          Heading anchor id; default = the value of the $type/$t param.
+"pre"         Text to prepend to the default text, including a space at the end.
+"post"        Text to append to the default text, including an initial space.
+
+[InfraInfo] (sharonl) (7.3.19) I wanted to allow optionally setting the heading
+text when not using $type|$t either via the $text param or via the shortcode
+content (.Inner), but I wasn't able to implement this correctly. For now, a
+$text param is sufficient, especially as we apply markdownify to the heading
+text, so the text can include shortcode calls + this is a release-notes specific
+shortcode and we don't typically use text shortcodes in the release notes, and
+I added the $techpreview and $beta params to simplify adding related marks.
+-->
+{{- $id := .Get "id" -}}
+{{- $pre := .Get "pre" -}}
+{{- $post := .Get "post" -}}
+{{- $type := (.Get "type") | default ((.Get "t") | default "") -}}
+{{- $h := (.Get "h") | default (cond (eq $type "") "3" "2") -}}
+{{- $text := .Get "text" -}}
+{{- if eq (.Get "techpreview") "1" -}}
+  {{- $text = (printf "%s%s" $text (printf "%s%s" " " .Site.Params.techpreview_mark)) -}}
+{{- end -}}
+{{- if eq (.Get "beta") "1" -}}
+  {{- $text = (printf "%s%s" $text (printf "%s%s" " " .Site.Params.beta_mark)) -}}
+{{- end -}}
+
+{{- if $type -}}
+  {{- partial "content-styles/igz-heading.html" (dict "ctx" . "hlevel" $h "group" "release_notes" "type" $type "id" $id "pre" $pre "post" $post "none" "") -}}
+{{- else -}}
+  {{- (printf "<h%s%s>%s</h%s>" $h (cond (eq $id "") "" (printf " id='%s'" $id)) $text $h) | markdownify -}}
+{{- end -}}
+

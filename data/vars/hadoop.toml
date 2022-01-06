@@ -1,0 +1,70 @@
+## Hadoop Variables
+# Apache Hadoop is an open-source distributed data-processing library.
+
+# [InfraInfo] Use the `getvar` or `url` shortcodes to access variable keys in
+# this file.
+# USAGE:
+#   {{< getvar v="VAR" [m=true] >}}
+#   {{< getvar v="ARRAY_VAR" arr_key="ARRAY_KEY" [arr_item_id="ARR_ITEM_ID_KEY"] [arr_item_id_val="ARR_ITEM_ID_KEY_VALUE"] [m=true] >}}
+# Examples:
+#   {{< url g="hadoop" v="home" k="text" link="1" >}}
+#   {{< getvar v="hadoop.doc.full" >}}
+#   {{< url g="hadoop" v="user_guide" k="title" link="1" >}}
+#   {{< getvar v="hadoop.fs_shell_guide.text" >}}
+
+# [c-hadoop-ver] [InfraInfo] The variable values (URLs etc.) are for the Hadoop
+# version supported by the current platform version - see ver.hadoop.version in
+# data/vars/product.toml. Use the `verkey` shortcode to get this version:
+#   {{< verkey k="hadoop.version" >}}
+# [TODO-VEW-VER] When changing the supported Hadoop version, edit the URLs.
+
+## ===== HADOOP_HOME_START =====
+## Hadoop Home
+[home]
+  full = "https://hadoop.apache.org"
+  text = "Apache Hadoop"
+## ===== HADOOP_HOME_END =====
+
+## ===== HADOOP_DOCS_START =====
+## Hadoop Docs
+# The latest-release Hadoop docs are available at
+# https://hadoop.apache.org/docs/current/.
+
+# Latest-supported version
+[doc]
+  full  = "https://hadoop.apache.org/docs/r3.2.0/"
+  text  = "Apache Hadoop documentation"
+  title = "Apache Hadoop 3.2.0"
+
+## Hadoop YARN Docs
+# (The Apache Hadoop home page describes Hadoop YARN as "A framework for job scheduling and cluster resource management.")
+[yarn_doc]
+  full  = "https://hadoop.apache.org/docs/r3.2.0/hadoop-yarn/hadoop-yarn-site/YARN.html"
+  text  = "Hadoop YARN"
+  title = "Apache Hadoop YARN"
+## ===== HADOOP_DOCS_END =====
+
+## ===== HDFS_CMD_GUIDE_START =====
+## HDFS Commands Guide
+[hdfs_cmd_guide]
+  full  = "https://hadoop.apache.org/docs/r3.2.0/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html"
+  text  = "v3.2.0 HDFS commands guide"
+  title = "HDFS Commands Guide"
+## ===== HDFS_CMD_GUIDE_END =====
+
+## ===== FS_SHELL_GUIDE_START =====
+## Hadoop File System Shell Guide
+# [sharonl] The terminology is based on the link text in the HDFS command guide's `dfs` command doc.
+[fs_shell_guide]
+  full  = "https://hadoop.apache.org/docs/r3.2.0/hadoop-project-dist/hadoop-common/FileSystemShell.html"
+  text  = "v3.2.0 HDFS file-system shell guide"
+## ===== FS_SHELL__GUIDE_END =====
+
+## ===== HDFS_USER_GUIDE_START =====
+## HDFS User Guide
+[user_guide]
+  full  = "https://hadoop.apache.org/docs/r3.2.0/"
+  text  = "v3.2.0 HDFS users guide"
+  title = "HDFS Users Guide"
+## ===== HDFS_USER_GUIDE_END =====
+

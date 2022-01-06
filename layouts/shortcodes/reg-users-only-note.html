@@ -1,0 +1,26 @@
+<!-- [c-reg-users-only]
+  Params (Optional)
+  "id"      - Note ID. Default = "reg-users-only-note".
+  "note"    - 1 (default) = add a note admonition; 0 = add only the note text
+  "section" - 1 = add note for a restricted-access section (with EULA ref, etc.)
+              0 (default) = add a note about the restricted-access sections
+              (used from non-restricted documentation such as the docs home).
+  "title"   - Note title. Default = "Registered Users Only".
+-->
+{{- $common := printf "For more information, contact <%s>." $.Site.Data.vars.emails.support | markdownify -}}
+{{- $id := (.Get "id") | default "reg-users-only-note" -}}
+<!-- Set default texts for doc-section/directory index-page notes -->
+{{- $title := "Confidentiality" -}}
+{{- $text := printf "The documentation in this section is confidential under the [%s](%s). %s" $.Site.Data.vars.urls.eula_doc.text $.Site.Data.vars.urls.eula_doc.full $common | markdownify -}}
+<!-- Override default texts for non-section/directory notes -->
+{{- if ne (.Get "section") "1" -}}
+  {{- $title = "Restricted Access" -}}
+  {{- $text = printf "The %s documentation is confidential and restricted to registered users only. %s" $.Site.Params.reg_users_only_sections_desc $common | markdownify -}}
+{{- end -}}
+
+{{- if eq (.Get "note") "0" -}}
+  {{- printf "<a id='%s'></a>%s" $id $text | markdownify -}}
+{{- else -}}
+  {{- partial "content-styles/admon.html" (dict "class" "confid-note" "title" (.Get "title" | default $title) "id" $id "content" $text) -}}
+{{- end -}}
+

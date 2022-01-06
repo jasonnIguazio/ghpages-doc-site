@@ -1,0 +1,43 @@
+<!-- Params (Optional)
+  "text"  - Beta notation text. Default = .Site.Params.beta_mark when "mark",
+            "note", or "heading" is "1"; otherwise, .Site.Params.beta or
+            .Site.Params.beta if "tc"=1.
+  "tc"    - 1 = Use .Site.Params.beta_tc (title case) and not .Site.Params.beta
+            (lower case) as the default text (see "text").
+  "fmt"   - 1 (default) = apply "beta" CSS formatting; 0 - don't apply special
+            formatting. If "note" or "heading" is "1", "fmt" is ignored.
+  "basic_desc" - 1 = add a basic description of beta features
+            (.Site.Params.beta_basic_desc). Note that the call to the shortcode
+            with this option needs to be preceded by the beginning of the first
+            description sentence (which begins with "included").
+  "heading" - 1 = add the beta notation as a small heading (<p>).
+            If "note" is "1", "fmt" is ignored.
+  "note"  - 1 = add a beta note. The content of the note depends on whether the
+            "feature" or "features" param is set (betaFeature/betaFeatures in
+            the page front matter); and whether the entire page or section
+            documents a beta feature, as indicated by the custom isBeta,
+            betaFeature, or betaFeatures page params.
+            If "note" is "1", "fmt" is ignored.
+            The default note text explains the beta notation, which is
+            determined based on the user of the "text" and "mark" params, and
+            the notation is formatted using the "beta" CSS class regardless of
+            the value of "fmt".
+  "feature" Custom text describing a beta feature, to be used in beta notes.
+            This param can be set from the page front matter using the custom
+            betaFeature page param.
+  "features" Like "feature" but describes a plural beta feature (e.g., "APIs").
+            This param can be set from the page front matter using the custom
+            betaFeatures page param.
+  [*] [InfraInfo] [sharonl] The optional "text" param was added so that if we
+  decide to change the beta text/mark, we can change the shortcode calls in
+  documents that shouldn't be modified retroactively, such as release notes, to
+  pass within the "text" param the $.Site.Params.beta[_mark] string that was
+  used when the release notes were published (i.e., before the changes).
+  Regarding the beta class formatting, I think it's less of an issue if we
+  change it retroactively, but if we decide to change the formatting and want
+  to keep the original format in the existing release notes we can add support
+  for this as well. We can also always replace existing shortcode calls with
+  hardcoded text.
+-->
+{{- partial "content-styles/beta.html" (dict "ctx" . "basic_desc" (.Get "basic_desc") "text" ((.Get "text") | default "") "mark" (.Get "mark") "feature" (.Get "feature") "features" (.Get "features") "fmt" (.Get "fmt") "note" (.Get "note") "heading" (.Get "heading") "tc" (.Get "tc")) -}}
+

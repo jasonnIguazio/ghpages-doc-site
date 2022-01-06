@@ -1,0 +1,76 @@
+<!-- Params
+  Mandatory Params
+  "ctx"   - The context of the calling template/partial/shortcode (`.`).
+  Optional Params
+  "text"  - Beta notation text. Default = .Site.Params.beta_mark when "mark",
+            "note", or "heading" is "1"; otherwise, .Site.Params.beta or
+            .Site.Params.beta if "tc"=1.
+  "tc"    - 1 = Use .Site.Params.beta_tc (title case) and not .Site.Params.beta
+            (lower case) as the default text (see "text").
+  "mark"  - 1 = use .Site.Params.beta_mark as the default beta notation text.
+            This is also the default notation text when "note" or "heading" is
+            "1". "mark" is ignored when "text" is set.
+  "fmt"   - 1 (default) = apply "beta" CSS formatting; 0 - don't apply special
+            formatting. If "note" or "heading" is "1", "fmt" is ignored.
+  "basic_desc" - 1 = add a basic description of beta features
+            (.Site.Params.beta_basic_desc). Note that the call to the shortcode
+            with this option needs to be preceded by the beginning of the first
+            description sentence (which begins with "included").
+  "heading" - 1 = add the beta notation as a small heading (<p>).
+            If "note" is "1", "fmt" is ignored.
+  "note"  - 1 = add a beta note. The content of the note depends on whether the
+            "feature" or "features" param is set (betaFeature/betaFeatures in
+            the page front matter); and whether the entire page or section
+            documents a beta feature, as indicated by the custom isBeta,
+            betaFeature, or betaFeatures page params.
+            If "note" is "1", "fmt" is ignored.
+            The default note text explains the beta notation, which is
+            determined based on the user of the "text" and "mark" params, and
+            the notation is formatted using the "beta" CSS class regardless of
+            the value of "fmt".
+  "feature" Custom text describing a beta feature, to be used in beta notes.
+            This param can be set from the page front matter using the custom
+            betaFeature page param.
+  "features" Like "feature" but describes a plural beta feature (e.g., "APIs").
+            This param can be set from the page front matter using the custom
+            betaFeatures page param.
+  [*] [InfraInfo] [sharonl] The optional "text" param was added so that if we
+  decide to change the beta text/mark, we can change the shortcode calls in
+  documents that shouldn't be modified retroactively, such as release notes, to
+  pass within the "text" param the $.Site.Params.beta[_mark] string that was
+  used when the release notes were published (i.e., before the changes).
+  Regarding the beta class formatting, I think it's less of an issue if we
+  change it retroactively, but if we decide to change the formatting and want
+  to keep the original format in the existing release notes we can add support
+  for this as well. We can also always replace existing shortcode calls with
+  hardcoded text.
+-->
+{{- $ctx := .ctx -}}
+{{- $feature := .feature | default "" -}}
+{{- $features := .features | default "" -}}
+{{- $text := (.text | default (cond (or (eq .mark "1") (eq .note "1") (eq .heading "1")) $ctx.Site.Params.beta_mark (cond (eq .tc "1") $ctx.Site.Params.beta_tc $ctx.Site.Params.beta))) | markdownify -}}
+{{- $mark_str := printf "<span class='beta'>%s</span>" $text | safeHTML -}}
+{{- if eq .heading "1" -}}
+  {{- printf "<p>%s</p>" $mark_str | safeHTML -}}
+  <!-- [InfraInfo] <p class="beta"> doesn't apply the class style. -->
+{{- else if eq .note "1" -}}
+  {{- if $feature -}}
+    {{- $ctx.Scratch.Set "note" (printf "The %s is provided as a %s feature and is %s" $feature $ctx.Site.Params.beta $ctx.Site.Params.beta_basic_desc | markdownify) -}}
+  {{- else if $features -}}
+    {{- $ctx.Scratch.Set "note" (printf "The %s are provided as a %s feature and are %s" $features $ctx.Site.Params.beta $ctx.Site.Params.beta_basic_desc | markdownify) -}}
+  {{- else if eq $ctx.Params.isbeta true -}}
+      {{- $ctx.Scratch.Set "note" (printf "This section documents %s features, which are %s" $ctx.Site.Params.beta $ctx.Site.Params.beta_basic_desc | markdownify) -}}
+  {{- else -}}
+    {{- $ctx.Scratch.Set "note" (printf "The &quot;%s&quot; notation marks features that are %s" $mark_str $ctx.Site.Params.beta_basic_desc | markdownify) -}}
+  {{- end -}}
+  {{- partial "content-styles/admon.html" (dict "content" ($ctx.Scratch.Get "note") "class" "beta-note" "title" (printf "%s Note" $ctx.Site.Params.beta_tc) "id" "beta-note") -}}
+{{- else if eq .basic_desc "1" -}}
+  {{- $.Site.Params.beta_basic_desc -}}
+{{- else -}}
+  {{- if eq .fmt "0" -}}
+    {{- printf "%s" $text | markdownify -}}
+  {{- else -}}
+    {{- $mark_str -}}
+  {{- end -}}
+{{- end -}}
+

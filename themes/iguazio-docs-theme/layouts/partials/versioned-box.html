@@ -1,0 +1,15 @@
+<!-- Version-Selection Box -->
+<div id="version-box"
+     class="version-box"
+     data-home-url="{{ $.Site.Data.vars.build.docs_home_url.full }}">
+    <div id="product-versions-dropdown" class="dropdown">
+        <button class="btn dropdown-toggle igz_version-btn" data-current-version="{{- .Site.Data.vars.product.ver.num_short -}}"
+                type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>V{{- .Site.Data.vars.product.ver.num_short -}}</span>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+        </button>
+        <div class="version-dropdown-menu dropdown-menu"></div>
+    </div>
+    <div id="igz_version-text" class="igz_version-btn">
+        Version {{ .Site.Data.vars.product.ver.num_short }}
+    </div>
+</div>

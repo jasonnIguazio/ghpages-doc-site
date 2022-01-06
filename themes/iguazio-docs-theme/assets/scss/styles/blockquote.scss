@@ -1,0 +1,112 @@
+/* ================================== */
+/* Block-Quote (quoted text) */
+
+// [InfraInfo] [sharonl] The following blockquote styles are based on the
+// camunda theme with my customizations. They are successfully applied to
+// both Markdown '>' and HTML "<blockquote>" blockquote syntax, but there
+// are differences in the output; I'm not sure what causes these
+// differences:
+// - For HTML <blockquote>, there seems to be an extra font weight that
+//   causes the text to appear bold (but not as wide as with "bold"
+//   font-weight formatting). (Explicitly setting font style elements,
+//   including @font-weight, to "inherit" doesn't change the output.)
+//   -> TODO: FIXME
+// - For MD '>' block quotes, with the original camunda code, there is extra
+//   space before the quoted text with the left border visible (appears as
+//   an extra empty line at the start of the quoted text). This can be
+//   bypassed by setting the top padding or margin to 0; (any other padding
+//   value, even 1px, creates the same large extra top space). I bypassed
+//   this by setting @margin-top to 0 for first-child elements, which is
+//   similar to the camunda based code of setting @margin- bottom to 0 for
+//   last-child elements (without which there is an extra space at the end
+//   of the quoted text).
+//   For HTML <blockquote> output the top and bottom padding seem to have no
+//   effect. Again, I'm not sure why, as the CSS source is the same.
+//   [c-blockquote-top-bottom-space]
+//
+// TODO: Reconsider our desired blockquote formatting.
+
+/* Block Quote */
+blockquote {
+  padding: 0.33em 1.33em;
+  margin: 0 0 1.66em;
+  border-left: 2px solid $color-blockquote-border;
+} /* [blockquote] */
+
+// [InfraInfo] [sharonl] I added the following - see
+// [c-blockquote-top-bottom-space] above.
+blockquote p:first-child,
+blockquote ul:first-child,
+blockquote ol:first-child,
+blockquote dl:first-child {
+  margin-top: 0
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child,
+blockquote dl:last-child {
+  margin-bottom: 0
+}
+
+/* Small Block Quote */
+// [InfraInfo]: [c-blockquote-small] TODO-FIXME
+// [sharonl] `<blockquote><small>...</small></blockquote>` works to apply
+// changes in the following style configurations; however, if the font or
+// `before` and `after` configurations are removed, a default configuration
+// seems to be applied - the font size is still 80% and an mdash + nbsp
+// (\2014 \00A0) is added as the `before` text, even though this isn't
+// configured anywhere in our CSS code?
+//
+// None of the configuration below seem to affect the syntax
+// `<blockquote class="small">...</blockquote>`, which applies a style of a
+// gray text with an 80% font size (and no `before` text), which is not
+// defined in our CSS code; changes in the following style have no effect
+// on the output for this usage.
+//
+// We do not have a general "small" style definition, and we rest the
+// blockquote and small styles in _reset.scss. Adding `blockquote .small`
+// to _reset.scss, or removing `blockquote` and `small` from the reset
+// file, seem to have no effect.
+blockquote .small,
+blockquote small,
+blockquote footer {
+  display: block;
+  font-size: 80%;
+  line-height: 1.6em;
+  color: inherit;
+
+/*
+  &:before {
+    //content: '\2014 \00A0'; // \2014 = &mdash; ; \00A0 = &nbsp;
+    content: '\201C'; // \201C = &ldquo; (left double quotation mark)
+    display: block;   // Forces the "before" text to be in a separate line
+  }
+
+  &:after {
+    content: '\201D'; // \201D = &rdquo; (right double quotation mark)
+    display: block;   // Forces the "after" text to be in a separate line
+  }
+*/
+} /* [blockquote .small, blockquote small, blockquote footer] */
+
+/* Right-Align Block Quote */
+// Usage:
+// <blockquote class="blockquote-reverse">
+// <blockquote class="pull-right">
+// [InfraInfo]: The text after the `pull-right` block quote is aligned with
+// the block-quote text, while the text after the `blockquote-reverse`
+// block quote appears in a paragraph after the block quote.
+.blockquote-reverse,
+blockquote.pull-right {
+  padding-right: 1em;
+  padding-left: 0;
+  border-right: 2px solid $color-blockquote-border;
+  border-left: 0;
+  text-align: right
+} /* [.blockquote-reverse, blockquote-pull-right] */
+
+/* [Block-Quote] */
+/* ================================== */
+
+

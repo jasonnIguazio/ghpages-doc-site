@@ -1,0 +1,1110 @@
+/* ================================== */
+/* "iguazio" Font - imported from the Iguazio product UIs */
+// [IntInfo] Use this syntax to insert a font in an HTML or Markdown file:
+// <span class="CLASS"></span> (e.g., <span class="igz-icon-ic-delete"></span>)
+
+@import "_variables.igz-font";
+
+/* "iguazio" Font Family */
+@font-face {
+  font-family: 'iguazio';
+  src:
+    url('#{$icomoon-font-path}/iguazio.ttf?naqoim') format('truetype'),
+    url('#{$icomoon-font-path}/iguazio.woff?naqoim') format('woff'),
+    url('#{$icomoon-font-path}/iguazio.svg?naqoim##iguazio') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Common "iguazio" Icon Class ("igz-icon-*") Properties */
+[class^="igz-icon-"], [class*=" igz-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iguazio' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------- */
+/* "iguazio" Icon Font Classes ("igz-icon-*") */
+// [IntInfo] The fonts classes are ordered alphabetically.
+
+.igz-icon-22 {
+  &:before {
+    content: $igz-icon-22;
+  }
+}
+
+.igz-icon-big-alert {
+  &:before {
+    content: $igz-icon-big-alert;
+  }
+}
+
+.igz-icon-big-block {
+  &:before {
+    content: $igz-icon-big-block;
+  }
+}
+
+.igz-icon-big-tick {
+  &:before {
+    content: $igz-icon-big-tick;
+  }
+}
+
+.igz-icon-clusters {
+  &:before {
+    content: $igz-icon-clusters;
+  }
+}
+
+.igz-icon-containers {
+  &:before {
+    content: $igz-icon-containers;
+  }
+}
+
+.igz-icon-dark-paperclip {
+  &:before {
+    content: $igz-icon-dark-paperclip;
+  }
+}
+
+.igz-icon-dd-arrow {
+  &:before {
+    content: $igz-icon-dd-arrow;
+  }
+}
+
+.igz-icon-dd-arrow2 {
+  &:before {
+    content: $igz-icon-dd-arrow2;
+  }
+}
+
+.igz-icon-default-user-avatar {
+  &:before {
+    content: $igz-icon-default-user-avatar;
+  }
+}
+
+.igz-icon-e-Unread {
+  &:before {
+    content: $igz-icon-e-Unread;
+  }
+}
+
+.igz-icon-events {
+  &:before {
+    content: $igz-icon-events;
+  }
+}
+
+.igz-icon-external-link {
+  &:before {
+    content: $igz-icon-external-link;
+  }
+}
+
+.igz-icon-function {
+  &:before {
+    content: $igz-icon-function;
+  }
+}
+
+.igz-icon-help {
+  &:before {
+    content: $igz-icon-help;
+  }
+}
+
+.igz-icon-ic-acknowledged {
+  &:before {
+    content: $igz-icon-ic-acknowledged;
+  }
+}
+
+.igz-icon-ic-add {
+  &:before {
+    content: $igz-icon-ic-add;
+  }
+}
+
+.igz-icon-ic-add2 {
+  &:before {
+    content: $igz-icon-ic-add2;
+  }
+}
+
+.igz-icon-ic-add-2 {
+  &:before {
+    content: $igz-icon-ic-add-2;
+  }
+}
+
+.igz-icon-ic-alert {
+  &:before {
+    content: $igz-icon-ic-alert;
+  }
+}
+
+.igz-icon-ic-allow-full {
+  &:before {
+    content: $igz-icon-ic-allow-full;
+  }
+}
+
+.igz-icon-ic-allow-partial {
+  &:before {
+    content: $igz-icon-ic-allow-partial;
+  }
+}
+
+.igz-icon-ic-api-gateway {
+  &:before {
+    content: $igz-icon-ic-api-gateway;
+  }
+}
+
+.igz-icon-ic-arrow-back {
+  &:before {
+    content: $igz-icon-ic-arrow-back;
+  }
+}
+
+.igz-icon-ic-arrow-next {
+  &:before {
+    content: $igz-icon-ic-arrow-next;
+  }
+}
+
+.igz-icon-ic-blob {
+  &:before {
+    content: $igz-icon-ic-blob;
+  }
+}
+
+.igz-icon-ic-boolean {
+  &:before {
+    content: $igz-icon-ic-boolean;
+  }
+}
+
+.igz-icon-ic-bring-online {
+  &:before {
+    content: $igz-icon-ic-bring-online;
+  }
+}
+
+.igz-icon-ic-bring-online2 {
+  &:before {
+    content: $igz-icon-ic-bring-online2;
+  }
+}
+
+.igz-icon-ic-building {
+  &:before {
+    content: $igz-icon-ic-building;
+  }
+}
+
+.igz-icon-ic-camera {
+  &:before {
+    content: $igz-icon-ic-camera;
+  }
+}
+
+.igz-icon-ic-cancel-path {
+  &:before {
+    content: $igz-icon-ic-cancel-path;
+  }
+}
+
+.igz-icon-ic-cancel-path2 {
+  &:before {
+    content: $igz-icon-ic-cancel-path2;
+  }
+}
+
+.igz-icon-ic-category {
+  &:before {
+    content: $igz-icon-ic-category;
+  }
+}
+
+.igz-icon-ic-chart-file {
+  &:before {
+    content: $igz-icon-ic-chart-file;
+  }
+}
+
+.igz-icon-ic-check {
+  &:before {
+    content: $igz-icon-ic-check;
+  }
+}
+
+.igz-icon-ic-checkbox-partlyselected {
+  &:before {
+    content: $igz-icon-ic-checkbox-partlyselected;
+  }
+}
+
+.igz-icon-ic-checkbox-selected {
+  &:before {
+    content: $igz-icon-ic-checkbox-selected;
+  }
+}
+
+.igz-icon-ic-checkbox-unselected {
+  &:before {
+    content: $igz-icon-ic-checkbox-unselected;
+  }
+}
+
+.igz-icon-ic-close {
+  &:before {
+    content: $igz-icon-ic-close;
+  }
+}
+
+.igz-icon-ic-collapse-all {
+  &:before {
+    content: $igz-icon-ic-collapse-all;
+  }
+}
+
+.igz-icon-ic-collect-logs {
+  &:before {
+    content: $igz-icon-ic-collect-logs;
+  }
+}
+
+.igz-icon-ic-compression {
+  &:before {
+    content: $igz-icon-ic-compression;
+  }
+}
+
+.igz-icon-ic-copy-to-clipboard {
+  &:before {
+    content: $igz-icon-ic-copy-to-clipboard;
+  }
+}
+
+.igz-icon-ic-data {
+  &:before {
+    content: $igz-icon-ic-data;
+  }
+}
+
+.igz-icon-ic-debug-16-px {
+  &:before {
+    content: $igz-icon-ic-debug-16-px;
+  }
+}
+
+.igz-icon-ic-decreased-arrow {
+  &:before {
+    content: $igz-icon-ic-decreased-arrow;
+  }
+}
+
+.igz-icon-ic-dedup {
+  &:before {
+    content: $igz-icon-ic-dedup;
+  }
+}
+
+.igz-icon-ic-delete {
+  &:before {
+    content: $igz-icon-ic-delete;
+  }
+}
+
+.igz-icon-ic-deny-full {
+  &:before {
+    content: $igz-icon-ic-deny-full;
+  }
+}
+
+.igz-icon-ic-deny-partial {
+  &:before {
+    content: $igz-icon-ic-deny-partial;
+  }
+}
+
+.igz-icon-ic-directory {
+  &:before {
+    content: $igz-icon-ic-directory;
+  }
+}
+
+.igz-icon-ic-directory-chart {
+  &:before {
+    content: $igz-icon-ic-directory-chart;
+  }
+}
+
+.igz-icon-ic-disable-black {
+  &:before {
+    content: $igz-icon-ic-disable-black;
+  }
+}
+
+.igz-icon-ic-discard-delete-24px {
+  &:before {
+    content: $igz-icon-ic-discard-delete-24px;
+  }
+}
+
+.igz-icon-ic-discard-edit-24px {
+  &:before {
+    content: $igz-icon-ic-discard-edit-24px;
+  }
+}
+
+.igz-icon-ic-discard-restart-24px {
+  &:before {
+    content: $igz-icon-ic-discard-restart-24px;
+  }
+}
+
+.igz-icon-ic-download {
+  &:before {
+    content: $igz-icon-ic-download;
+  }
+}
+
+.igz-icon-ic-drag {
+  &:before {
+    content: $igz-icon-ic-drag;
+  }
+}
+
+.igz-icon-ic-drag-file {
+  &:before {
+    content: $igz-icon-ic-drag-file;
+  }
+}
+
+.igz-icon-ic-duplicate {
+  &:before {
+    content: $igz-icon-ic-duplicate;
+  }
+}
+
+.igz-icon-ic-edit {
+  &:before {
+    content: $igz-icon-ic-edit;
+  }
+}
+
+.igz-icon-ic-enable-black {
+  &:before {
+    content: $igz-icon-ic-enable-black;
+  }
+}
+
+.igz-icon-ic-encryption {
+  &:before {
+    content: $igz-icon-ic-encryption;
+  }
+}
+
+.igz-icon-ic-error {
+  &:before {
+    content: $igz-icon-ic-error;
+  }
+}
+
+.igz-icon-ic-error-12-px {
+  &:before {
+    content: $igz-icon-ic-error-12-px;
+  }
+}
+
+.igz-icon-ic-events-alerts {
+  &:before {
+    content: $igz-icon-ic-events-alerts;
+  }
+}
+
+.igz-icon-ic-expand-all {
+  &:before {
+    content: $igz-icon-ic-expand-all;
+  }
+}
+
+.igz-icon-ic-export-csv {
+  &:before {
+    content: $igz-icon-ic-export-csv;
+  }
+}
+
+.igz-icon-ic-export-yml {
+  &:before {
+    content: $igz-icon-ic-export-yml;
+  }
+}
+
+.igz-icon-ic-file {
+  &:before {
+    content: $igz-icon-ic-file;
+  }
+}
+
+.igz-icon-ic-filter {
+  &:before {
+    content: $igz-icon-ic-filter;
+  }
+}
+
+.igz-icon-ic-format-size-24px {
+  &:before {
+    content: $igz-icon-ic-format-size-24px;
+  }
+}
+
+.igz-icon-ic-get-version {
+  &:before {
+    content: $igz-icon-ic-get-version;
+  }
+}
+
+.igz-icon-ic-gridview {
+  &:before {
+    content: $igz-icon-ic-gridview;
+  }
+}
+
+.igz-icon-ic-help-16-px {
+  &:before {
+    content: $igz-icon-ic-help-16-px;
+  }
+}
+
+.igz-icon-ic-img-file {
+  &:before {
+    content: $igz-icon-ic-img-file;
+  }
+}
+
+.igz-icon-ic-import {
+  &:before {
+    content: $igz-icon-ic-import;
+  }
+}
+
+.igz-icon-ic-increase-arrow {
+  &:before {
+    content: $igz-icon-ic-increase-arrow;
+  }
+}
+
+.igz-icon-ic-infopane {
+  &:before {
+    content: $igz-icon-ic-infopane;
+  }
+}
+
+.igz-icon-ic-interface {
+  &:before {
+    content: $igz-icon-ic-interface;
+  }
+}
+
+.igz-icon-ic-interface2 {
+  &:before {
+    content: $igz-icon-ic-interface2;
+  }
+}
+
+.igz-icon-ic-key {
+  &:before {
+    content: $igz-icon-ic-key;
+  }
+}
+
+.igz-icon-ic-keyboard-arrow-down {
+  &:before {
+    content: $igz-icon-ic-keyboard-arrow-down;
+  }
+}
+
+.igz-icon-ic-keyboard-arrow-down2 {
+  &:before {
+    content: $igz-icon-ic-keyboard-arrow-down2;
+  }
+}
+
+.igz-icon-ic-keyboard-arrow-right {
+  &:before {
+    content: $igz-icon-ic-keyboard-arrow-right;
+  }
+}
+
+.igz-icon-ic-listview {
+  &:before {
+    content: $igz-icon-ic-listview;
+  }
+}
+
+.igz-icon-ic-logs {
+  &:before {
+    content: $igz-icon-ic-logs;
+  }
+}
+
+.igz-icon-ic-maintenance {
+  &:before {
+    content: $igz-icon-ic-maintenance;
+  }
+}
+
+.igz-icon-ic-menu {
+  &:before {
+    content: $igz-icon-ic-menu;
+  }
+}
+
+.igz-icon-ic-monitoring {
+  &:before {
+    content: $igz-icon-ic-monitoring;
+  }
+}
+
+.igz-icon-ic-more {
+  &:before {
+    content: $igz-icon-ic-more;
+  }
+}
+
+.igz-icon-ic-move-down {
+  &:before {
+    content: $igz-icon-ic-move-down;
+  }
+}
+
+.igz-icon-ic-move-up {
+  &:before {
+    content: $igz-icon-ic-move-up;
+  }
+}
+
+.igz-icon-ic-network {
+  &:before {
+    content: $igz-icon-ic-network;
+  }
+}
+
+.igz-icon-ic-new-directory {
+  &:before {
+    content: $igz-icon-ic-new-directory;
+  }
+}
+
+.igz-icon-ic-number {
+  &:before {
+    content: $igz-icon-ic-number;
+  }
+}
+
+.igz-icon-ic-p-1 {
+  &:before {
+    content: $igz-icon-ic-p-1;
+  }
+}
+
+.igz-icon-ic-p-2 {
+  &:before {
+    content: $igz-icon-ic-p-2;
+  }
+}
+
+.igz-icon-ic-p-3 {
+  &:before {
+    content: $igz-icon-ic-p-3;
+  }
+}
+
+.igz-icon-ic-p-4 {
+  &:before {
+    content: $igz-icon-ic-p-4;
+  }
+}
+
+.igz-icon-ic-pane1 {
+  &:before {
+    content: $igz-icon-ic-pane1;
+  }
+}
+
+.igz-icon-ic-pause {
+  &:before {
+    content: $igz-icon-ic-pause;
+  }
+}
+
+.igz-icon-ic-pin {
+  &:before {
+    content: $igz-icon-ic-pin;
+  }
+}
+
+.igz-icon-ic-pipelines {
+  &:before {
+    content: $igz-icon-ic-pipelines;
+  }
+}
+
+.igz-icon-ic-play {
+  &:before {
+    content: $igz-icon-ic-play;
+  }
+}
+
+.igz-icon-ic-previous {
+  &:before {
+    content: $igz-icon-ic-previous;
+  }
+}
+
+.igz-icon-ic-projects {
+  &:before {
+    content: $igz-icon-ic-projects;
+  }
+}
+
+.igz-icon-ic-properties {
+  &:before {
+    content: $igz-icon-ic-properties;
+  }
+}
+
+.igz-icon-ic-public {
+  &:before {
+    content: $igz-icon-ic-public;
+  }
+}
+
+.igz-icon-ic-ready {
+  &:before {
+    content: $igz-icon-ic-ready;
+  }
+}
+
+.igz-icon-ic-refresh {
+  &:before {
+    content: $igz-icon-ic-refresh;
+  }
+}
+
+.igz-icon-ic-remove {
+  &:before {
+    content: $igz-icon-ic-remove;
+  }
+}
+
+.igz-icon-ic-reports {
+  &:before {
+    content: $igz-icon-ic-reports;
+  }
+}
+
+.igz-icon-ic-resolved {
+  &:before {
+    content: $igz-icon-ic-resolved;
+  }
+}
+
+.igz-icon-ic-restart-24px {
+  &:before {
+    content: $igz-icon-ic-restart-24px;
+  }
+}
+
+.igz-icon-ic-rule-type-backup {
+  &:before {
+    content: $igz-icon-ic-rule-type-backup;
+  }
+}
+
+.igz-icon-ic-rule-type-migrate {
+  &:before {
+    content: $igz-icon-ic-rule-type-migrate;
+  }
+}
+
+.igz-icon-ic-rule-type-process {
+  &:before {
+    content: $igz-icon-ic-rule-type-process;
+  }
+}
+
+.igz-icon-ic-rule-type-storage {
+  &:before {
+    content: $igz-icon-ic-rule-type-storage;
+  }
+}
+
+.igz-icon-ic-rule-type-sync {
+  &:before {
+    content: $igz-icon-ic-rule-type-sync;
+  }
+}
+
+.igz-icon-ic-script {
+  &:before {
+    content: $igz-icon-ic-script;
+  }
+}
+
+.igz-icon-ic-search {
+  &:before {
+    content: $igz-icon-ic-search;
+  }
+}
+
+.igz-icon-ic-services-36px {
+  &:before {
+    content: $igz-icon-ic-services-36px;
+  }
+}
+
+.igz-icon-ic-severity-critical-1 {
+  &:before {
+    content: $igz-icon-ic-severity-critical-1;
+  }
+}
+
+.igz-icon-ic-share {
+  &:before {
+    content: $igz-icon-ic-share;
+  }
+}
+
+.igz-icon-ic-sort {
+  &:before {
+    content: $igz-icon-ic-sort;
+  }
+}
+
+.igz-icon-ic-sortdoown {
+  &:before {
+    content: $igz-icon-ic-sortdoown;
+  }
+}
+
+.igz-icon-ic-sortdoown-2 {
+  &:before {
+    content: $igz-icon-ic-sortdoown-2;
+  }
+}
+
+.igz-icon-ic-stacked {
+  &:before {
+    content: $igz-icon-ic-stacked;
+  }
+}
+
+.igz-icon-ic-star-rate {
+  &:before {
+    content: $igz-icon-ic-star-rate;
+  }
+}
+
+.igz-icon-ic-string {
+  &:before {
+    content: $igz-icon-ic-string;
+  }
+}
+
+.igz-icon-ic-table-view {
+  &:before {
+    content: $igz-icon-ic-table-view;
+  }
+}
+
+.igz-icon-ic-tags {
+  &:before {
+    content: $igz-icon-ic-tags;
+  }
+}
+
+.igz-icon-ic-tasks {
+  &:before {
+    content: $igz-icon-ic-tasks;
+  }
+}
+
+.igz-icon-ic-template {
+  &:before {
+    content: $igz-icon-ic-template;
+  }
+}
+
+.igz-icon-ic-timestamp {
+  &:before {
+    content: $igz-icon-ic-timestamp;
+  }
+}
+
+.igz-icon-ic-txt-file {
+  &:before {
+    content: $igz-icon-ic-txt-file;
+  }
+}
+
+.igz-icon-ic-undo {
+  &:before {
+    content: $igz-icon-ic-undo;
+  }
+}
+
+.igz-icon-ic-unknown-file {
+  &:before {
+    content: $igz-icon-ic-unknown-file;
+  }
+}
+
+.igz-icon-ic-upload2 {
+  &:before {
+    content: $igz-icon-ic-upload2;
+  }
+}
+
+.igz-icon-ic-user {
+  &:before {
+    content: $igz-icon-ic-user;
+  }
+}
+
+.igz-icon-ic-user-admin-app-32-px {
+  &:before {
+    content: $igz-icon-ic-user-admin-app-32-px;
+  }
+}
+
+.igz-icon-ic-user-admin-security-32-px {
+  &:before {
+    content: $igz-icon-ic-user-admin-security-32-px;
+  }
+}
+
+.igz-icon-ic-user-admin-tenant-32-px {
+  &:before {
+    content: $igz-icon-ic-user-admin-tenant-32-px;
+  }
+}
+
+.igz-icon-ic-user-group {
+  &:before {
+    content: $igz-icon-ic-user-group;
+  }
+}
+
+.igz-icon-ic-verify-error {
+  &:before {
+    content: $igz-icon-ic-verify-error;
+  }
+}
+
+.igz-icon-ic-verify-info {
+  &:before {
+    content: $igz-icon-ic-verify-info;
+  }
+}
+
+.igz-icon-ic-verify-ok {
+  &:before {
+    content: $igz-icon-ic-verify-ok;
+  }
+}
+
+.igz-icon-ic-view-file {
+  &:before {
+    content: $igz-icon-ic-view-file;
+  }
+}
+
+.igz-icon-identity {
+  &:before {
+    content: $igz-icon-identity;
+  }
+}
+
+.igz-icon-ill-hand {
+  &:before {
+    content: $igz-icon-ill-hand;
+  }
+}
+
+.igz-icon-ill-test {
+  &:before {
+    content: $igz-icon-ill-test;
+  }
+}
+
+.igz-icon-list-next-arrow {
+  &:before {
+    content: $igz-icon-list-next-arrow;
+  }
+}
+
+.igz-icon-menu {
+  &:before {
+    content: $igz-icon-menu;
+  }
+}
+
+.igz-icon-networks {
+  &:before {
+    content: $igz-icon-networks;
+  }
+}
+
+.igz-icon-nuclio {
+  &:before {
+    content: $igz-icon-nuclio;
+  }
+}
+
+.igz-icon-n-vme-off {
+  &:before {
+    content: $igz-icon-n-vme-off;
+  }
+}
+
+.igz-icon-radiobutton-off {
+  &:before {
+    content: $igz-icon-radiobutton-off;
+  }
+}
+
+.igz-icon-radiobutton-on {
+  &:before {
+    content: $igz-icon-radiobutton-on;
+  }
+}
+
+.igz-icon-services1 {
+  &:before {
+    content: $igz-icon-services1;
+  }
+}
+
+.igz-icon-small-tick {
+  &:before {
+    content: $igz-icon-small-tick;
+  }
+}
+
+.igz-icon-storage {
+  &:before {
+    content: $igz-icon-storage;
+  }
+}
+
+.igz-icon-tenants {
+  &:before {
+    content: $igz-icon-tenants;
+  }
+}
+
+/* ["iguazio" Icon Font Classes ("igz-icon-*")] */
+/* ---------------------------------- */
+
+/* ---------------------------------- */
+/* Iguazio Dashboard (UI) Font Classes ("igz-icon-ui-*") - with UI Colors */
+// [IntInfo] The fonts classes are ordered alphabetically.
+// [InfraInfo] The class names must begin with "igz-icon-" to be processed
+// correctly, because in the theme's static/fonts/iguazio/selection.json file
+// we apply the "iguazio" font family only to classes with this name prefix.
+
+/* Addition (Plus) Sign UI Icon */
+.igz-icon-ui-add {
+  &:before {
+    content: $igz-icon-ic-add;
+  }
+
+  color: $color-ui-theme-1;
+}
+
+/* Delete UI Icon */
+.igz-icon-ui-delete {
+  &:before {
+    content: $igz-icon-ic-delete;
+  }
+
+  color: $color-ui-theme-1;
+}
+
+/* Download UI Icon */
+.igz-icon-ui-download {
+  &:before {
+    content: $igz-icon-ic-download;
+  }
+
+  color: $color-ui-theme-1;
+}
+
+/* More-Options (Action-Menu) UI Icon */
+.igz-icon-ui-more {
+  &:before {
+    content: $igz-icon-ic-more;
+  }
+
+  color: $color-ui-theme-1;
+}
+
+/* More-Options (Action-Menu) UI Icon - Focused (Hover-Over) */
+.igz-icon-ui-more-focused {
+  &:before {
+    content: $igz-icon-ic-more;
+  }
+
+  color: $color-ui-theme-1-focused;
+}
+
+/* New-Directory (New-Folder) UI Icon */
+.igz-icon-ui-new-directory {
+  &:before {
+    content: $igz-icon-ic-new-directory;
+  }
+
+  color: $color-ui-theme-2;
+}
+
+/* Settings UI Icon */
+.igz-icon-ui-settings {
+  &:before {
+    content: $igz-icon-ic-properties;
+  }
+
+  color: $color-ui-theme-1;
+}
+
+/* Upload UI Icon */
+.igz-icon-ui-upload {
+  &:before {
+    content: $igz-icon-ic-upload2;
+  }
+
+  color: $color-ui-theme-1;
+}
+
+/* [Iguazio Dashboard (UI) Font Classes ("igz-icon-ui-*")] */
+/* ---------------------------------- */
+
+/* ["iguazio" Font] */
+/* ================================== */
+

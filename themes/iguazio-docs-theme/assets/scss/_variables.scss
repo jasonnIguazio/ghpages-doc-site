@@ -1,0 +1,742 @@
+// SCSS Variables
+// [InfraInfo] "/* */" comments are included in the generated CSS file.
+// "//" comments are not included in the generated CSS file.
+
+///////////////////
+// Grid
+$container-width-desktop-large: 1400px;
+$container-width-desktop:       1160px;
+$container-width-laptop:        1024px;
+$container-width-tablet:        768px;
+$container-width-mobile:        636px;
+$container-width-mobile-medium: 425px;
+$container-width-mobile-small:  320px;
+
+$columns:      15;
+$gutter-size:  40px;
+
+///////////////////
+// Colors
+
+// Generic colors
+// NOTE: Name variables according to predefined HTML color names, if exist (see
+// http://html-color-codes.info/color-names/), or according to suggested
+// http://chir.ag/projects/name-that-color/ color names.
+
+$color-athens-gray:      #EEEFF1; // Athens Gray: a very light shade of gray
+$color-black-squeeze:    #F0F5FA; // Black Squeeze: a light grayish light blue
+$color-bright-gray:      #3B3F4A; // Bright Gray: a very dark gray
+$color-bright-turquoise: #0FDEB0; // Bright Turquoise: a light turquoise green
+$color-cello:            #224561; // Cello: a dark shade of blue
+$color-caribbean-green:  #0CD0AD; // Caribbean Green: a light turquoise green
+$color-cerulean:         #00BCF2; // Cerulean: a dark light blue
+$color-comet:            #58517C; // Comet: a shade of purple
+$color-cornflower-blue:  #6279E7; // Cornflower Blue: a shade of bluish purple
+$color-ebony-clay:       #272C41; // Ebony Clay: dark purple (dark gradient)
+$color-ebony-clay-2:     #292E43; // Ebony Clay #2 (a lighter than Ebony Clay)
+$color-ebony-clay-3:     #2A2E45; // Ebony Clay #3 (lighter than Ebony Clay #2)
+$color-ebony-clay-4:     #202535; // Ebony clay #4 (darker than Ebony Clay)
+$color-eucalytus:        #278669; // Eucalyptus: a shade of dark green
+$color-endeavor:         #005A9d; // Endeavour: a dark shade of blue
+$color-fiord:            #454D6F; // Fiord: a shade of purple
+$color-grandis:          #FFD077; // Grandis: a light orange
+$color-gun-powder:       #3A3A58; // Gun Powder: dark purple (middle gradient)
+$color-gun-powder-2:     #3E3D5C; // Gun Powder #2
+$color-gun-powder-3:     #3F3E5D; // Gun Powder #3
+$color-haiti:            #10113c; // Haiti: a dark blue
+$color-hit-gray:         #A2B3B9; // Hit Gray: a shade of silver-like gray
+$color-hot-pink:         #FF75BF; // Hot Pink: a shade of pink
+$color-lochmara:         #0080C5; // Lochmara: a "middle" shade of blue
+$color-malibu:           #7793FF; // Malibu: a light purplish blue
+$color-malibu-2:         #869CFF; // Malibu #2: a light bluish purple
+$color-mulled-wine:      #4F496F; // Mulled Wine: dark purple (light gradient)
+$color-mulled-wine-2:    #43405f; // Mulled Wine #2 (darker than Mulled Wine)
+$color-oxford-blue:      #313A49; // Oxford Blue: a gray shade of dark blue
+$color-picton-blue:      #28AFE4; // Picton Blue: a dark light blue
+$color-porcelain:        #F0F3F3; // Porcelain: a shade of light gray.
+$color-porcelain-2:      #ECF0F1; // Porcelain #2: a shade of white
+$color-silver-chalice:   #A5A5A5; // Silver Chalice: a shade of silver
+$color-silver-light:     #C6C6C6; // Silver Light: slightly lighter than Silver
+                                  // (#C0C0C0)
+$color-topaz:            #898593; // Topaz: a shade of light gray
+
+// Product theme-color names
+// Theme green: a primary product theme color
+$color-theme-green:   $color-bright-turquoise;// Bright Turquoise (light green)
+// Theme green - product-UI variation
+$color-theme-green-ui: $color-caribbean-green;// Caribbean Green (light green)
+// Theme orange: a secondary product theme color
+$color-theme-orange:   $color-grandis;        // Grandis (light orange)
+// Theme pink: a secondary product theme color
+$color-theme-pink:     $color-hot-pink;       // Hot Pink
+// Theme purples: a primary gradient product theme color
+$color-theme-purple-darkest: $color-ebony-clay; // Ebony Clay (dark purple #1)
+$color-theme-purple-darkest-2: $color-ebony-clay-4; // Ebony Clay (dark purple #1)
+$color-theme-purple-darker: $color-ebony-clay-2;// Ebony Clay (dark purple #2)
+$color-theme-purple-dark:   $color-ebony-clay-3;// Ebony Clay (dark purple #3)
+$color-theme-purple:        $color-gun-powder;  // Gun Powder (dark purple)
+$color-theme-purple-2:      $color-gun-powder-2; // Gun Powder #2 (dark purple)
+$color-theme-purple-3:      $color-gun-powder-3; // Gun Powder #3 (dark purple)
+$color-theme-purple-light:  $color-mulled-wine; // Mulled Wine (light dark purple)
+$color-theme-purple-light-2: $color-mulled-wine-2; // Mulled Wine #2 (darker)
+$color-theme-purple-ui:     $color-comet;       // Comet (light dark purple)
+// Theme purple-blue: a secondary product theme color
+$color-theme-purple-blue:     $color-malibu;  // Malibu (light purplish blue)
+
+// Theme purple-blue - product-UI variations
+$color-theme-purple-blue-ui:  $color-malibu-2;// Malibu #2 (light bluish purple)
+$color-theme-purple-blue-ui-dark: $color-cornflower-blue; // Cornflower Blue
+                                                          // (bluish purple)
+// Theme white: a primary product theme color
+$color-theme-white:        white;               // White
+// Theme gray: a doc-site theme color
+$color-theme-gray:         $color-hit-gray;     // Hit Gray
+// Theme light gray: a doc-site theme color
+$color-theme-light-gray:   $color-athens-gray;  // Athens Gray
+
+// Functional theme colors
+// Theme color #1: a primary product-theme color - purple, dark gradients
+// primary product-theme color
+// Middle gradient
+$color-theme-1:         $color-theme-purple;          // Gun Powder
+// Dark gradient
+$color-theme-1-dark:    $color-theme-purple-dark;     // Ebony Clay #3
+// Darker gradient
+$color-theme-1-darker:  $color-theme-purple-darker;   // Ebony Clay #2
+// Darkest gradient - used for the top-menu bg, h1, h5,
+// & th headings, and regular text (body, p, li a, search-results content)
+$color-theme-1-darkest: $color-theme-purple-darkest;  // Ebony Clay #1
+$color-theme-1-darkest-25p: rgba($color-theme-1-darkest, 0.25); // EC #1 25%
+$color-theme-1-darkest-50p: rgba($color-theme-1-darkest, 0.5);  // EC #1 50%
+
+// Theme color #2: a primary product-theme color - purple, lightest gradient
+// UI variant - used in the doc site
+$color-theme-2:       $color-theme-purple-ui;         // Comet
+// Original theme
+$color-theme-2-dark:  $color-theme-purple-light;      // Mulled Wine
+
+// Theme color #3: a primary product-theme color - light turquoise green
+// UI variant - used in the doc site with light backgrounds
+$color-theme-3:   $color-theme-green-ui;              // Caribbean Green
+// Original theme color - used in the doc site with dark backgrounds
+$color-theme-3-dark-bg:  $color-theme-green;          // Bright Turquoise
+
+// Theme color #4: a secondary product-theme color - a light purple blue
+$color-theme-4:       $color-theme-purple-blue;         // Malibu
+// UI variants
+$color-theme-4-light: $color-theme-purple-blue-ui;      // Malibu #2
+$color-theme-4-dark:  $color-theme-purple-blue-ui-dark; // Cornflower Blue
+
+// Theme color #5: a secondary product-theme color - a bright pink
+$color-theme-5: $color-theme-pink;    // Hot Pink
+
+// Theme color #6: a secondary product-theme color - a light orange
+$color-theme-6: $color-theme-orange;  // Grandis
+
+// Product dashboard (UI) colors
+// [INFRA-TODO-REBRANDING] [V2.8.0-TODO] Change the UI colors for v2.8.0+.
+// Also sync the assets/scss/styles/igz-font.scss theme file with the UI repo.
+// (Note that the doc for earlier versions should still use the old UI colors.)
+// (sharonl) (1.3.21) I replaced $color-ui-light-blue with $color-ui-green and
+// updated $color-ui-theme-2. TODO: Check whether the gray colors changed in
+// the new UI (lower priority, because I verified the relevant icons are still
+// gray and at least by eye it looks similar).
+$color-ui-gray:       $color-topaz;
+$color-ui-dark-gray:  $color-mulled-wine;
+$color-ui-green:      $color-theme-green-ui;
+// Functional Iguazio dashboard (UI) colors
+$color-ui-theme-1:          $color-ui-gray;
+$color-ui-theme-1-focused:  $color-ui-dark-gray; // (e.g., icon hover color)
+$color-ui-theme-2:          $color-ui-green;
+
+// Chroma "manni" CSS style background color
+$color-chroma-manni-bg: $color-porcelain; // Porcelain (a light gray)
+
+// Default text color
+$color-text:                      $color-theme-1-darkest;   // Theme #1 darkest
+
+// Default background color (for specific elements)
+$color-theme-bg:                  $color-theme-white;       // Theme white
+// Secondary default background color (for specific elements)
+$color-theme-bg-2:                $color-black-squeeze;     // Black Squeeze
+// Default hover color
+// (Note that there are differences in the appearance of the hover colors in
+// different uses, despite the use of the same hover color, which stem from the
+// differences in the color of the text that is being hovered over.)
+$color-theme-hover:               $color-theme-3;           // Theme #3
+// Alternative hover color (e.g., when the main color is $color-theme-hover)
+$color-theme-hover-alt:           $color-theme-2;           // Theme #2
+// Default hover background color
+$color-theme-hover-bg:            $color-theme-bg-2;        // Theme BG #2
+
+// Heading colors (defined here to enable use from other variable definitions)
+// h1 heading color
+$color-h1:                        $color-theme-1-darkest;   // Theme #1 darkest
+// h3 and h5 headings color
+$color-h3:                        $color-theme-1-dark;      // Theme #1 dark
+$color-h5:                        $color-h3;                // H3
+// h2, h4, and h6 headings color
+$color-h2:                        $color-theme-2;           // Theme #2
+$color-h4:                        $color-h2;                // H2
+$color-h6:                        $color-h2;                // H2
+// Heading anchor-link color
+$color-heading-a-link:            $color-theme-gray;        // Theme gray
+
+// Small-heading text color
+$color-small-heading:             $color-theme-4-dark;      // Theme #4 dark
+
+// Page-title color
+$color-page-title:                $color-h1;                // H1
+// Page sub-title color
+$color-page-subtitle:             $color-theme-1-darker;    // Theme #1 darker
+
+// Default inactive-element color
+$color-theme-inactive:            $color-theme-gray;        // Theme gray
+$color-theme-inactive-dark-bg:    $color-black-squeeze;     // Black Squeeze
+// Default link-anchor text color
+$color-theme-link:                $color-theme-4-dark;      // Theme #4 dark
+// Default link-anchor hover color
+$color-theme-link-hover:          $color-theme-hover;       // Theme hover
+
+// Admonition colors
+// Event admonition border & title color
+$color-admon-event:               $color-theme-3;           // Theme #3
+// Note admonition border & title color
+$color-admon-note:                $color-theme-3;           // Theme #3
+// Tip admonition border & title color
+$color-admon-tip:                 $color-theme-5;           // Theme #5
+// Warning admonition border & title color
+$color-admon-warning:             red;                      // Red
+
+// Block-quote border color (left rule)
+$color-blockquote-border:         $color-theme-gray;        // Theme gray
+
+// Breadcrumbs background color
+$color-breadcrumbs-bg:            $color-theme-bg;          // Theme background
+// Breadcrumbs current-page text color
+$color-breadcrumbs-current:       $color-text;              // Text
+// Breadcrumbs link-anchor text color
+$color-breadcrumbs-link:          $color-theme-link;        // Theme link
+// Breadcrumbs link-anchor hover color
+$color-breadcrumbs-link-hover:    $color-theme-link-hover;  // Theme link hover color
+
+// Code-block background color
+$color-code-bg:                   $color-chroma-manni-bg;   // Chroma background
+// Code-block copy-button color
+$color-code-copy-btn:             $color-theme-2;           // Theme #2
+// Code-block copy-button hover color
+$color-code-copy-btn-hover:       $color-theme-hover;       // Theme hover
+// Code-block tab-text inactive color
+$color-code-tab-inactive:         $color-theme-2;           // Theme #2
+// Code-block tab-text active color
+$color-code-tab-active:           $color-theme-3;           // Theme #3
+// Code-block tab-text hover color
+$color-code-tab-hover:            $color-theme-hover;       // Theme hover
+
+// Figure caption color
+$color-figure-caption:            $color-theme-1;           // Theme #1
+// Figure title color
+$color-figure-title:              $color-h2;                // H2
+
+// Footer - design mimics the WordPress site except for minor execptions
+// Footer background color - theme-purples gradient
+$color-footer-bg: linear-gradient(180deg, $color-theme-purple-light-2 0, $color-theme-purple-2 17%, $color-theme-purple-3 85%, $color-theme-purple);
+// Footer h2 text color
+$color-footer-h2:                  $color-theme-white;      // Theme white
+// Footer sub-title text color
+$color-footer-sub-title:           $color-topaz;            // Topaz
+// Footer link-anchor text color
+$color-footer-link-text:           $color-theme-white;      // Theme white
+// Footer media-icon text color
+$color-footer-media-icon:          $color-theme-1-darkest;  // Theme #1 darkest
+// Footer media-icon background color
+$color-footer-media-icon-bg:       $color-theme-green;      // Theme #2
+// Footer media-icon hover background color
+$color-footer-media-icon-hover-bg: $color-theme-white;      // Theme white
+// Footer-bottom background color
+$color-footer-bottom-bg: $color-theme-purple-darkest-2; // Theme purple (darkest #2)
+// Footer-bottom text color
+$color-footer-bottom-text:         $color-theme-white;      // Theme white
+
+// Heading variables defined earlier for use from other variable definitions.
+
+// Home-page background color
+$color-home-bg:                     $color-theme-bg;        // Theme background
+// Home-page background-image color
+$color-home-bg-image:               $color-fiord;           // Fiord
+// Home-page background-image text color
+$color-home-bg-image-text:          $color-theme-white;     // Theme white
+// Home-page header text color
+$color-home-header-text:            $color-theme-white;     // Theme white
+// Home-page main-tile shadow color
+$color-home-main-tile-shadow:       $color-haiti;           // Haiti (dark blue)
+// Home-page main-tile hover color
+$color-home-main-tile-hover:        $color-theme-link-hover; // Theme hover
+// Home-page main-tile text color
+$color-home-main-tile-text:         $color-text;            // Text color
+// Home-page main-tile title text color
+$color-home-main-tile-title:        $color-theme-2-dark;    // Theme #2 dark
+// Home-page sub-tile default icon color
+$color-home-sub-tile-icon:          $color-theme-4;         // Theme #4
+// Home-page sub-tile hover color
+$color-home-sub-tile-hover:         $color-theme-link-hover; // Theme hover
+// Home-page sub-tile text color
+$color-home-sub-tile-text:          $color-text;            // Text color
+// Home-page sub-tile title text color
+$color-home-sub-tile-title:         $color-theme-2-dark;    // Theme #2 dark
+
+// Internal-info border & title color
+$color-internal-info:             MediumVioletRed;          // MediumVioletRed
+// Internal release-note info border & title color
+$color-internal-info-release-note: BlueViolet;              // BlueViolet
+
+// Menu-page (section-list) title color
+$color-menu-page-title:           $color-theme-2;           // Theme #2
+// Menu-page (section-list) link color
+$color-menu-page-link:            $color-theme-link;        // Theme link
+// Menu-page (section-list) link-hover color
+$color-menu-page-hover:           $color-theme-hover;       // Theme hover
+
+// Mini-TOC background color (small view)
+$color-minitoc-bg-small:          $color-theme-bg-2;        // Theme BG #2
+// Mini-TOC header (title) text color
+$color-minitoc-header:            $color-theme-1-dark;      // Theme #1 dark
+// Mini-TOC link-anchor text color
+$color-minitoc-link:              $color-theme-1;           // Theme #1
+// Mini-TOC active link-anchor text color
+$color-minitoc-link-active:       $color-theme-3;           // Theme #3
+// Mini-TOC link-anchor hover color
+$color-minitoc-link-hover:        $color-theme-3;           // Theme #3
+// Mini-TOC left-border color
+$color-minitoc-left-border:       $color-theme-1-dark;      // Theme #1 dark
+
+// Option-selection hover background color
+$color-opt-select-hover-bg: $color-theme-hover-bg;      // Theme hover BG color
+
+// Placeholder text
+$color-placeholder:               $color-theme-gray;        // Theme gray
+
+// Scroll-to-top background color
+$color-scroll-top-top-bg:    $color-theme-1-darkest-25p; // Theme #1 darkest 25%
+
+// Search elements border color
+$color-search-border:             rgba(162, 179, 185, 0.5); // Theme Gray 50%
+
+// Search-page result title color
+$color-search-page-result-title:  $color-theme-4;           // Theme #4
+// Search-page result title hover color
+$color-search-page-result-title-hover: $color-theme-3;      // Theme #3
+// Search-page results separator color
+$color-search-page-results-sep:   $color-theme-2;           // Theme #2
+// Search-page text color
+$color-search-page-text:          $color-text;              // Text
+// Search-page title color
+$color-search-page-title:         $color-h3;                // H3
+
+// Search-options background colors
+//$color-search-options-bg defined after $color-top-menu-bg and uses it.
+$color-search-option-focused-bg:  $color-theme-white;       // Theme white
+// Search-options text colors
+$color-search-option:             $color-theme-1-darker;    // Theme #1 darker
+$color-search-option-current:     $color-theme-gray;        // Theme gray
+$color-search-option-focused:     $color-theme-gray;        // Theme gray
+// Search-box search-text colors
+$color-search-text:               $color-theme-white;       // Theme white
+$color-search-text-placeholder:   $color-placeholder;       // Placeholder
+// Search dropdown
+$color-search-dropdown-active:    $color-theme-green;       // Theme green
+
+// Search-results box background color
+$color-search-results-box-bg:     $color-theme-bg;          // Theme background
+// Search-results box result-hover background color
+$color-search-results-box-hover-bg: $color-black-squeeze;   // Black squeeze
+// Search-results box result-hover title text color
+$color-search-results-box-hover-title: $color-theme-3;      // Theme #3
+// Search-results box selected-result background color
+$color-search-results-box-selected-bg: $color-theme-3;      // Theme #3
+// Search-results box selected-result title color
+$color-search-results-box-selected-title: $color-theme-2;   // Theme #2
+// Search-results box selected-result text color
+$color-search-results-box-selected: $color-theme-white;     // Theme white
+// Search-results box selected-result hover text color
+$color-search-results-box-selected-hover: $color-theme-2;   // Theme #2
+// Search-results box title color
+$color-search-results-box-title:  $color-theme-2;           // Theme #2
+
+// Side-menu background color
+$color-side-menu-bg:              $color-theme-bg;          // Theme background
+// Side-menu border color (used from $side-menu-border-right)
+$color-side-menu-border:     $color-theme-1-darkest-25p; // Theme #1 darkest 25%
+// Side-menu-item text color
+$color-side-menu-item:            $color-theme-1;           // Theme #1
+// Side-menu-item icon color
+$color-side-menu-item-icon:       $color-theme-1;           // Theme #1
+// Side-menu-item hover text color
+$color-side-menu-item-hover:      $color-theme-3;           // Theme #3
+// Side-menu active-item text color
+$color-side-menu-item-active:     $color-theme-3;           // Theme #3
+// Side-menu active-item icon color
+$color-side-menu-item-icon-active: $color-theme-3;          // Theme #3
+// Side-menu active-item ancestor text color
+$color-side-menu-item-active-ancestor: $color-theme-3;      // Theme #3
+// Side-menu action-bar background color
+$color-side-menu-action-bar-bg:    $color-theme-light-gray; // Theme light gray
+// Side-menu action-bar icon
+$color-side-menu-action-bar-icon:  $color-theme-2;          // Theme #2
+// Side-menu action-bar icon hover color
+$color-side-menu-action-bar-icon-hover: $color-theme-hover; // Theme hover
+
+// Special-content colors
+// Beta-doc color
+$color-beta:                      $color-theme-4;           // Theme #4
+// Confidential-doc color
+$color-confid:                    $color-theme-2;           // Theme #2
+// Tech Preview doc color
+$color-tech-preview:              $color-theme-4;           // Theme #4
+
+// Table cell-separator color
+$color-table-cell-sep:       $color-theme-1-darkest-50p; // Theme #1 darkest 25%
+// Table heading color
+$color-table-heading:             $color-h2;                // H2
+
+// Text color (default) - defined earlier for use in other variable definitions.
+
+// Tooltip background color
+$color-tooltip-bg:                $color-theme-2-dark;      // Theme #2 dark
+// Tooltip text color
+$color-tooltip-text:              $color-theme-white;       // Theme white
+
+// Top-menu (page-header) colors
+// Top-menu background color
+$color-top-menu-bg:               $color-theme-1-darkest;   // Theme #1 darkest
+// Top-menu search-options background color
+$color-search-options-bg:         $color-top-menu-bg;       // Top-menu BG color
+// Top-menu active-item color
+$color-top-menu-active:           $color-theme-3-dark-bg;   // Theme #3 dark BG
+// Top-menu inactive-item color
+$color-top-menu-item:   $color-theme-inactive-dark-bg; // Theme inactive dark BG
+// Top-menu-item hover color
+$color-top-menu-hover:            $color-theme-3-dark-bg;   // Theme #3 dark BG
+// Top-menu left fly-out (hamburger) menu (side-menu) icon color (small views)
+$color-left-nav-menu-icon:        $color-theme-white;       // Theme white
+// Top-menu right fly-out (hamburger) menu (top-menu) icon color (small views)
+$color-right-nav-menu-icon:       $color-theme-white;       // Theme white
+// Top-menu right fly-out menu background color (small views)
+$color-right-nav-bg:              $color-theme-bg;          // Theme background
+// Top-menu right fly-out menu close-menu icon text color (small views)
+$color-right-nav-menu-close-icon: $color-theme-1-dark;      // Theme #1 dark
+// Top-menu right fly-out menu close-menu icon background color (small views)
+$color-right-nav-menu-close-icon-bg: $color-right-nav-bg;   // Right-nav BG
+// Top-menu right fly-out menu active-item color (small views)
+$color-right-nav-active-item:     $color-theme-3;           // Theme #3
+// Top-menu right fly-out menu inactive-item color (small views)
+$color-top-menu-item-right-nav-mobile: $color-theme-1-darkest; // Theme #1 darkest
+// Top-menu right fly-out menu item-hover color (small views)
+$color-right-nav-item-hover:      $color-theme-3;           // Theme #3
+
+// Version-selection background color
+$color-ver-select-bg:             $color-theme-bg;          // Theme background
+// Version-selection text color
+$color-ver-select:                $color-theme-1-darkest; // Theme #1 darkest
+// Version-selection border color (bottom border)
+$color-ver-select-border:         $color-theme-gray;      // Theme gray
+// Version-selection option hover text color
+$color-ver-select-opt-hover:      $color-theme-hover;     // Theme hover
+
+///////////////////
+// Miscellaneous
+
+// Footer h2 Font Weight
+$footer-h2-font-weight:             bold;
+// Footer link-text line height
+$footer-link-text-line-height:      1em;
+// Footer-bottom font weight
+$footer-bottom-font-weight:       none;
+
+// Search icon
+$search-icon: "../theme-images/small-icons/search.png";
+// Search-results box result bottom border
+$search-results-box-result-bottom-border: 1px solid $color-theme-gray;
+
+// Side-menu right border
+$side-menu-border-right: 1px solid $color-side-menu-border;
+// Side-menu version-selection bottom border
+$ver-select-border-bottom: 0.5px solid $color-ver-select-border;
+
+// Top-menu bottom-border box shadow
+$top-menu-box-shadow: 0 2px 2px -2px $color-theme-1-darkest-25p;
+// Top-menu docs-home left border
+$top-menu-docs-home-border:           none;
+$top-menu-docs-home-border-mobile:    none;
+// Top-menu active-item font weight
+$top-menu-active-font-weight:         none;
+$top-menu-active-font-weight-mobile:  none;
+// Top-menu active-item text decoration
+$top-menu-active-decoration:          none;
+$top-menu-active-decoration-mobile:   none;
+// Top-menu-item font weight decoration
+$top-menu-item-font-weight:           500;
+// Top-menu-item hover text decoration
+$top-menu-hover-decoration:           none;
+$top-menu-hover-decoration-mobile:    none;
+// Top-menu-item text transform
+$top-menu-hover-text-transform:       uppercase;
+// Top-menu logo
+$top-menu-logo: "../theme-images/logo/igz_logo_for_dark_bg.png";
+// Top-menu right fly-out menu left border (small views)
+$right-nav-menu-border-left: solid 1px $color-theme-1-darkest-25p;
+// Top-menu right fly-out menu main-top-menu-item-link bottom border (small views)
+$right-nav-main-top-menu-item-link-border-bottom:  none;
+// Top-menu search-toggle menu icon (mobile views)
+$top-menu-search-toggle-icon-mobile: "../theme-images/small-icons/search-menu-icon-white.svg";
+
+///////////////////
+// Image Files
+$bubble1-image: "../theme-images/home-page/bubble1.svg";
+$bubble2-image: "../theme-images/home-page/bubble1.svg";
+$home-bg-image: "../theme-images/home-page/home_bg.svg";
+$data-layer-image: "../theme-images/home-page/icon-data-layer.svg";
+$doc-image: "../theme-images/home-page/icon-doc.svg";
+$intro-image: $doc-image;
+$getting-started-image: "../theme-images/home-page/icon-getting-started.svg";
+$mlops-image: "../theme-images/home-page/icon-mlops.svg";
+$release-notes-image: $doc-image;
+
+///////////////////
+// Font Sizes
+$font-size-default: 15px;     // 1em=15px
+$font-size-biggest: 3.466em;  // 52px
+$font-size-bigger:  2.66em;   // 40px
+$font-size-big:     2.266em;  // 34px
+$font-size-medium:  1.66em;   // 25px
+$font-size-regular: 1em;      // 15px
+$font-size-smaller: 0.933em;  // 14px
+$font-size-small:   0.866em;  // 13px
+$font-size-mobile:  0.8em;    // 12px
+
+// Breadcrumbs Font Sizes
+$font-size-breadcrumbs:   12px;
+
+// Figure Text Font Sizes
+$font-size-figure-caption:  1em;    // 1em=15px
+$font-size-figure-title:    1.2em;  // 18.5px
+
+// Footer Font Sizes
+$font-size-footer-header:             55px;
+$font-size-footer-header-laptop:      35px;
+$font-size-footer-h2:                 12px;
+$font-size-footer-link-text:          12px;
+$font-size-footer-bottom-text:        13px;
+$font-size-footer-bottom-right-text:  14px;
+$font-size-footer-media-icon:         14px;
+
+// Heading Font Sizes
+// Desktop-View Heading Font Sizes
+                                                  // 1em=15px
+$font-size-header:            $font-size-biggest; // 52px (page header; not used)
+$font-size-content-title:     $font-size-bigger;  // 40px
+$font-size-content-subtitle:  2em;                // 30px
+$font-size-h1:                $font-size-bigger;  // 40px
+$font-size-h2:                $font-size-big;     // 34px
+$font-size-h3:                $font-size-medium;  // 25px
+$font-size-h4:                1.33em;             // 20px
+$font-size-h5:                1.2em;              // 18px
+$font-size-h6:                1.1em;              // 16.5px
+// Laptop-View Heading Font Sizes (~0.9 desktop-view sizes)
+$font-size-header-laptop:           47px;
+$font-size-content-title-laptop:    36px;
+$font-size-content-subtitle-laptop: 27px;
+$font-size-h1-laptop:               36px;
+$font-size-h2-laptop:               31px;
+$font-size-h3-laptop:               23px;
+$font-size-h4-laptop:               18px;
+$font-size-h5-laptop:               16px;
+$font-size-h6-laptop:               15px;
+// Tablet-View Heading Font Sizes
+$font-size-header-tablet:           42px;
+$font-size-content-title-tablet:    34px;
+$font-size-content-subtitle-tablet: 25.5px;
+$font-size-h1-tablet:               34px;
+$font-size-h2-tablet:               27px;
+$font-size-h3-tablet:               20px;
+$font-size-h4-tablet:               18px;
+$font-size-h5-tablet:               16px;
+$font-size-h6-tablet:               15px;
+// Mobile-View Heading Font Sizes
+$font-size-header-mobile:           35px;
+$font-size-content-title-mobile:    30px;
+$font-size-content-subtitle-mobile: 22.5px;
+$font-size-h1-mobile:               30px;
+$font-size-h2-mobile:               25px;
+$font-size-h3-mobile:               18px;
+$font-size-h4-mobile:               17px;
+$font-size-h5-mobile:               16px;
+$font-size-h6-mobile:               15px;
+
+// Link-Anchor Font Size
+$font-size-link-anchor:   $font-size-default;
+// Heading Right Margin
+// Ensure that the heading anchor is not displayed on a separate line than the
+// heading text (which results in seemingly extra space between the heading and
+// the subsequent element when the anchor is not visible).
+$heading-margin-right:    $font-size-link-anchor+25px;
+
+// Mini-TOC Font Sizes
+$font-size-minitoc-header:  14px;
+$font-size-minitoc-link:    13px;
+// On-Page Mini-TOC Font Sizes (Responsive Design)
+$font-size-minitoc-header-onpage:       1.2em;  // 18px for 1em=15px
+$font-size-minitoc-header-icon-onpage:  1.2em;  // 18px for 1em=15px
+
+// Search Font Sizes
+$font-size-search-box:    14px;
+$font-size-search-option: 11px;
+$font-size-search-results-box-title:        15px;
+$font-size-search-results-box-title-tablet: 14px;
+$font-size-search-results-box-text:         14px;
+
+// Side-Menu Font Sizes
+$font-size-side-menu:                 14px;
+$font-size-side-menu-item-icon:       12px;
+$font-size-side-menu-action-bar-icon: 15px;
+$font-size-ver-select:                14px;
+
+// Top-Menu (Page  Header) Font Sizes
+$font-size-top-menu-item:         $font-size-smaller;
+$font-size-top-menu-item-small:   $font-size-small;
+$font-size-top-menu-item-mobile:  $font-size-mobile;
+
+///////////////////
+// Font Families
+
+// Courier New
+@font-face {
+  font-family: 'Courier New';
+  src: url('../fonts/CourierNew/CourierNew-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Courier New';
+  src: url('../fonts/CourierNew/CourierNew-Bold.ttf');
+  font-weight: bold;
+}
+
+// Open Sans
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans/OpenSans-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans/OpenSans-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans/OpenSans-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('../fonts/OpenSans/OpenSans-Bold.ttf');
+  font-weight: bold;
+}
+
+// Roboto
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto/Roboto-Thin.ttf');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto/Roboto-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto/Roboto-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto/Roboto-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto/Roboto-Bold.ttf');
+  font-weight: bold;
+}
+
+// New product-brand theme fonts
+// [InfraInfo] (sharonl) I decided not to use these fonts, at least for now.
+// Note that to use them we also need to edit the font weights and sizes.
+// Encode Sans Condensed
+@font-face {
+  font-family: 'Encode Sans Condensed';
+  src: url('../fonts/EncodeSansCondensed/EncodeSansCondensed-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Encode Sans Condensed';
+  src: url('../fonts/EncodeSansCondensed/EncodeSansCondensed-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Encode Sans Condensed';
+  src: url('../fonts/EncodeSansCondensed/EncodeSansCondensed-Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Encode Sans Condensed';
+  src: url('../fonts/EncodeSansCondensed/EncodeSansCondensed-Black.ttf');
+  font-weight: 900;
+}
+
+// Lato
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato/Lato-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato/Lato-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato/Lato-Bold.ttf');
+  font-weight: bold;
+}
+
+// Functional theme font families and weights
+
+// Body font
+$font-body: 'Open Sans', sans-serif;
+
+$font-body-bold-light: 600;
+
+// Code font
+$font-code: 'Courier New', monospace;
+
+// Footer fonts
+$font-footer: 'Encode Sans Condensed', sans-serif;
+
+// Header fonts
+$font-header: Roboto, sans-serif;
+
+$font-header-bold-light: 500;
+
+$font-weight-h1: 300;
+$font-weight-h2: 300;
+$font-weight-h3: normal;
+$font-weight-h4: $font-header-bold-light;
+$font-weight-h5: $font-header-bold-light;
+$font-weight-h6: $font-header-bold-light;
+
+// Top-Menu Fonts
+$font-top-menu-item: Roboto, Helvetica, Arial, Verdana, sans-serif;
+

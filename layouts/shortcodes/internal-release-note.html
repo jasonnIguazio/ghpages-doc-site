@@ -1,0 +1,114 @@
+<!-- Internal Release-Note (RN) Information Comment (for internal builds)
+Optional Params (in alphabetical order)
+  "docig"       - DOC-issue IG-<n> Jira issue ID (<n>); e.g., "5678".
+                  (The shortcode doesn't currently support TSDB-<n> doc issues.)
+  "fixver"        - The full version number of the version in which a bug was
+                  fixed (if we want to retroactively update the internal info
+                  for a known issue in previous release notes when there's a
+                  fix); e.g., "1.5.0".
+  "id"          - Anchor ID (comment link target).
+                  [InfraInfo] DEPRECATED. Kept for backwards compatibility with
+                  the v2.3 and earlier release notes. There's no longer a need
+                  for the RN-comment ID now that we have RN IDs.)
+  "ig" | "ml" | "tsdb" - The numeric part (<n>) of an IG-<n>, ML-<n>, or
+                  TSDB-<n> Jira issue ID; e.g., "1234".
+                  (27.6.19 The TSDB Jira project was canceled, but we still
+                  have references to TSDB tickets in earlier doc.)
+  "ki_start_ver" - The full version number for the release notes
+  "owner"       - The owner of the "ig"/"ml"/"tsdb" issue; for example,
+                  "Eran N. (erann)"
+  "req"         - The numeric part of (<n>) of an IG-<n> or TSDB-<n> Jira
+                  Requirement ID number (depending on whether "ig", "ml", or
+                  "tsdb" was used), for setting the parent Requirement for an
+                  "ig"/"ml"/"tsdb" Sub-Requirement.
+                  Applicable only when "type" = "subreq" and "ig"/"ml"/"tsdb"
+                  is set.
+  "reviewer"    - The reviewers for the specific release note or RNs section,
+                  as a comma-separated list of one or more usernames (w/wo
+                  separating spaces). E.g., "usera,userb"; "usera, userb".
+  "reviewed"    - The reviewers who completed a review for the RN/RNs section -
+                  same syntax as "reviewers". (Ultimately, when the RNS review
+                  is done, all "reviewer" uses should change to "reviewed".)
+  "rnid"        - The release-note anchor ID (link target).
+  "title"       - Title, appended to [INTERNAL-RN]; the default full title is
+                  "[INTERNAL-RN]"; set to "none" for no title.
+  "type"        - "ig"/"ml"/"tsdb" issue type -
+                  "bug"|"imp"|"req"|"subreq"|"task|"subtask"
+Optional Content (.Inner) - Additional internal RN-comment text.
+-->
+{{- if eq (getenv "IGZ_BUILD_INTERNAL") "true" -}}
+<!-- [ci-internal-build-check] [InfraInfo] The $IGZ_BUILD_INTERNAL condition
+  isn't required, because it's also applied in the "internal" partial that
+  produces the output, but adding it here as well saves unnecessary processing
+  for non-internal site builds. -->
+  {{- $rnd_ig_type := .Get "type" -}}
+  {{- $req := .Get "req" -}}
+  {{- $type_id := "ig" -}}
+  {{- if not (.Get "ig") -}}
+    {{- if .Get "ml" -}}{{- $type_id = "ml" -}}
+    {{- else if .Get "tsdb" -}}{{- $type_id = "tsdb" -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $ctx := . -}}
+  {{- $content := "" -}}
+  {{- with (.Get "reviewer") -}}
+    {{- $reviewers := split . "," -}}
+    {{- range $reviewers -}}
+      {{- $reviewer := trim . "" -}}
+      {{- $content = (printf "%s<b>RN Reviewer:</b> %s<br/>" $content $reviewer) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with (.Get "rnid") -}}
+      {{- $content = (printf "%s<b>RN Link ID:</b> [#%s](#%s)<br/>" $content . .) -}}
+  {{- end -}}
+  {{- with (.Get $type_id) -}}
+    {{- if (eq $rnd_ig_type "bug") -}}
+      {{- $content = printf "%s<b>Bug:</b> " $content }}
+    {{- else if eq $rnd_ig_type "req" -}}
+      {{- $content = printf "%s<b>Requirement:</b> " $content }}
+    {{- else if (eq $rnd_ig_type "subreq") -}}
+      {{- $content = printf "%s<b>Sub-Requirement</b>" $content -}}
+      {{- if ne $req "" -}}
+        {{- $content = (printf "%s for Requirement %s" $content (partial "jira.html" (dict "ctx" $ctx $type_id $req "anchor" "" "link" ""))) }}
+      {{- end -}}
+      {{- $content = printf "%s: " $content }}
+    {{- else if (eq $rnd_ig_type "imp") -}}
+      {{- $content = printf "%s<b>Improvement:</b> " $content }}
+    {{- else if (eq $rnd_ig_type "task") -}}
+      {{- $content = printf "%s<b>Task:</b> " $content }}
+    {{- else if (eq $rnd_ig_type "subtask") -}}
+      {{- $content = printf "%s<b>Sub-Task:</b> " $content }}
+    {{- else -}}
+      {{- $content = printf "%s<b>Issue:</b> " $content }}
+    {{- end -}}
+    {{ $content = (printf "%s%s<br/>" $content (partial "jira.html" (dict "ctx" $ctx $type_id .))) -}}
+  {{- end -}}
+  {{- with (.Get "owner") -}}
+    {{- $content = (printf "%s<b>Owner:</b> %s<br/>" $content .) -}}
+  {{- end -}}
+  {{- with (.Get "docig") -}}
+    {{- $content = (printf "%s<b>DOC Issue:</b> %s<br/>" $content (partial "jira.html" (dict "ctx" $ctx "ig" .))) -}}
+  {{- end -}}
+  {{- with (.Get "docml") -}}
+    {{- $content = (printf "%s<b>DOC Issue:</b> %s<br/>" $content (partial "jira.html" (dict "ctx" $ctx "ml" .))) -}}
+  {{- end -}}
+  {{- with (.Get "ki_start_ver") -}}
+    {{- $content = (printf "%sKnown issue since RN v%s<br/>" $content .) -}}
+  {{- end -}}
+  {{- with (.Get "fixver") -}}
+    {{- $content = (printf "%sFIXED in v%s<br/>" $content .) -}}
+  {{- end -}}
+  {{- with (.Get "reviewed") -}}
+    {{- $content = (printf "%s [RN review done by" $content) -}}
+    {{- $reviewers := split . "," -}}
+    {{- range $reviewers -}}
+      {{- $reviewed := trim . "" -}}
+      {{- $content = (printf "%s %s" $content $reviewed) -}}
+    {{- end -}}
+    {{- $content = (printf "%s]<br/>" $content) -}}
+  {{- end -}}
+  {{- $content = (printf "%s%s" $content .Inner | markdownify) -}}
+
+  {{- partial "content-styles/internal.html" (dict "content" ($content | markdownify) "class" "internal-info-release-note" "pre_title" "[INTERNAL-RN]" "title" (.Get "title") "id" (.Get "id")) -}}
+{{- end -}}<!-- [eq (getenv "IGZ_BUILD_INTERNAL") "true"] -->
+

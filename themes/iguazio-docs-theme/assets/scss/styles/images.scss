@@ -1,0 +1,29 @@
+/* ================================== */
+/* Images and Figures */
+
+/* Custom Figure */
+.igz-figure {
+  > div {
+    display: inline-block;
+     // Aligns the title & caption relative to the image and not the page width
+  }
+  
+  /* Figure Caption */  
+  figcaption {
+    text-align: center;
+    
+    h4 {
+      font-size: $font-size-figure-title;
+      color: $color-figure-title;
+      margin: 0 0 20px 0;
+    }
+    p {
+      font-size: $font-size-figure-caption;
+      color: $color-figure-caption;
+    }
+  } /* [igz-figure.figcaption] */
+} /* [igz-figure] */
+
+/* [Images and Figures] */
+/* ================================== */
+

@@ -1,0 +1,242 @@
+/* ================================== */
+/* Side Menu */
+
+/* ================================== */
+/* Hidden Side-Menu Action Bar (with a show-side-menu option) */
+.side-menu-show {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  background-color: $color-side-menu-action-bar-bg;
+  border: none;
+  height: 100%;
+  width: 18px;
+  text-align: center;
+  cursor: pointer;
+
+  i {
+    position: absolute;
+    margin-left: -6px;
+    font-size: $font-size-side-menu-action-bar-icon;
+    top: 40%;
+    color: $color-side-menu-action-bar-icon;
+
+    &:hover {
+      color: $color-side-menu-action-bar-icon-hover;
+    }
+  }
+
+  @media all and (max-width: $container-width-mobile) {
+    display: none !important;
+  }
+} /* [side-menu-show] */
+/* ================================== */
+
+/* ================================== */
+/* Side Menu */
+#side-menu {
+  display: block;
+  position: fixed;
+  margin: 56px 0 0 0;
+  width: 20%;
+  min-width: 235px;
+  height: 100vh;
+  z-index: 10;
+  background-color: $color-side-menu-bg;
+  border-right: $side-menu-border-right;
+
+  &.home-side-menu {
+    background-color: $color-home-bg;
+  }
+
+  &.mobile {
+    width: 100%;
+  }
+
+  /* Visible Side-Menu Action Bar (with a hide-side-menu option) */
+  .side-menu-action-bar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 56px;
+    margin: 0;
+    background-color: $color-side-menu-action-bar-bg;
+    user-select: none;
+    border: none;
+    height: 23px;
+    width: 20%;
+    min-width: 235px;
+    text-align: left;
+    cursor: pointer;
+    padding: 0 8px;
+    z-index: 11;
+
+    i {
+      color: $color-side-menu-action-bar-icon;
+      font-size: 15px;
+      padding: 2px 7px;
+
+      &:last-child {
+        font-size: $font-size-side-menu-action-bar-icon;
+        margin-left: 30%
+      }
+
+      &:hover {
+        color: $color-side-menu-action-bar-icon-hover;
+      }
+    }
+
+    @media all and (max-width: $container-width-desktop) {
+      top: 40px;
+    }
+
+    @media all and (max-width: $container-width-laptop) {
+      background-color: $color-side-menu-action-bar-bg;
+      #side-menu-hide {
+        display: none;
+      }
+    }
+  } /* [#side-menu .side-menu-action-bar] */
+
+  /* Side Menu */
+  .side-menu {
+    display: block;
+    position: absolute;
+    font-size: $font-size-side-menu;
+    padding: 5px 5px 0 10px;
+    margin-top: 23px;
+    height: calc(100vh - 79px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    user-select: none;
+    width: calc(100% + 2px);
+
+    &:after {
+      content: '';
+      display: block;
+      height: 25px;
+    }
+
+    /* Side-menu entry link */
+    &__item__link {
+      display: flex;
+      cursor: pointer;
+      color: $color-side-menu-item;
+      padding-top: 5px;
+
+      i {
+        padding-top: 5px;
+        font-size: $font-size-side-menu-item-icon;
+        color: $color-side-menu-item-icon;
+
+        &.active {
+          color: $color-side-menu-item-icon-active;
+        }
+      }
+
+      &__text {
+        line-height: 1.45em;
+        margin-left: 10px; // space between the menu-item's icon and text
+        color: $color-side-menu-item;
+
+        &.active {
+          color: $color-side-menu-item-active;
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        &.active-topic {
+          color: $color-side-menu-item-active-ancestor;
+        }
+      }
+    } /* [#side-menu .side-menu__item__link] */
+
+    &__item__link:hover {
+      font-weight: bold;
+    }
+
+    &__item__link__text:hover {
+      color: $color-side-menu-item-hover;
+      text-decoration: underline;
+    }
+  } /* [#side-menu .side-menu] */
+
+  @media all and (max-width: $container-width-desktop) {
+    margin-top: 40px;
+    .side-menu {
+      height: calc(100vh - 56px);
+    }
+  }
+
+  @media (min-width: $container-width-desktop) {
+    display: block;
+  }
+
+  @media all and (max-width: $container-width-desktop) {
+    display: none;
+  }
+} /* [#side-menu] */
+/* ================================== */
+
+/* ================================== */
+/* Side Menu Tooltips*/
+#side-menu-hide:hover,
+#side-menu-expand:hover,
+#side-menu-collapse:hover,
+#side-menu-show:hover {
+  color: $color-side-menu-action-bar-icon-hover;
+
+  .collapse-tooltip,
+  .expand-tooltip,
+  .side-menu-hide-tooltip,
+  .side-menu-show-tooltip {
+    visibility: visible;
+  }
+} /* [#side-menu-show:hover] */
+
+.collapse-tooltip,
+.expand-tooltip,
+.side-menu-hide-tooltip,
+.side-menu-show-tooltip {
+  visibility: hidden;
+  min-width: 70px;
+  background-color: $color-tooltip-bg;
+  color: $color-tooltip-text;
+  text-align: center;
+  border-radius: 5px;
+  margin: auto auto auto 10px ;
+  padding: 4px;
+  font-size: $font-size-small;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 12;
+} /* [.side-menu-show-tooltip] */
+/* ================================== */
+
+/* ================================== */
+/* Show/Hide the side menu */
+
+.side-menu-list {
+  &.show {
+    display: block;
+  }
+  &.hide {
+    display: none;
+  }
+} /* [.side-menu-list] */
+
+.side-menu-sub {
+  padding-left: 22px;
+  &.show {
+    display: block;
+  }
+  &.hide {
+    display: none;
+  }
+} /* [side-menu-sub] */
+/* ================================== */
+
+/* [Side Menu] */
+/* ================================== */

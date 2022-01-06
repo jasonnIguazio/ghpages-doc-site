@@ -1,0 +1,3 @@
+<!-- [IntInfo] (sharonl) See Bug IG-11363. -->
+{{- printf "%s" "Take extra care when deleting containers, to avoid data loss or other undesirable consequences. It's recommended that you close all open handles to the container before you delete it. For example, deleting a container without first deleting a Nuclio V3IO volume that references the container might result in consumption of extra Kubernetes resources." -}}
+

@@ -1,0 +1,12 @@
+<!-- [TODO-INFRA] Replace calls to igz-heading-small with calls to igz-heading
+  with h="small" and remove this shortcode.
+Required Parameters
+  "group" | "g" data/vars/headings.toml group key (e.g., "apiref").
+  "type"  | "t" Heading type - Data.vars.headings.$group key (e.g., "params").
+Optional Parameters
+  "id"    Heading anchor id; default = $type.
+  "pre"   Text to prepend to the default text, including a space at the end.
+  "post"  Text to append to the default text, including an initial space .
+-->
+{{- partial "content-styles/igz-heading.html" (dict "ctx" . "hlevel" "small" "group" (.Get "group" | default (.Get "g")) "type" (.Get "type" | default (.Get "t")) "id" (.Get "id") "pre" (.Get "pre") "post" (.Get "post") "none" (.Get "none")) -}}
+

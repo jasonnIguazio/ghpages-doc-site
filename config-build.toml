@@ -1,0 +1,89 @@
+# Custom-Build Configurations
+# [InfraInfo] Use the --configBuild build option to override this file.
+# For shared Hugo and custom-build configurations, see config-shared.toml, and
+# for Hugo-only configurations see config.toml.
+
+# Default unique base-URL directory (can be overwritten with --bdir)
+onlineBaseURLDir = "docs/latest-release/"
+# [TODO-NEW-VER-RELEASE] When publishing documentation for a newer version,
+# change "latest-release" on this branch:
+#onlineBaseURLDir = "docs/v3.0/"
+
+# Default build-output directory suffix (can be overwritten with
+# -d/--destination as part of a full output-directory-path overwrite)
+dirSuffix = ".v3.2.1"
+# [TODO-NEW-VER] When creating a new version branch, update the version number.
+
+# Default base build-output directory (can be overwrite with --outbase, or with
+# -d/--destination as part of a full output-directory-path overwrite)
+baseOutDir = "./out"
+
+# Shared versions-file URL
+sharedVersionsFileURL = "https://api.github.com/repos/iguazio/doc-assets/contents/igz-platform-versions.json"
+# [TODO-NEW-VER-RELEASE] When publishing documentation for a newer version, on
+# the new branch add `?ref=development` to the URL to use the versions file from
+# the doc-assets default `master` branch and not from `development`, and ensure
+# that the master versions file includes the latest-release version:
+#sharedVersionsFileURL = "https://api.github.com/repos/iguazio/doc-assets/contents/igz-platform-versions.json?ref=development"
+
+# Backup local versions file (found in the built site's static directory and
+# used when sharedVersionsFileURL can't be retrieved or parsed)
+backupVersionsFile = "versions.json"
+
+# [c-reg-users-only] Password-protected registered-users-only directories.
+# See also the config.toml Params.sections is_reg_users_only section key.
+regUsersOnlyDirs = [
+  "cluster-mgmt/deployment/sw-specifications",
+  "release-notes"
+]
+
+# Default theme directory (can be overwritten with -t/--theme and --themesDir)
+themeDir = "./themes/iguazio-docs-theme"
+
+# Build-type-specific configurations
+[buildType]
+  # Local build (`build --local`/`build` (default))
+  [buildType.local]
+    baseURL = "localhost"
+    outDir = "site-local"
+    port = "1313"
+    relDocsHomeURL ="https://www.iguazio.com/docs/"
+  # Internal local build (`build --local`/`build` (default) +
+  # --internal/--igzBuildInternal)
+  [buildType.localInternal]
+    baseURL = "localhost"
+    outDir = "site-local.INTERNAL"
+    port = "1314"
+    relDocsHomeURL ="https://igzdocsdev.wpengine.com/internal/docs/"
+
+  # Production (publication) build (`build --pub`)
+  [buildType.production]
+    baseURLRoot = "www.iguazio.com/"
+    outDir = "site-public"
+    relDocsHomeURL ="https://www.iguazio.com/docs/"
+    srcRootHtaccess = ".htaccess.public.sh"
+    srcRegUsersHtaccess = ".htaccess.public.reg_sections.sh"
+
+  # Offline build (`build-offline` or `gen-offline-site`)
+  [buildType.offline]
+    outDir = "iguazio_docs"
+    srcLocalDirName = "site-local-for-offline"
+  # Internal offline build (`build-offline` or `gen-offline-site` +
+  # --internal/--igzBuildInternal)
+  [buildType.offlineInternal]
+    outDir = "iguazio_docs.INTERNAL"
+    srcLocalDirName = "site-local-for-offline.INTERNAL"
+
+  # Staging build (--staging)
+  # [InfraInfo] See the [c-staging-site-base-url] note in gulpfile.js.
+  [buildType.staging]
+    baseURLRoot = "igzdocsdev.wpengine.com/"
+    outDir = "site-staging"
+    relDocsHomeURL ="https://igzdocsdev.wpengine.com/docs/"
+    srcRootHtaccess = ".htaccess.staging.sh"
+  # Internal staging build (`build --staging` + --internal/--igzBuildInternal)
+  [buildType.stagingInternal]
+    baseURLRoot = "igzdocsdev.wpengine.com/internal/"
+    outDir = "site-staging.INTERNAL"
+    relDocsHomeURL ="https://igzdocsdev.wpengine.com/internal/docs/"
+

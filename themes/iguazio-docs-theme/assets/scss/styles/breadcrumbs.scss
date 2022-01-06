@@ -1,0 +1,48 @@
+/* ================================== */
+/* Breadcrumbs */
+
+.breadcrumb {
+  // [InfraInfo] [sharonl] Renaming this class causes the offline docs to
+  // display each breadcrumb in a separate line and without the ">>" separator,
+  // even though on the local server the breadcrumbs appear correctly (see
+  // iguazio/docs_infra PR #369, reverted in PR #370). Perhaps this is related
+  // to the third-party bootstrap.min.css "breadcrumb" class.
+  display: block;
+  position: relative;
+  min-height: 0;
+  padding: 5px 8px 8px 0;
+  background-color: $color-breadcrumbs-bg;
+
+  .breadcrumbs {
+    font-size: $font-size-breadcrumbs;
+    user-select: none;
+    li {
+      display: inline;
+      list-style-type: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-breadcrumbs-link;
+      &:hover {
+        color: $color-breadcrumbs-link-hover;
+      }
+    }
+
+    li:nth-last-child(1) {
+      a {
+        color: $color-breadcrumbs-current;
+        text-decoration: none;
+        cursor: default;
+      }
+    }
+
+    li:not(:first-child):before {
+      content: " » "
+    }
+  } /* [.breadcrumb.breadcrumbs] */
+} /* [.breadcrumb] */
+
+/* [Breadcrumbs] */
+/* ================================== */
+

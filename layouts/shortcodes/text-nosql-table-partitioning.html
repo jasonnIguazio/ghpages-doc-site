@@ -1,0 +1,22 @@
+<!-- [InfraInfo] (sharonl) [ci-extra-space-around-shcd-output-or-content] I
+  made this a shortcode with content (by using .Inner) to avoid the automatic
+  new paragraph for any text added after the shortcode call (even without any
+  spaces) as a result of the shortcode output being embedded in a paragraph in
+  the HTML output. (Text before the shortcode call also appears in a separate
+  paragraph). Removing the empty line at the end of the shortcode file or the
+  shortcode comments, or using the '<'/'>' shortcode-call syntax instead of
+  '%', didn't change the behavior. Note that to avoid the shortcode content in
+  the current implementation appearing in a separate paragraph in the output,
+  the content must begin on the same line as the opening of the shortcode call
+  and end on the same line as the closing of the shortcode call.
+  Also, removing the space before the .Inner %s at the end of the input string
+  and instead, adding a space at the start of the content in the shortcode call
+  instead doesn't work correctly, because the space is ignored.
+  This was last tested on 20.11.18 with Hugo v0.48.
+  (27.8.19) I replaced the `%` shortcode-call syntax for the calls to this
+  shortcode with `<`/`>` as part of the upgrade from Hugo v0.54.0 to v0.57.2
+  following the shortcode revision that was done in Hugo v0.55.0.
+-->
+{{- $spark := .Get "spark" -}} <!-- optional param -->
+{{- printf "Table partitioning is a common technique for optimizing physical data layout and related queries. In a partitioned table, some item attributes (columns) are used to create partition directories within the root table directory using the format <path>&lt;table path&gt;/&lt;attribute&gt;=&lt;value&gt;[/&lt;attribute&gt;=&lt;value&gt;/...]</path>, and each item is then saved to the respective partition directory based on its attribute values. For example, for a &quot;mytable&quot; table with <attr>year</attr> and <attr>month</attr> attribute partitions, an item with attributes <attr>year</attr> = 2018 and <attr>month</attr> = 1 will be saved to a <path>mytable/year=2018/month=1/</path> directory. This allows for more efficient data queries that search for the data only in the relevant partition directories instead of scanning the entire table. This technique is used, for example, by Hive, and is supported for all the built-in Spark Dataset file-based data sources (such as Parquet, CSV, and JSON)%s. %s" (cond (eq $spark "1") " via the <opt>partitionBy</opt> write method" "") .Inner | markdownify -}}
+

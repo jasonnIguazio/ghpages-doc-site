@@ -1,0 +1,12 @@
+<!-- param-doc: Parameter documentation (e.g., a function parameter)
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Required content (.Inner) - The parameter documentation.
+Required Params
+  "name"  - The parameter name.
+Optional Params
+  "id"    - HTML anchor ID for linking to the parameter documentation.
+  "beta"  - 1 = add a Beta mark after the parameter name.
+  "tp"    - 1 = add a Tech Preview mark after the parameter name.
+-->
+{{- partial "doc/param-doc.html" (dict "ctx" . "content" .Inner "name" (.Get "name") "id" (.Get "id") "beta" (.Get "beta") "tp" (.Get "tp")) -}}
+

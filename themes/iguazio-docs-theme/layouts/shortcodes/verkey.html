@@ -1,0 +1,15 @@
+<!-- verkey: Returns the value of the specified map key ("k") of the
+  current-version product-data-variable - $Site.Data.vars.product.ver.<key>.
+
+  Mandatory Params
+  "k"   A period (.) delimited string denoting the path to a "ver" product
+        data-variable map key - $Site.Data.product.ver.<"k">. For example,
+        "fs_k8s.product_home.envar".
+
+[INFRA-VERSION-SITE] New for the single versioned doc-site build design.
+See my TODO comments for the "getvar" shortcode.
+[InfraInfo] Don't move this note to a separate HTML comment, as it affects the
+output in some cases. This note should ultimately be removed anyway.
+-->
+{{- partial "func/get-var.html" (dict "ctx" . "v" (printf "product.ver.%s" (.Get "k")) "md" (.Get "md")) -}}
+

@@ -1,0 +1,48 @@
+/* ================================== */
+/* General Styles */
+
+/* Form Control, Dropdown Menu, and Button */
+.form-control,
+.dropdown-menu,
+.btn {
+  font-size: inherit;
+
+  &:active, &:focus, &:active:focus {
+    box-shadow: none;
+  }
+}
+
+/* Dropdown Menu Item */
+.dropdown-item {
+  &:hover {
+    background-color: $color-opt-select-hover-bg;
+  }
+}
+
+/* Hidden Items */
+.hide {
+  display: none!important;
+}
+
+/* ================================== */
+/* Tooltip */
+.tooltip-inner {
+  background-color: $color-tooltip-bg;
+}
+.tooltip.bs-tooltip-right .arrow:before {
+  border-right-color: $color-tooltip-bg;
+}
+.tooltip.bs-tooltip-left .arrow:before {
+  border-left-color: $color-tooltip-bg;
+}
+.tooltip.bs-tooltip-bottom .arrow:before {
+  border-bottom-color: $color-tooltip-bg;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+  border-top-color: $color-tooltip-bg;
+}
+/* [Tooltip] */
+/* ================================== */
+/* [General Styles] */
+/* ================================== */
+

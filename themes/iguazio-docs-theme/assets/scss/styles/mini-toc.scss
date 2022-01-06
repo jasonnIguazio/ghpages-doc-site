@@ -1,0 +1,141 @@
+/* ================================== */
+/* Table of Contents (TOC) (used for page "mini TOC") */
+.toc {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  padding: 0;
+  vertical-align: middle;
+
+  /* ================================== */
+  /* TOC Entries */
+  li {
+    padding: 4px 0;
+    overflow: hidden;
+
+    /* Restrict the TOC to first-level headings */
+    ul:not(:first-child) {
+      padding-left: 22px;
+      display: none;
+      ul {
+        display: none;
+      }
+    }
+
+    a {
+      color: $color-minitoc-link;
+      font-size: $font-size-minitoc-link;
+      
+      &.active {
+        color: $color-minitoc-link-active;
+        font-weight: bold;
+      }
+
+      &:hover {
+        color: $color-minitoc-link-hover;
+        font-weight: bold;
+      }
+    }
+  } /* [.toc .li] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Mini-TOC Header */
+  .mini-toc-header span{
+    font-size: $font-size-minitoc-header;
+    color: $color-minitoc-header;
+    font-weight: $font-body-bold-light;
+  } /* [.toc mini-toc-header] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Big-View (Desktop) Mini TOC (Right Sidebar) */
+  @media screen and (min-width: $container-width-desktop) {
+    /* Mini TOC */
+    .mini-toc {
+      position: fixed;
+      margin: auto 30px auto 20px;
+      width: 15%;
+      padding: 3px 10px;
+      border-left: 1px solid $color-minitoc-left-border;
+      user-select: none;
+
+      /* Mini-TOC Header */
+      .mini-toc-header {
+        padding: 0;
+
+        .laptop {
+          display: none;
+        }
+
+        .desktop {
+          padding: 3px 10px;
+        }
+      }
+    }
+  } /* [.toc Big-View (Desktop) Mini TOC (Right Sidebar)] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Small-View TOC (On-Page TOC) */
+  @media screen and (max-width: $container-width-desktop) {
+    display: block;
+    position: relative;
+    padding: 5px 0;
+    text-align: center;
+    width: 100%;
+    background-color: $color-minitoc-bg-small;
+    user-select: none;
+
+    &.wide-width {
+      margin-left: 5%;
+    }
+
+    /* Page TOC - Mini TOC */
+    .mini-toc {
+      display: block;
+      position: relative;
+      user-select: none;
+      text-align: left;
+
+      .mini-toc-header{
+        margin: 5px 0;
+        padding-left: 10px;
+        cursor: pointer;
+
+        .laptop {
+          font-size: $font-size-minitoc-header-icon-onpage;
+          margin-right: 10px;
+          vertical-align: middle;
+        }
+
+        .desktop {
+          display: none;
+        }
+
+        span {
+          font-size: $font-size-minitoc-header-onpage;
+        }
+      }
+
+      #TableOfContents {
+        display: none;
+        background-color: $color-minitoc-bg-small;
+        padding: 5px;
+      }
+    } /* [.toc .mini-toc] */
+  } /* [.toc Small-View TOC (On-Page TOC)] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Additional Per-View-Size Customizations */
+  @media (min-width: $container-width-desktop) {
+    #TableOfContents {
+      display: block;
+    }
+  }
+  /* ================================== */
+
+} /* [toc] */
+/* ================================== */
+

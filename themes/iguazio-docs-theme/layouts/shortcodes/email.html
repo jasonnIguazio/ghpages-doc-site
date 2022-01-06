@@ -1,0 +1,18 @@
+<!-- email: Access a data/vars/email.toml data-variable key and optionally
+  create a "mailto" link (when link="1"). 
+  Required Params
+  "id"  The name of a data/vars/email.toml email variable to access.
+  Optional Params
+  "link"  "!" = create a "mailto" link; default = "0".
+  "text"  Link text (applicable when "link"="1"); default = the email address
+          (the value of the "id" email data variable).
+-->
+{{- $email :=  index .Site.Data.vars.emails (.Get "id") -}}
+{{- $text := (.Get "text") | default $email -}} <!-- Applicable with link=1 -->
+
+{{- if (eq (.Get "link") "1") -}}
+  {{- printf "[%s](mailto:%s)" $text $email | markdownify -}}
+{{- else -}}
+  {{- $email -}}
+{{- end -}}
+

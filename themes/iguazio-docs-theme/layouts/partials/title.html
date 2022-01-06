@@ -1,0 +1,23 @@
+    <!-- Page Title & Subtitle -->
+    <div class="page-title">
+      <!-- Page Title -->
+      <h1 class="content-title">{{- .Title -}}
+        <!-- [c-titleAddVersion] [IntInfo] (sharon) (29.1.18) In consultation
+          with Adi, I currently don't use titleAddVersion to add the version
+          number to page titles in the actual product documentation, but I
+          decided to keep the support for this option and it's used in our
+          infrastructure tests.
+        -->
+        {{- if .Params.titleAddVersion }}
+          (Version&nbsp;{{ cond (eq .Params.titleAddVersion "num") .Site.Data.vars.product.ver.num .Site.Data.vars.product.ver.num_short -}})
+        {{- end -}}
+        {{- if .Draft }} [Draft]{{- end -}}
+        {{- if or (or .Params.isbeta .Params.betafeature) .Params.betafeatures }} {{ partial "content-styles/beta.html" (dict "ctx" . "mark" "1" "fmt" "0") -}}{{- end -}}
+        {{- if or (or .Params.istechpreview .Params.techpreviewfeature) .Params.techpreviewfeatures }} {{ partial "content-styles/techpreview.html" (dict "ctx" . "mark" "1" "fmt" "0") -}}{{- end -}}</h1>
+
+      <!-- Page Subtitle -->
+      {{- with .Params.subtitle -}}
+        <h1 class="content-subtitle">{{- . -}}</h1>
+      {{- end -}}
+    </div>
+

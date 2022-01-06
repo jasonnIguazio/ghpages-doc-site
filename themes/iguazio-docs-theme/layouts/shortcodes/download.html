@@ -1,0 +1,33 @@
+<!-- download: File-download link
+Optional content (.Inner) - the link text (can include shortcode calls);
+      default (empty content) = "download".
+Required Params: Provide one of the following mutually exclusive params:
+  "target"  - A full download path.
+  "f"       - The relative path to the file to download within the default
+              downloads directory (/downloads - created from /static/downloads).
+  "target_var" - A Hugo data variable (default) or site param (if "tv_t" =
+              "siteparams" | "sp") whose value is the full link target path
+              (get-var "tv_v").
+Optional "target_var" related params for referencing an array variable key;
+see the descriptions of the equivalent func/get-var.html partial parameters:
+"tv_t"                <=> get-var "t"
+"tv_arr_key"          <=> get-var "arr_key"
+"tv_arr_item_id"      <=> get-var "arr_item_id"
+"tv_arr_item_id_val"  <=> get-var "arr_item_id_val"
+
+[InfInfo] (sharonl) This shortcode uses an HTML <a href="" download></a> link.
+The "download" attribute is used to force a download dialog when linking to
+files that by default are displayed in the browser (like HTML and JSON files).
+I don't know of a Markdown method for forcing the download.
+-->
+{{- $text := .Inner | default "download" -}}
+{{- $target := .Get "target" -}}
+{{- $downloads_file := .Get "f" }}
+{{- if $downloads_file -}}
+  {{- $target = printf "/downloads/%s" $downloads_file -}}
+{{- else if .Get "target_var" -}}
+  {{- $target = partial "func/get-var.html" (dict "ctx" . "t" (.Get "tv_t") "v" (.Get "target_var") "arr_key" (.Get "tv_arr_key") "arr_item_id" (.Get "tv_arr_item_id") "arr_item_id_val" (.Get "tv_arr_item_id_val")) -}}
+{{- end -}}
+
+{{- printf "<a href='%s' download>%s</a>" $target $text | markdownify -}}
+

@@ -1,0 +1,37 @@
+/* ================================== */
+/* Versioned-Content Selection */
+
+/* Versions Box */
+#version-box {
+  color: $color-ver-select;
+  font-size: $font-size-ver-select;
+  margin-right: 15px;
+  cursor: pointer;
+  border: none;
+  z-index: 25;
+
+  .igz_version-btn {
+    border-radius: 0;
+    border-bottom: $ver-select-border-bottom;
+    background-color: transparent;
+    color: $color-ver-select-bg;
+    padding: 4px 10px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  #igz_version-text {
+    display: none;
+  }
+
+  .dropdown-menu {
+    .dropdown-item {
+      &:hover {
+        color: $color-ver-select-opt-hover;
+      }
+    }
+  }
+} /* [version-box] */
+/* ================================== */

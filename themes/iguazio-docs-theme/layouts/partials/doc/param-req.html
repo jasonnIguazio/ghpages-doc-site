@@ -1,0 +1,31 @@
+<!-- param-req: Parameter-requirement bullet
+NOTE: This partial must be called inside a definition list (<dl>...</dl>).
+Required Params
+  "ctx" - The context of the calling template/partial/shortcode (`.`).
+Optional Params
+  "content" (.Inner) - Additional text to append to the default text that's
+    derived from the requirement level (according to param $0).
+    NOTE: Include a preceding space in the content, as necessary.
+  "req" - (Optional but should typically be set) The requirement level -
+    "R" | "M" - Required (mandatory param)
+    "R-or-URL"  - Required unless the param is set in the request URL
+    "O" - "Optional"
+    "I" - "Implicit"
+-->
+<!-- [InfraInfo] The "ctx" partial param is currently unused. -->
+{{- $req := $.req -}}
+{{- $text := "" -}}
+{{- if or (eq $req "M") (eq $req "R") -}}
+  {{- $text = "Required" -}}
+{{- else if eq $req "R-or-url" -}}
+  {{- $text = "Required if not set in the request URL" -}}
+{{- else if eq $req "O" -}}
+  {{- $text = "Optional" -}}
+{{- else if eq $req "I" -}}
+  {{- $text = "Implicit" -}}
+{{- end -}}
+<ul>
+  <li>{{- printf "**Requirement:** %s%s" $text (cond (eq $.content "") "" $.content) | markdownify -}}
+  </li>
+</ul>
+

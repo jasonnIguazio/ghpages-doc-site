@@ -1,0 +1,42 @@
+<!-- Figure shortcode based on the Hugo `figure` shortcode
+  (https://gohugo.io/content-management/shortcodes/#figure), defined in
+  tpl/tplimpl/template_embedded.go in the Hugo GH repo
+  (https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/template_embedded.go),
+  using our custom figure CSS class (igz-figure) by default and with support
+  for additional functionality (marked `[igz]`), including Markdown code in
+  titles and captions, "img" parameter as an alternative to "src", and
+  additional "id" and "inline" parameters.
+
+Mandatory Parameters
+[igz] NOTE: "src" and "img" are mutually exclusive; "src" overrides "img".
+  "src"     Path to the image file to insert. For example,
+            "/theme-images/logo/igz_logo.png".
+  "img"     [igz] Name of an image file in the /images directory. For example,
+            "myimage.png". This parameter is ignored when "src" is set.
+Optional Parameters
+  "alt"     Alternate image text, to be used if the image cannot be displayed.
+  "attr"    Attribution link text for a post-caption/image attribution link.
+  "attrlink" Attribution link target for a post-caption/image attribution link.
+  "id"      [igz] Figure ID to allow links to the figure. Default =
+            "img-<image file name without the file-type extension>".
+  "caption" Figure caption. [igz] We customized the caption style (CSS) and
+          added support for using Markdown code in the caption text (e.g.,
+          "&mdash;").
+  "class"   Figure class (to assign to <figure>). [igz] Default = "igz-figure".
+  "inline"  [igz] Set to "1" or "p" to insert the image inline with surrounding
+          elements. When "inline"="p" and "title" isn't set, the image is also
+          embedded within an inline paragraph.
+  "link"   A link target to which to link the image.
+  "rel"   A `rel` attribute for the URL (<a>) if the "link" parameter is set -
+          specifies the relationship between the current and linked documents
+          (https://www.w3schools.com/tags/att_a_rel.asp).
+  "target"  A `target` attribute for the URL (<a>) if the "link" parameter is
+          set - specifies where to open the linked document
+          (_blank|_self|_parent|_top|<framename>).
+  "title"   Figure title. [igz] We customized the title style (CSS) and added
+            support for using Markdown code in the title text (e.g., "&mdash;").
+  "width"   Image width (e.g., "200").
+-->
+
+{{- partial "func/igz-figure.html" (dict "alt" (.Get "alt") "attr" (.Get "attr") "attrlink" (.Get "attrlink") "caption" (.Get "caption") "class" (.Get "class") "id" (.Get "id") "img" (.Get "img") "inline" (.Get "inline") "link" (.Get "link") "rel" (.Get "rel") "src" (.Get "src") "target" (.Get "target") "title" (.Get "title") "width" (.Get "width")) -}}
+

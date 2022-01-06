@@ -1,0 +1,341 @@
+/* ================================== */
+/* Home-Page Content */
+.home-content {
+  @mixin dotted-border {
+    background-image: linear-gradient(to bottom, $color-home-bg-image 10%, rgba($color-home-bg-image-text, 0) 0%);
+    background-position: left;
+    background-size: 2px 16px;
+    background-repeat: repeat-y;
+  }
+
+  margin-left: 20%;
+  font-size: 16px;
+
+  &.wide-width {
+    margin-left: 0;
+  }
+
+  /* Home-Page Containers (Doc Containers/Boxes) */
+  .home-containers {
+    background-color: $color-home-bg;
+    background-image: url($bubble1-image),
+                      url($bubble2-image),
+                      url($home-bg-image);
+    background-repeat: no-repeat;
+    background-position: 4% 76%, 95% 10%, top center;
+    background-size: 8%, 8%, 85%;
+    padding: 50px 30px 50px 30px;
+
+    .home-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $color-home-header-text;
+      margin-bottom: 32px;
+
+      .header-title {
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-size: 42px
+      }
+    }
+
+    /* Main-Tiles Container */
+    .main-tiles-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      /* Main Tile */
+      .main-tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 230px;
+        width: 100%;
+        max-width: 417px;
+        min-height: 300px;
+        padding: 20px;
+        background-color: $color-home-bg;
+        color: $color-home-main-tile-title;
+        border-radius: 8px;
+        text-decoration: none;
+        box-shadow: 0 5px 30px -10px $color-home-main-tile-shadow;
+
+        &:hover {
+          .main-tile-title {
+            color: $color-home-main-tile-hover;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right: 45px;
+        }
+
+        /* Main-Tile Icon */
+        .main-tile-icon {
+          width: 132px;
+          height: 132px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+        }
+
+        /* Main-Tile Title */
+        .main-tile-title {
+          font-size: 22px;
+          padding-bottom: 10px;
+        }
+
+        /* Main-Tile Content */
+        .main-tile-content {
+          color: $color-home-main-tile-text;
+          font-weight: 300;
+        }
+
+        /* Release-Notes Title */
+        // [ci-build-one-section-release-notes] Release-notes main doc tile,
+        // used for release-notes-only builds.
+        &.release-notes {
+          .main-tile-icon {
+            background-image: url($release-notes-image);
+          }
+        }
+
+        /* Introduction Tile */
+        &.intro {
+          .main-tile-icon {
+            background-image: url($intro-image);
+          }
+        }
+
+        /* Data Science and MLOps Tile */
+        &.ds-and-mlops {
+          .main-tile-icon {
+            background-image: url($mlops-image);
+          }
+        }
+
+        /* Getting-Started Tutorial Title */
+        &.getting-started-tutorial {
+          .main-tile-icon {
+            background-image: url($getting-started-image);
+          }
+        }
+      }
+    }
+
+    /* Sub-Tiles Container */
+    .sub-tiles-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      text-align: center;
+      margin: 40px 50px 0;
+
+      /* Sub Tile */
+      .sub-tile {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 200px;
+        width: 100%;
+        max-width: 360px;
+        min-height: 150px;
+        padding: 5px 20px;
+        margin-right: -2px;
+        margin-top: 30px;
+        text-decoration: none;
+        z-index: 0;
+        @include dotted-border;
+
+        &:hover {
+          .sub-tile-title {
+            color: $color-home-sub-tile-hover;
+          }
+        }
+
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          @include dotted-border;
+          background-position: right;
+        }
+
+        .sub-tiles-title-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 10px 0;
+          width: 100%;
+        }
+
+        /* Sub-Tile Title */
+        .sub-tile-title {
+          color: $color-home-sub-tile-title;
+          font-size: 18px;
+          font-weight: bold;
+        }
+
+        /* Sub-Tile Icon */
+        .sub-tile-icon {
+          display: flex;
+          align-items: center;
+          width: 30px;
+          height: 30px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          font-size: 27px;
+          color: $color-home-sub-tile-icon;
+          margin-right: 20px;
+        }
+
+        /* Sub-Tile Content */
+        .sub-tile-content {
+          color: $color-home-sub-tile-text;
+          font-size: 16px;
+          font-weight: 300;
+          flex: 3;
+        }
+
+        /* Data Layer Tile */
+        &.data-layer {
+          .sub-tile-icon {
+            background-image: url($data-layer-image);
+          }
+        }
+
+        /* Release-Notes Tile */
+        &.release-notes {
+          .sub-tile-icon {
+            background-image: url($release-notes-image);
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $container-width-desktop-large) {
+    .home-containers{
+      background-position: 4% 75%, 95% 9.4%, top center;
+      .home-header {
+        margin-bottom: 20px;
+
+        .header-title {
+          font-size: 30px;
+          margin: 15px 0;
+        }
+      }
+
+      .main-tiles-container {
+        .main-tile {
+          max-width: 350px;
+          min-height: 275px;
+
+          .main-tile-icon {
+            width: 70px;
+            height: 70px;
+          }
+
+          .main-tile-title {
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+          }
+
+          .main-tile-content {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .sub-tiles-container {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  @media screen and (max-width: $container-width-desktop) {
+    .home-containers {
+      background-position: 4% 65%, 95% 8%, top center;
+      background-size: 8%, 8%, 90%;
+
+      .main-tiles-container {
+        .main-tile {
+          min-height: 250px;
+          padding: 15px;
+
+          .main-tile-icon {
+            width: 60px;
+            height: 60px;
+          }
+
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+
+          .main-tile-content {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $container-width-laptop + 110) {
+    margin-left: 235px;
+  }
+
+  @media screen and (max-width: $container-width-laptop) {
+    margin-left: 0;
+  }
+
+  @media screen and (max-width: $container-width-tablet) {
+    .home-containers {
+      background-size: 8%, 8%, 110%;
+
+      .home-header {
+        .header-title {
+          font-size: 25px;
+        }
+      }
+
+      .main-tiles-container {
+        flex-direction: column;
+
+        .main-tile {
+          min-height: 220px;
+          margin-bottom: 30px;
+
+          &:not(:last-child) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $container-width-mobile) {
+    .home-containers {
+      background-size: 8%, 8%, 220%;
+    }
+  }
+
+  @media screen and (max-width: $container-width-mobile-medium) {
+    .home-containers {
+      background-size: 8%, 8%, 260%;
+    }
+  }
+} /* [home-content] */
+/* ================================== */
+

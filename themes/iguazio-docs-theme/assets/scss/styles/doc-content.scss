@@ -1,0 +1,115 @@
+/* ================================== */
+/* Doc Content */
+.doc-content {
+  margin: 0 0 50px 0;
+
+  /* ================================== */
+  /* Paragraph */
+  p {
+    color: $color-text;
+    line-height: 1.5em;
+    letter-spacing: 0.025em;
+    margin: 1.66em 0;
+  }
+
+  /* Post-Paragraph Lists */
+  p + ul, p + ol, p + dl {
+    margin-top: 0;
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* Link Anchors */
+  a {
+    font-size: $font-size-link-anchor;
+    color: $color-theme-link;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+      color: $color-theme-link-hover;
+    }
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* Heading-Anchor Links */
+  .heading-anchor {
+    padding-left: 8px;
+    opacity: 0;
+    color: $color-heading-a-link;
+    transition: 0.07s ease-in-out all;
+    
+    .fas {
+      position: absolute;
+    }
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* iframes Container */
+  .iframes-container {
+    display: flex;
+    flex: 1;
+    min-height: 350px;
+    height: 70vh;
+
+    /* iframe */
+    iframe {
+      flex: 1;
+    }
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* Font Formatting */
+
+  /* Bold font */
+  .bold {
+    font-weight: bold;
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* Heading Hover */
+  h1:hover .heading-anchor,
+  h2:hover .heading-anchor,
+  h3:hover .heading-anchor,
+  h4:hover .heading-anchor,
+  h5:hover .heading-anchor,
+  h6:hover .heading-anchor {
+    opacity: 1;
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* Preformatted-Text Blocks */
+  pre + pre {
+    margin-top: 40px;
+  }
+
+  pre {
+    position: relative;
+    padding: 5px 10px;
+    max-height: 365px;
+    word-wrap: normal;
+  }
+
+  pre code {
+    white-space: pre;
+  }
+  /* ================================== */
+
+  /* ================================== */
+  /* Lists and Tables */
+
+  /* Lists */
+  @import 'lists';
+
+  /* Tables */
+  @import 'table';
+  /* ================================== */
+
+} /* [doc-content] */
+/* ================================== */
+

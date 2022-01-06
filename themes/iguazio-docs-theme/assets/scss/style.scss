@@ -1,0 +1,41 @@
+/* ////////// STYLE_CSS_START ////////// */
+/* Custom iguazio-docs-theme stylesheet */
+
+/* NOTE: Any customizations should be done in assets/scss/style.scss. */
+
+// [InfraInfo] This file is used, together with third-party CSS files from the
+// static/css/vendor/ theme directory, to generate the static/css/style.css
+// theme stylesheet.
+//
+// [InfraInfo] "/* */" comments are included in the generated CSS file.
+// "//" comments are not included in the generated CSS file.
+
+// Import style sheets
+@import 'reset';
+@import 'variables';
+
+@import 'styles/igz-font.scss';
+@import 'styles/general';
+@import 'styles/text';
+@import 'styles/images';
+@import 'styles/documentation';
+@import 'styles/headings';
+@import 'styles/home-page';
+@import 'styles/custom-functional';
+@import 'styles/doc-content';
+@import 'styles/blockquote';
+@import 'styles/code';
+@import 'styles/search';
+@import 'styles/scroll-top';
+@import 'styles/admonition';
+@import 'styles/footer';
+@import 'styles/top-menu';
+@import 'styles/right-nav-menu';
+@import 'styles/mini-toc';
+@import 'styles/side-menu';
+@import 'styles/breadcrumbs';
+@import 'styles/section-list';
+@import 'styles/versioned-box';
+
+/* ////////// STYLE_CSS_END ////////// */
+

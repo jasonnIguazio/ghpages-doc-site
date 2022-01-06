@@ -1,0 +1,23 @@
+<!-- param-doc: Parameter documentation (e.g., a function parameter)
+NOTE: This partial must be called inside a definition list (<dl>...</dl>).
+Required Params
+  "ctx"   - The context of the calling template/partial/shortcode (`.`).
+  "content" (.Inner) - The  parameter documentation.
+  "name"  - The parameter name.
+Optional Params
+  "id"    - HTML anchor ID for linking to the parameter documentation.
+  "beta"  - 1 = add a Beta mark after the parameter name.
+  "tp"    - 1 = add a Tech Preview mark after the parameter name.
+-->
+<!-- [InfraInfo] The "ctx" partial param is currently unused. -->
+{{- $mark_type := "" -}}
+{{- if eq .tp "1" -}}
+  {{- $mark_type = "techpreview" -}}
+{{- else if eq .beta "1"  -}}
+  {{- $mark_type = "beta" -}}
+{{- end -}}
+
+<dt{{- with $.id }} id="{{- $.id -}}"{{- end -}}>{{- $.name -}}{{ if $mark_type }} {{ partial (printf "content-styles/%s.html" $mark_type) (dict "ctx" .ctx "mark" "1" "fmt" "1") -}}{{- end -}}</dt>
+<dd>{{ $.content | markdownify }}
+</dd>
+

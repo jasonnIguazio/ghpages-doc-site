@@ -1,0 +1,74 @@
+/* ================================== */
+/* Custom Functional Formatting Styles */
+
+/* API Name/Element; Command; Option (in a command/function) */
+.api, api,
+.attr, attr,
+.cmd, cmd,
+.func, func,
+.jsonkey, jsonkey, .yamlkey, yamlkey, .tomlkey, tomlkey
+.opt, opt,
+.paramname, paramname {
+  font-family: $font-code;
+}
+/* Bold-font variations */
+.api-b, api-b,
+.attr-b, attr-b,
+.cmd-b, cmd-b,
+.func-b, func-b,
+.jsonkey-b, jsonkey-b, .yamlkey-b, yamlkey-b, .tomlkey-b, tomlkey-b
+.opt-b, opt-b,
+.paramname-b, paramname-b {
+  font-family: $font-code;
+  font-weight: bold;
+}
+
+/* Definition (including API and option values when defined) */
+.def, def {
+  font-weight: bold;
+}
+
+/* Directory; File; Package Name; File-System Path (to a file or directory) */
+/* Note: For a full command syntax, use `...`/```...``` (MD) or <code>. */
+// [InfraInfo] Using "dir" instead of "dirname" caused the content to appear in
+// a new line in the output (auto div processing).
+.dirname, dirname,
+.file, file,
+.gui-label, gui-label,
+.gui-title, gui-title,
+.path, path,
+.pkg, pkg {
+  font-weight: bold;
+}
+
+/* ================================== */
+/* Special Content */
+
+/* Beta */
+.beta {
+  color: $color-beta;
+}
+
+/* Tech Preview */
+.tech-preview {
+  color: $color-tech-preview;
+}
+/* [Special Content Marks] */
+/* ================================== */
+
+/* ================================== */
+/* Miscellaneous */
+
+/* Emphasized-Reference Icon (HTML Entity) */
+.ref-emphasis {
+  color: $color-theme-3;
+}
+
+/* [Special Content Marks] */
+
+/* [Miscellaneous] */
+/* ================================== */
+
+/* [Custom Functional Formatting Styles] */
+/* ================================== */
+

@@ -1,0 +1,10 @@
+In the event of an error, the response includes a JSON object with an <jsonkey>ErrorCode</jsonkey> element that contains a unique numeric error code, and an <jsonkey>ErrorMessage</jsonkey> element that contains one of the following API error messages:
+
+<table style="width:100%">
+  <tr text-align="left">
+    <th>Error Message</th>
+    <th>Description</th>
+  </tr>
+  {{ .Inner | markdownify}}
+</table>
+

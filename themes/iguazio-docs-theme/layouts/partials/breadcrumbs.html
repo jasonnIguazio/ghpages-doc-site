@@ -1,0 +1,39 @@
+<!-- Add Page Breadcrumbs
+  By default the breadcrumbs path is "Docs (V<X.Y.Z>) > <section> > <page path>.
+  The home-page breadcrumb link text can be customized from the front matter
+  of the home page (root content _index.md) page:
+  breadcrumbsTitle:       "<text>"    - Base link text; default: "Docs".
+  breadcrumbsUseVersion:  "num_short" - Version-number type; default: "num".
+  breadcrumbsAddVersion:  false       - Omit the "V<version>)" addition; default:                                       "true". Overrides breadcrumbsUseVersion.
+-->
+{{- $home_page := .Site.GetPage "home" -}}
+{{- $home_link_text := $home_page.Params.breadcrumbstitle | default "Docs" -}}
+
+{{ if ne $home_page.Params.breadcrumbsaddversion false }}
+  {{- $home_link_text = printf "%s (V%s)" $home_link_text (index .Site.Data.vars.product.ver ($home_page.Params.breadcrumbsuseversion | default "num_short")) -}}
+{{ end }}
+
+<ul class="breadcrumbs">
+  {{ $ctxPage := . }}
+  <li>You are here: <a href="/">{{- $home_link_text -}}</a>
+  </li>
+  {{ template "breadcrumb" dict "currentPage" .Page "ctxPage" $ctxPage }}
+</ul>
+
+<!-- Page Breadcrumbs-Path Generation Template -->
+{{ define "breadcrumb" }}
+  {{ if .currentPage.Parent }}
+    {{ if ne .currentPage.Parent .IsHome }}
+        {{ template "breadcrumb" dict "currentPage" .currentPage.Parent "ctxPage" .ctxPage}}
+    {{ end }}
+
+    {{ .currentPage.Scratch.Set "breadcrumb" (.currentPage.Params.breadcrumbstitle | default .currentPage.Title) }}
+
+    <li>
+      <a href="{{ .currentPage.RelPermalink }}">
+        {{ (.currentPage.Scratch.Get "breadcrumb") }}
+      </a>
+    </li>
+  {{ end }}
+{{ end }}
+

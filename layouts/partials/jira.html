@@ -1,0 +1,28 @@
+{{- $ctx := .ctx -}}
+{{- $ig := .ig -}}
+{{- $ml := .ml -}}
+{{- $tsdb := .tsdb -}}
+{{- $issue := "" -}}
+{{- if $ig -}}
+  {{- $issue = (printf "IG-%s" $ig) -}}
+{{- else if $ml -}}
+  {{- $issue = (printf "ML-%s" $ml) -}}
+{{- else if $tsdb -}}<!-- (sharonl) (27.6.19) The TSDB Jira project was
+  canceled, but we still have references to TSDB tickets in earlier doc. -->
+  {{- $issue = (printf "TSDB-%s" $tsdb) -}}
+{{- end -}}
+{{- if not $issue -}}
+  {{- errorf "*** IGZ_ERROR *** [%s] jira.html:11: You must set either 'ig', 'ml', or 'tsdb' (mutually exclusive)." ($ctx.Page.File.Path) -}}
+{{- else -}}
+  {{- $anchor := .anchor -}}
+  {{- $link := .link | default "1" -}}
+
+  {{- with $anchor -}}{{- (printf "<a id='%s'></a>" .) | safeHTML -}}{{- end -}}
+  {{- $url := printf "%s%s" $ctx.Site.Data.vars.urls.jira.browse_base $issue -}}
+  {{- if eq $link "1" -}}
+    {{- printf "[%s](%s)" $issue $url | markdownify -}}
+  {{- else -}}
+    {{- $url -}}
+  {{- end -}}
+{{- end -}}
+

@@ -1,0 +1,7 @@
+{{- if eq (.Get "long") "1" -}}
+{{- printf "%s%s%s%s%s" "You can get the access key from the " .Site.Data.vars.product.UI.short_lc ": select the user-profile picture or icon from the top right corner of any page, and select <gui-label>Access Keys</gui-label> from the menu. In the <gui-title>Access Keys</gui-title> window, either copy an existing access key or create a new key and copy it. Alternatively, you can get the access key by checking the value of the `" .Site.Data.vars.product.running_user.access_key_envar  "` environment variable in a web-shell or Jupyter Notebook service." | markdownify -}}
+  {{- else -}}<!-- Note that the text starts mid sentence and doesn't end in a
+                   period, to allow incorporating it in different contexts. -->
+  {{- printf "%s%s%s%s%s" "get the access key from the <gui-label>Access Keys</gui-label> window that's available from the " .Site.Data.vars.product.UI.lc " user-profile menu, or by copying the value of the <api>" .Site.Data.vars.product.running_user.access_key_envar "</api> environment variable in a web-shell or Jupyter Notebook service" | markdownify -}}
+{{- end -}}
+

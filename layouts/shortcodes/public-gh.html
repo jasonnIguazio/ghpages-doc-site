@@ -1,0 +1,80 @@
+<!-- Produce, and optionally link to, a URL of a public GitHub repository.
+  Required Params
+  "ghid"  - Identifier of a Public GitHub-repo urls.toml data variable - the
+            unique part of the data-variable name that comes after "public_gh_".
+            For example, "nuclio" for public_gh_nuclio.
+  Optional Params
+  "path"  - The path to a specific file or directory within the repo.
+            The path string must begin with a forward slash (/).
+            The shortcode produces a <GH repo>/<branch/tag><path> URL where
+            <branch/tag> is set automatically to public_gh_<ghid>.default_branch
+            (if the "default_branch" key is set) /
+            $ctx.Site.Data.vars.product.ver.num (if "is_prod_ver" key = true) /
+            $ctx.Site.Data.vars.product.ver.<key>.version_tag if there's a
+            "version_tak" key / $ctx.Site.Data.vars.product.ver.<key>.version
+            otherwise, where <key> is the public_gh_<ghid> "ver_key" var key
+            (default = "ghid").  If the "tag_prefix" "ghid" var key is set, and
+            the "default_branch" key isn't set, "tag_prefix" is added at the
+            start of <branch/tag> (e.g., if "is_prod_ver" = "true" and
+            "tag_prefix" is "v", and the current version is "2.8", <branch/tag>
+            will be "v2.8").
+  "link"  - Link to the GitHub URL.
+  "url_key" - The public_gh_xxx variable key to use as the base URL path (e.g.,
+            "raw"); default = "full".
+  The following params are mutually exclusive and are used to set the output
+  text. The default output text is the full URL (see "path").
+  "k"     - $.Site.Data.vars.urls.public_gh_api_examples key to use as the
+            output text (e.g., "text" or "short").
+  "text"  - Output text. This param is designed to be used with "link"="1".
+-->
+{{- $ctx := . -}}
+{{- $ghid := .Get "ghid" -}}
+{{- $ghvar := printf "public_gh_%s" $ghid -}}
+{{- $gh_url_var := index $.Site.Data.vars.urls $ghvar -}}
+{{- $url_key := (.Get "url_key") | default "full" -}}
+{{- $url := index $gh_url_var $url_key -}}
+
+{{- $key := .Get "k" -}}
+{{- $text := .Get "text" -}}
+{{- if ne $key "" -}}
+  {{- $text = index $gh_url_var $key -}}
+{{- end -}}
+
+{{- with .Get "path" -}}
+  {{- $default_branch := index $gh_url_var "default_branch" -}}
+  {{- $branch_or_tag := $default_branch -}}
+  {{- if not $branch_or_tag -}}
+    {{- if index $gh_url_var "is_prod_ver" -}}
+      {{- $branch_or_tag = $ctx.Site.Data.vars.product.ver.num_short -}}
+    {{- else -}}
+      {{- $ver_key := index $gh_url_var "ver_key" -}}
+      {{- if not $ver_key -}}{{- $ver_key = $ghid -}}{{- end -}}
+      {{- $ver_keys := split $ver_key "." -}}
+      {{- $branch_or_tag = $ctx.Site.Data.vars.product.ver -}}
+      {{- range $ver_keys -}}
+        {{- $branch_or_tag = index $branch_or_tag . -}}
+      {{- end -}}
+      {{- with index $branch_or_tag "version_tag" -}}
+        {{- $branch_or_tag = . -}}
+      {{- else -}}
+        {{- $branch_or_tag = index $branch_or_tag "version" -}}
+      {{- end -}}
+    {{- end -}}
+    {{- with index $gh_url_var "tag_prefix" -}}
+      {{- $branch_or_tag = printf "%s%s" . $branch_or_tag -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if eq $url_key "full" -}}{{- $url = printf "%s/tree/" $url -}}{{- end -}}
+  {{- $url = printf "%s%s%s" $url $branch_or_tag . -}}
+{{- end -}}
+
+{{- if eq $text "" -}}
+  {{- $text = $url -}}
+{{- end -}}
+
+{{- if eq (.Get "link") "1" -}}
+  {{- printf "[%s](%s)" $text $url | markdownify -}}
+{{- else -}}
+  {{- printf "%s" $text -}}
+{{- end -}}
+

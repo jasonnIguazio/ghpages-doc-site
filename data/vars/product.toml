@@ -1,0 +1,2050 @@
+## Product Variables
+
+# [InfraInfo]
+# To access variables in this file from a Hugo template, use
+# {{ .Site.Data.vars.product.<variable>[.<key>...] }} or a related partial. 
+# For example:
+#   {{ .Site.Data.vars.product.name }}
+#
+# To access variables in this file from Markdown or HTML content files, use the
+# `getvar` shortcode, or other dedicated shortcodes (see later in this file).
+# Shortcode:    getvar
+# Description:  Returns a variable/key for a data/vars/ file or site param.
+# USAGE:
+#   {{< getvar v="VAR" [md=true]>}}
+#   {{< getvar v="ARRAY_VAR" arr_key="ARRAY_KEY" [arr_item_id="ARR_ITEM_ID_KEY"] [arr_item_id_val="ARR_ITEM_ID_KEY_VALUE"] t="TYPE" [md=true] >}}
+# "v" - A variable name or variable-key path. For array keys, the array key
+#       should be set using "arr_item_id".
+# "md" - Set to `true`to process Markdown in the variable value.
+# "t" - "data"|"d" (default) to access a data/vars/ file (e.g., product.toml)
+#       or "siteparams"|"sp" to access a site param.
+# For an array key, the default "arr_item_id" value is "num" and the default
+# "arr_item_id_val" is ver.num for "arr_item_id" = "num" (default) /
+# ver.num_short otherwise. See the getvar.html theme shortcode and related
+# func/get-var.html theme partial.
+# Examples:
+# - {{< getvar v="product.name.full" >}}
+#     [<=> {{< product >}}
+# - {{< getvar v="product.name.lc" >}}
+#     [<=> {{< product lc >}}
+# - {{< getvar v="product.ver.spark.version" >}}
+#     [<=> {{< verkey k="spark.version"]
+# - {{< getvar v="product.ver.num" >}}
+#     [<=> {{< verkey k="num" >}}]
+#     [<=> {{< productVersion num >}} <=> {< productVersion >}}]
+# - {{< getvar v="product.ver.python_sdk.python.versions" md=true >}}
+#
+# In addition, there are dedicated shortcodes to access some variables; see the
+# info for the specific variables.
+
+## //////////////////////////////
+## Simple Non-Map Variables
+
+## //////////////////////////////
+## Map Variables
+
+## ===== PRODUCT_NAME_START =====
+## Product Name
+# [IntInfo] (sharonl) (27.3.19) In the v2.0.0 docs, we changed the product name
+# from "Continuous Data Platform" to "MLOps Platform" (Paas) as part
+# of a marketing rebranding.
+# [c-data-science-hyphenation] Grammatically, I think "data-science should be
+# hyphenated when it's used as a compound modifier, such as in the new name;
+# however, Tamar (marketing) pointed out that this isn't done in the names of
+# any similar competitor tools, and in a Google search that I did I found that
+# "data science" is overwhelmingly not hyphenated, not just in product names
+# but also in phrases such as "data science solutions" or "data science jobs".
+# For more information, see DOC IG-11333.
+
+# Shortcode:    {{< product [KEY] >}}
+# Description:  Returns a "name" variable key (i.e., a product-name key).
+# KEY - The "name" key to access; default: `full`.
+# Examples:
+# - {{< product >}} <=> {{< product full >}}
+#     [<=> {{< getvar v="product.name.full" >}}]
+# - {{< product lc >}}
+#     [<=> {{< getvar v="product.name.lc" >}}]
+
+[name]
+  # Full Product Name (always capitalized)
+  full = "MLOps Platform"
+  # Long Product Name (always capitalized)
+  long = "MLOps Platform"
+  # Shortest Product Name
+  lc = "platform" # lower case
+  tc = "Platform" # title case
+  sc = "Platform" # sentence case
+## ===== PRODUCT_NAME_END =====
+
+## ===== PRODUCT_CLOUD_TRIAL_START =====
+## Product Trial - Free Evaluation in the Cloud
+
+# Shortcode:    {{< cloud-trial [period-delimited cloud_trial KEY] >}}
+# KEY ($0): A cloud-trial variable key. For example, "lc".
+#   Default Value:  "name.full"
+# Examples:     {{< cloud-trial >}} <=> {{< cloud-trial "name.full_lc" >}}
+#               {{< cloud-trial "name.lc" >}}
+#               {{< cloud-trial "url.full" >}}
+# It can also be useful to use the url shortcode with cloud_trial.url. Example:
+#   {{< url g="product" v="cloud_trial" k="url" k2="text" link="1" >}}
+# See also the "cloud_trial" emails data variable, which you can use like this:
+#   {{< email id="cloud_trial" link="1" >}}
+# For technical-support issues, refer to the Support email:
+#   {{< email id="support" link="1" >}}
+
+[cloud_trial]
+  ## Name
+  [cloud_trial.name]
+    ## Full Name
+    # [IntInfo] (sharonl) (25.7.18) After consultation with Daniella and Adi,
+    # the capitalization of the full name changed to lower-case 't', so I
+    # replaced the "full" title-case capitalization key with the following:
+    full_lc  = "Iguazio trial"
+    full_tc = "Iguazio Trial"
+    full_sc = "Iguazio trial"
+    ## Short Name
+    short_lc  = "Iguazio trial"
+    short_tc  = "Iguazio Trial"
+    short_sc  = "Iguazio trial"
+    ## Shortest Name
+    lc = "trial"
+    sc = "Trial"
+    tc = "Trial"
+  
+  ## Trial Landing Page / Registration URL
+  # [IntInfo] (24.2.20) The old trial landing-page URL -
+  # https://www.iguazio.com/lp/14-day-free-trial-in-the-cloud/ - currently
+  # redirects to the new URL.
+  [cloud_trial.url]
+    full  = "https://go.iguazio.com/start-your-free-trial"
+    text  = "Iguazio trial"
+
+  ## Trial-Registration WP-Site Button
+  [cloud_trial.try_button]
+    caption = "Try Iguazio for free"
+
+  ## Free-Trial Duration
+  [cloud_trial.duration]
+    days = "14"
+
+  ## Trial System User
+  [cloud_trial.sys_user]
+    name = "admin"
+
+  ## Postman Collection & Environment for the Trial QS Examples
+  # [IntInfo] (sharonl) See [c-POSTMAN-COLLECTION-EXAMPLES] the getting-started
+  # cloud-trial QS overview. [INFRA-TODO] If and when we add example Postman
+  # collections, this should be moved from a non-versioned cloud-trial variable
+  # to versioned bare-metal & cloud variables (as we did for the example
+  # Jupyter and Zeppelin notebooks/notes).
+  [cloud_trial.postman]
+    dnload_dir      = "downloads/postman"
+    archive         = "iguazio_trial_qs_examples.postman.zip"
+    envir           = "iguazio_trial_qs_examples" 
+    envir_file      = "iguazio_trial_qs_examples.postman_environment.json" 
+    collection      = "Iguazio Trial Quick-Start Examples"
+    collection_file = "iguazio_trial_qs_examples.postman_collection.json"
+## ===== PRODUCT_CLOUD_TRIAL_END =====
+
+## ===== PRODUCT_PREDEFINED_CONTAINERS_N_SERVICE_RUNNING_USER_START =====
+## Predefined Product Data Containers and Directories and Service Running User
+# See the [IntInfo] and [InfraInfo] at the end of this section, starting with
+# [c-k8s-fs-mounts].
+
+# [c-projects-default-container] [c-bigdata-container-rm] [IntInfo] (sharonl)
+# (14.1.21) In v3.0.0 we replaced "bigdata" with "projects" as the default
+# container. The plan was to stop predefining a "bigdata" container, but
+# because there were hardcoded references to this container from multiple
+# locations that weren't replaced in time, it was decided to keep it but update
+# the docs to remove all references to it as the default container and document
+# that it's planned to no longer be predefined in future releases.
+# It was also agreed not to mention in the documentation that "projects" is the
+# default container (the "default" aspect isn't something that users should be
+# aware of and rely on). Orit also didn't want to mention the change in the
+# default container in the v3.0.0 release notes (even though we previously
+# documented "bigdata" as "the default container"), but rather just mention the
+# new "projects" container and the intention of stopping the automatic creation
+# of a "bigdata" container in future releases. (1.3.21) In consultation with
+# Adi, we ultimately also didn't mention in the v3.0.0 release notes the
+# intention to no longer predefine the "bigdata" container in future releases.
+# See Requirement IG-15834, DOC IG-17802 and PRODUCT-DOC IG-17811.
+# (16.1.21) For now, I added the "projects" container to the list of predefined
+# containers and I kept uses of the `default_container` data variable where it
+# was possible to simply replace "bigdata" with "projects"; in other instances,
+# replaced uses of `default_container` with `bigdata_container` - some
+# permanently (until "bigdata" is no longer defined) - such as in the
+# predefined-containers overviews and in list-containers results - and some
+# temporarily until we can fully update the example to use a different
+# container (e.g., where there were UI screen host with "bigdata" that I didn't
+# have time to replace, or where we reference code that users "bigdata" such as
+# the Zeppelin getting-started NB - see
+# [c-projects-default-container-zeppelin-gs-example] later below).
+# uses with 
+# [V3.0-TODO-P2] Consider replacing current `default_container` uses, which
+# now refer to the "projects" container, with either the "users" container or a
+# custom container or changing the examples to refer to a specific project
+# directory in the "projects" container or to a projects/<project>/artifacts
+# directory (the default project artifacts directory beginning with v3.0.0).
+#
+# [c-bigdata-container-rm] [FUTURE-TODO] When the "bigdata" container is no
+# longer defined, we'll need to remove the remaining references to this
+# container (such as in list-containers API results or UI containers-overview
+# screen shots) and remove the `bigdata_container` data variable.
+#
+# [c-predefined-container-ids] [IntInfo] [InfraInfo] (sharonl) (16.1.21)
+# Regarding the predefined-container IDs in the xxx_container.id variable keys,
+# previously we used "bigdata" and "users" IDs 1 and 2 for on-prem and 1024 and
+# 1025 for the cloud, but I found that in v2.10.0 and v3.0.0 the IDs seem to be
+# 1026 and 1027 + 1028 for the new "projects" container (see
+# [c-projects-default-container] below) in both BM and the cloud; I'm not sure
+# these IDs are guaranteed, though. I decided to use only `id` keys (no
+# separate `cloud_id`) with the IDs that I saw and use them in relevant code
+# examples (namely for the management APIs; other APIs use the container name,
+# although the ID might also be shown in API responses.)
+
+## Running User (the running user of a user-defined service)
+# [IntInfo] [InfraInfo] See [c-k8s-envars].
+[running_user]
+  envar       = "V3IO_USERNAME"
+  envar_value = "<username>" # Doc <username> placeholder
+  example     = "iguazio"
+  encoded_credentials_example = "iguazio:$apr1$YgrCYAYo$6v6iumigwirH4Jsdt4MWr0"
+  pwd_envar         = "V3IO_PASSWORD"
+  access_key_envar  = "V3IO_ACCESS_KEY"
+    # [InfraInfo] See UI.access_key_example for a sample access key.
+
+## Big-Data Container
+# Shortcode:  {{< getvar v="product.bigdata_container.<KEY>" >}}
+# Example:    {{< getvar v="product.bigdata_container.name" >}}
+[bigdata_container]
+  name  = "bigdata"
+  id    = "1026"
+
+## Projects Container
+# Shortcode:  {{< getvar v="product.projects_container.<KEY>" >}}
+# Example:    {{< getvar v="product.projects_container.name" >}}
+[projects_container]
+  name  = "projects"
+  id    = "1028"
+
+## Default Container <=> Projects Container
+# Shortcode:  {{< getvar v="product.default_container.<KEY>" >}}
+# Example:    {{< getvar v="product.default_container.name" >}}
+[default_container]
+  name  = "projects"  # $projects_container.name
+  id    = "1028"      # $projects_container.id
+
+## Users Container
+# [c-users-container] [IntInfo] (sharonl) (20.2.19) In v1.9.4 of the cloud
+# deployments and v2.0.0 of the bare-metal deployments, we added a predefined
+# "users" container with a "<user>" directory for the active user - e.g.,
+# "iguazio".
+#
+# Shortcode:  {{< getvar v="product.users_container.<KEY>" >}}
+# Examples:
+# - {{< getvar v="product.users_container.name" >}}
+# - {{< getvar v="product.users_container.user_dir.fs_mount_path" >}}
+[users_container]
+  name  = "users"
+  id    = "1027"
+  [users_container.user_dir]
+    # [IntInfo] [InfraInfo] See [c-k8s-fs-mounts].
+    dir               = "users/<username>"        # Doc <username> placeholder
+    dir_w_envar       = "users/$V3IO_USERNAME"
+    dir_envar         = "V3IO_HOME"
+    dir_envar_example = "users/iguazio"
+    dir_path          = "/v3io/users/<username>"  # Doc <username> placeholder
+    dir_path_w_envar  = "/v3io/$V3IO_HOME"
+    dir_path_example  = "/v3io/users/iguazio"
+    fs_mount_name     = "User"
+    fs_mount_path     = "/User"
+    # [IntInfo] $HOME = "/User" intentionally not used - see [c-k8s-envar-home].
+    dir_url           = "v3io://users/<username>" # Doc <username> placeholder
+      # [ci-angle-brackets-in-md-inline-code] [InfraInfo] (sharonl) Within
+      # inline Markdown code (`...`), the '<' and '>' signs for the
+      # "<username>" placeholders are translated into the HTML &lt; and &gt;
+      # character entities. This can be resolved by using # HTML
+      # <code>...</code> tags (but then note that you need to use the &lt; and
+      # &gt; tags to replace instances of '<' or '>' that you might need to use
+      # include directly in the code tags).
+    dir_url_w_envar   = "v3io://$V3IO_HOME"
+    dir_url_envar     = "V3IO_HOME_URL"
+    dir_url_example   = "v3io://users/iguazio"
+
+# [IntInfo] (sharonl) (24.2.19)
+# - [c-k8s-fs-mounts] In v1.9.4 of the cloud deployments and v2.0.0 of the
+#   bare-metal deployments, we added to these local distributed file-system
+#   (DFS) data mounts to the Kubernetes (k8s) environments (accessible from the
+#   web shell, JupyterLab terminal & notebooks, and Zeppelin):
+#   - "v3io" - the cluster data mount (DFS mount): "/v3io" maps to the root
+#     directory of the cluster's data node, where the data containers are found.
+#     (In the v1.9 and earlier non-k8s native application-cluster installations,
+#     we had a "datalake" local DFS mount accessed on the master application
+#     node as /mnt/datalake/ - see the ver.fs_native_app_cluster.dfs_mount
+#     v1.9 data-variable key (previously a global product data variable).
+#   - "User" - the running-user container-directory mount: "/User" maps to the
+#     "<username>" running-user container directory in the "users" container -
+#     /v3io/users/<username> - which is created automatically when creating
+#     web-based shell, Jupyter, or Zeppelin services.
+# - [c-k8s-envars] Beginning with v2.0.0 (and partially also in v1.9), for the
+#   web-based shell, Jupyter Notebook, and Zeppelin services we predefine
+#   environment variables that include $HOME and $IGUAZIO_HOME $V3IO_USERNAME
+#   for the running user of the service; and V3IO_HOME and V3IO_HOME_URL to
+#   simplify access to the running-user directory in the users container (k8s),
+#   in addition to the /User local file-system mount.
+# * [c-k8s-envar-home] $HOME in the k8s environments currently maps to
+#   "/User" (i.e., to the running-user directory in the "users" container). But
+#   Eliran said $HOME (= "~/") shouldn't be used to reference container data;
+#   this should be done by using the $V3IO_XXX variables and the /User mount.
+# * [c-fs-envars-braces] The safe bash syntax is ${VARNAME} - e.g.,
+#   /v3io/${V3IO_HOME}. However, I found that while this works well in the web
+#   shell and in JupyterLab notebooks and terminals, it produces an unexpected
+#   output in Zeppelin notebooks. Because the braces are mainly required to
+#   handle paths with spaces, and we don't have spaces in container and user
+#   names (which are used for the predefined "users" container directory name),
+#   I agreed with Adi that we'll use $VARNAME and not ${VARNAME} in FS examples
+#   (such as in the pre-deployed platform Jupyter notebooks), to keep the code
+#   simple and portable across all interfaces.
+# [InfraInfo] I defined FS mount and related environment variables and path
+# variable keys in relevant versioned data variables.
+# [INFRA-TODO] Move the default and users container variables above, or at
+# least some of the information, to versioned variables.
+## ===== PRODUCT_PREDEFINED_CONTAINERS_N_SERVICE_RUNNING_USER_END =====
+
+## ===== DEFAULT_PATHS_START =====
+## Default Paths
+
+## Default shared project artifacts directory
+# [IntInfo] (sharonl) Added in v3.0.0. See Requirement IG-15834/DOC IG-17802.
+# Currently, all projects are shared across the parent tenant.
+# [ci-angle-brackets-in-md-inline-code] [InfraInfo] See info for
+# users_container.user_dir.dir_url for the <project name> uses here.
+[default_shared_project_artifacts_dir]
+  container         = "projects"  # $projects_container.name
+  artifacts_dir     = "artifacts"
+  path_in_container = "<project name>/artifacts"
+  path              = "projects/<project name>/artifacts"
+  path_example      = "projects/myproject/artifacts"
+  data_path         = "v3io://projects/<project name>/artifacts"
+  data_path_example = "v3io://projects/myproject/artifacts"
+   
+    # [ci-angle-brackets-in-md-inline-code] [InfraInfo] See the info for
+    # users_container.user_dir.dir_url.
+
+## ===== DEFAULT_PATHS_END =====
+
+## ===== PRODUCT_UI_START =====
+## Product UI (Dashboard)
+
+# Shortcode:    productUI
+# Default Key:  long
+# Examples:
+#   {{< productUI >}} <=> {{< productUI long >}}
+#   {{< productUI full >}}
+
+[UI]
+  # Full UI Name (always capitalized)
+  full =  "Iguazio MLOps Platform Dashboard"
+  # Long UI Name (always capitalized)
+  long =  "MLOps Platform Dashboard"
+  # Short UI Name
+  short_lc = "platform dashboard"  # lower case
+  short_sc = "Platform dashboard"  # sentence case
+  short_tc = "Platform Dashboard"  # title case
+  # Shortest UI Name
+  lc = "dashboard"  # lower case
+  sc = "Dashboard"  # sentence case
+  tc = "Dashboard"  # title case
+
+  # Dashboard IP-Address Example
+  # [IntInfo] [c-dashboard-data-node-ip-url] (sharonl) (18.3.19) The dashboard
+  # IP address/URL is also the address/URL of the cluster's data node, but Orit
+  # said not to document this. (2.7.19) Beginning with v2.3.0, customers will
+  # receive a separate virtual IP address for the dashboard - see Requirement
+  # IG-10867. Maor explained that we added the virtual dashboard IP address to
+  # # support access to the dashboard in case of a failure in the data node
+  # whose # address was used as the dashboard address provided to customers.
+  ip_addr_example       = "192.168.1.100"
+  ip_url_example        = "http://192.168.1.100"
+  ip_url_example_https  = "https://192.168.1.100"
+  # Dashboard URL Example
+  # [c-https-service-links-only] Beginning with v2.1.0, we display only HTTPS
+  # links on the dashboard Services page and we provide users only with the
+  # HTTPS dashboard URL (and the IP address of the dashboard for use with the
+  # management APIs - see separate info). We redirect the HTTP URLs to HTTPS.
+  # See IG-11279 / DOC IG-11408. I referred also in the v2.0 doc only to the
+  # HTTPS URLs.
+  url_example = "https://dashboard.default-tenant.app.mycluster.iguazio.com"
+  url_example_http = "http://dashboard.default-tenant.app.mycluster.iguazio.com"
+  # [c-k8s-mgmt-api-url] [c-k8s-mgmt-api-http-ip-addr-only] [IntInfo]  (sharonl)
+  # (4.11.19) According to Oded, beginning with the k8s support in v2, it's
+  # technically possible to send management-API requests using either of these
+  # addresses:
+  # A The dashboard's HTTPS URL (without a port).
+  #   For example, to send a Create Session request, send a POST request to
+  #   https://dashboard.default-tenant.app.dev34.lab.iguazeng.com/api/sessions/.
+  # B Port 8001 of the HTTP IP address of the dashboard (= the data node). For
+  #   example, for the same Create Session request -
+  #   http://192.168.220.34:8001/api/sessions/.
+  #   This was the documented native-app-cluster (non-k8s) method for previous
+  #   releases (v1.9 and earlier), and this is the method used by QA.
+  # Initially, because method A (HTTPS dashboard URL) wasn't added as part of a
+  # requirement and wasn't tested by QA, it was decided, in consultation with 
+  # Oded and Orit, to document it only for cloud environments (because we don't
+  # typically provide IP addresses to cloud users). But in rethinking this for
+  # v2.5.0, which also required adding the exception for VM environments, we
+  # agreed that we'll document method A (HTTPS dashboard URL) also as the main
+  # method for bare metal and use it in the examples, but until this method is
+  # tested by QA, we'll also document method B (HTTP IP address & port) as an
+  # alternative method for bare-metal environments only. I implemented the doc
+  # changes only starting with v2.5.0, even though they're also true for
+  # earlier v2.x releases.
+  #
+  # [c-mgmt-api-url-not-in-ui] [IntInfo] (sharonl) (13.1.19) Adi said he
+  # doesn't want to add the URL of the management APIs to the dashboard's
+  # Services page (as done for the web APIs) because these APIs are still in
+  # Beta mode and only partially tested and documented, and therefore we don't
+  # want to highlight them. (19.3.19) Orit said she would prefer that we don't
+  # document that management APIs at all.
+
+  # Access-key example
+  access_key_example = "e8bd4ca2-537b-4175-bf01-8c74963e90bf"
+## ===== PRODUCT_UI_END =====
+
+## ===== NUCLIO_START =====
+## Nuclio Product Variables
+# [InfraInfo] For Nuclio web-site URLs, see data/vars/urls.toml.
+
+####################
+## Nuclio CLI (nuctl)
+# [IntInfo] (sharonl) (2.10.18) The Nuclio CLI is currently not supported in
+# platform environments other than trial environments in the cloud.
+
+# Shortcode:  {{< getvar v="product.nuclio_cli.name" >}}
+
+[nuclio_cli]
+  name = "nuctl"
+
+####################
+## Nuclio UI (Dashboard)
+
+# Shortcode:  {{< getvar v="product.nuclio_ui.<key>" >}}
+# Example:
+#   {{< getvar v="product.nuclio_ui.lc" >}}
+
+[nuclio_ui]
+  # Full UI Name
+  full =  "Nuclio Dashboard"
+  # Long UI Name (always capitalized)
+  long =  "Nuclio Dashboard" # lower case
+  # Short UI Name
+  short_lc = "Nuclio dashboard"  # lower case
+  short_sc = "Nuclio dashboard"  # sentence case
+  short_tc = "Nuclio Dashboard"  # title case
+  # Shortest UI Name
+  lc = "dashboard"  # lower case
+  sc = "Dashboard"  # sentence case
+  tc = "Dashboard"  # title case
+
+## Nuclio UI Docker Execution Command
+
+# Shortcode:  {{< getvar v="product.nuclio_ui_docker_cmd" >}}
+# Example:
+#   ```sh
+#   {{< getvar v="product.nuclio_ui_docker_cmd" >}}
+#   ```
+
+  docker_cmd = "docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/dashboard:stable-amd64"
+## ===== NUCLIO_END =====
+
+## ===== V3IO_FRAMES_START =====
+## V3IO Frames Library
+# [InfraInfo] See also the ver.frames variable key and the public_gh_frames
+# data variable in data/vars/urls.toml.
+
+# Shortcode:  {{< getvar v="product.frames.<KEY>[.<KEY>]" >}}
+# Example:    {{< getvar v="product.frames.name.full" >}}
+
+[frames]
+  ## V3IO Frames Name
+  # [InfraInfo] The short and long Frames name variables are also used hardcoded
+  # in the "text" and "text_long" keys of the urls.toml public_gh_frames
+  # variable.
+  [frames.name]
+    full      = "Iguazio V3IO Frames"
+    long_lc   = "V3IO Frames"
+    long_sc   = "V3IO Frames"
+    long_tc   = "V3IO Frames"
+    lc        = "Frames"
+    tc        = "Frames"
+    sc        = "Frames"
+  ## V3IO Frames Client
+  [frames.client]
+  # Frames client library/package name
+    lib_name  = "v3io_frames"
+## ===== V3IO_FRAMES_END =====
+
+## ===== V3IO_PROMETHEUS_START =====
+## V3IO Prometheus Distribution
+# [IntInfo] V3IO Prometheus is a Prometheus distribution that is packaged with
+# the V3IO TSDB library.
+# The format of the release version numbers for this repo is "v<Prometheus
+# version>_v<V3IO TSDB version>"; e.g., "v2.4.3-v0.8.14".
+# [InfraInfo] See also the ver.prometheus variable key and the
+# public_gh_prometheus data variable in data/vars/urls.toml.
+
+# Shortcode:  {{< getvar v="product.prometheus.<KEY>[.<KEY>]" >}}
+# Example:    {{< getvar v="product.prometheus.name.full" >}}
+
+[prometheus]
+  ## V3IO Prometheus Name
+  # [InfraInfo] The short and long Prometheus name variables are also used
+  # hardcoded in the "text" and "text_long" keys of the urls.toml
+  # public_gh_prometheus variable.
+  [prometheus.name]
+    full  = "Iguazio V3IO Prometheus"
+    long  = "Iguazio V3IO Prometheus"
+    lc    = "V3IO Prometheus"
+    tc    = "V3IO Prometheus"
+    sc    = "V3IO Prometheus"
+## ===== V3IO_PROMETHEUS_END =====
+
+## ===== V3IO_PYTHON_SDK_START =====
+## V3IO Python SDK
+# [IntInfo] V3IO Python SDK is a Python SDK library that is pre-deployed in the
+# product's Jupyter Notebook service since v2.10.0 (see IG-15681; DOC IG-15596).
+# the V3IO TSDB library.
+# [InfraInfo] See also the ver.python_sdk variable key and the
+# public_gh_python_sdk data variable in data/vars/urls.toml.
+
+# Shortcode:  {{< getvar v="product.python_sdk.<KEY>[.<KEY>]" >}}
+# Example:    {{< getvar v="product.python_sdk.name.full" >}}
+
+[python_sdk]
+  ## V3IO Python SDK Name
+  # [InfraInfo] The short and long Python SDK name variables are also used
+  # hardcoded in the "text" and "text_long" keys of the urls.toml
+  # public_gh_python_sdk variable.
+  # For short references, just refer to the "Python SDK".
+  [python_sdk.name]
+    full    = "Iguazio V3IO Python SDK"
+    long_lc = "V3IO Python SDK"
+    long_tc = "V3IO Python SDK"
+    long_sc = "V3IO Python SDK"
+    lc      = "Python SDK"
+    tc      = "Python SDK"
+    sc      = "Python SDK"
+  # Library/package
+  [python_sdk.lib]
+    name  = "v3io-py"
+    arch  = "v3io-py.zip"
+## ===== V3IO_PYTHON_SDK_END =====
+
+## ===== V3IO_TSDB_START =====
+## V3IO Time-Series Database (V3IO TSDB) API Library & Tools (CLI)
+# [c-tsdb-components] [IntInfo] (12.3.19) Golan explained that the library is
+# written in Go, which means there's no binary of the library, you need the
+# sources to use it, and we don't provide the source (and hence, the library),
+# as part of the platform installation. We provide the CLI binary and an image
+# of the TSDB Nuclio functions (which Golan says we should just refer to as a
+# platform service, without mentioning the provided image); Golan said we
+# shouldn't refer to a pre-deployed V3IO TSDB Nuclio functions "library".  
+# [InfraInfo] See also the ver.tsdb variable key and the public_gh_tsdb[*] data
+# variables in data/vars/urls.toml.
+
+# Shortcode:  {{< getvar v="product.tsdb.<KEY>[.<KEY>]" >}}
+# Example:    {{< getvar v="product.tsdb.name.full" >}}
+
+[tsdb]
+  ####################
+  ## V3IO TSDB Name
+  # [InfraInfo] The short and long TSDB name variables are also used hardcoded
+  # in the "text" and "text_long" keys of the urls.toml public_gh_tsdb variable.
+  [tsdb.name]
+    full  = "Iguazio V3IO Time-Series Database (TSDB)"
+    long  = "Iguazio V3IO TSDB"
+    lc    = "V3IO TSDB"
+    tc    = "V3IO TSDB"
+    sc    = "V3IO TSDB"
+
+  ####################
+  # Doc-Examples TSDB Info
+  [tsdb.doc_examples]
+    table     = "mytsdb"
+    container = "projects" # = default_container.name
+      # [IntInfo] Changing this to "mycontainer" would require editing the
+      # tsdb/tsdb-cli.md tutorial, which currently gives both the "mycontainer"
+      # and tsdb.doc_examples.container as container-name examples. 
+
+  ####################
+  # [TODO-INFRA]: Move this to the versioned ver.tsdb" variable key.
+  ## TSDB CLI
+  # [InfraInfo] See also the tsdb-cli shortcode.
+  [tsdb.cli]
+    name                = "tsdbctl"
+    # [IntInfo] The CLI is provided as binary files with the naming pattern
+    # "tsdbctl-v<version>-<OS>-<arch>[.suffix]".
+    appnode_install_dir = "/opt/iguazio/v3io/bin/"
+    default_cfg_file    = "v3io-tsdb-config.yaml"
+    cfg_template_name   = "v3io-tsdb-config.yaml.template"
+    cfg_template_path   = "examples/v3io-tsdb-config.yaml.template"
+
+    # Default TSDB CLI configuration values
+    # [V2.8.0-TODO] CHECK the values in TSDB CLI v0.9.24 (for platform v2.8.0).
+    [tsdb.cli.default_cfgs]
+    create_aggr_granularity  = "1h"             # -i|--aggregation-granularity
+    create_sharding_buckets_count   = "8"       # -b|--sharding-buckets
+    add_time                        = "now"     # -m|--times
+    #query_aggr_interval = <end t> - <start t>  # -i|--aggregation-interval
+    query_end_time                  = "now"     # -e|--end
+    #query_start_time = <end time> - 1h         # -b|--begin
+    query_output                    = "text"    # -o|--output
+    delete_end_time                 = "now"     # -e|--end
+    #delete_start_time = <end time> - 1h        # -b|--begin
+
+    # TSDB CLI doc file downloads
+    [tsdb.cli.downloads]
+    dnload_dir              = "downloads"
+    add_input_example_basic = "metric_samples.csv"    # for tsdb_example
+    add_input_example_aggr  = "tsdb_example_aggr.csv" # for tsdb_example_aggr
+
+  ####################
+  ## V3IO TSDB Nuclio Functions
+  [tsdb.nuclio_funcs]
+    # Name
+    # [InfraInfo] The short and long TSDB name variables are also used hardcoded
+    # in the "text" and "text_long" keys of the urls.toml public_gh_tsdb_nuclio
+    # variable.
+    [tsdb.nuclio_funcs.name]
+      full      = "Iguazio V3IO Time-Series Database (TSDB) Nuclio Functions"
+      long      = "Iguazio V3IO TSDB Nuclio Functions"
+      lc        = "V3IO TSDB Nuclio functions"
+      tc        = "V3IO TSDB Nuclio Functions"
+      sc        = "V3IO TSDB Nuclio functions"
+      short_lc  = "TSDB Nuclio functions"
+      short_sc  = "TSDB Nuclio functions"
+      short_tc  = "TSDB Nuclio Functions"
+## ===== V3IO_TSDB_END =====
+
+## ===== INSTALLATION_INFO_START =====
+## Product Installation Information
+
+## Product Installation Package (for offline installations)
+# [c-prod-install-pkg] [IntInfo] (sharonl) (16.11.20) For offline installations
+# (supported for on-prem installations), we provide users with a product build
+# for the relevant version, as an archive file..
+[install_pkg]
+  archive = "<build name>.tar.gz"
+
+## Product Installer (Installation Utility)
+[installer]
+  # Name
+  [installer.name]
+    lc  = "Provazio"
+    sc  = "Provazio"
+    tc  = "Provazio"
+  # API key
+  [installer.api_key]
+    # Environment variable (set in installer CLI commands)
+    envar = "PROVAZIO_API_KEY"
+  # UI (installer dashboard)
+  [installer.ui]
+    # [IntInfo] The URL info is applicable to AWS, vSphere, and PVE, not Azure.
+    # Port number 
+    port = "8060"
+    # URL
+    url = "localhost:8060"
+    # Name
+    [installer.ui.name]
+      lc  = "Provazio dashboard"
+      sc  = "Provazio dashboard"
+      tc  = "Provazio Dashboard"
+    # Image (Docker image) - for offline installations
+    [installer.ui.image]
+      # Image name
+      name = "provazio-dashboard"
+      # Image archive file
+      archive = "provazio-latest.tar.gz"
+    # Image paths
+    [installer.ui.image.path]
+      base      = "quay.io/iguazio/provazio-dashboard"
+      stable    = "gcr.io/iguazio/provazio-dashboard:stable"
+      install_0 = "quay.io/iguazio/provazio-dashboard:az-market-0"
+    # Miscellaneous examples
+    [installer.examples]
+      # API-key example
+      # [IntInfo] (sharonl) The example intentionally doesn't match the format
+      # of a  real API key.
+      api_key = "myapikey"
+      # Vault URL trial-installation example
+      vault_url_trial = "https://vault.trial.provazio.iguazio.com"
+  # Vault URL
+  [installer.vault_url]
+    # Environment variable (set in installer CLI commands)
+    envar = "PROVAZIO_VAULT_URL"
+
+## Downloaded Installation-Assets Information
+# [InfraInfo] You can use the `download` shortcode for download links to asset
+# files. For example:
+#   {{< download target_var="product.install_assets.aws.install_role_policy.path" >}}this policy{{< /download >}}.
+# a new tab).
+[install_assets]
+  [install_assets.base_dirs]
+    base  = "downloads/install"
+    cloud = "downloads/install/cloud"
+  # AWS installation assets
+  [install_assets.aws]
+    # Download directories
+    [install_assets.aws.dirs]
+      base  = "downloads/install/cloud/aws"
+      roles = "downloads/install/cloud/aws/roles"
+    # Installation IAM-role policy
+    [install_assets.aws.install_role_policy]
+      # Sample (recommended) policy name
+      sample_name = "ManageIguazioSystems"
+      # Policy download file
+      [install_assets.aws.install_role_policy.file]
+        name  = "provazio.json"
+        path  = "/downloads/install/cloud/aws/roles/provazio.json"
+      # EKS-policy download file
+      [install_assets.aws.install_role_policy.eks_file]
+        name  = "provazio-eks.json"
+        path  = "/downloads/install/cloud/aws/roles/provazio-eks.json"
+    # Public IP addresses allocation IAM-role policy
+    [install_assets.aws.assign_ip_addr_role_policy]
+      name  = "assignipaddress.json"
+      path  = "/downloads/install/cloud/aws/roles/assignipaddress.json"
+  # Azure installation assets
+  [install_assets.azure]
+    # Download directories
+    [install_assets.azure.dirs]
+      base      = "downloads/install/cloud/azure"
+      azure_arm = "downloads/install/cloud/azure/arm"
+      azure_aks = "downloads/install/cloud/azure/aks"
+    # Azure Resource Manager template
+    [install_assets.azure.res_mgr_template]
+      name  = "mainTemplate.json"
+      path  = "/downloads/install/cloud/azure/arm/mainTemplate.json"
+    [install_assets.azure.aks.res_mgr_template]
+      name  = "mainTemplate.json"
+      path  = "/downloads/install/cloud/azure/aks/mainTemplate.json"
+
+## ===== CLOUD_INSTALLATION_INFO_START =====
+## Cloud-Specific Installation Information
+
+## AWS Cloud Installation Information
+[install_aws]
+  # EKS application cluster
+  [install_aws.eks]
+    # Default node-group name
+    default_node_group = "iniital"
+  # Environment configuration file
+  [install_aws.env_file]
+    name = "env.yaml"
+    path = "/tmp/env.yaml"
+  # Environment variables
+  [install_aws.envar]
+    spec_path = "PROVAZIO_ENV_SPEC_PATH"
+  # Default IAM-role policy
+  [install_aws.iam_role_default_policy]
+    # Policy name
+    name = "IguazioDataScienceNode"
+  # Miscellaneous examples
+  [install_aws.examples]
+    # CIDRs-whitelist example
+    # [IntInfo] (sharonl) (23.6.20) I copied this value from the installer-UI
+    # screen shots in #step-ui-cloud of the AWS installation guide.
+    cidrs_whitelist = "200.40.0.1/32"
+    # Installer-CIDR example
+    installer_cidr = "10.0.0.1/32"
+    # System-ID example
+    sys_id = "my-platform-0"
+
+## Google Cloud Provider(GCP) Installation Information
+  [install_gcp]
+  # GKE application cluster
+  [install_gcp.gke]
+    # Default node-group name
+    default_node_group = "iniital"
+  # Environment configuration file
+  [install_gcp.env_file]
+    name = "env.yaml"
+    path = "/tmp/env.yaml"
+  # Environment variables
+  [install_gcp.envar]
+    spec_path = "PROVAZIO_ENV_SPEC_PATH"
+  # Default IAM-role policy
+  [install_gcp.iam_role_default_policy]
+    # Policy name
+    name = "IguazioDataScienceNode"
+  # Miscellaneous examples
+  [install_gcp.examples]
+    # CIDRs-whitelist example
+    # [IntInfo] (sharonl) (23.6.20) I copied this value from the installer-UI
+    # screen shots in #step-ui-cloud of the AWS installation guide.
+    cidrs_whitelist = "200.40.0.1/32"
+    # Installer-CIDR example
+    installer_cidr = "10.0.0.1/32"
+    # System-ID example
+    sys_id = "my-platform-0"
+
+## Azure Cloud Installation Information
+[install_azure]
+  # Default installer CIDR
+  default_installer_cidr = "172.38.0.0/16"
+  # Default system domain
+  default_sys_domain = "iguazio-c0.com"
+  # Company installation terms
+  [install_azure.terms]
+    # Installation plan/offer ID
+    plan = "iguazio-data-science-platform-vm"
+    # Publisher ID
+    publisher = "iguazio-5069960"
+  # Installer VM-script logs file
+  [install_azure.installer_vm_logs]
+    name  = "install.log"
+    path  = "/tmp/install.log"
+  # Miscellaneous examples
+  [install_azure.examples]
+    # Deployment-name example
+    deployment_name = "iguazio-deployment-0"
+    # Azure resource group
+    resource_group = "my-resource-group-0"
+    # CIDRs-whitelist example
+    cidrs_whitelist = "10.0.0.0/16,40.10.10.31/32"
+    # System-domain example
+    sys_domain = "my-domain.com"
+    # System-ID example
+    sys_id = "my-platform-0"
+## ===== CLOUD_INSTALLATION_INFO_END =====
+
+## ===== VM_INSTALLATION_INFO_START =====
+## VM-Specific Installation Information
+
+## Common VM Installation Information
+[install_vm]
+  # Data-node installation directory (used by users in offline installations)
+  [install_vm.data_node_install_dir]
+    name    = "installer"
+    parent  = "/home/iguazio" # $fs_native_app_cluster.home.dir_path ($HOME)
+    path    = "/home/iguazio/installer" # $parent/$name
+  # Management IP-addresses configuration user
+  [install_vm.mgmt_ips_cfg_credentials]
+    # Username
+    user   = "igzconf"
+    # Password
+   pwd     = "igzconf"
+
+## Proxmox VM Installation Information
+[install_proxmox]
+  # Hypervisor-host directory for product VM virtualization (backup) files
+  vm_virtualization_files_hypervisor_dir = "/var/lib/vz/dump/"
+## ===== VM_INSTALLATION_INFO_END =====
+## ===== INSTALLATION_INFO_END =====
+
+## ===== DOC_EXAMPLES_START =====
+## Miscellaneous Doc Examples
+# [INFRA-TODO] Move productUI.access_key_example here because access keys
+# aren't specific to the dashboard, even though you can copy them from the UI.
+[doc_examples]
+  # AWS S3 Signature Version 4 (AWS4) Example
+  # [IntInfo] See the aws4_authentication URL data variables & DOC IG-12002.
+  aws4_authorization_header_example = "Authorization: AWS4-HMAC-SHA256 Credential=e8bd4ca2-537b-4175-bf01-8c74963e90bf/20190422/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=4708b8682367fff1ba5d33662a6a7bdbefa743b52e4744aedbd919ca73ce70f5"
+    # access key = access_key_example
+  # AWS S3 Signature Version 2 (AWS2) Example
+  # [IntInfo] See the aws2_authentication URL data variables & DOC IG-12002.
+  aws2_authorization_header_example = "Authorization: AWS e8bd4ca2-537b-4175-bf01-8c74963e90bf:frJIUN8DYpKDtOLCwo//yllqDzg="
+    # access key = access_key_example
+## ===== DOC_EXAMPLES_END =====
+
+## ===== PRODUCT_VERSIONS_START =====
+## Product Versions
+# [TODO-NEW-VER] Look for all "[TODO-NEW-VER]" comments and handle - including
+# - Update the version numbers in the `ver` variable below.
+# - Edit config-build.toml variables (see info in that file).
+# - Update additional `ver` variable keys to reflect support-matrix changes etc.
+# - Update versioned keys in other data/vars/ files - namely URLs in spark.toml
+#   and/or hadoop.toml when changing the supported Spark or Hadoop version
+#   [c-spark-ver] [c-hadoop-ver].
+#   [INFRA-TODO] Check the option of using a shortcode to automatically form
+#   versioned URLs using the versions in the `ver` product data-var key
+#   (namely, for Spark and Hadoop URLs [c-spark-ver] [c-hadoop-ver]). 
+# - Edit the config.toml [Params.Filters] keys and values for the new release.
+# - Edit .htaccess redirect rules for new releases and for any URL change for
+#   published docs - currently done from the iguazio/doc-assets repo. See
+#   [ci-redirect] in gulpfile.js and the doc-assets htaccess/ directory.
+#   Edit on the `development` branch and update `master` only when publishing.
+# - For a new major or minor release,
+#   - Edit the static/versions.json file to add the new version at the start.
+#   - Edit the igz-platform-versions.json versions file in the
+#     iguazio/doc-assets repo to include the latest-release version.
+#     First, do this only on the `development` branch.
+#     [TODO-NEW-VER-RELEASE] Just before the publication of the new release,
+#     update the versions file on the doc-assets `master` branch.
+
+# Shortcode:    {{< verkey k="KEY" [md=true] }}
+# Description:  Returns a "ver" variable key.
+# "k" (Required)    - A path to a "ver" variable key.
+# "md" (Optionally) - Set to `true`to process Markdown in the variable value.
+# Examples:
+# - {{< verkey k="spark.version" >}}
+#     [<=> {{< getvar v="product.ver.spark.version" >}}]
+# - {{< verkey k="num" >}}
+#     [<=> {{< productVersion >}}]
+# - {{< verkey k="num_short" >}}
+#     [<=> {{< productVersion num_short >}}]
+# - {{< verkey k="python_sdk.python.versions" md=true >}}
+#     [<=> {{< getvar v="product.ver.python_sdk.python.versions" md=true >}}]
+
+# Shortcode:    productVersion [KEY]
+# Description:  Returns the current product version (ver.num or ver.num_short).
+# KEY - "ver" number-type key - `num` (default) for a long X.Y.Z version format,
+#       or "num_short" for a short "X.Y" number format.
+# Examples:
+# - {{< productVersion >}} <=> {{< productVersion num >}}
+#     [<=> {{< verkey k="num" >}} <=> {{< getvar v="product.ver.num >}}]
+# - {{< productVersion num_short >}}
+#     [<=> {{< verkey k="num_short" >}}]
+#     [<=> {{< getvar v="product.ver.num_short >}}]
+# [InfraInfo] (sharonl) In the current implementation, you can also get the
+# product version by calling {{< getvar v="shared.ver.num" >}} or
+# {{< getvar v="shared.ver.num_short" >}}.
+
+# [IntInfo] See v3.2.0 DOC IG-19076 - this is the old one
+  # [TODO-NEW-VER] Update Jira info.
+[ver]
+  # Product version
+  num       = "3.2.1"
+  num_short = "3.2"
+  # Latest release-notes version
+  # [InfraInfo] (sharonl) This variable is used to support auto xrefs to the
+  # latest release notes (RNs) for the version of the active page, for
+  # instances in which there were no RNs notes for the latest product version.
+  latest_rn_version = "3.2.1"
+  # Product GA build number
+  ga_build  = "3.2.0-b19.20211107120205"
+
+  ## ===== VER_SW_SPECS_START =====
+  ## Software Specifications
+
+  # Maximum length/size of an attribute name, in characters
+  # [IntInfo] (sharonl) The maximum attribute-name size is 256 bytes, which is
+  # equivalent to a maximum length of 255 characters + the Null character.
+  attr_name_max_length          = "255"
+  attr_name_max_size            = "256"
+
+  # Maximum length of a container name, in characters
+  container_name_max_length     = "128"
+
+  # Maximum length of an object or file name, in characters
+  object_name_max_length        = "255"
+
+  # Maximum length of a project name, in characters
+  project_name_max_length       = "63"
+
+  # Maximum length of a username, in characters
+  username_max_length           = "32"
+
+  # Maximum length of a tenant name, in characters
+  tenant_name_max_length        = "31"
+
+  # Maximum size for a UI file upload
+  ui_uploaded_file_max_size     = "2 GB"
+
+  # Maximum size of a web-API JSON body
+  web_api_json_body_max_size    = "2 MB"
+
+  # Number of available data slices (shards/buckets) per container
+  container_slice_count = "1024"
+  ## ===== VER_SW_SPECS_END =====
+
+  ## ===== VER_USERS_START =====
+  # Predefined Users
+  [ver.predef_users]
+    bck_user            = "sys"  # <=> sys_user
+    pipelines_user      = "pipelines"
+    monitoring_user     = "monitoring"
+    security_admin_user = "security_admin"
+    security_admin_pwd  = "IGZSEC" 
+    sys_user            = "sys"
+      # [IntInfo] Password = "IgZBackup" (internal). (31.5.20) I was wasn't
+      # able to log into the UI as user "sys" with this password.
+    tenancy_admin_user  = "tenancy_admin"
+    tenancy_admin_pwd   = "IGZTEN"
+  ## ===== VER_USERS_END =====
+
+  ## ===== VER_DATA_ACCESS_POLICY_START =====
+  # Predefined Data-Access Policy Layers
+  [ver.predef_data_access_policy_layers]
+    sys         = "System layer"
+    monitoring  = "Monitoring layer"
+
+  # Predefined Data-Access Policy Rules
+  [ver.predef_data_access_policy_rules]
+    # Backup rule
+    bck = "Backup"
+    # Monitoring rule - defined only for the "users" container
+    monitoring  = "Monitoring"
+    # Deny-access rule
+    no_access  = "No access"
+  ## ===== VER_DATA_ACCESS_POLICY_END =====
+
+  ## ===== VER_FS_START =====
+  ## File-System (FS) Information
+
+  # Kubernetes (k8s) Installation FS Information
+  # [IntInfo] [InfraInfo] See [c-k8s-fs-mounts] [c-k8s-envars]
+  # [c-fs-envars-braces].
+  [ver.fs_k8s]
+    # Cluster Data Mount (Data-Node DFS Mount) (local-FS data-containers access)
+    # See [c-k8s-fs-mounts-data-node].
+    [ver.fs_k8s.data_mount]
+      name = "v3io"
+      path = "/v3io"
+    # Home directory ($HOME <=> "~/")
+    # [IntInfo] See [c-k8s-envar-home].
+    [ver.fs_k8s.home]
+      dir_name  = "User"  # Dir mount: users_container.user_dir.fs_mount_name
+      dir_path  = "/User" # Dir mount: users_container.user_dir.fs_mount_path
+    # Product Home Directory
+    [ver.fs_k8s.product_home]
+      dir_name              = "igz"
+      dir_path              = "/igz"
+      envar                 = "IGUAZIO_HOME"
+      bin_dir_name          = "bin"
+      bin_dir_path          = "/igz/bin"
+      bin_dir_path_w_envar  = "$IGUAZIO_HOME/bin"
+    # Product Java installation files and directories
+    [ver.fs_k8s.java]
+      # Java installation directory
+      [ver.fs_k8s.java.install_dir]
+        name          = "java"
+        path          = "/igz/java"
+        envar         = "IGUAZIO_JAVA"
+        path_w_envar  = "$IGUAZIO_JAVA" # <=> "$IGUAZIO_HOME/java"
+      # Java libraries installation directory
+      [ver.fs_k8s.java.libs_dir]
+        name          = "libs"
+        path          = "/igz/java/libs"
+        envvar        = "$IGUAZIO_JAVA"
+        path_w_envvar = "$IGUAZIO_JAVA/libs" # <=> "${IGUAZIO_HOME}/java/libs"
+      # Java V3IO Python libraries bundle
+      # [c-v3io-py-api-rename] [IntInfo] (sharonl) (24.6.20) In v2.10.0, the
+      # low-level Python API module, which is currently not documented, was
+      # renamed from "v3io-py" to "v3iopy", and the related Java
+      # libraries-bundle archive file was renamed from v3io-py.zip to 
+      # v3io-pyspark.zip to avoid confusion with the new high-level v3io-py V3IO
+      # Python SDK (https://github.com/v3io/v3io-py/). The PYTHONPATH
+      # environment variable was updated accordingly. See Task IG-16069.
+      [ver.fs_k8s.java.v3io_python_lib]
+        bundle_file         = "v3io-pyspark.zip"
+        bundle_path         = "/igz/java/libs/v3io-pyspark.zip"
+        bundle_path_w_envar = "$IGUAZIO_JAVA/libs/v3io-pyspark.zip"
+
+  # Native Application-Cluster (Big-Data Cluster) Installation FS Information
+  # (master application node configurations in non-k8s installations)
+  # [IntInfo] (sharonl) (4.11.20) This information, or at least part of it, is
+  # still relevant also in k8s installations in reference to the data and
+  # application nodes - when connecting to these nodes, for example, using SSH
+  # during installation. [INFRA-TODO] Consider creating a separate variable.
+  [ver.fs_native_app_cluster]
+    # Home Directory ($HOME <=> "~/")
+    [ver.fs_native_app_cluster.home]
+      dir_path = "/home/iguazio"
+  
+    # Product big-data installation files and directories
+    [ver.fs_native_app_cluster.bigdata]
+      # Big-data installation directory
+      [ver.fs_native_app_cluster.bigdata.install_dir]
+        name  = "bigdata"
+        path  = "/home/iguazio/igz/bigdata"
+          # [IntInfo] (sharonl) Golan asked to use "/home/iguazio/igz" and not
+          # "~/igz".
+      # Big-data libraries installation directory
+      [ver.fs_native_app_cluster.bigdata.libs_dir]
+        name          = "libs"
+        path          = "/home/iguazio/igz/bigdata/libs"
+        path_w_envar  = "$HOME/igz/bigdata/libs"
+      # Big-data V3IO Python libraries bundle
+      [ver.fs_native_app_cluster.bigdata.v3io_python_lib]
+        bundle_file         = "v3io-py.zip"
+        bundle_path         = "/home/iguazio/igz/bigdata/libs/v3io-py.zip"
+        bundle_path_w_envar = "$HOME/igz/bigdata/libs/v3io-py.zip"
+  ## ===== VER_FS_END =====
+
+  ## ===== VER_DOC_SAMPLES_START =====
+  ## Doc Samples - files and directories used in the doc examples
+  [ver.doc_samples]
+    dnload_dir      = "downloads"
+    ingest_dir      = "mydata"
+    image_file      = "igz_logo.png"
+    img_dnload_dir  = "theme-images/logo"
+    img_ingest_dir  = "mydata/images"
+    [ver.doc_samples.tsdb_table]
+      # [TODO] Consider changing this to the running-user directory in the
+      # users container. [InfraInfo] To support this, use the rel_path key to
+      # refer to the full table path within the container, even though it's
+      # currently identical to the table name, so that we can easily change it
+      # to add directories. However, we'll still need to edit references to the
+      # table (using the "name" key) being found in the root directory of the
+      # container with formatted directory references using new dir var keys.
+      name      = "sample-tsdb"
+      rel_path  = "sample-tsdb"
+      container = "bigdata"
+        # [V3.0.0-TODO-P2] [c-projects-default-container-sample-tsdb-table]
+        # [IntInfo] (sharonl) (15.1.21) This was set to "bigdata" when it was
+        # the default container (default_container.name). In v3.0.0 the default
+        # container changed to the "projects" container", but I didn't change
+        # the container name for the sample TSDB table in this variable key
+        # yet, because it's used in the grafana-dashboards.md tutorial, which
+        # has matching screen shots that show the container name. => TODO: Edit
+        # the screen shots (which we need to update also for other reasons) and
+        # at this point also change the container name for this example. See
+        # the existing TODO comment above to consider using the running-user
+        # directory in the "users" container.
+  ## ===== VER_DOC_SAMPLES_END =====
+
+  ## ===== VER_SUPPORT_MATRIX_START =====
+  ## Support Matrix
+  # [IntInfo] See v3.2.1 DOC IG-19076 - this is the old one
+    # [TODO-NEW-VER] Update Jira info.
+  
+  ## ---- VER_BIG_DATA_LIBS_START ----
+  ## Product Big-data Application-Libraries Support Matrix
+  [ver.bigdata_libs]
+    # Supported Python version
+    # Supported Java version
+    [ver.bigdata_libs.java]
+      version     = "8"
+    # Supported Python versions
+    [ver.bigdata_libs.python]
+      version     = "3.6"
+      versions    = "3.6 and 2.7"
+    # Supported Scala version
+    [ver.bigdata_libs.scala]
+      version     = "2.11"
+  ## ---- VER_BIG_DATA_LIBS_END ----
+
+  ## ---- VER_INTEGRATED_SW_START ----
+  ## Integrated Software (Services, Frameworks, etc.)
+
+  # Authenticator - OAuth2 (OIDC) Authenticator (Dex)
+  # [c-authenticator-service][IntInfo] (sharonl) [Req IG-14707 /DOC IG-17121]
+  # (2.3.21) Added in v3.0.0. The UI description is "A federated OpenID
+  # Connect (Over OAuth2) provider". The service uses the Dex "federated OpenID
+  # Connect provider", which in turn uses OpenID Connect (OIDC), and is
+  # designed to be used for authenticating access to Grafana dashboards (for
+  # shared user Grafana services or the single-instance tenant-wide Grafana
+  # service in cloud deployments) and to Nuclio API gateways (when selecting
+  # the "OAuth2" authentication type), mainly to allow access by external
+  # (non-product) users, for example using GitHub, although we also use the
+  # service to authenticate product users in these scenarios.
+  # The service version is the Dex version. Internally we refer to this as a
+  # Dex service (this is also the service kind in the code), but Product (Adi
+  # and Gilad said not to refer to Dex in the documentation, as most users
+  # aren't familiar with it.
+  # See more info in DOC IG-17121.
+  [ver.authenticator]
+    # Latest pre-deployed version
+    version = "2.23.0"  # [IntInfo] (sharon) Dex version
+    # Service name
+    service_display_name          = "authenticator"
+    service_type_display_name     = "OAuth2 (OIDC) Authenticator"
+    service_type_display_name_tc  = "OAuth2 (OIDC) Authenticator"
+
+  # CentOS Linux distribution version
+  [ver.centos]
+    # Latest deployed version
+    version = "7.6" # 7.6.1810
+  
+  # Docker Registry
+  [ver.docker_registry]
+    # Latest pre-deployed version
+    # [IntInfo] (sharonl) (18.3.12) I added this retroactively for v3.0 and
+    # previous active doc sites (v2.10, v2.8, and v2.5) and changed the support
+    # matrix for the Docker Registry service to use this version instead of the
+    # product version; (v2.8-v3.0 use Docker Registry v2.7.1; v2.5 uses v2.6.2).
+    # See info in the v3.0.0 support-matrix doc task DOC IG-17513.
+    version = "2.7.1"
+    # Service name
+    service_display_name          = "docker-registry"
+    service_type_display_name     = "Docker Registry"
+    service_type_display_name_tc  = "Docker Registry"
+
+  # Elasticsearch (cloud-only service)
+  # [c-elasticsearch-service-cloud-only] [IntInfo] (sharonl) In v2.1.+ of the
+  # product's cloud deployments we have an on-cluster vanilla Elasticsearch
+  # installation that can be activated by creating a single-instance
+  # (tenant-wide) Elasticsearch service. When such as service is created by the
+  # user, the Log Forwarder service can be configured to use it.
+  # [Bug IG-13513] In v2.5.0 there's a bug whereby the Elasticsearch service is
+  # available also in bare-metal (on-prem) k8 environments. This was fixed in
+  # v2.5.1 and it was decided not to document this as a known issue for v2.5.0.
+  # This service is intentionally not mentioned on the support-matrix
+  # specs page, at Orit's request. (15.10.19) Oded told me that in future
+  # releases we plan to replace this service with a remote Elasticsearch for
+  # all cloud trials - see Requirement IG-12067, currently planned for v2.8.0.
+  # Therefore, he thinks we should continue not mentioning this service in the
+  # external support matrix.
+  [ver.elasticsearch]
+    # Supported versions
+    versions = "7.10"
+    # Service name
+    service_type_display_name     = "Elasticsearch"
+    service_type_display_name_tc  = "Elasticsearch"
+    # Service URL
+    # [IntInfo] (sharonl) (22.4.19) Orit said users don't need to be aware of
+    # this URL.
+    service_url = "http://elasticsearch-master.default-tenant.svc.cluster.local:9200"
+
+  # Grafana
+  [ver.grafana]
+    # Latest pre-deployed version
+    version = "7.2"
+    # Predefined Grafana user-service dashboards directory
+    predef_dashboards_dir = "private"
+    # Product Grafana data source
+    [ver.grafana.product_data_source]
+      name = "iguazio"
+    # Application-cluster Grafana service
+    [ver.grafana.app_cluster_service]
+      predef_dashboards_dir = "private"
+      default_dashboard = "Kubernetes Cluster Status"
+
+  # Hadoop
+  [ver.hadoop]
+    # Latest pre-deployed version
+    # [TODO-NEW-VER] [c-hadoop-ver] When the supported Hadoop version changes,
+    # also update the doc URLs in data/vars/hadoop.toml.
+    version     = "3.2"
+    # Hadoop k8s installation information
+    [ver.hadoop.k8s]
+      # Hadoop installation directory
+      install_dir_path          = "/hadoop"
+      install_dir_envar         = "HADOOP_HOME"
+      install_dir_path_w_envar  = "$HADOOP_HOME"
+      # [IntInfo] The "bin" and "sbin" subdirectories are included in $PATH.
+      # The "sbin" subdirectory contains scripts and commands, mainly to start
+      # and stop services.
+    # Hadoop native app-cluster installation information
+    [ver.hadoop.native_app_cluster]
+      # Hadoop installation directory
+      install_dir_path          = "/hadoop"
+      install_dir_envar         = "HADOOP_HOME"
+      install_dir_path_w_envar  = "$HADOOP_HOME"
+
+  # Helm - see together with the Kubernetes support matrix.
+
+  # Hive Metastore (internal service, enabled for Presto)
+  [ver.hive]
+    # Latest pre-deployed version
+    version     = "3.1.2"
+
+  # Horovod / MPI Operator
+  # [c-mpi-operator-horovod-service] [IntInfo] (sharonl) The platform has an
+  # "mpi-operator" service of type "Horovod" whose version is the version of
+  # the Kubeflow MPI Operator (https://github.com/kubeflow/mpi-operator) - see
+  # the kubeflow_mpi_operator_* URL data variables.
+  [ver.horovod]
+    # Latest pre-deployed version
+    version = "0.2.3"
+    # Service name
+    service_display_name          = "mpi-operator"
+    service_type_display_name     = "Horovod"
+    service_type_display_name_tc  = "Horovod"
+  
+  # JupyterLab
+  [ver.jupyterlab]
+    # Latest pre-deployed version
+    version     = "2.2.0"
+    # Supported Python version
+    # [IntInfo] (sharonl) `python --version` in a Jupyter terminal or notebook
+    # returns the Python version.
+    [ver.jupyterlab.python]
+      version = "3.7" # Python v3.7.6
+    # [c-jupyter-notebooks-scala-not-supported] TODO: When we fix the Jupyter
+    # support for Scala, add supported Scala versions.
+  
+  # Jupyter Notebook
+  [ver.jupyter_notebook]
+    # Service name
+    service_type_display_name     = "Jupyter Notebook"
+    service_type_display_name_tc  = "Jupyter Notebook"
+    # Sample custom Jupyter notebook name
+    sample_user_notebook_name = "my_iguazio_trial"
+    # Product Jupyter flavors (Docker images)
+    [ver.jupyter_notebook.flavors]
+      full      = "Jupyter Full Stack"
+      full_gpu  = "Jupyter Full Stack with GPU"
+    # Conda ([c-conda] part of the k8s Jupyter Notebook service type)
+    [ver.jupyter_notebook.conda]
+      version = "4.8.3"
+    # Product Tutorial Jupyter Notebooks
+    # [InfraInfo] See also the public_gh_tutorials URL data variables and
+    # `ver.tutorials.update_demos_script`.
+    [ver.jupyter_notebook.tutorials]
+      # [c-v3io-tutorials] Latest pre-deployed version - see
+      # [ver.tutorials].
+      # Welcome notebook
+      # [InfInfo] [InfraInfo] The notebook is also provided as a README.md file.
+      # I decided not to add data-variable keys for this file.
+      [ver.jupyter_notebook.tutorials.welcome_nb]
+        name  = "welcome"
+        file  = "welcome.ipynb"
+        title = "Welcome to the Iguazio MLOps Platform"
+      # Product-overview notebook
+      [ver.jupyter_notebook.tutorials.product_overview_nb]
+        name  = "platform-overview"
+        file  = "platform-overview.ipynb"
+        title = "In-Depth Platform Overview"
+      # Conda virtual environments notebook
+      [ver.jupyter_notebook.tutorials.virtual_env_nb]
+        name  = "virtual-env"
+        file  = "virtual-env.ipynb"
+        title = "Creating Python Virtual Environments with conda"
+      # Data ingestion and preparation notebooks
+      [ver.jupyter_notebook.tutorials.data_ingestion_and_preparation]
+        # Data ingestion and preparation notebooks directory
+        dir_name = "data-ingestion-and-preparation"
+        # Data collection, ingestion, and exploration getting-started NB
+        [ver.jupyter_notebook.tutorials.data_ingestion_and_preparation.basic_nb]
+          name  = "basic-data-ingestion-and-preparation"
+          file  = "basic-data-ingestion-and-preparation.ipynb"
+          title = "Getting Started with Data Ingestion and Preparation"
+          container           = "users"   # = users_container.name
+          container_id        = "1025"    # = users_container.id
+          sample_dir          = "examples"
+          sample_csv          = "stocks.csv"
+          sample_csv_aws_file = "2018-03-26_BINS_XETR08.csv"
+          sample_csv_aws_rel_path  = "2018-03-26_BINS_XETR08.csv"
+            # [IntInfo] (sharonl) The path is relative to the company's
+            # sample data-sets public AWS bucket URL - see the
+            # product_sample_aws_data_set URL data variable. In curl commands,
+            # we should use the "base" key of this variable. The example
+            # Jupyter Notebook getting-started example downloads this file
+            # using curl:
+            # curl -L "iguazio-sample-data.s3.amazonaws.com/2018-03-26_BINS_XETR08.csv" > /v3io/${V3IO_HOME}/examples/stocks.csv
+            # The doc refers both to this code and to the option of downloading
+            # the file from the doc site's downloads directory - 
+            # [ver.doc_samples.dnload_dir].
+          sample_nosql_table            = "stocks_example_tab"
+            # [IntInfo] Used from the "Exploring Data Using SQL" Frames example.
+          sample_nosql_table_gs_example = "stocks_tab"
+            # [IntInfo] Used from the "Data Collection and Exploration
+            # Getting-Started Example" Spark DF example.
+        # Frames getting-started NB
+        [ver.jupyter_notebook.tutorials.data_ingestion_and_preparation.frames_nb]
+          name  = "frames"
+          file  = "frames.ipynb"
+          title = "Using the V3IO Frames Library for High-Performance Data Access"
+        # GPU benchmark - RAPIDS cuDF vs. pandas NB
+        [ver.jupyter_notebook.tutorials.data_ingestion_and_preparation.gpu_rapids_cudf_benchmark_nb]
+        name = "gpu-cudf-vs-pd"
+        file = "gpu-cudf-vs-pd.ipynb"
+      # Demo and how-to tutorials
+      # [IntInfo] (sharonl) Initially this directory contained only end-to-end
+      # use-case application demos, at first from v3io/tutorials and later also
+      # from mlrun/demos. In v3.0.0, we decided to move all the Jupyter demos
+      # as well as the getting-started tutorial and new how-to tutorials to the
+      # mlrun/demos repo and save them the /User/demos/ product directory. See
+      # v3.0.0 Requirement IG-16920 / DOC IG-17429. There's a separate script
+      # to update the tutorials whose sources are in the v3io/tutorials repo -
+      # see `ver.jupyter_notebook.tutorials.update_tutorials`.
+      [ver.jupyter_notebook.tutorials.demos]
+        # Demos directory
+        dir_name = "demos"
+        # Update-demos script
+        # [c-tutorials-update-demos] [IntInfo] (sharonl) This is a
+        # v3io/tutorials script that's pre-deployed in the product /User
+        # directory and is used to download demos from the mlrun/demos GitHub
+        # repo / sync the local demos copy with GitHub. For the first creation
+        # of a new Jupyter Notebook or web-shell product service for a given
+        # user, the script is run with the --mlrun-ver flag to get the demos
+        # that match the version of the installed MLRun service. By default,
+        # the script syncs with the release/vX.Y.x mlrun/demos branch that
+        # matches the installed X.Y `mlrun` package. If the GitHub download
+        # fails (e.g., if there's no internet connection), the demo files are
+        # retrieved from the local /tmp/mlrun-demos/ product directory, which
+        # is created as part of the product deployment and contains the latest
+        # demo files for the mlrun/demos version supported at the time.
+        # By default, the demos are downloaded to /User/demos/.
+        # See details in v3.0.0 Requirement IG-16963 / DOC IG-16967 to
+        # pre-deploy the mlrun/demos demos, and Bug IG-17544 / DOC IG-17551 to
+        # rename the tutorials demos-update script from get-additional-demos.sh.
+        [ver.jupyter_notebook.tutorials.demos.update_script]
+          file  = "update-demos.sh"
+          dir   = "/User" # `users_container.user_dir.fs_mount_path`
+          path  = "/User/update-demos.sh" # $dir/$file
+        # Natural language processing (NLP) demo
+        [ver.jupyter_notebook.tutorials.demos.nlp_demo]
+          dir_name  = "nlp"
+        # Smart stocks trading demo
+        [ver.jupyter_notebook.tutorials.demos.stocks_demo]
+          dir_name  = "stocks"
+        # Stream-enrichment demo
+        [ver.jupyter_notebook.tutorials.demos.stream_enrich]
+          dir_name  = "stream-enrich"
+      # Update-tutorials notebook and script
+      # [IntInfo] (sharonl) This script updates tutorials whose sources are in
+      # the v3io/tutorials GitHub repo. There's a separate script to update the
+      # demos directory with tutorials from the mlrun/demos GitHub repo - see
+      # `ver.jupyter_notebook.tutorials.demos.update_script`.
+      [ver.jupyter_notebook.tutorials.update_tutorials]
+        nb      = "update-tutorials.ipynb"
+        script  = "igz-tutorials-get.sh"
+
+  # Kubernetes (k8s)
+  [ver.kubernetes]
+    # Latest pre-deployed version
+    version     = "1.20"
+  # Helm
+  [ver.helm]
+    # Latest pre-deployed version
+    version     = "2.14.1"
+  [ver.kubernetes_cloud]
+    # Latest pre-deployed version
+    version     = "1.20"
+	
+  # Log Forwarder
+  [ver.log_forwarder]
+    # Service name
+    service_display_name          = "log-forwarder"
+    service_type_display_name     = "Log forwarder"
+    service_type_display_name_tc  = "Log Forwarder"
+    # Latest pre-deployed version (Filebeat version)
+    version = "7.8.0"
+
+  # Management APIs [Beta]
+  [ver.mgmt_apis]
+    # Port
+    port = "8001"
+    # Management APIs IP address & URL examples
+    # [c-mgmt-api-url-not-in-ui] See info for UI.url_example[_http].
+    url_example  =  "https://dashboard.default-tenant.app.mycluster.iguazio.com"
+      # [productUI.url_example]
+    url_example_http_ip = "http://192.168.1.100:8001"
+      # [productUI.ip_addr_example]:[ver.mgmt_apis.port]
+    ip_example = "192.168.1.100"
+      # [productUI.ip_addr_example]
+    # Session-cookie example
+    session_cookie_example = "j%3A%7B%22sid%22%3A%20%22a9ce242a-670f-47a8-9c8b-c6730f2794dc%22%7D"
+  
+  # MLRun
+  [ver.mlrun]
+    # Latest pre-deployed version
+    version       = "0.8.x"
+    version_short = "0.8"
+    version_tag   = "release/v0.8.x-latest"
+    # Service name
+    service_display_name          = "mlrun"
+    service_type_display_name     = "MLRun"
+    service_type_display_name_tc  = "MLRun"
+    # MLRun Python package (including MLRun CLI) installation & update
+    # ("alignment") script
+    [ver.mlrun.align_script]
+      file  = "align_mlrun.sh"
+      dir   = "/User" # `users_container.user_dir.fs_mount_path`
+      path  = "/User/align_mlrun.sh" # $dir/$file
+    # MLRun documentation
+    # [TODO-NEW-VER] [c-mlrun-doc-ver] When the supported MLRun docs vX.Y
+    # version changes, also update the `mlrun_docs.full` in data/vars/urls.toml.
+    [ver.mlrun.docs]
+      # Latest supported version
+      version       = "0.8.x"
+      version_short = "0.8"
+      version_tag = "release-v0.8.x-latest"
+      # Getting-started tutorial documentation
+      # [IntInfo [InfraInfo] The tutorial file names (notebooks and Markdown)
+      # are the same as an mlrun/demos - use the ver.mlrun.demos keys.
+      # [c-mlrun-gs-tutorial-ref] TODO: Once there's a new MLRun release with
+      # the getting-started tutorial doc (already merged to the development
+      # branch), hanged all links to this tutorial in the doc site to refer to
+      # the MLRun documentation, using `ver.mlrun.docs.gs_tutorial`, and remove
+      # the specific README.md/.ipynb file links (no such files in the docs -
+      # just link to the root tutorial docs directory).
+      # [ci-iframe-link-to-anchor] If and when we find a way to link to a
+      # specific page/anchor in an iframe, change the links to link to the
+      # tutorial section in the embedded MLRun documentation iframe.
+      # [PENDING-DEV]
+      [ver.mlrun.docs.gs_tutorial]
+        dir_name  = "tutorial"
+    # MLRun demos (see the public_gh_mlrun_demos urls.toml data variable) 
+    # [InfraInfo] (sharonl) I decided not to add variables for README files and
+    # notebooks and just use README.md/.ipynb hardcoded when needed.
+    [ver.mlrun.demos]
+      # Latest supported version
+      version       = "0.8.x"
+      version_short = "0.8"
+      version_tag   = "release/v0.8.x-latest"
+      ## Getting-started tutorial
+      [ver.mlrun.demos.gs_tutorial]
+        dir_name  = "getting-started-tutorial"
+        nb_mlrun_basics   = "01-mlrun-basics.ipynb"
+        nb_model_training = "02-model-training.ipynb"
+        nb_model_serving  = "03-model-serving.ipynb"
+        nb_pipeline       = "04-pipeline.ipynb"
+      ## End-to-end use-case application demos
+      # Churn demo: real-time customer-churn prediction
+      [ver.mlrun.demos.churn]
+        dir_name  = "customer-churn-prediction"
+        base_nb   = "churn-project.ipynb"
+      # Faces demo: real-time image recognition with deep learning
+      # [IntInfo] [InfraInfo] (sharonl) I decided not to add, for now, variable
+      # keys for the demo's client/ and streamlit/ component directories and
+      # other directories such as the notebooks/ directory for all notebook
+      # files for which I decided not to add variable keys at this time.
+      [ver.mlrun.demos.faces]
+        dir_name  = "realtime-face-recognition"
+        base_nb   = "face-recognition" # found in a notebooks/ directory
+      # Image-classification demo: image classification with distributed
+      # training (Horovod)
+      [ver.mlrun.demos.image_classification]
+        dir_name = "image-classification-with-distributed-training"
+        base_nb  = "horovod-project.ipynb"
+      # NetOps demo: predictive network operations / telemetry
+      [ver.mlrun.demos.netops]
+        dir_name  = "network-operations"
+        base_nb   = "project.ipynb"
+      # scikit-learn demo: full AutoML pipeline
+      [ver.mlrun.demos.scikitlearn]
+        dir_name  = "scikit-learn-pipeline"
+        base_nb   = "sklearn-project.ipynb"
+      # Stock-analysis demo
+      [ver.mlrun.demos.stocks]
+        dir_name  = "stock-analysis"
+        base_nb   = "project.ipynb"
+      ## How-to demos
+      [ver.mlrun.demos.howto]
+        dir_name  = "howto"
+        # How-To: Converting existing ML code to an MLRun project
+        [ver.mlrun.demos.howto.convert_to_mlrun]
+          dir_name  = "converting-to-mlrun"
+          base_nb   = "mlrun-code.ipynb"
+        # Spark how-to demos
+        [ver.mlrun.demos.howto.spark]
+          dir_name = "spark"
+          # How-To: Running a Spark job for analyzing data
+          [ver.mlrun.demos.howto.spark.data_analysis]
+            base_nb = "spark-mlrun-describe.ipynb"
+          # How-To: Running a Spark job for reading a CSV file
+          [ver.mlrun.demos.howto.spark.read_csv]
+            base_nb = "spark-mlrun-read-csv.ipynb"
+          # How-To: Running a Spark job with Spark Operator
+          [ver.mlrun.demos.howto.spark.spark_operator]
+            base_nb = "spark-operator.ipynb"
+    # MLRun functions marketplace (see the public_gh_mlrun_functions urls.toml
+    # data variable)
+    [ver.mlrun.functions]
+      # Latest supported version
+      # [c-mlrun-functions-version] [IntInfo] (sharonl) (17.1.21) Currently,
+      # there are no release tags in mlrun/functions to match the mlrun/mlrun
+      # and mlrun/demos releases. R&D are working on a new versioning mechanism
+      # for this repo with function-specific versioning. It was decided that
+      # for now, we'll link to the `master` branch, even though this won't
+      # always match the MLRun version for this product doc version. We should
+      # aim to minimize versioned mlrun/functions links until this is resolved.
+      #version = "0.6"
+      version_tag = "master"
+  
+  # Monitoring
+  [ver.monitoring]
+    # Latest pre-deployed version
+    # (Jill)23.9.2021. Changed the support matrix to "prometheus.version"
+	# [c-monitoring-service-version-prometheus] [IntInfo] (sharonl) (18.3.21)
+    # Beginning with product v3.0.0, the "monitoring" service on the "Services"
+    # UI page links to the Prometheus UI, and the version of the monitoring
+    # service is the v3io/prometheus version (`ver.prometheus.version`).
+    # Previously, it was the product version. See v3.0.0 Requirement IG-16832 /
+    # DOC IG-17430. => I retroactively changed the recently published v3.0.0
+    # docs to add version keys for the monitoring service using the V3IO
+    # Prometheus version, and I used `ver.monitoring.version_short` in the
+    # support matrix.
+    # NOTE: Oded informed me that the upcoming MLRun v0.6.2 release requires
+    # using vanilla Prometheus for the monitoring service instead of V3IO
+    # Prometheus. Therefore, for v3.2.1 we've changed the monitoring service to
+    # use vanilla Prometheus (Requirement IG-18294 / DOC IG-18295). He said
+    # that we also plan to retroactively reconfigure existing v3.0 customer
+    # environments to use vanilla Prometheus, and that when this is done, the
+    # version of the monitoring service on the "Services" UI page will change
+    # to the version of vanilla Prometheus. (Oded wasn't sure whether we'll
+    # also update v2.10 environments. Maor said it's not currently planned to
+    # update such environments to MLRun v0.6.2, which would also contradict the
+    # decision to support MLRun v0.5.x for product v2.10.x)=> I asked R&D, in
+    # the description of IG-18294, to notify me when older customer
+    # environments are reconfigured, and I noted this also in DOC IG-18295.
+    # When this change is done, we should change the version of the monitoring
+    # service in the v3.0/v2.10 doc-site support matrix, retroactively, to the
+    # version of the vanilla Prometheus service, to match the UI (even if some
+    # customers aren't upgraded and will see a different service version in the
+    # UI). => [TODO-PENDING-DEV] [V3.2.1-TODO] When the version of the
+    # monitoring service changes, edit the documentation.
+    # [InfraInfo] I used the `version_short` key in the support matrix because
+    # of the decision to use the short version for Iguazio SW in the
+    # documentation, but when we change this service to use vanilla Prometheus,
+    # we should change the support matrix to use the `version` key for a full
+    # X.Y.Z version.
+    version       = "3.5.8"
+    version_short = "3.5"
+    # Service name
+    service_display_name          = "monitoring"
+    service_type_display_name     = "Monitoring"
+    service_type_display_name_tc  = "Monitoring"
+    # Service UI link text
+    service_ui_link_text  =  "Nuclio Dashboard" # (appears as all-caps)
+    # Grafana monitoring-service visualization dashboards
+    [ver.monitoring.visualization_dashboards]
+      all_apps        = "Application Services Monitoring"
+      nuclio_overview = "Nuclio Functions Monitoring - Overview"
+      nuclio_per_func = "Nuclio Functions Monitoring - Per Function"
+    # Predefined monitoring-service directory and files
+    [ver.monitoring.dir]
+      name            = "monitoring"
+      container       = "users" # default_container.name
+      nuclio_logs_dir = "nuclio_merics"
+    
+  # Nuclio
+  [ver.nuclio]
+    # Latest pre-deployed version
+    version       = "1.6"
+    version_short = "1.6"
+    # Service name
+    service_display_name          = "nuclio"
+    service_type_display_name     = "Nuclio"
+    service_type_display_name_tc  = "Nuclio"
+    # Supported Python versions
+    # [IntInfo] (sharonl) (22.2.21) In v3.0.0, Nuclio images are built only
+    # with Python 3.6 or 2.7 and this is what R&D officially support, but
+    # seeing as it's expected to work also with Python 3.7 and has been used
+    # with this version, and because we pre-deploy Python 3.7 in our Jupyter
+    # Notebook and web-shell services and our Frames service is built and
+    # tested only with Python 3.7, it was agreed (in consultation with Adi,
+    # Orit, Oded, and others) to document Nuclio support for Python 3.7 (and
+    # Frames support for Python 3.7 only and not for Python 3.6 and 3.7 as in
+    # previous doc releases). It was agreed that in future releases R&D will
+    # ensure that the supported Python versions for our SW and tools are
+    # compatible. See details in the v3.0.0 support-matrix task DOC IG-17513.
+    # There are now v3.2 requirements to upgrade Nuclio to support Python 3.7
+    # and 3.8 (IG-16779) and to deprecate the support for Python 2.7 (IG-17593).
+    # [InfraInfo] Because of the above, I added 3.7 to the `versions` variable
+    # key but "hid" it in the middle, and I added a `build_versions` key (even
+    # though it's currently unused and can be removed in the next release).
+    [ver.nuclio.python]
+      versions        = "3.6, 3.7, and 2.7"
+      build_versions  = "3.6 and 2.7"
+    
+  # Nuclio Jupyter - Nuclio Python Package for Jupyter Notebook (nuclio-jupyter)
+  [ver.nuclio_jupyter]
+    # Latest pre-deployed version
+    version       = "0.8.9"
+    version_short = "0.8"
+    
+  # NVIDIA
+  # [InfraInfo] Note that when upgrading the driver version, the version number
+  # needs to be updated in `version`, `name_full`, and `supported_gpus_url`.
+  # I decided to save the URL here, not in urls.toml to simplify updates; the
+  # URL is currently used only in the on-prem VM HW spec.
+  [ver.nvdia]
+    [ver.nvdia.gpu_driver]
+      version     = "450.57"
+      name_short  = "Linux display driver"
+      name        = "NVIDIA Linux display driver"
+      name_full   = "NVIDIA Linux display driver 450.57"
+      supported_gpus_url  = "http://us.download.nvidia.com/XFree86/Linux-x86_64/450.57/README/supportedchips.html" 
+  # NVIDIA Products
+  # [IntInfo] The related info in the internal Support Matrix appears in the
+  # Jupyter entry.
+  # CUDA
+  [ver.cuda]
+    # Latest pre-deployed version
+    # [InfInfo] (sharonl) (10.5.20) Uri said that we only preinstall in
+    # Jupyter Notebook cudatoolkit without cuDF or cuML).
+    version = "11.0" # cudatoolkit v11.15.0
+  # RAPIDS (including cuDF & cuML - same version)
+  [ver.rapids]
+    # Latest pre-deployed version
+    # [InfInfo] (sharonl) (14.10.20) RAPIDS is no longer pre-deployed in our
+    # Jupyter Notebook service since v2.8.0, but we test it and have a
+    # certification version.
+    version = "0.17"
+    # Python version used in the RAPIDS Conda environment creation example
+    example_python_ver = "3.7"
+  
+  # Pipelines Service (Kubeflow Pipelines)
+  [ver.pipelines]
+    # Latest pre-deployed version
+    version     = "1.0.1"
+    # Service name
+    service_display_name          = "pipelines"
+    service_type_display_name     = "Kubeflow pipelines"
+    service_type_display_name_tc  = "Kubeflow pipelines"
+
+  # Presto / Trino
+  # [c-prestosql] [IntInfo] (sharonl) In v2.8.0 we moved from prestodb
+  # (https://prestodb.io/) (0.XYZ versioning - v0.206 supported by platform
+  # v2.5.4) to prestosql (Presto SQL - https://prestosql.io/), which is
+  # maintained by the Presto Software Foundation. See v2.8.0 Sub-Requirement
+  # IG-13155 / DOC IG-15185 (v2.8.0 specs update).
+  #
+  # [c-trino] (21.3.21) In Dec 2012, Presto SQL was rebranded as Trino
+  # (including CLI renaming to `trino`). https://prestosql.io/ now has a
+  # message about replacing Presto SQL with Trino and links to the Trino web
+  # site (https://trino.io/), which says in the header "Presto SQL is now
+  # Trino" and links to a blog post from 27.12.20, which explains the move
+  # (https://trino.io/blog/2020/12/27/announcing-trino.html). See details in
+  # DOC IG-18308 to update the documentation (opened for v3.0.1 with affected
+  # versions 2.10.0, 2.8.0, and 2.5.4). =>
+  # - The Presto SQL documentation moved from https://prestosql.io/docs/current/
+  #   to https://trino.io/docs/current/ (https://prestosql.io/docs/.
+  #   https://trino.io/docs/ redirects to the "current" docs, but the old
+  #   Presto SQL doc-site URLs aren't redirected automatically to the new Trino
+  #   doc site but rather they produce XML error code with an `AccessDenied`
+  #   error. => I updated all Presto SQL doc-site links on the active doc sites
+  #   (v3.0.1, v2.10.0, v2.8.0, and v2.5.4), retroactively, and in
+  #   v3io/tutorials to link to the Trino doc site instead, and I asked Eran N.
+  #   to do the same for the product UI links. For other repos and non-Git
+  #   docs, see the info in DOC IG-18308.
+  # - Dina said that it was decided near the time of the Trino rebranding to
+  #   continue using the "Presto" terminology because this is what customers
+  #   know. I asked Adi, Shahar, and Orit to confirm that we should add Trino
+  #   references in context to Presto references in the documentation - see the
+  #   "!! Presto SQL Replaced by Trino !!" email thread in DOC IG-18308.
+  #   [PENDING-PRODUCT] [PENDING-DEV]
+  [ver.presto]
+    # Latest pre-deployed version
+    version     = "359"
+    # Service name
+    service_display_name          = "presto"
+    service_type_display_name     = "Presto"
+    service_type_display_name_tc  = "Presto"
+    # Presto CLI and CLI wrapper names
+    cli              = "presto-cli"
+    cli_v3io_wrapper = "presto"
+    
+    # Presto k8s installation information
+    [ver.presto.k8s]
+      # Presto binaries installation directory; included in $PATH
+      install_bin_dir_path = "/usr/local/bin"
+      # Presto API URL = Presto server URL example
+      api_url_example = "https://presto-api-presto.default-tenant.app.mycluster.iguazio.com"
+      # [IntInfo] The "prestow" alias, which is used from the "presto" alias,
+      # sets`--server to https://presto:8443 - see [c-presto-wrapper] in the
+      # Presto CLI reference.
+    # Presto native app-cluster installation information
+    [ver.presto.native_app_cluster]
+      # Presto server port
+      port  = "8889"
+      # Presto installation directory
+      install_dir_path      = "/opt/presto"
+      install_bin_dir_path  = "/opt/presto/bin"
+
+  # Prometheus - see V3IO Prometheus.
+
+  # Shell - Web-Based Command-Line Shell
+  [ver.web_shell]
+    # Supported Python version
+    # [IntInfo] (sharonl) `python --version` in in the shell returns the Python
+    # version + we predefined a $PYTHON_VERSION environment variable.
+    # (`pip --version` / $PYTHON_PIP_VERSION show the pip version. (10.5.20) In
+    # v2.8.0, $PYTHON_PIP_VERSION was 19.1.1 in a Jupyter (NB & terminal) and a
+    # web shell, but `pip --version` returned 18.1 for Jupyter terminal and
+    # 20.0.2 for the shell - both with the additional info
+    # "from /conda/lib/python3.6/site-packages/pip (python 3.6)" - ?)
+    [ver.web_shell.python]
+      version = "3.7" # v3.7.6
+    # Supported Scala version
+    # [IntInfo] (sharonl) We predefine SCALA_MAJOR_VERSION (X.Y) and
+    # SCALA_VERSION (X.Y.Z) environment variables.
+    [ver.web_shell.scala]
+      version = "2.11" # v2.11.12
+    # Service name
+    service_type_display_name     = "Web-based shell"
+    service_type_display_name_tc  = "Web-Based Shell"
+
+  # Spark
+  [ver.spark]
+    # Latest pre-deployed version
+    # [TODO-NEW-VER] [c-spark-ver] When the supported Spark version changes,
+    # also update the doc URLs in data/vars/spark.toml.
+    version = "3.1.2"
+
+    # Default Spark resource configurations (for Jupyter, Zeppelin, and shell)
+    # [c-spark-default-resource-cfgs] [IntInfo] See DOC IG-11180 for resolved
+    # Bug IG-10774. I don't know whether we also added these configurations in
+    # the v2.0+ native-app-cluster installations or just for k8s, but as we
+    # now document only k8s deployments, I decided not to make this a
+    # k8s-specific variable key.
+    [ver.spark.res_cfgs]
+      spark_executor_cores  = "1"
+      spark_cores_max       = "4"
+      spark_executor_memory = "2 GB"
+      # Cloud default Spark resource configurations
+      [ver.spark.res_cfgs.cloud]
+        spark_executor_cores  = "1"
+        spark_cores_max       = "2"
+        spark_executor_memory = "2 GB"
+
+    # Spark k8s installation information
+    [ver.spark.k8s]
+      # Spark installation directory
+      install_dir_path              = "/spark"
+      install_dir_envar             = "SPARK_HOME"
+      install_dir_path_w_envar      = "$SPARK_HOME"
+      install_bin_dir_path          = "/spark/bin" # included in $PATH
+        # [IntInfo] (sharonl) (21.2.19) This directory contains, among other
+        # things, spark-submit, spark-submit.cmd, and spark-submit2.cmd, and
+        # similar pyspark and sparkR binary and command files.
+      install_bin_dir_path_w_envar  = "$SPARK_HOME/bin"
+      # [IntInfo] The "bin" and "sbin" subdirectories are included in $PATH.
+      # The "bin" subdirectory contains, among other things, spark-submit,
+      # spark-submit.cmd, and spark-submit2.cmd, and similar pyspark and sparkR
+      # binary and command files. The "sbin" subdirectory contains scripts and
+      # commands, mainly to start and stop services.
+    # Spark native app-cluster installation information
+    [ver.spark.native_app_cluster]
+      # Spark installation directory
+      # [IntInfo] [c-spark-install-dir] (sharonl) (21.2.19) On the master
+      # application node for the current local k8s installations (with
+      # Jenkins), the Spark installation directory is /spark 2 (a remnant of
+      # the days when we had two Spark installations) and there's no
+      # $SPARK_HOME or similar Spark-home environment variable (unlike in the
+      # v1.9 native application-cluster or hybrid installations).
+      install_dir_path          = "/spark"
+      install_dir_envar         = "SPARK_HOME"
+      install_dir_path_w_envar  = "$SPARK_HOME"
+
+  # Spark Operator
+  # [c-spark-operator] [InfInfo] Added in v3.0.0 - Req IG-16356 / DOC IG-17932.
+  # The service is designed to be used via the MLRun APIs to simplify
+  # submission and scheduling of Spark jobs. See info in DOC IG-17932.
+  [ver.spark_operator]
+    # Latest pre-deployed version
+    # [IntInfo] (sharonl) (23.2.21) We use the supported product Spark version
+    # as the Spark Operator service version, even though the service is based
+    # on https://github.com/GoogleCloudPlatform/spark-on-k8s-operator, which
+    # doesn't have a 2.4.5 Spark version + we don't use the latest version (we
+    # use a fork branch, which we don't want to document. See DOC IG-17932.
+    version = "3.1.2"
+    # Service name
+    service_display_name          = "spark-operator"
+    service_type_display_name     = "Spark Operator"
+    service_type_display_name_tc  = "Spark Operator"
+
+  # V3IO Daemon (internal product service)
+  [ver.v3io_daemon]
+    # Service name
+    service_display_name          = "v3io-daemon"
+    service_type_display_name     = "V3IO daemon"
+    service_type_display_name_tc  = "V3IO Daemon"
+
+  # V3IO Frames
+  # [c-Frames-shared-single-instance-service]
+  [ver.frames]
+    # Latest pre-deployed version (Frames server version)
+    # [TODO-NEW-VER] Remember to also update ver.frames.client.version.
+    version       = "0.8.14"
+    version_short = "0.8"
+    # Service name
+    service_display_name          = "framesd"
+    service_type_display_name     = "V3IO Frames"
+    service_type_display_name_tc  = "V3IO Frames"
+    # [INFRA-TODO] Move relevant keys to the `frames` map variable.
+    # Default range-index column name
+    range_idx_col_name = "idx"
+    # gRPC address for local platform execution
+    [ver.frames.grpc]
+      ip          = "framesd"
+      port        = "8081"
+      port_envar  = "FRAMESD_SERVICE_PORT_GRPC"
+      address     = "framesd:8081"
+    # HTTP address for local platform execution
+    [ver.frames.http]
+      ip          = "http://framesd"
+      port        = "8081"
+      port_envar  = "FRAMESD_SERVICE_PORT"
+      address     = "http://framesd:8080"
+    # Supported Frames client version
+    [ver.frames.client]
+      version       = "0.8.14" # Pre-deployed version in Jupyter
+      version_short = "0.8"
+    # Supported Python versions
+    [ver.frames.python]
+      version   = "3.7" # Python version used in the Frames build
+      versions  = "3.7" # Supported Python versions
+
+  # V3IO Prometheus
+  [ver.prometheus]
+    # Latest pre-deployed version
+    # [TODO-NEW-VER] [c-monitoring-service-version-prometheus] When updating
+    # `ver.prometheus` version keys, also update the `ver.monitoring` version
+    # keys. See the info for `ver.monitoring`.
+    version       = "3.5.8"
+    version_short = "3.5"
+    # Prometheus version
+    prometheus_version  = "3.5.8"
+    # Service name
+    service_type_display_name     = "Prometheus"
+    service_type_display_name_tc  = "Prometheus"
+
+  # V3IO Python SDK
+  [ver.python_sdk]
+    # Latest pre-deployed version
+    version       = "0.5.7"
+    version_short = "0.5"
+    # Supported Python versions
+    # [InfraInfo] Add `md="true"` to `verkey` or `getvar` shortcode / `get-var`
+    # partial calls to apply Markdown processing (&ndash;) - for example:
+    #     {{< verkey k="python_sdk.python.versions" md="true" >}}
+    [ver.python_sdk.python]
+      versions = "3.5&ndash;3.8"
+
+  # V3IO TSDB
+  [ver.tsdb]
+    # Latest pre-deployed version
+    version       = "0.11.8"
+      # [InfraInfo] The tsdb-cli shortcode with t="version" returns this value.
+    version_short = "0.11"
+    # Binary installation directory
+    bin_dir_path          = "/igz/bin"
+      # = ver.fs_k8s.product_home.bin_dir_path
+    bin_dir_path_w_envar  = "$IGUAZIO_HOME/bin"
+      # = ver.fs_k8s.product_home.bin_dir_path_w_envar
+    # TSDB server example - see the Web APIs service IP address example -
+    # ver.webapi.ip_example.
+
+  # V3IO TSDB Nuclio Functions
+  [ver.tsdb_nuclio]
+    # Latest pre-deployed version
+    version       = "0.6.7"
+    version_short = "0.6"
+    service_type_display_name     = "TSDB Nuclio functions" # tsdb.nuclio_funcs.name.short_sc/short_lc
+    service_type_display_name_tc  = "TSDB Nuclio Functions" # tsdb.nuclio_funcs.name.short_tc
+
+  # V3IO Tutorials
+  # [c-v3io-tutorials] [IntInfo] (sharonl) (20.3.19) Currently, the
+  # v3io/tutorials product tutorials repo contains only Jupyter notebooks and
+  # related files (such as scripts and README versions of some notebooks).
+  # [InfraInfo] See also the public_gh_tutorials data variable in
+  # data/vars/urls.toml and [ver.jupyter_notebook.tutorials].
+  # [TODO-V3.0.1] EDIT
+  [ver.tutorials]
+    # Latest pre-deployed version
+    version       = "3.0.13"
+    version_short = "3.0"
+
+  # VM Virtualization Platforms
+  # Proxmox VE (PVE)
+  [ver.proxmox]
+    # Hypervisor (PVE)
+    [ver.proxmox.hypervisor]
+      versions = "6.x or 7.0"
+  # VMware vSphere
+  # [TODO-NEW-VER] [c-vsphere-ver] When the latest supported VMware vSphere
+  # version changes, also update the doc URLs in data/vars/urls.toml.
+  [ver.vmware]
+  # Hypervisor (ESXi)
+    [ver.vmware.hypervisor]
+      versions = "6.5, 6.7, 7.0"
+
+  # Web APIs (Web Gateway)
+  [ver.webapi]
+    service_display_name          = "webapi"
+    service_type_display_name     = "Web APIs"
+    service_type_display_name_tc  = "Web APIs"
+    # Web-APIs IP address & URL examples
+    # [IntInfo] [c-web-apis-ui-api-url] (22.8.19) There are two types of URLs
+    # that can be used in web-API requests (each with HTTP and HTTPS variations,
+    # but beginning with v2.1.0, we only document HTTPS options - see
+    # [c-https-service-links-only] for the "UI" variable):
+    # - http[s]://webapi.<tenant IP> (see the
+    #   url_example_http[s] variable keys / url_example[_http] in v2.3.0-) -
+    #   uses the k8s ingress to redirect requests to web servers. The ingress
+    #   performs load balancing to select the relevant server per request.
+    #   In v2.0-v2.2.0, the dashboard "UI" column for the web-APIS service had
+    #   only links to this type of URL - "HTTP" & "HTTPS" in v2.0.0, and
+    #   "HTTPS" only in v2.1.0-v2.3.0 - and we only documented this type.
+    # - http[s]://<tenant IP>:<web-APIs port> (see the
+    #   (url_example variable key, modified in v2.3.1) - uses the platform's
+    #   CoreDNS DNS server to redirect requests to specific web servers. The
+    #   CoreDNS performs load balancing per web client instead of per request,
+    #   and is therefore more efficient than the other method except in rare
+    #   cases of a single web client. This method was always supported, but in
+    #   v2.0.0-v2.3.0 it was undocumented, and in v2.0-v2.2 users didn't know
+    #   the web-APIs port (the port that the web-API servers listen on), which
+    #   needs to be included in the URL. In v2.3.0, we added to the web-APIs
+    #   "UI" dashboard column an "HTTPS_Direct" link with the "direct-request"
+    #   URL format, in addition to the existing "HTTPS" link with the ingress
+    #   URL format, and in v2.3.1 I documented the two types of addresses with
+    #   a recommendation to use the direct URL in most cases, and I changed our
+    #   examples to use the direct-request URL format by changing the value of
+    #   the url_example variable key (and moving the example of the ingress
+    #   HTTPS format to a url_example_https key). This should have been done
+    #   for v2.3.0 but I learned of the change only for v2.3.1.
+    # See info in DOC IG-13104 for the v2.3.1 doc changes.
+    url_example = "https://default-tenant.app.mycluster.iguazio.com:8443"
+    url_example_https = "https://webapi.default-tenant.app.mycluster.iguazio.com"
+    url_example_http = "http://webapi.default-tenant.app.mycluster.iguazio.com"
+    ip_example  = "webapi.default-tenant.app.mycluster.iguazio.com"
+  
+  # Zeppelin
+  [ver.zeppelin]
+    # Latest pre-deployed version
+    version = "0.8.2"
+    # Service name
+    service_type_display_name     = "Zeppelin"
+    service_type_display_name_tc  = "Zeppelin"
+    # Sample custom Jupyter notebook name
+    sample_user_note_name = "my_iguazio_trial"
+    # Supported Python version
+    # [IntInfo] (sharonl) `python --version` in an %sh paragraph returns the
+    # Python version.
+    [ver.zeppelin.python]
+      version = "3.6" # v3.6.8
+    # Supported Scala version
+    # [IntInfo] (sharonl) `util.Properties.versionString` in a %spark paragraph
+    # returns the Scala version. `sc.version` returns the local Spark version.
+    [ver.zeppelin.scala]
+      version = "2.11" # v2.11.8
+    # Predefined Getting-Started Zeppelin Note
+    [ver.zeppelin.predef_notes.getting_started]
+      name                = "Iguazio Getting Started Example"
+      file                = "Iguazio Getting Started Example.json"
+      title               = "Iguazio Getting Started Example"
+      container           = "bigdata" # = default_container.name
+        # [V3.0-TODO-P2] [c-projects-default-container-zeppelin-gs-example]
+        # [IntOnf] (sharonl) (15.1.21) Beginning with v3.0.0 when we changed
+        # the default container from "bigdata" to "projects", it's preferred to
+        # change this to "projects"; or better yet, use the running-user
+        # directory in the "users" container. But this would require editing. I
+        # noted the need for R&D to replace the "bigdata" uses in this example
+        # in a comment in Requirement IG-15834. Now as well that this variable
+        # key is currently used also from the grafana-dashboards.md tutorial
+        # where we also have screen shots that show the matching container name
+        # - see the related [c-projects-default-container-sample-tsdb-table]
+        # comment. Note that the usage in the Grafana dashboards tutorial is in
+        # relation to the only other use of this variable, for the CSV to NoSQL
+        # table conversion example in the ingest-n-consume-files.md tutorial,
+        # which we want to edit anyway.
+      sample_dir          = "zeppelin_getting_started_example"
+      sample_csv          = "bank.csv"
+      sample_csv_aws_url  = "https://s3.amazonaws.com/apache-zeppelin/tutorial/bank/bank.csv"
+        # [IntInfo] (sharonl) The example Zeppelin note includes a curl
+        # command for downloading the file from the AWS S3 site -
+        # `curl "https://s3.amazonaws.com/apache-zeppelin/tutorial/bank/bank.csv" > /tmp/bank.csv`.
+        # The doc refers both to this code and to the option of downloading the
+        # file from the doc site's downloads directory -
+        # ver.docs_samples.dnload_dir.
+      sample_nosql_table  = "bank_nosql"
+  ## ---- VER_INTEGRATED_SW_END ----
+  ## ===== VER_SUPPORT_MATRIX_END =====
+  
+  ## ===== VER_CFG_VARS_START =====
+  # [IntInfo] (sharonl) TODO: Add more variables instead of current hardcoded
+  # configuration-properties references in the doc.
+  [ver.cfg_properties]
+    nosql_range_scan_buckets_count_name           = "v3io.kv.range-scan.hashing-bucket-num"
+    nosql_range_scan_buckets_count_default_value  = "64"
+  ## ===== VER_CFG_VARS_END =====
+## ===== VER_END =====
+
+## ===== CURRENT_VERSION_END =====
+

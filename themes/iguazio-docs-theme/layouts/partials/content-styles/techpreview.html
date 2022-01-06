@@ -1,0 +1,85 @@
+<!-- Params
+  Mandatory Params
+  "ctx"   - The context of the calling template/partial/shortcode (`.`).
+  Optional Params
+  "text"  - Tech-preview notation text. Default = .Site.Params.techpreview_mark
+            when "mark", "note", or "heading" is "1"; otherwise,
+            .Site.Params.techpreview or .Site.Params.techpreview_tc if "tc"=1.
+  "tc"    - 1 = Use .Site.Params.techpreview_tc (title case) and not
+            .Site.Params.techpreview (lower case) as the default text (see
+            "text").
+  "mark"  - 1 = use .Site.Params.techpreview_mark as the default tech-preview
+            notation text. This is also the default notation text when "note"
+            or "heading" is "1". "mark" is ignored when "text" is set.
+  "fmt"   - 1 (default) = apply "tech-preview" CSS formatting; 0 - don't apply
+            special formatting. If "note" or "heading" is "1", "fmt" is ignored.
+  "basic_desc" - 1 = add a basic description of Tech Preview features
+            (.Site.Params.techpreview_basic_desc). Note that the call to the
+            shortcode with this option needs to be preceded by the beginning of
+            the first description sentence (which begins with "included").
+  "heading" - 1 = add the tech-preview notation as a small heading (<p>).
+            If "note" is "1", "fmt" is ignored.
+  "note"  - 1 = add a Tech Preview note. The content of the note depends on
+            whether the "feature" or "features" param is set
+            (techpreviewFeature/techpreviewFeatures in the page front matter);
+            and whether the entire page or section documents a Tech Preview
+            feature, as indicated by the custom isTechPreview,
+            techpreviewFeature, or techpreviewFeatures page params.
+            If "note" is "1", "fmt" is ignored.
+            The default note text explains the Tech Preview notation, which is
+            determined based on the user of the "text" and "mark" params, and
+            the notation is formatted using the "techpreview" CSS class
+            regardless of the value of "fmt".
+  "note_text" - Like "note" but only for the note text without the admonition.
+  "feature" Custom text describing a Tech Preview feature, to be used in
+            Tech Preview notes. This param can be set from the page front
+            matter using the custom techpreviewFeature page param.
+  "features" Like "feature" but describes a plural Tech Preview feature (e.g.,
+            "APIs"). This param can be set from the page front matter using the
+            custom techpreviewFeatures page param.
+  [*] [InfraInfo] [sharonl] The optional "text" param was added so that if we
+  decide to change the tech-preview text/mark, we can change the shortcode
+  calls in documents that shouldn't be modified retroactively, such as release
+  notes, to pass within the "text" param the $.Site.Params.techpreview[_mark]
+  string that was used when the release notes were published (i.e., before the
+  changes). Regarding the tech-preview class formatting, I think it's less of
+  an issue if we change it retroactively, but if we decide to change the
+  formatting and want to keep the original format in the existing release notes
+  we can add support for this as well. We can also always replace existing
+  shortcode calls with hardcoded text.
+-->
+{{- $ctx := .ctx -}}
+{{- $feature := .feature | default "" -}}
+{{- $features := .features | default "" -}}
+{{- $techpreviewmark := (printf "<nobr>%s</nobr>" $ctx.Site.Params.techpreview_mark | markdownify) -}}
+{{- $text := (.text | default (cond (or (eq .mark "1") (eq .note "1") (eq .heading "1")) $techpreviewmark $ctx.Site.Params.techpreview)) | markdownify -}}
+{{- $mark_str := printf "<span class='tech-preview'>%s</span>" $text | safeHTML -}}
+{{- $basic_desc := (printf "%s" $ctx.Site.Params.techpreview_basic_desc | markdownify) -}}
+
+{{- if eq .heading "1" -}}
+  {{- printf "<p>%s</p>" $mark_str | safeHTML -}}
+  <!-- [InfraInfo] <p class="tech-preview"> doesn't apply the class style. -->
+{{- else if or (eq .note "1") (eq .note_text "1") -}}
+  {{- $note_text := printf "The &quot;%s&quot; notation marks features that are %s" $mark_str $basic_desc | markdownify -}}
+  {{- if $feature -}}
+    {{- $note_text = printf "The %s is provided as a %s feature, which is %s" $feature $ctx.Site.Params.techpreview $basic_desc | markdownify -}}
+  {{- else if $features -}}
+    {{- $note_text = printf "The %s are provided as a %s feature, which is %s" $features $ctx.Site.Params.techpreview $basic_desc | markdownify -}}
+  {{- else if eq $ctx.Params.istechpreview true -}}
+    {{- $note_text = printf "This section documents %s features, which are %s" $ctx.Site.Params.techpreview $basic_desc | markdownify -}}
+  {{- end -}}
+  {{- if eq .note "1" -}}
+    {{- partial "content-styles/admon.html" (dict "content" (printf "%s" $note_text | markdownify) "class" "techpreview-note" "title" (printf "%s Note" $ctx.Site.Params.techpreview) "id" "tech-preview-note") -}}
+  {{- else -}}
+    {{- $note_text -}}
+  {{- end -}}
+{{- else if eq .basic_desc "1" -}}
+  {{- $basic_desc -}}
+{{- else -}}
+  {{- if eq .fmt "0" -}}
+    {{- printf "%s" $text | markdownify -}}
+  {{- else -}}
+    {{- $mark_str -}}
+  {{- end -}}
+{{- end -}}
+

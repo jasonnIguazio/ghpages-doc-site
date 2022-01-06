@@ -1,0 +1,8 @@
+<!-- Optional positional Params:
+  $0 - A period (.) delimited string denoting a data/vars/product.toml 
+       "cloud_trial" variable key. The default value is "name.full_lc".
+-->
+{{- $key := printf "cloud_trial.%s" ((.Get 0) | default "name.full_lc") -}}
+
+{{- partial "func/get-var.html" (dict "ctx" . "v" (printf "product.%s" $key)) -}}
+

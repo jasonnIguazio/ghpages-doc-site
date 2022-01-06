@@ -1,0 +1,38 @@
+{
+  "name": "doc-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "buildSearchIndex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iguazio/doc-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iguazio/doc-site/issues"
+  },
+  "homepage": "https://github.com/iguazio/doc-site#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-each": "^0.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-sass": "^3.1.0",
+    "merge-stream": "^1.0.1",
+    "run-sequence": "^2.2.1",
+    "toml-require": "^1.2.0",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "gulp-shell": "^0.7.0",
+    "gulp-zip": "^5.0.1"
+  }
+}

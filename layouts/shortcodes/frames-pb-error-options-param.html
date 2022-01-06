@@ -1,0 +1,28 @@
+<!-- frames-pb-error-options-param: Frames pb.ErrorOptions enum param doc.
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Required Params
+  "param"         - The parameter name; currently, "if_missing" or "if_exists".
+  "backend_name"  - The backend name - "NoSQL" | "TSDB" | "stream" | "CSV".
+  "backend_type"  - The backend type - "kv" | "tsdb" | "stream" | "csv".
+-->
+{{- $ctx := . -}}
+{{- $param := .Get "param" -}}
+{{- $backend_type := .Get "backend_type" -}}
+{{- $backend_name := .Get "backend_name" -}}
+{{- $object := "table" -}}
+{{- if eq $backend_type "stream" -}}
+  {{- $object = "stream" -}}
+{{- end -}}
+{{- $object_long := $object -}}
+{{- if or (eq $backend_type "kv") (eq $backend_type "tsdb") -}}
+  {{- $object_long = printf "%s %s" $backend_name $object -}}
+{{- end -}}
+{{- $condition := cond (eq $param "if_missing") "doesn't exist" "already exists" -}}
+{{- $desc := printf "Determines whether to raise an error when the specified %s ([<paramname>table</paramname>](#param-table)) %s." $object_long $condition -}}
+{{- $valid_values := printf "`FAIL` to raise an error when the specified %s %s; `IGNORE` to ignore this" $object $condition -}}
+{{- $default_value := "`FAIL`" -}}
+{{- $frames_pb2_import := (printf "%s%s%s" "`pb.ErrorOptions` enumeration. To use the enumeration, import the `frames_pb2` module; for example:\n  ```python\n  from " $ctx.Site.Data.vars.product.frames.client.lib_name " import frames_pb2 as fpb\n  ```" | markdownify) -}}
+{{- $content := printf "%s%s%s%s%s" $desc (partial "doc/param-type.html" (dict "ctx" $ctx "content" $frames_pb2_import "pre" "" )) (partial "doc/param-req.html" (dict "ctx" $ctx "req" "O" "content" "" )) (partial "doc/param-values.html" (dict "ctx" $ctx "content" $valid_values)) (partial "doc/param-default-value.html" (dict "ctx" $ctx "content" $default_value)) | markdownify -}}
+
+{{- partial "doc/param-doc.html" (dict "ctx" . "content" $content "name" $param "id" (printf "param-%s" $param)) -}}
+

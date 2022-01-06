@@ -1,0 +1,9 @@
+{{- $htag := (printf "h%s" (.Get "h")) -}}
+{{ $name := .Get "name" }}
+{{ $id := .Get "id" }}<!-- optional; default = $name -->
+{{ $pre := .Get "pre" }}<!-- optional text to prepend to the API name -->
+{{ $post := .Get "post" }}<!-- optional text to append to the API name -->
+{{ $pretext := (printf "%s " $pre) | default "" }}
+{{ $posttext := (printf " %s" $post) | default "" }}
+{{ (printf "<%s id='%s'>%s%s%s</%s>" $htag ($id | default $name) $pretext $name $posttext $htag) | safeHTML }}
+

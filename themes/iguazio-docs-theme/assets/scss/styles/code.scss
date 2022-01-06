@@ -1,0 +1,263 @@
+/* ================================== */
+/* Code Blocks */
+
+// [InfraInfo] Code blocks can be created with the Hugo `highlight` shortcode
+// or with the MD GitHub-flavored code-fences code-block syntax (```[language]),
+// both of which are currently configured to use Chroma for highlighting.
+//
+// Code blocks can also be created by using HTML code in the source file -
+// either using our custom code-block style - `<pre class="code-block">` -
+// or using standard HTML `<pre><code>...</code></pre>` tags, but the
+// latter doesn't style the code block with a background color etc. or
+// using our JS customization (with the Copy button, etc.).
+// These variations don't support language-specific syntax highlighting.
+
+/* ================================== */
+/* Generic Code Formatting (Inline Code & Code Blocks) */
+// [InfraInfo] These configurations also affect Chroma code blocks (created
+// with the `highlight` shortcode or MD code-fence code-block syntax - ```).
+code {
+  font-family: $font-code;
+  color: inherit;
+}
+/* ================================== */
+
+/* ================================== */
+/* highlight Shortcode Formatting (applies also to MD fenced code blocks) */
+
+.highlight {
+  position: relative;
+}
+/* ================================== */
+
+/* ================================== */
+/* Inline code in text elements (paragraphs, list items, table cells) */
+// [InfraInfo] [sharonl] By default, inline code elements, created within para
+// text with the MD `` syntax or HTML <code> tags, appear aligned with the top
+// of the regular text, even when the text size is the same for both elements,
+// which looks awkward. I added `vertical-align: middle` to center the text
+// vertically compared to the parent element (the para). The inline code in the
+// output, when using this configuration, actually looks more aligned with the
+// bottom of the regular text than centered, but I think it looks better than
+// the default vertical alignment. Also, it looks the same as the default
+// alignment when using our custom `api` (and similar) styles.
+p code,
+li code,
+dd code,
+td code {
+  vertical-align: middle;
+}
+/* ================================== */
+
+/* ================================== */
+/* Chroma Code-Blocks Customization */
+.chroma {
+  position: relative;
+  padding: 25px 20px 20px!important;
+  overflow: auto;
+
+  /* ================================== */
+  tr {
+    vertical-align: top!important;
+    .lntd {
+      padding-left: 0;
+    }
+
+    td {
+      .chroma {
+        padding: 0!important;
+        overflow: unset;
+      }
+
+      &:nth-child(1) {
+        min-width: 4em;
+        padding-right: 0!important;
+        .chroma {
+          margin-right: 10px!important;
+        }
+      }
+
+      &:nth-child(2) {
+        white-space: nowrap!important;
+      }
+    } /* [.chroma tr td] */
+    
+    &:hover td {
+      background-color: $color-chroma-manni-bg!important;
+    } /* [.chroma tr:hover td] */
+  } /* [.chroma tr] */
+  /* ================================== */
+
+  /* ================================== */
+  .code {
+    white-space: nowrap!important;
+  } /* [.chroma .code] */
+  /* ================================== */
+
+} /* [.chroma]*/
+/* ================================== */
+
+/* ================================== */
+/* Custom Code-Blocks Style - to be used with the <pre> tag */
+.code-block {
+  @extend .chroma;
+  font-family: $font-code;
+  background-color: $color-code-bg;
+  line-height: 21px!important;
+  max-height: 365px;
+} /* [.code-block] */
+/* ================================== */
+
+/* ================================== */
+/* Consecutive `highlight` shortcode customization */
+// [InfraInfo] [c-css-consecutive-code-blocks] [sharonl] We verified that
+// adding the following adds vertical space between consecutive code blocks
+// without a hardcoded line break (also when using the MD code-fences syntax,
+// as done above), but I decided not to use this configuration because
+// currently there are instances in which the consecutive code-blocks behavior
+// comes in handy: namely, I want to create a single code block for an HTTP
+// request/response where the header uses `http` syntax and the body uses
+// `json` syntax, and the consecutive code blocks are the best method I found
+// to do this (although not ideal - there are two Copy buttons and there's
+// extra space between the blocks (albeit with code-block formatting).
+/*
+.highlight + .highlight {
+  margin-top: 40px;
+}
+*/
+/* ================================== */
+
+/* ================================== */
+/* Code Tabs */
+.code-tabs {
+  .code-nav {
+    li {
+      margin: 0!important;
+      padding: 0!important;
+    }
+  } /* [.code-tabs .code-nav] */
+
+  ul {
+    list-style-type: none!important;
+    margin: 0!important;
+    overflow: hidden;
+    z-index: 10;
+    background-color: $color-code-bg;
+    border-radius: 3px;
+  } /* [.code-tabs ul] */
+
+  li {
+    float: left;
+  } /* [.code-tabs li] */
+
+  li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    margin: 15px;
+    color: $color-code-tab-inactive;
+  } /* [.code-tabs li a] */
+
+  li.active > a {
+    color: $color-code-tab-active;
+    font-weight: $font-body-bold-light;
+
+    &:hover {
+      color: $color-code-tab-hover;
+    }
+  } /* [.code-tabs li.active > a] */
+
+  a:hover {
+    font-weight: $font-body-bold-light;
+    color: $color-code-tab-hover;
+  } /* [.code-tabs a:hover] */
+
+  /* Tab Content */
+  .tab-content {
+    margin-top: 7px;
+  } /* [.code-tabs .tab-content] */
+
+} /* [.code-tabs] */
+/* ================================== */
+
+/* ================================== */
+/* Copy Button */
+.copy-button {
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  margin: 10px;
+  padding: 0;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  background-color: transparent;
+
+  /* ================================== */
+  p {
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+    font-weight: $font-body-bold-light;
+    font-size: 12px;
+    color: $color-code-copy-btn;
+
+    /* Copy-Button Hover */
+    &:hover {
+      color: $color-code-copy-btn-hover;
+      .tooltiptext {
+        visibility: visible;
+      }
+    } /* [.copy-button p:hover] */
+
+    /* Copy-Button Tool-Tip Text */
+    .tooltiptext {
+      visibility: hidden;
+      background-color: $color-tooltip-bg;
+      color: $color-tooltip-text;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      margin-left: -50px;
+      margin-top: -5px;
+      position: absolute;
+    } /* [.copy-button p .tooltiptext] */
+
+  } /* [.copy-button p ] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Hide Code-Copied Message */
+  .copied {
+    display: none;
+  } /* [.copy-button .copied] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Copy-Button Clicked */
+  &.clicked {
+    background-color: $color-tooltip-bg;
+    color: $color-tooltip-text;
+    border-radius: 6px;
+    text-align: center;
+    padding: 5px;
+    width: 200px;
+
+    .copy {
+      display: none;
+      color: $color-tooltip-text;
+    } /* [.code-tabs.clicked .copy] */
+
+    .copied {
+      display: block;
+      color: $color-tooltip-text;
+    } /* [.code-tabs.clicked .copied] */
+  } /* [.copy-button.clicked] */
+  /* ================================== */
+
+} /* [.copy-button] */
+/* ================================== */
+
+/* [Code Blocks] */
+/* ================================== */
+

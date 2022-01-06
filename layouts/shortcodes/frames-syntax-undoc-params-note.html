@@ -1,0 +1,12 @@
+<!-- frames-syntax-undoc-params-note: Frames undocumented-parameters note.
+Optional Params:
+  "param" - The last param whose name can be omitted in function calls.
+            By default, the note requires explicitly specifying all param names.
+  "title" - Note title; default: "Note".
+  "id"    - Note ID; default: "undoc-params-note".
+-->
+{{- $param := .Get "param" -}}
+{{- $text := printf "The %s method has additional parameters that aren't currently supported for the %s backend. Therefore, when calling the method, be sure to explicitly specify the names of all parameters%s." (.Get "method") (.Get "backend_name") (cond (eq $param "") "" (printf " after <paramname>%s</paramname>" $param)) | markdownify -}}
+
+{{- partial "content-styles/admon.html" (dict "class" "note" "content" $text "title" ((.Get "title") | default "Note") "id" ((.Get "id") | default "undoc-params-note")) -}}
+

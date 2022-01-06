@@ -1,0 +1,14 @@
+<!-- param-req: Parameter-requirement bullet
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Content (.Inner) - Optional additional text to append to the default text
+  that's derived from the requirement level (according to param $0).
+  NOTE: Include a preceding space in the content, as necessary.
+Optional Positional Params
+  $0  - (Optional but should typically be set) The requirement level -
+    "R" | "M" - Required (mandatory param)
+    "R-or-URL"  - Required unless the param is set in the request URL
+    "O" - "Optional"
+    "I" - "Implicit"
+-->
+{{- partial "doc/param-req.html" (dict "ctx" . "content" .Inner "req" (.Get 0)) -}}
+

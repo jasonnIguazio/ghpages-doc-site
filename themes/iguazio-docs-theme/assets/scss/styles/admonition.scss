@@ -1,0 +1,111 @@
+/* ================================== */
+/* Admonitions */
+.admonition {
+  padding: 1px 15px 5px 15px;
+  border-left: 2px solid;
+  //border-radius: 1 5px 5px 0;
+  position: relative;
+  margin: 20px 0;
+  background-color: inherit;
+
+  p, ol, ul, dl {
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  /* Admonition Title */
+  .admonition-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  /* Event Admonition */
+  &.event {
+    border-color: $color-admon-event;
+
+    .admonition-title {
+      color: $color-admon-event;
+    }
+  }
+
+  /* Note Admonition */
+  &.note {
+    border-color: $color-admon-note;
+
+    .admonition-title {
+      color: $color-admon-note;
+    }
+  }
+
+  /* Beta Note */
+  &.beta-note {
+    border-color: $color-beta;
+
+    .admonition-title {
+      color: $color-beta;
+    }
+  }
+
+  /* Confidentiality Note */
+  &.confid-note {
+    border-color: $color-confid;
+
+    .admonition-title {
+      color: $color-confid;
+    }
+  }
+
+  /* Tech Preview Note */
+  &.techpreview-note {
+    border-color: $color-tech-preview;
+
+    .admonition-title {
+      color: $color-tech-preview;
+    }
+  }
+
+  /* Internal Info */
+  &.internal-info {
+    border-color: $color-internal-info;
+
+    .admonition-title {
+      color: $color-internal-info;
+    }
+  }
+
+  /* Internal Release-Note Info */
+  &.internal-info-release-note {
+    border-color: $color-internal-info-release-note;
+
+    .admonition-title {
+      color: $color-internal-info-release-note;
+    }
+  }
+
+  /* Warning Admonition */
+  &.warning {
+    border-color: $color-admon-warning;
+
+    .admonition-title {
+      color: $color-admon-warning;
+    }
+  }
+
+  /* Tip Admonition */
+  &.tip {
+    border-color: $color-admon-tip;
+
+    .admonition-title {
+      color: $color-admon-tip;
+    }
+  }
+} /* [admonition] */
+/* ================================== */
+

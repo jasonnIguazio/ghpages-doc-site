@@ -1,0 +1,14 @@
+<!-- The shortcode has two alternative conditional-processing paths:
+- Doc-filter site-param condition, using "filter" and "filterval" params -
+  process the shortcode content if $Site.Params.Filters has a key whose name
+  matches the "filter" param and whose value equals the "filterval" param value.
+- Environment-variable condition, using "env" and "envval" params - process the
+  shortcode content if there's a defined environment variable whose name
+  matches the "env" param and whose value equals the "envval" param value.
+Note: See also the not-condition.html shortcode for a negative condition logic.
+We also added conditional logic to specific shortcodes such as xref.
+-->
+{{- if or (and (.Get "filter") (eq (.Get "filterval") (index $.Site.Params.Filters (.Get "filter")))) (and (.Get "env") (eq (getenv (.Get "env")) (.Get "envval"))) -}}
+{{- printf "%s" .Inner | markdownify -}}
+{{- end -}}
+

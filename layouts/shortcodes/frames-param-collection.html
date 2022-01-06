@@ -1,0 +1,44 @@
+<!-- frames-param-collection: Frames collection ("table") parameter doc.
+     (The link-anchor ID is set hardcoded to "param-table".)
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Optional content (.Inner) - Text to append to the default param description.
+Required Params
+  "backend_name"  - The backend name - "NoSQL" | "TSDB" | "stream" | "CSV".
+  "backend_type"  - The backend type - "nosql" | "tsdb" | "stream" | "csv".
+Optional Params
+  "req"       - Requirement-level; see the param-req "req" param; default: "R".
+  "req_extra" - Extra requirement text; see the param-req "content" param;
+                default: "".
+
+[IntInfo] (sharonl)
+- [c-frames-tsdb-table-paths] (17.12.19) In the doc, we use a slash ('/') at
+  the start of all nested table paths (i.e., all paths that aren't just a table
+  name for tables in the root container directory), but the slash isn't
+  required and the Frames v3io/tutorials Jupyter NB tutorials include paths
+  without an opening slash. Using the slash also matches the table-path syntax
+  that we document, for example, for Presto.
+-->
+{{- $ctx := . -}}
+{{- $backend_type := .Get "backend_type" -}}
+{{- $backend_name := .Get "backend_name" -}}
+{{- $req := .Get "req" | default "R" -}}
+{{- $req_extra := .Get "req_extra" | default "" -}}
+{{- $object := "table" -}}
+{{- $object_examples := "mytable" -}}
+{{- if or (eq $backend_type "nosql") (eq $backend_type "tsdb") -}}
+  {{- $object = printf "%s %s" $backend_name $object -}}
+  {{- if eq $backend_type "nosql" -}}
+    {{- $object_examples = printf "<code>&quot;%s&quot;</code> or <code>&quot;examples/nosql/my_table&quot;</code>" $object_examples -}}
+  {{- else -}}
+    {{- $object_examples = printf "<code>&quot;%s&quot;</code> or <code>&quot;examples/tsdb/my_metrics&quot;</code>" $object_examples -}}
+  {{- end -}}
+{{- else if eq $backend_type "stream" -}}
+  {{- $object = "stream" -}}
+  {{- $object_examples = "<code>&quot;mystream&quot;</code> or <code>&quot;examples/stream/my_stream&quot;</code>" -}}
+{{- end -}}
+{{- $desc := printf "The relative path to the backend data &mdash; a directory in the target data container (as configured for the client object) that represents a %s. For example, %s." $object $object_examples -}}
+
+{{- $content := printf "%s%s%s%s" $desc .Inner (partial "doc/param-type.html" (dict "ctx" $ctx "content" "`str`" "pre" "" )) (partial "doc/param-req.html" (dict "ctx" $ctx "req" $req "content" $req_extra )) | markdownify -}}
+
+{{- partial "doc/param-doc.html" (dict "ctx" . "content" $content "name" "table" "id" "param-table") -}}
+

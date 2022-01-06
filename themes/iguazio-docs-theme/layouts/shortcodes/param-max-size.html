@@ -1,0 +1,6 @@
+<!-- param-max-size: Maximum-size bullet (e.g., max param-value size)
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Required content (.Inner) - The maximum-size text.
+-->
+{{- partial "doc/param-max-size.html" (dict "ctx" . "content" .Inner) -}}
+

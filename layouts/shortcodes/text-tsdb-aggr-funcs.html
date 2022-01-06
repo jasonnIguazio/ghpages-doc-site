@@ -1,0 +1,30 @@
+<!-- text-tsdb-aggr-funcs: Supported TSDB aggregation functions
+  Optional Params
+    "all" - "1" - include `*_all` cross-series aggregation function;
+            "0" (default) otherwise.
+
+[InfraInfo] (sharonl) Initially we used an include file with the `include`
+shortcode, but this doesn't allow conditional text.
+-->
+{{- $all := .Get "all" -}}
+{{- $content := "" -}}
+{{- $avg_str := printf "- <a id='v3io-tsdb-aggregate-avg'></a><opt-b>avg%s</opt-b> &mdash; the average of the sample values." (cond (eq $all "1") " | avg_all" "") -}}
+{{- $content = printf "%s\n%s" $content $avg_str -}}
+{{- $count_str := printf "- <a id='v3io-tsdb-aggregate-count'></a><opt-b>count%s</opt-b> &mdash; the number of ingested samples." (cond (eq $all "1") " | count_all" "") -}}
+{{- $content = printf "%s\n%s" $content $count_str -}}
+{{- $last_str := printf "- <a id='v3io-tsdb-aggregate-last'></a><opt-b>last%s</opt-b> &mdash; the value of the last sample (i.e., the sample with the latest time)." (cond (eq $all "1") " | last_all" "") -}}
+{{- $content = printf "%s\n%s" $content $last_str -}}
+{{- $max_str := printf "- <a id='v3io-tsdb-aggregate-max'></a><opt-b>max%s</opt-b> &mdash; the maximal sample value." (cond (eq $all "1") " | max_all" "") -}}
+{{- $content = printf "%s\n%s" $content $max_str -}}
+{{- $min_str := printf "- <a id='v3io-tsdb-aggregate-min'></a><opt-b>min%s</opt-b> &mdash; the minimal sample value." (cond (eq $all "1") " | min_all" "") -}}
+{{- $content = printf "%s\n%s" $content $min_str -}}
+{{- $rate_str := printf "- <a id='v3io-tsdb-aggregate-rate'></a><opt-b>rate%s</opt-b> &mdash; the change rate of the sample values, which is calculated as `<last sample value of the previous interval> - <last sample value of the current interval>) / <aggregation granularity>`." (cond (eq $all "1") " | rate_all" "") -}}
+{{- $content = printf "%s\n%s" $content $rate_str -}}
+{{- $stddev_str := printf "- <a id='v3io-tsdb-aggregate-stddev'></a><opt-b>stddev%s</opt-b> &mdash; the standard deviance of the sample values." (cond (eq $all "1") " | stddev_all" "") -}}
+{{- $content = printf "%s\n%s" $content $stddev_str -}}
+{{- $stdvar_str := printf "- <a id='v3io-tsdb-aggregate-stdvar'></a><opt-b>stdvar%s</opt-b> &mdash; the standard variance of the sample values." (cond (eq $all "1") " | stdvar_all" "") -}}
+{{- $content = printf "%s\n%s" $content $stdvar_str -}}
+{{- $sum_str := printf "- <a id='v3io-tsdb-aggregate-sum'></a><opt-b>sum%s</opt-b> &mdash; the sum of the sample values." (cond (eq $all "1") " | sum_all" "") -}}
+{{- $content = printf "%s\n%s" $content $sum_str -}}
+{{- printf "%s" $content | markdownify -}}
+

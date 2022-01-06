@@ -1,0 +1,14 @@
+<!-- param-values: Valid parameter values bullet
+NOTE: This partial must be called inside a definition list (<dl>...</dl>).
+Required Params
+  "ctx"   - The context of the calling template/partial/shortcode (`.`).
+  "content" (.Inner) - The valid values.
+Optional Params
+  "str" - The "heading" string; default: "Valid Values".
+-->
+<!-- [InfraInfo] The "ctx" partial param is currently unused. -->
+<ul>
+  <li>{{- printf "**%s:** %s" ($.str | default "Valid Values") $.content | markdownify -}}
+  </li>
+</ul>
+

@@ -1,0 +1,192 @@
+## Shortcode Headings Variables
+
+# [InfraInfo] This file defines custom-heading variables that can be used to
+# create headings with shortcodes - currently, using the igz-heading shortcode.
+# See additional info at the end of the file.
+#
+# Shortcode:  igz-heading
+# 
+# {{< igz-heading h="HLEVEL" group|g="GROUP_KEY" type|t="TYPE_KEY" [id="ID"] [pre="PRE-TEXT"] [post="POST_TEXT] [none="1"] >}}
+# Parameters: 
+#"h"           [Required] Heading level (e.g., "2" for h2), or "small" for the
+#              small-heading class
+#"group" | "g" [Required] data/vars/headings.toml group key (e.g., "apiref")
+#"type"  | "t" [Required] Heading type - Data.vars.headings.$group key (e.g.,
+#              "params")
+#"id"          [Optional] Heading anchor id; default = $type
+#"pre"         [Optional] Text to prepend to the default text, including the
+#              space at the end
+#"post"        [Optional] Text to append to the default text, including the
+#              space at the beginning 
+# Examples:
+#   {{< igz-heading h="2" group="release_notes" type="fixes" >}} [*]
+#   {{< igz-heading h="3" g="api-ref" t="params" id="request-params" >}}
+#   {{< igz-heading h="small" g="apiref_web" t="response" id="example1-response" >}}
+#
+# [InfraInfo] There is also an igz-heading-small shortcode, which is equivalent
+# to calling igz-heading with h="2". This shortcode was kept for backwards
+# compatibility and should no longer be used.
+# backwards compatibility. Use igz-heading with h="small" instead.
+
+## ===== API_REF_HEADINGS_START =====
+## Common API Headings
+[apiref]
+  [[apiref.headings]]
+    type      = "constructors"
+    text      = "Instance Constructors"
+  [[apiref.headings]]
+    type      = "const-params-n-data-members"
+    text      = "Parameters and Data Members"
+  [[apiref.headings]]
+    type      = "data_members"
+    text      = "Data Members"
+  [[apiref.headings]]
+    type      = "description"
+    text      = "Description"
+  [[apiref.headings]]
+    type      = "elements"
+    text      = "Elements"
+  [[apiref.headings]]
+    type      = "endpoint"
+    text      = "API Endpoint"
+  [[apiref.headings]]
+    type      = "enum-values"
+    text      = "Enumeration Values"
+  [[apiref.headings]]
+    type      = "errors"
+    text      = "Errors"
+  [[apiref.headings]]
+    type      = "example"
+    text      = "Example"
+  [[apiref.headings]]
+    type      = "examples"
+    text      = "Examples"
+  [[apiref.headings]]
+    type      = "fqn"
+    text      = "Fully Qualified Name"
+  [[apiref.headings]]
+    type      = "members"
+    text      = "Members"
+  [[apiref.headings]]
+    type      = "methods"
+    text      = "Methods"
+  [[apiref.headings]]
+    type      = "params"
+    text      = "Parameters"
+  [[apiref.headings]]
+    type      = "prototype"
+    text      = "Prototype"
+  [[apiref.headings]]
+    type      = "retval"
+    text      = "Return Value"
+  [[apiref.headings]]
+    type      = "summary"
+    text      = "Summary"
+
+  [[apiref.headings]]
+    type      = "syntax"
+    text      = "Syntax"
+
+## Scala APIs Specific Headings
+[apiref_scala]
+  [[apiref_scala.headings]]
+    type      = "abstract_value_members"
+    text      = "Abstract Value Members"
+  [[apiref_scala.headings]]
+    type      = "concrete_value_members"
+    text      = "Concrete Value Members"
+  [[apiref_scala.headings]]
+    type      = "future-response"
+    text      = "Future Response"
+
+## Web APIs Specific Headings
+# (Applicable to all HTTP/REST APIs, including the web APIs and management APIs)
+[apiref_web]
+  [[apiref_web.headings]]
+    type      = "http-header"
+    text      = "HTTP Header"
+  [[apiref_web.headings]]
+    type      = "http-method"
+    text      = "HTTP Method"
+  [[apiref_web.headings]]
+    type      = "response"
+    text      = "Response"
+  [[apiref_web.headings]]
+    type      = "response-data"
+    text      = "Response Data"
+  [[apiref_web.headings]]
+    type      = "response-data-elements"
+    text      = "Elements"
+  [[apiref_web.headings]]
+    type      = "response-data-syntax"
+    text      = "Syntax"
+  [[apiref_web.headings]]
+    type      = "response-header"
+    text      = "Response Header"
+  [[apiref_web.headings]]
+    type      = "response-header-elements"
+    text      = "Elements"
+  [[apiref_web.headings]]
+    type      = "response-header-syntax"
+    text      = "Syntax"
+  [[apiref_web.headings]]
+    type      = "request"
+    text      = "Request"
+  [[apiref_web.headings]]
+    type      = "request-data"
+    text      = "Request Data"
+  [[apiref_web.headings]]
+    type      = "request-data-params"
+    text      = "Parameters"
+  [[apiref_web.headings]]
+    type      = "request-data-syntax"
+    text      = "Syntax"
+  [[apiref_web.headings]]
+    type      = "request-header"
+    text      = "Request Header"
+  [[apiref_web.headings]]
+    type      = "request-header-params-url-resource"
+    text      = "URL Resource Parameters"
+  [[apiref_web.headings]]
+    type      = "request-header-syntax"
+    text      = "Syntax"
+  [[apiref_web.headings]]
+    type      = "postman"
+    text      = "Using Postman"
+## ===== API_REF_HEADINGS_END =====
+
+## ===== RELEASE_NOTES_HEADINGS_START =====
+## Release-Notes Headings
+[release_notes]
+  [[release_notes.headings]]
+    type      = "new-and-enhance"
+    text      = "New Features and Enhancements"
+  [[release_notes.headings]]
+    type      = "fixes"
+    text      = "Fixes"
+  [[release_notes.headings]]
+    type      = "highlights"
+    text      = "Highlights"
+  [[release_notes.headings]]
+    type      = "known-issues"
+    text      = "Known Issues"
+  [[release_notes.headings]]
+    type      = "deprecated"
+    text      = "Deprecated Features"
+  [[release_notes.headings]]
+    type      = "notes"
+    text      = "Notes"
+  [[release_notes.headings]]
+    type      = "obsolete"
+    text      = "Obsolete Features"
+## ===== RELEASE_NOTES_HEADINGS_END =====
+
+# [InfraInfo] [DI-21.1] To support mini-TOC entries for TOC-level headings that
+# are created with shortcodes, we implemented a custom JS mini TOC (used by
+# default). When using the Hugo `TableOfContents` template to create the mini
+# TOC (which can now be done on our site by setting `toc: "hugo"` in the page's
+# front matter), shortcode-based headings don't appear in the mini TOC (and
+# currently nor do headings created with HTML code in the MD source file).
+# The custom mini TOC also solves other issues with the Hugo mini TOC.
+# For more information, see content/tests/mini-toc-tests/index.md.
+

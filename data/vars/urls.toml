@@ -1,0 +1,2042 @@
+## Absolute URLs Variables (Iguazio & Third Party)
+
+# [InfraInfo] Use the `url` shortcode to access variable keys in this file and
+# optionally link to them.
+# USAGE:  {{< url [g=GROUP] v=VAR [k="KEY] [k2=KKEY] [link="1/0"] >}}
+# Default values: "g" - "urls" (to access this urls.toml file); "link" = "0".
+# Examples:
+#   {{< url v="product_home" k="full" >}}
+#   {{< url v="product_home" k="text" link="1" >}}
+#   {{< url g="spark" v="home" k="text" link="1" >}}.
+# You can also use the `getvar` shortcode to access variable keys in this file.
+# USAGE:
+#   {{< getvar v="VAR" [m=true] >}}
+#   {{< getvar v="ARRAY_VAR" arr_key="ARRAY_KEY" [arr_item_id="ARR_ITEM_ID_KEY"] [arr_item_id_val="ARR_ITEM_ID_KEY_VALUE"] [m=true] >}}
+# Examples:
+#  {{< getvar v="url.product_home.full" >}}
+
+## ===== COMPANY_SITE_URLS_START =====
+## Company Web-Site URLs
+
+## Company Web-Site Home Page
+[company_home]
+  full = "https://www.iguazio.com"
+  text = "Iguazio web site"
+
+[company_contact]
+  full = "https://www.iguazio.com/contact/"
+  text = "contact"
+
+## End User License Agreement (EULA)
+# EULA Document (PDF)
+[eula_doc]
+  full  = "https://www.iguazio.com/wp-content/uploads/2018/04/iguazio-EULA-v1.0-21032018.pdf"
+  text  = "Iguazio End User License Agreement"
+  title = "EULA"
+
+## Product Web-Site Home Page
+[product_home]
+  full      = "https://www.iguazio.com"
+  text_long = "Iguazio MLOps Platform web site" # {{< product full >}} web site
+  text      = "Iguazio web site" # {{< company >}} web site
+
+## Official Product Documentation Home Page
+[product_docs_home]
+  full = "https://www.iguazio.com/docs"
+  text = "Iguazio MLOps Platform Documentation" # {{< product full >}} Documentation
+
+## Product Blog
+[product_blog]
+  full            = "https://www.iguazio.com/blog/"
+  text            = "blog"
+  text_tc         = "Blog"
+  text_long       = "Iguazio blog"  # "{{< company >}} blog"
+  text_long_tc    = "Iguazio Blog"  # "{{< company >}} Blog"
+  title           = "Data Science Blog"
+  menu_link_text  = "Blog"
+
+## Product Support Page
+[product_support]
+  full        = "https://www.iguazio.com/support/"
+  text        = "Support"
+  text_lc     = "support"
+  text_long   = "Iguazio Support" # "{{< company >}} Support"
+## ===== COMPANY_SITE_URLS_END =====
+
+## ===== MISC_PRODUCT_URLS_START =====
+## Introductory Product Video URL
+# [ci-var-in-shcd-call-param-value] [InfraInfo] (sharonl) We also use the
+# URL hardcoded in calls to the `youtube` shortcode (currently, in one
+# location, in tutorials/getting-started/trial-qs.md) because we can't use
+# shortcode calls when setting parameter values in other shortcode calls.
+# TODO: Whenever the URL is updated, we also need to update the video ID in
+# the related `youtube` shortcode call.
+
+[intro_video]
+  full  = "https://www.youtube.com/watch?v=8OmAN4wd7To"
+  text  = "Iguazio introductory video"
+  title = "Getting Started with Iguazio"
+
+## Tutorials Playlist (Iguazio YouTube Channel)
+[tutorials_playlist]
+  full  = "https://tinyurl.com/y43w6bpj"
+    # https://www.youtube.com/watch?v=8OmAN4wd7To&list=PLH8M0UOY0uy7moj_wXouzm3nYMnJ9sdlk alias
+  text            = "tutorials playlist"
+  text_tc         = "Tutorials Playlist"
+  text_long       = "platform tutorials playlist" # {{< product lc >}} ...
+  text_long_tc    = "Platform Tutorials Playlist" # {{< product tc >}} ...
+  menu_link_text  = "Videos"
+
+## Company/Product Sample Data-Set Public Amazon S3 Bucket
+# [IntInfo] (sharonl) (31.3.19) Our doc and tutorial Jupyter Notebook examples
+# use curl (or Botocore) to download files from this public data-set bucket:
+# `curl -L "iguazio-sample-data.s3.amazonaws.com/<file path>" > /v3io/<target data-container path>`
+# See specifically the relevant section in the tutorial NBs - product.toml
+# ver.jupyter_notebook.tutorials.data_ingestion_and_preparation.basic_nb - and
+# the related product data variables and internal info, such as the
+# sample_csv_aws_file and sample_csv_aws_rel_path map keys.
+# The Zeppelin getting-started example currently still uses a file from a
+# third-party repo; previously we used the deutsche-boerse public data set,
+# but currently it uses https://s3.amazonaws.com/apache-zeppelin/ - see the
+# ver.zeppelin.predef_notes.getting_started.sample_csv_aws_url product
+# data-variable map key. Note that in the Zeppelin example we provide the full
+# URL in the curl command while in the Jupyter Notebook examples we only use
+# the "base" URL key (the part after "https://" in the bucket URL?
+#
+# See also the amazon_s3_open_data_sets_reg URL data variable.
+#
+# [c-aws-data-set-browse] I you use the URL, you see a text file that's hard to
+# decipher. Adi explained that you can get information about the available data
+# sets by using Amazon's S3 Browser tool (http://s3browser.com/) or by issuing
+# an Amazon S3 GET Bucket request
+# (https://docs.aws.amazon.com/AmazonS3/latest/API/v2-RESTBucketGET.html).
+# S3 Browser is a desktop add and I wasn't able to use it to browse public
+# data sets without entering AWS account info.
+# I was able to issue a GET Bucket request with Postman. However, even though
+# the response set the "IsTruncated" parameter to "true", indicating there are
+# more results to get with another request, I didn't find a
+# "NextContinuationToken" param in the response, which is required to issue
+# another request with the "continuation-token" request parameter set to the
+# returned token from the previous request to retrieve additional results.
+
+[product_sample_aws_data_set]
+  full = "http://iguazio-sample-data.s3.amazonaws.com"
+  text = "Iguazio sample data set"
+## ===== MISC_PRODUCT_URLS_END =====
+
+## ===== COMPANY_GITHUB_URLS_START =====
+## Product GitHub URLs
+
+## ===== PRODUCT_GITHUB_URLS_START =====
+## Product GitHub Organization ("v3io") URLs
+
+## ====================
+## Product Public GitHub
+
+## Public Product GitHub Organization (v3io)
+[public_gh]
+  full = "https://github.com/v3io"
+    # [InfraInfo] This URL is also set in Social.github in config.toml.
+  text = "v3io"
+
+# Shortcode:  public-gh
+# Description: References public GitHub repos using the public_gh_xxx variables.
+# USAGE:
+#   {{< public-gh ghid="GHID" [path="PATH" k="KEY" text="TEXT" LINK="1/0"] >}}
+# "ghid" (required) - The unique part of the public_gh_<ghid> url data variable.
+# "path"  - Path to a file or directory in the repo; must begin with a '/'.
+#           When set, the shortcode refers to a specific repo branch -
+#           "default_branch" key (if set) /
+#           $Site.Data.vars.product.ver.num (if "is_prod_ver" key = true) /
+#           $Site.Data.vars.product.ver.<key>.version_tag if there's a
+#           "version_tag" key / $Site.Data.vars.product.ver.<key>.version
+#           otherwise, where <key> is the "ver_key" key or "ghid" if "ver_key"
+#           isn't set
+# "link"  - 1 to link to the generated repo URL. The link text is
+#           the "text" param text (if provided) /
+#           the value of the public-gh variable key indicated by the "k" param /
+#           the repo full URL.
+# "url_key" - The public_gh_xxx variable key to use as the base URL path (e.g.,
+#           "raw"); default = "full".
+# Examples:
+# (The first two examples link to the repo's root; the rest link to a branch.)
+# - {{< public-gh ghid="nuclio_nuclio" >}}
+# - {{< public-gh ghid="tsdb" link="1" k="text" >}}
+# - {{< public-gh ghid="nuclio" path="/" link="1" k="text" >}}
+# - {{< public-gh ghid="tutorials" path="/" >}}
+# - {{< public-gh ghid="doc_assets" url_key="raw" path="/install/cloud/azure/arm/mainTemplate.json" >}}
+# - {< public-gh ghid="nuclio_jupyter" path="/" k="name" link="1" >}}
+# - {{< public-gh ghid="api_examples" path="/taxi_streaming" link="1" text="taxi_streaming" >}}
+# - {< public-gh ghid="mlrun_demos" path="/scikit-learn-pipeline/" text="scikit-learn AutoML pipeline" link="1" >}}
+# - {{< public-gh ghid="tsdb" path="/" >}}{{< getvar v="product.tsdb.cli.cfg_template_path" >}}
+
+## ====================
+## Public Product Code Examples GitHub Repo (v3io/iguazio_api_examples)
+# [InfInfo][InfraInfo] (sharonl) (10.5.20) This repo is currently not being
+# updated and isn't referenced from current docs. Beginning with v2.8, I
+# stopped creating new version branches for this repo, so if we were currently
+# to use the public-gh shortcode with ghid="api_examples", it will link to a
+# non-existing repo branch.
+
+[public_gh_api_examples]
+  full        = "https://github.com/v3io/iguazio_api_examples"
+  name        = "v3io/iguazio_api_examples"
+  text        = "API examples"
+  is_prod_ver = true
+
+## ====================
+## Public Product Doc-Assets Repo (iguazio/doc_assets)
+
+[public_gh_doc_assets]
+  full        = "https://github.com/iguazio/doc-assets"
+  raw         = "https://raw.githubusercontent.com/iguazio/doc-assets/"
+  name        = "iguazio/doc-assets"
+  text        = "doc assets"
+  text_long   = "Iguazio doc-assets repo"
+  is_prod_ver = true
+  tag_prefix  = "v"
+
+## ====================
+## Public Iguazio V3IO Frames GitHub Repo (v3io/frames)
+
+[public_gh_frames]
+  full      = "https://github.com/v3io/frames"
+  name      = "v3io/frames"
+  lib_name  = "v3io_frames"         # frames.client.lib_name
+  text      = "V3IO Frames"         # frames.name.long_lc/.sc/.tc
+  text_long = "Iguazio V3IO Frames" # frames.name.full
+  tag_prefix = "v"
+
+## ====================
+## Public Iguazio grafiwz GitHub Repo (v3io/grafiwz)
+## Grafana dashboard wizard/generator
+# [c-grafwiz] [IntInfo] (sharonl) See info in the data-layer/
+# data-ingestion-and-preparation.md tutorial.
+
+[public_gh_grafwiz]
+  full      = "https://github.com/v3io/grafwiz"
+  name      = "grafiwz"
+  lib_name  = "grafiwz"
+  text      = "V3IO grafiwz"
+  text_long = "Iguazio V3IO grafiwz"
+  default_branch  = "master"
+
+## ====================
+## Public Iguazio V3IO Tutorials GitHub Repo (v3io/tutorials)
+# [c-v3io-tutorials] [IntInfo] (sharonl) (20.3.19) Currently, the product
+# tutorials repo contains only Jupyter notebooks.
+
+[public_gh_tutorials]
+  full  = "https://github.com/v3io/tutorials"
+  name  = "v3io/tutorials"
+  text          = "tutorials"
+  text_tc       = "Tutorials"
+  text_sc       = "Tutorials"
+  text_long     = "platform tutorials"
+  text_long_sc  = "Platform tutorials"
+  text_jupyter          = "tutorial notebooks"
+  text_jupyter_sc       = "Tutorial notebooks"
+  text_jupyter_long     = "tutorial Jupyter notebooks"
+  text_jupyter_long_sc  = "Tutorial Jupyter notebooks"
+  tag_prefix = "v"
+
+## ====================
+## Public Iguazio V3IO Prometheus GitHub Repo (v3io/prometheus)
+# [InfraInfo] See also the separate Prometheus URLs.
+ 
+[public_gh_prometheus]
+  full      = "https://github.com/v3io/prometheus"
+  name      = "v3io/prometheus"
+  text      = "V3IO Prometheus"         # prometheus.name.lc/.sc/.tc
+  text_long = "Iguazio V3IO Prometheus" # prometheus.long
+
+## ====================
+## Public Iguazio V3IO Python SDK GitHub Repo (v3io/v3io-py)
+# [InfraInfo] See also the separate Python SDK URLs.
+ 
+[public_gh_python_sdk]
+  full      = "https://github.com/v3io/v3io-py/"
+  name      = "v3io/v3io-py"
+  text      = "V3IO Python SDK"         # python_sdk.name.long_tc
+  text_long = "Iguazio V3IO Python SDK" # python_sdk.name.full
+  tag_prefix = "v"
+
+## ====================
+## Public Iguazio Time-Series Database (TSDB) GitHub Repos
+
+####################
+## V3IO TSDB GitHub Repo (v3io/v3io-tsdb)
+
+[public_gh_tsdb]
+  full      = "https://github.com/v3io/v3io-tsdb"
+  name      = "v3io/v3io-tsdb"
+  text      = "V3IO TSDB"         # tsdb.name.lc/.sc/.tc
+  text_long = "Iguazio V3IO TSDB" # tsdb.long
+  tag_prefix = "v"
+
+####################
+## V3IO TSDB Nuclio Functions GitHub Repo (v3io/tsdb-nuclio)
+
+[public_gh_tsdb_nuclio]
+  full      = "https://github.com/v3io/tsdb-nuclio"
+  name      = "v3io/tsdb-nuclio"
+  text      = "V3IO TSDB Nuclio functions"         # tsdb.nuclio_funcs.name.lc
+  text_long = "Iguazio V3IO TSDB Nuclio functions" # tsdb.nuclio-funcs.name.long
+  tag_prefix = "v"
+## ===== PRODUCT_GITHUB_URLS_END =====
+
+## ===== MLRUN_GITHUB_URLS_START =====
+## MLRun GitHub Organization ("mlrun") URLs
+## (Iguazio's open-source data-science/ML automation and tracking library)
+# [InfraInfo] See also separate MLRun URL variables, such as mlrun_docs.
+
+# MLRun GitHub Organization
+[public_gh_mlrun]
+  full  = "https://github.com/mlrun"
+  text  = "MLRun GitHub"
+  name  = "mlrun"
+
+# Main MLRun GitHub Repo
+[public_gh_mlrun_mlrun]
+  full        = "https://github.com/mlrun/mlrun"
+  clone_ssh   = "https://github.com/mlrun/mlrun.git"
+  name        = "mlrun/mlrun"
+  reop_name   = "mlrun"
+  text        = "MLRun"
+  ver_key     = "mlrun" # "ver" product data-variable key
+
+# MLRun Demos GitHub Repo
+[public_gh_mlrun_demos]
+  full        = "https://github.com/mlrun/demos"
+  clone_ssh   = "https://github.com/mlrun/demos.git"
+  name        = "mlrun/demos"
+  reop_name   = "demos"
+  text        = "MLRun demos"
+  ver_key     = "mlrun.demos" # "ver" product data-variable key
+
+# MLRun Functions Marketplace GitHub Repo
+# [IntInfo] The MLRun functions marketplace was initially branded "MLRun Hub",
+# hence the terminology in the README and in the names of API components such
+# as the `hub_url` configuration field.
+[public_gh_mlrun_functions]
+  full        = "https://github.com/mlrun/functions"
+  clone_ssh   = "https://github.com/mlrun/functions.git"
+  name        = "mlrun/functions"
+  reop_name   = "functions"
+  text        = "MLRun functions marketplace"
+  ver_key     = "mlrun.functions" # "ver" product data-variable key
+  #tag_prefix  = "v"
+## ===== MLRUN_GITHUB_URLS_END =====
+
+## ===== NUCLIO_GITHUB_URLS_START =====
+## Nuclio GitHub Organization ("nuclio") URLs
+# [InfraInfo] See also the separate nuclio_* non-GitHub Nuclio URL variables.
+
+## Nuclio GitHub Organization ("nuclio")
+[public_gh_nuclio]
+  full = "https://github.com/nuclio"
+  text = "nuclio"
+
+## ====================
+## Public Nuclio Repo (nuclio/nuclio)
+
+[public_gh_nuclio_nuclio]
+  full      = "https://github.com/nuclio/nuclio"
+  name      = "nuclio/nuclio"
+  repo_name = "nuclio"
+  text      = "Nuclio"
+  ver_key   = "nuclio" # "ver" product data-variable key
+
+## ====================
+## Public Nuclio Jupyter Repo (nuclio/nuclio-jupyter)
+# A Python package for creating and deploying Nuclio functions from Jupyter Notebook
+
+[public_gh_nuclio_jupyter]
+  full      = "https://github.com/nuclio/nuclio-jupyter"
+  name      = "nuclio/nuclio-jupyter"
+  repo_name = "nuclio-jupyter"
+  text      = "Nuclio Jupyter"
+  text_long = "Nuclio Jupyter package"
+  tag_prefix = "v"
+## ===== NUCLIO_GITHUB_URLS_END =====
+## ===== COMPANY_GITHUB_URLS_END =====
+
+## ===== MLRUN_URLS_START =====
+## MLRun URLs
+# [IntInfo] (sharonl) MLRun was integrated into the platform in v1.9 as
+# Tech Preview (IG-5116/DOC IG-7839) and in v2.0.0 officially (DOC IG-10557).
+#
+# [InfraInfo] For MLRun GitHub URLs, see the public_gh_mlrun* URL variables.
+
+## MLRun Documentation
+# [IntInfo] [InfraInfo] (sharonl)
+# - [c-mlrun-doc-ver] (19.1.21) MLRun doc links should generally be versioned
+#   and link to the release-vX.Y.x doc version, which is derived from an
+#   mlrun/mlrun release/vX.Y.x branch. For now, I just set the "full" map key
+#   to the versioned URL for this product release, to be updated for future
+#   product releases, instead of implementing a solution that uses the
+#   product.toml `ver.mlrun.docs.version_tag` variable key.
+#   (7.3.21) The MLRun documentation is now found at https://docs.mlrun.org,
+#   and the previous MLRun Read the Docs documentation URLs -
+#   https://mlrun.readthedocs.io - now redirect to the new MLRun doc-site URL.
+#   https://readthedocs.org/projects/mlrun/ - the `mlrun` package's projects
+#   Read the Docs page - still exists and has versioned documentation links to
+#   https://docs.mlrun.org.
+#   [SITE-RESTRUCT] (10.2.21) The relevant version of the MLRun documentation
+#   is now embedded in the product doc - see the ds-and-mlosp/ section.
+#   [TODO-NEW-VER] Update the "full" key for newer MLRun vX.Y doc versions.
+#   Note that this should be done only after there's a matching vX.Y release
+#   and documentation, otherwise the links, including for the MLRun doc iframe
+#   in ds-and-mlops/_index.md, will be broken.
+# - https://mlrun.readthedocs.io redirects to https://docs.mlrun.org/en/latest/.
+#   https://mlrun.readthedocs.io/en/<version>[/...] URLs redirect to
+#   https://docs.mlrun.org/en[/<version>/...]. (URLs without the "en" directory
+#   don't redirect and produce a page-not-found error, which was also true for
+#   the original #   https://mlrun.readthedocs.io URLs).
+[mlrun_docs]
+  home    = "https://readthedocs.org/projects/mlrun/"
+  base    = "https://docs.mlrun.org" # redirects to the latest release
+  full    = "https://docs.mlrun.org/en/release-v0.8.x-latest/"
+  latest  = "https://docs.mlrun.org/en/latest/"
+  stable  = "https://docs.mlrun.org/en/stable/"
+    # [c-mlrun-docs-stable] [IntInfo] (sharonl) (7.3.21) Currently, the stable
+    # MLRun documentation is for an older version with an old doc theme.
+  text        = "MLRun documentation"
+  text_long   = "MLRun package documentation"
+  text_short  = "MLRun"
+  title = "MLRun Package Documentation"
+## ===== MLRUN_URLS_END =====
+
+## ===== NUCLIO_URLS_START =====
+## Nuclio Serverless Framework URLs
+# [IntInfo] (sharonl) Nuclio was integrated into the platform in v1.9 as
+# Tech Preview (IG-5116/DOC IG-7839) and in v2.0.0 officially (DOC IG-10557).
+# [InfraInfo] For Nuclio GitHub URLs, see the public_gh_nuclio* URL variables.
+
+## Nuclio Web-Site Home Page
+[nuclio_home]
+  full = "https://nuclio.io"
+  text = "Nuclio"
+
+## Nuclio Web-Site Documentation
+[nuclio_docs]
+  full = "https://nuclio.io/docs/latest/"
+  text = "Nuclio documentation"
+## ===== NUCLIO_URLS_END =====
+
+## ===== AMAZON_URLS_START =====
+## Amazon URLs
+
+## Amazon Web Services (AWS) Home Page
+[aws_home]
+  full  = "https://aws.amazon.com/"
+  text  = "Amazon Web Services (AWS)"
+  text_short  = "AWS"
+  # [IntInfo] (12.11.19) The page title is "Start Building on AWS Today".
+
+## AWS Documentation
+[aws_docs]
+  full  = "https://docs.aws.amazon.com/"
+  title = "AWS Documentation"
+  text  = "AWS documentation"
+## AWS General Reference
+[aws_gen_ref]
+  full  = "https://docs.aws.amazon.com/general/latest/gr/"
+    # (redirects to https://docs.aws.amazon.com/general/latest/gr/Welcome.html;
+    # https://docs.aws.amazon.com/general/ and
+    # https://docs.aws.amazon.com/general/latest/gr/ don't redirect)
+  title = "AWS General Reference"
+  text  = "AWS General Reference"
+# [InfraInfo] Additional product-specific AWS documentation links are defined
+# in separate product-specific variables.
+
+## ====================
+## Amazon Elastic Container Registry (ECR) URLs
+# ("a fully-managed Docker container registry that makes it easy for developers
+# to store, manage, and deploy Docker container images")
+
+## Amazon ECR Home Page
+[amazon_ecr_home]
+  full  = "https://aws.amazon.com/ecr/"
+  text  = "Amazon Elastic Container Registry (ECR)"
+  title = "Amazon Elastic Container Registry"
+
+## ====================
+## Amazon EMR / AWS EMR (a managed cluster platform for running big-data
+## frameworks in the cloud) URLs
+
+## Amazon EMR Home Page
+[amazon_emr_home]
+  full  = "https://aws.amazon.com/emr/"
+  text  = "Amazon EMR"
+  title = "Amazon EMR"
+
+## ====================
+## Amazon Kinesis ("Easily collect, process, and analyze video and data streams
+# in real time")
+
+## Kinesis Home Page
+[kinesis_home]
+  full  = "https://aws.amazon.com/kinesis/"
+  text  = "Amazon Kinesis"
+  title = "Amazon Kinesis"
+
+## Kinesis Documentation
+[kinesis_docs]
+  full  = "https://aws.amazon.com/documentation/kinesis/"
+  text  = "Amazon Kinesis Documentation"
+  title = "Amazon Kinesis Documentation"
+
+## ====================
+## Amazon Simple Storage Service (Amazon S3 / AWS S3) (object storage for the internet) URLs
+
+## Amazon S3 Home Page
+[amazon_s3_home]
+  full  = "https://aws.amazon.com/s3/"
+  text  = "Amazon S3"
+  title = "Amazon S3"
+
+## Amazon S3 Documentation
+# Amazon S3 Documentation Home Page
+[amazon_s3_docs]
+  full  = "https://aws.amazon.com/documentation/s3/"
+  text  = "Amazon S3 documentation"
+  title = "Amazon Simple Storage Service Documentation"
+
+## Amazon S3 Open Data-Sets Registry
+# [IntInfo] See also the product_sample_aws_data_set URL data variable.
+[amazon_s3_open_data_sets_reg]
+  full  = "https://registry.opendata.aws/"
+  text  = "Amazon S3 public data-sets registry"
+  title = "Registry of Open Data on AWS"
+
+## Amazon S3 Authentication - AWS Signature Version 4 (AWS4)
+[aws4_authentication]
+  full  = "https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html"
+  text      = "AWS signature version 4"
+  text_long = "AWS signature version 4 (AWS4)"
+  title = "Authenticating Requests (AWS Signature Version 4)"
+# [IntInfo] See also the following URLs and the info in DOC IG-12002:
+# - Subsection "Authenticating Requests: Using the Authorization Header (AWS Signature Version 4)" -
+#   https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html
+# - "Signature Version 4 Signing Process" 
+#   https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+## Amazon S3 Authentication - AWS Signature Version 2 (AWS2)
+[aws2_authentication]
+  full  = "https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_Authentication2.html"
+  text      = "AWS signature version 2"
+  text_long = "AWS signature version 2 (AWS2)"
+  title     = "Authenticating Requests Using the REST API"
+# [IntInfo] See also the following URLs and the info in DOC IG-12002:
+# - Subsection "Signing and Authenticating REST Requests" -
+#   https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html
+# - "Appendix B: Authenticating Requests (AWS Signature Version 2)" -
+#   https://docs.aws.amazon.com/AmazonS3/latest/dev/auth-request-sig-v2.html
+# - "Signature Version 2 Signing Process" 
+#   https://docs.aws.amazon.com/general/latest/gr/signature-version-2.html
+
+## ====================
+## Systems Operations on AWS (Amazon certification)
+
+[aws_sysops_home]
+  full  = "https://aws.amazon.com/training/course-descriptions/sysops/"
+  text  = "Systems Operations on AWS"
+  title = "Systems Operations on AWS"
+
+## ====================
+## AWS Outputs
+# ("Run AWS infrastructure and services on premises for a truly consistent
+# hybrid experience")
+
+## AWS Outputs Home Page
+[aws_outposts_home]
+  full  = "https://aws.amazon.com/outposts/"
+  text  = "AWS Outposts"
+  title = "AWS Outposts"
+## ===== AMAZON_URLS_END =====
+
+## ===== ANACONDA_URLS_START =====
+## Anaconda (data science platform, including a Python distribution) URLs 
+
+## Anaconda Home Page
+[anaconda_home]
+  full = "https://www.anaconda.com/"
+  text = "Anaconda"
+
+## Anaconda Documentation
+[anaconda_docs]
+  full  = "https://docs.anaconda.com/"
+  text  = "Anaconda documentation"
+  title = "Anaconda Documentation"
+
+## ====================
+## Conda (OS-agnostic, system-level binary package and environment manager) URLs
+# [c-conda] [IntInfo] Beginning with v2.0.0 of the product, Conda is part of
+# the Jupyter Notebook service type in the k8s installations and can be run
+# from a JupyterLab notebook or a terminal.
+
+## Conda Home Page
+[conda_home]
+  full = "https://anaconda.org/anaconda/conda"
+  text = "Conda"
+
+## Conda Documentation
+[conda_docs]
+  full  = "https://docs.anaconda.com/" # (redirects to https://docs.conda.io/en/latest/)
+  text  = "Conda documentation"
+  title = "Conda"
+## ===== ANACONDA_URLS_END =====
+
+## ===== CENTOS_URLS_START =====
+## CentOS (Linux distribution) URLs 
+
+## CentOS Home Page
+[centos_home]
+  full  = "https://www.centos.org/"
+  text  = "CentOS"
+  title = "CentOS Project"
+## ===== CENTOS_URLS_END =====
+
+## ===== COREDNS_START =====
+## CoreDNS DNS Server URLs
+
+## CoreDNS Home Page
+[coredns_home]
+  full  = "https://coredns.io/"
+  text  = "CoreDNS"
+  title = "CoreDNS: DNS and Service Discovery"
+## ===== COREDNS_END =====
+
+## ===== CURL_URLS_START =====
+## curl (command-line tool and library for transferring data with URLs)
+# [IntInfo] (sharonl) On the Wikipedia page (https://en.wikipedia.org/wiki/CURL)
+# it's spelled "cURL" but in the curl project site it's spelled "curl" and this
+# is also the CLI command that you run.
+
+## curl Home Page
+[curl_home]
+  full = "https://curl.haxx.se/"
+  text = "curl"
+
+## curl Docs
+[curl_docs]
+  full = "https://curl.haxx.se/docs/"
+  text = "curl documentation"
+
+## curl Man Page
+[curl_manpage]
+  full = "https://curl.haxx.se/docs/manpage.html"
+  text = "curl Man Page"
+## ===== CURL_URLS_END =====
+
+## ===== DASK_URLS_START =====
+## Dask (a flexible library for parallel computing in Python)
+
+## Dask Home Page
+[dask_home]
+  full  = "https://dask.org/"
+  text  = "Dask"
+  title = "Dask"
+
+## Dask Documentation
+[dask_docs]
+  full  = "https://docs.dask.org" # redirects to https://docs.dask.org/en/latest/
+  text  = "Dask documentation"
+  title = "Dask"
+
+## Dask GitHub Organization
+[dask_gh_org]
+  full = "https://github.com/dask"
+  text  = "Dask GitHub"
+  name  = "dask"
+# Main Dask GitHub Repository (dask/dask)
+[dask_gh_]
+  full  = "https://github.com/dask/dask"
+  text  = "Dask GitHub repo"
+  name  = "dask/dask"
+## ===== DASK_URLS_END =====
+
+## ===== DEX_URLS_START =====
+## Dex ("A Federated OpenID Connect Provider"; "an identity service that uses
+#  OpenID Connect to drive authentication for other apps")
+#  [InfInfo] See [c-authenticator-service] in product.toml.
+
+## Dex Home Page
+[dex_home]
+  full  = "https://dexidp.io/"
+  text  = "Dex"
+  title = "Dex"
+
+## Dex IdP GitHub Organization
+[dexidp_gh]
+  full  = "https://github.com/dexidp/"
+  text  = "Dex IdP"
+  title = "Dex IdP"
+  name  = "dexidp"
+
+## Dex GitHub Repository
+[dex_gh]
+  full  = "https://github.com/dexidp/dex/"
+  text  = "Dex"
+  title = "dex - A federated OpenID Connect provider"
+  name  = "dexidp/dex"
+## ===== DEX_URLS_END =====
+
+## ===== DOCKER_URLS_START =====
+## Docker URLs
+
+## Docker Home Page 
+[docker_home]
+  full  = "https://www.docker.com/"
+  text  = "Docker"
+  title = "Docker"
+
+## Docker Docs
+[docker_docs]
+  full  = "https://docs.docker.com/"
+  text  = "Docker documentation"
+  title = "Docker Documentation"
+# Docker Registry Doc
+# [InfInfo] (sharonl) "Docker Registry" and "Registry" are capitalized using
+# title-case capitalization in most locations that I saw in the Docker docs.
+[docker_doc_docker_registry]
+  full  = "https://docs.docker.com/registry/"
+  text  = "Docker Registry"
+  title = "Docker Registry"
+## ===== DOCKER_URLS_END =====
+
+## ===== ELASTIC_URLS_START =====
+## Elastic Stack URLs
+
+# Elastic (Elastic Stack) Home Page
+[elastic_home]
+  full = "https://www.elastic.co/"
+  text = "Elastic Stack"
+
+## ====================
+## Elasticsearch (a distributed, RESTful search and analytics engine)
+
+# Elasticsearch Home page
+[elasticsearch_home]
+  full  = "https://www.elastic.co/products/elasticsearch"
+  text  = "Elasticsearch"
+  title = "Elasticsearch"
+
+## ====================
+
+## Tensorboard (TensorFlow's visualization toolkit)
+
+# Tensorboard Home page
+[tensorboard_home]
+  full  = "https://www.tensorflow.org/tensorboard"
+  text  = "Tensorboard"
+  title = "Tensorboard"
+
+## ====================
+## Filebeat (a lightweight way to forward and centralize logs and files)
+
+# Filebeat Home page
+[filebeat_home]
+  full  = "https://www.elastic.co/products/beats/filebeat"
+  text  = "Filebeat"
+  title = "Filebeat"
+
+## ====================
+## Kibana (visualize Elasticsearch data and navigate the Elastic Stack)
+
+# Kibana Home page
+[kibana_home]
+  full  = "https://www.elastic.co/products/kibana"
+  text  = "Kibana"
+  title = "Kibana"
+## ===== ELASTIC_URLS_END =====
+
+## ===== GOOGLE_URLS_START =====
+## Google URLs
+
+## ====================
+## Google Cloud <=> Google Cloud Platform (GCP)
+
+## Google Cloud Home Page
+[google_cloud_home]
+  full  = "https://cloud.google.com/"
+  text  = "Google Cloud"
+  # [IntInfo] (22.4.21) The page title is "Accelerate your transformation with
+  # Google Cloud".
+
+# Google Cloud Platform (GCP) Page
+[google_cloud_gcp]
+  full        = "https://cloud.google.com/gcp"
+  text        = "Google Cloud Platform"
+  text_long   = "Google Cloud Platform (GCP)"
+  text_short  = "GCP"
+  # [IntInfo] (22.4.21) The page title is "Build what�s next. Better software.
+  # Faster.".
+
+## GCP GitHub organization (GoogleCloudPlatform)
+[gcp_gh]
+  full  = "https://github.com/GoogleCloudPlatform"
+  text  = "Google Cloud Platform"
+  title = "Google Cloud Platform"
+  name  = "GoogleCloudPlatform"
+
+## Google Cloud Documentation
+[google_cloud_docs]
+  full  = "https://cloud.google.com/docs"
+  text  = "Google Cloud documentation"
+  title = "Google Cloud"
+
+####################
+## Google Kubernetes Engine (GKE)
+# ("Secured and fully managed Kubernetes service with revolutionary autopilot
+# mode of operation.")
+
+# GKE Home
+[gke_home]
+  full        = "https://cloud.google.com/kubernetes-engine/"
+  text        = "Google Kubernetes Engine"
+  text_long   = "Google Kubernetes Engine (GKE)"
+  text_short  = "GKE"
+  title       = "Google Kubernetes Engine"
+
+# GKE Documentation
+[gke_docs]
+  full      = "https://cloud.google.com/kubernetes-engine/docs/"
+  text      = "GKE documentation"
+  text_long = "Google Kubernetes Engine (GKE) documentation"
+  title     = "Documentation"
+
+####################
+## Google Cloud Compute Engine
+
+# Compute Engine Home
+[google_cloud_compute_engine_home]
+  full      = "https://cloud.google.com/compute"
+  text      = "Compute Engine"
+  text_long = "Google Cloud Compute Engine"
+  title     = "Compute Engine"
+# Compute Engine Documentation
+[google_cloud_compute_engine_docs]
+  full      = "https://cloud.google.com/compute/docs"
+  text      = "Compute Engine documentation"
+  text_long = "Google Cloud Compute Engine documentation"
+  title     = "Compute Engine documentation"
+
+####################
+## GCP Spark operator
+
+
+## spark-on-k8s-operator ("Spark Operator") GitHub Repository
+[gcp_spark_k8s_operator_gh]
+  full  = "https://github.com/GoogleCloudPlatform/spark-on-k8s-operator"
+  text  = "Spark Operator"
+  name  = "spark-on-k8s-operator"
+## spark-on-k8s-operator ("Spark Operator") Home <=> GitHub Repository
+[gcp_spark_k8s_operator_home]
+  full  = "https://github.com/GoogleCloudPlatform/spark-on-k8s-operator"
+  text  = "Spark Operator"
+  name  = "spark-on-k8s-operator"
+
+## ====================
+## Google Cloud Pub/Sub ("a simple, reliable, scalable foundation for stream
+#  analytics and event-driven computing")
+
+## Cloud Pub/Sub Home Page
+[google_cloud_pubsub_home]
+  full  = "https://cloud.google.com/pubsub/"
+  text  = "Google Cloud Pub/Sub"
+  title = "Cloud Pub/Sub"
+
+## ====================
+## Google S2 Geometry Library (which is used to create "S2 cells")
+
+## S2 Geometry Library Home Page
+[google_s2_home]
+  full  = "http://s2geometry.io/"
+  text  = "Google S2 geometry library"
+  title = "S2 Geomtry"
+
+## s2sphere Library - Python implementation of part of the C++ S2 geometry library
+[s2spehere_home]
+  full  = "https://github.com/sidewalklabs/s2sphere"
+  text  = "s2sphere"
+  title = "s2sphere"
+## s2sphere Documentation
+[s2spehere_docs]
+  full  = "http://s2sphere.readthedocs.io" # redirects to
+                                      #http://s2sphere.readthedocs.io/en/latest/"
+  text  = "s2sphere documentation"
+  title = "s2sphere"
+## ===== GOOGLE_URLS_END =====
+
+## ===== GRAFANA_URLS_START =====
+## Grafana (open-source platform for analytics and monitoring) URLs 
+
+## Grafana Home Page
+[grafana_home]
+  full = "https://grafana.com/"
+  text = "Grafana"
+
+## Grafana Documentation
+# [IntInfo] (sharonl) (1.3.21) I found that the Grafana documentation site
+# moved from http://docs.grafana.org/, which we previous used, to
+# https://grafana.com/docs/. The old URL redirects to the new URL. (I don't
+# know when the change was made.) => I changed `grafana_docs` to use the
+# updated URL.
+[grafana_docs]
+  full = "https://grafana.com/docs/"
+  text = "Grafana documentation"
+## ===== GRAFANA_URLS_END =====
+
+## ===== H2O_URLS_START =====
+## H2O.ai (machine-learning platform) URLs
+
+## H2O Home Page
+[h2o_home]
+  full  = "https://www.h2o.ai/"
+  text  = "H2O.ai"
+
+## H2O Documentation
+[h2o_docs]
+  full  = "http://docs.h2o.ai"
+  text  = "H2O.ai documentation"
+  title = "H2O.ai Documentation"
+
+## ====================
+## H2O Sparkling Water (library for integrating H2O.ai with Apache Spark) URLs
+
+## Sparkling Water Home Page
+[h2o_sparkling_water_home]
+  full  = "https://www.h2o.ai/sparkling-water/"
+  text  = "Sparkling Water"
+
+## Sparkling Water Documentation (a section in the H2O.ai Documentation home)
+[h2o_sparkling_water_docs]
+  full  = "http://docs.h2o.ai/#sparkling-water"
+  text  = "Sparkling Water documentation"
+
+## ====================
+## pysparkling (for development of PySpark Spark Python applications) URLs
+
+## pysparkling GitHub Repository
+[pysparkling_gh]
+  full  = "https://github.com/svenkreiss/pysparkling"
+  text  = "pysparkling"
+  title = "svenkreiss/pysparkling"
+## ===== H2O_URLS_END =====
+
+## ===== HIVE_URLS_START =====
+## Apache Hive (data warehouse software) URLs 
+# This is the basic description on the Hive home and wiki pages: "The Apache
+# Hive data warehouse software facilitates reading, writing, and managing
+# large datasets residing in distributed storage using SQL. Structure can be
+# projected onto data already in storage. A command line tool and JDBC driver
+# are provided to connect users to Hive."
+
+## Hive Home Page
+[hive_home]
+  full = "https://hive.apache.org/"
+  text = "Apache Hive"
+
+## Hive Wiki
+[hive_wiki]
+  full = "https://cwiki.apache.org/confluence/display/Hive"
+  text = "Apache Wiki"
+
+# Hive Documentation (part of the Hive Wiki)
+[hive_docs]
+  full  = "https://cwiki.apache.org/confluence/display/Hive/Home#Home-UserDocumentation"
+  text  = "Hive documentation"
+  title = "User Documentation"
+## ===== HIVE_URLS_END =====
+
+## ===== ISC_URLS_START =====
+## ISC (Internet Systems Consortium) URLs (Open-source internet tools)
+
+# ISC Home
+[isc_home]
+  full = "https://www.isc.org/"
+  text = "ISC"
+
+# ISC Open-Source Projects Public Git Access Page
+[isc_git]
+  full  = "https://www.isc.org/git/"
+  text  = "ISC Git page"
+  title = "ISC Source Code Trees"
+
+## ISC Open-Source Projects GitLab Group
+[isc_projs_gitlab]
+  full  = "https://gitlab.isc.org/isc-projects"
+  text  = "ISC"
+  title = "ISC Open Source Projects"
+  name  = "isc-projects"
+
+## ====================
+## BIND (Berkeley Internet Name Domain) URLs
+# GitHub: "BIND (Berkeley Internet Name Domain) is a complete, highly portable implementation of the DNS (Domain Name System) protocol."
+
+## BIND ISC Git Downloads Page
+[bind_git_download]
+  full  = "https://www.isc.org/downloads/bind/"
+  text  = "BIND downloads page"
+  title = "BIND 9" # (21.4.19)
+
+## BIND GitLab Repository (isc-projects/bind9)
+[bind_gitlab]
+  full  = "https://gitlab.isc.org/isc-projects/bind"
+    # (21.4.19) This redirects to https://gitlab.isc.org/isc-projects/bind9.
+  text  = "BIND"
+  title = "BIND"
+  name  = "isc-projects/bind9" # (21.4.19)
+
+## ===== ISC_URLS_END =====
+
+## ===== JAVA_URLS_START =====
+## Oracle Java URLs
+
+## Oracle Java Documentation Home
+[java_home]
+  full = "http://www.oracle.com/technetwork/java/javase/eol-135779.html"
+  text = "Oracle Java"
+
+## Java API Documentation
+# Java Latest API Documentation
+[java_apis_doc_latest]
+  full  = "https://docs.oracle.com/javase/8/docs/api/"
+  text  = "Java API specification"
+  title = "Java� Platform, Standard Edition 8 API Specification"
+# Java v8 API Documentation
+[java_apis_doc_v8]
+  full = "https://docs.oracle.com/javase/8/docs/api/"
+  text  = "Java v8 API specification"
+  title = "Java� Platform, Standard Edition 8 API Specification"
+# Specific Java API Reference Base URL for the Latest Java API Documentation
+[java_api_latest]
+  full = "https://docs.oracle.com/javase/8/docs/api/java/nio/"
+# Specific Java API Reference Base URL for the Java v8
+[java_api_v8]
+  full = "https://docs.oracle.com/javase/8/docs/api/java/nio/"
+## ===== JAVA_URLS_END =====
+
+## ===== JIRA_URLS_START =====
+## JIRA URLs
+[jira]
+  browse_base = "https://jira.iguazeng.com/browse/"
+  ig_base     = "https://jira.iguazeng.com/browse/IG-"
+  tsdb_base   = "https://jira.iguazeng.com/browse/TSDB-"
+## ===== JIRA_URLS_END =====
+
+## ===== JUPYTER_URLS_START =====
+## Jupyter URLs (Project Jupyter for developing open-source software, standards,
+#  and services for interactive computing in multiple programming languages)
+
+## Project Jupyter Home
+[jupyter_home]
+  full  = "https://jupyter.org/"
+  text  = "Jupyter"
+  title = "Jupyter"
+
+## Jupyter GitHub Organization
+[jupyter_gh]
+  full  = "https://github.com/jupyter/"
+  text  = "Jupyter"
+  title = "Project Jupyter"
+  name  = "jupyter"
+
+## Jupyter Documentation
+[jupyter_docs]
+  full  = "https://jupyter.org/documentation"
+  text  = "Jupyter documentation"
+  title = "Documentation"
+
+## ====================
+## JupyterLab
+# GitHub: "An extensible environment for interactive and reproducible
+#   computing, based on the Jupyter Notebook and Architecture."
+# Docs: "JupyterLab is the next-generation web-based user interface for Project
+#   Jupyter."
+
+## JupyterLab GitHub Repository (jupyterlab/jupyterlab)
+[jupyterlab_gh]
+  full  = "https://github.com/jupyterlab/jupyterlab"
+  text  = "JupyterLab"
+  title = "JupyterLab"
+  name  = "jupyterlab/jupyterlab"
+
+## JupyterLab Documentation
+[jupyterlab_docs]
+  # Base URL (unversioned > redirects to stable English version)
+  # [IntInfo] (sharonl) (10.2.20) I found that while this base URL indeed
+  # redirects to the URL of the docs for the stable release, this isn't true
+  # for links to specific pages. I.e., if we add to jupyterlab_docs.base.full
+  # we get a page-not-found error. => Use jupyterlab_docs.docs.stable to direct
+  # to a specific page.
+  [jupyterlab_docs.base]
+    full  = "https://jupyterlab.readthedocs.io" # (redirects to stable docs
+      # version = https://jupyterlab.readthedocs.io/en/stable/)
+    text  = "JupyterLab"
+    title = "JupyterLab Documentation"
+  # Stable version
+  [jupyterlab_docs.stable]
+    full  = "https://jupyterlab.readthedocs.io/en/stable/"
+    text  = "JupyterLab"
+    title = "JupyterLab Documentation"
+  # Latest version
+  [jupyterlab_docs.latest]
+    full  = "https://jupyterlab.readthedocs.io/en/latest/"
+    text  = "JupyterLab"
+    title = "JupyterLab Documentation"
+  # [c-jupyter-ver-lab] [IntInfo] (sharonl) (15.1.19) The JupyterLab docs have
+  # only "stable" and "latest" versions (unlike the Jupyter Notebook docs, for
+  # example, which have version-specific doc in addition to the stable and
+  # latest versioned docs). I decided to use jupyterlab_docs.base, which will
+  # redirect to the latest stable version.
+
+  # Specific JupyterLab Documentation Pages
+  # [InfraInfo] (sharonl) Because we don't plan to link only to the stable
+  # version, I decided to add full page URLs for this version instead of
+  # defining relative page URLs that would need to be appended to
+  # jupyterlab_docs.stable/latest by using two shortcode calls. I couldn't
+  # make these child keys of jupyterlab_docs.stable because currently, our
+  # url shortcode doesn't support this nesting level. [INFRA-TODO] Improve.
+
+  # Terminals
+  [jupyterlab_docs.terminals]
+    full  = "https://jupyterlab.readthedocs.io/en/stable/user/terminal.html"
+    text  = "JupyterLab Terminals"
+    title = "Terminals"
+
+## ====================
+## Jupyter Notebook
+# Project Jupyter Home Page: "... an open-source web application that allows
+#   you to create and share documents that contain live code, equations,
+#   visualizations and narrative text."
+# Docs: "... a web-based application suitable for capturing the whole
+#   computation process: developing, documenting, and executing code, as well as
+#   communicating the results.". Two components -
+#     A web application - "a browser-based tool for interactive authoring of
+#       documents which combine explanatory text, mathematics, computations and
+#       their rich media output"
+#     Notebook documents - "a representation of all content visible in the web
+#       application, including inputs and outputs of the computations,
+#       explanatory text, mathematics, images, and rich media representations
+#       of objects."
+# GitHub: "... a web-based notebook environment for interactive computing."
+
+## Jupyter Notebook GitHub Repository
+[jupyter_notebook_gh]
+  full  = "https://github.com/jupyter/notebook"
+  text  = "Jupyter Notebook"
+  name  = "jupyter/notebook"
+
+## Jupyter Notebook Documentation
+# [InfInfo] [InfraInfo] (sharonl) (29.1.30) The v6.0.1 Jupyter Notebook doc
+# link is now broken and produces a page-not-found error. The Jupyter Notebook
+# docs' version selection includes the "latest" and "stable" URLs, where stable
+# has docs for v6.0.3, and docs for older v4 and v5 releases, including the
+# v5.7.4 release that's used in our v2.3.1- docs. I'm guessing they stopped
+# maintaining versions-specific URLs for all releases of the current major
+# stable release (currently, v6) and that the old v6.0.1 doc link will once
+# again work when the stable version is updated, but I don't want the docs to
+# rely on this + I don't want to have to fix broken links if they later remove
+# the older Jupyter docs (e.g., for v5.7). => I replaced all versioned Jupyter
+# Notebook links (using `url` with `vervar`) with a link to the Jupyter Notebook
+# base documentation (which redirects to the stable version) -
+# {{< url v="jupyter_notebook_docs" k="base" k2="text" link="1" >}}.
+# There's still no version-specific doc URLs higher than v5.7.4. I've now
+# removed the related data-variable keys and kept only base, stable, and latest.
+# (19.1.21) I removed the `ver.jupyter_notebook.version` product data variable
+# and the reference to the Jupyter Notebook version in the support-matrix spec
+# page (done for product v3.0.0), after it was decided in consultation with
+# Product (Gilad) that we only need to document the JupyterLab version, seeing
+# as Jupyter NB is installed automatically as part of JupyterLab (see info in
+# DOC IG-17513).
+# [InfraInfo] See also the V3IO Tutorials URLs.
+[jupyter_notebook_docs]
+  # Base URL (unversioned > redirects to stable English version)
+  [jupyter_notebook_docs.base]
+    full  = "https://jupyter-notebook.readthedocs.io" # (redirects to stable
+      # docs version = https://jupyter-notebook.readthedocs.io/en/stable/)
+    text  = "Jupyter Notebook"
+    title = "The Jupyter Notebook"
+  # Stable version
+  [jupyter_notebook_docs.stable]
+    full  = "https://jupyter-notebook.readthedocs.io/en/stable/"
+    text  = "Jupyter Notebook"
+    title = "The Jupyter Notebook"
+  # Latest Version
+  [jupyter_notebook_docs.latest]
+    full  = "https://jupyter-notebook.readthedocs.io/en/latest/"
+    text  = "Jupyter Notebook"
+    title = "The Jupyter Notebook"
+## ===== JUPYTER_URLS_END =====
+
+## ===== KAFKA_URLS_START =====
+## Kafka (Apache distributed streaming platform) URLs
+
+## Kafka Home
+[kafka_home]
+  full = "https://kafka.apache.org/"
+  text = "Apache Kafka"
+
+## Kafka Documentation
+[kafka_docs]
+  full = "https://kafka.apache.org/documentation/"
+  text = "Kafka documentation"
+## ===== KAFKA_URLS_END =====
+
+## ===== KAFKA_URLS_START =====
+## Keras (Python deep-learning library) URLs
+# "Keras is a high-level neural networks API, written in Python and capable of
+# running on top of TensorFlow, CNTK, or Theano."
+
+## Keras Documentation
+[keras_home]
+  full = "https://keras.io/"
+  text = "Keras"
+
+## Keras GitHub Organization
+[keras_gh_org]
+  full  = "https://github.com/keras-team"
+  text  = "Keras GitHub"
+  title = "Keras"
+  name  = "keras-team"
+# Main Keras GitHub Repository (keras/keras-team)
+[keras_gh]
+  full  = "https://github.com/keras-team/keras"
+  text  = "Keras GitHub repo"
+  title = "Keras: Deep Learning for humans"
+  name  = "keras-team/keras"
+## ===== KERAS_URLS_END =====
+
+## ===== KUBEFLOW_URLS_START =====
+## Kubeflow URLs (an open-source ML tooltip for Kubernetes)
+
+## Kubeflow Home
+[kubeflow_home]
+  full  = "https://www.kubeflow.org/"
+  text  = "Kubeflow"
+  title = "Kubeflow"
+
+## Kubeflow Documentation
+[kubeflow_docs]
+  full  = "https://www.kubeflow.org/docs/"
+  text  = "Kubeflow documentation"
+  title = "Documentation"
+# Nuclio Page in the Kubeflow Docs
+[kubeflow_docs_nuclio]
+  full            = "https://www.kubeflow.org/docs/components/misc/nuclio/"
+  text            = "Nuclio Kubeflow documentation"
+  text_short      = "Kubeflow documentation"
+  title           = "Nuclio functions"
+  parent_section  = "Miscellaneous"
+
+## Kubeflow GitHub Organization
+[kubeflow_gh_org]
+  full  = "https://github.com/kubeflow/"
+  text  = "Kubeflow GitHub"
+  name  = "kubeflow"
+
+# Kubeflow GitHub Repo
+[kubeflow_gh]
+  full  = "https://github.com/kubeflow/kubeflow"
+  text  = "Kubeflow GitHub repo"
+  name  = "kubeflow/kubeflow"
+
+## ====================
+## Kubeflow MPI Operator URLs (MPI = Message Passing Interface)
+# (simplifies running allreduce-style distributed training on Kubernetes;
+# from the "Introduction to Kubeflow MPI Operator and Industry Adoption" blog
+# post that the Kubeflow MPI docs currently links to
+# (https://medium.com/kubeflow/introduction-to-kubeflow-mpi-operator-and-industry-adoption-296d5f2e6edc)
+# - "MPI Operator provides a common Custom Resource Definition (CRD) for
+# defining a training job on a single CPU/GPU, multiple CPU/GPUs, and multiple
+# nodes. It also implements a custom controller to manage the CRD, create
+# dependent resources, and reconcile the desired states.")
+# [c-mpi-operator-horovod-service] [IntInfo] See info in data/vars/product.toml.
+
+# Kubeflow MPI Operator Home
+# [InfraInfo] (sharonl) I decided to use the Kubeflow MPI Operator GH repo URL.
+[kubeflow_mpi_operator_home]
+  full        = "https://github.com/kubeflow/mpi-operator"
+  text        = "Kubeflow MPI Operator"
+  text_long   = "Google Kubeflow MPI Operator"
+  text_short  = "MPI Operator"
+
+# Kubeflow MPI Operator GitHub Repo
+[kubeflow_mpi_operator_gh]
+  full  = "https://github.com/kubeflow/mpi-operator"
+  text  = "Kubeflow MPI Operator GitHub repo"
+  name  = "kubeflow/mpi-operator"
+
+# Kubeflow MPI Operator Documentation
+# [IntInfo] (sharonl) (29.9.20) This doc page has an "Out of date" note
+# indicating that the content needs to be updated for Kubeflow 1.1, and an
+# Alpha note indicating that this Kubeflow components has an alpha status with
+# limited support.
+[kubeflow_mpi_operator_docs]
+  full  = "https://www.kubeflow.org/docs/components/training/mpi/"
+  text  = "Kubeflow MPI training documentation"
+  title = "MPI Training"
+
+## ====================
+## Kubeflow Pipelines URLs (ML pipelines for Kubeflow; an open-source platform
+#  for building and deploying portable, scalable machine learning (ML) workflows
+#  based on Docker containers)
+
+# Kubeflow Pipelines Home
+# [InfraInfo] (sharonl) I decided to use the Kubeflow Pipelines GH repo URL.
+[kubeflow_pipelines_home]
+  full      = "https://github.com/kubeflow/pipelines"
+  text      = "Kubeflow Pipelines"
+  text_long = "Google Kubeflow Pipelines"
+
+# Kubeflow Pipelines GitHub Repo
+[kubeflow_pipelines_gh]
+  full  = "https://github.com/kubeflow/pipelines"
+  text  = "Kubeflow Pipelines GitHub repo"
+  name  = "kubeflow/pipelines"
+# Nuclio Page in the Kubeflow Pipelines GitHub Repo
+[kubeflow_pipelines_gh_nuclio]
+  full  = "https://github.com/kubeflow/pipelines/tree/master/components/nuclio"
+  text  = "Kubeflow Pipelines GitHub repo"
+  title = "Nuclio (Serverless) Components"
+
+# Kubeflow Pipelines Documentation
+[kubeflow_pipelines_docs]
+  full  = "https://www.kubeflow.org/docs/pipelines/"
+  text  = "Kubeflow Pipelines documentation"
+  title = "Pipelines"
+
+## ===== KUBEFLOW_URLS_END =====
+
+## ===== KUBERNETES_URLS_START =====
+## Kubernetes (k8s) URLs (an open-source system for automating deployment,
+# scaling, and management of containerized applications)
+# [IntInfo] (sharonl) Kubernetes was supported in v1.9 as Tech Preview for use
+# with Nuclio (DOC IG-8404), and is officially supported since v2.0.0 when we
+# moved to Kubernetes-only customer installations (see DOC IG-9140).
+
+## Kubernetes Home
+[kubernetes_home]
+  full = "https://kubernetes.io"
+  text = "Kubernetes"
+
+## Kubernetes Documentation
+[kubernetes_docs]
+  full  = "https://kubernetes.io/docs/"
+    # Redirects to https://kubernetes.io/docs/home/
+  text  = "Kubernetes documentation"
+  title = "Kubernetes Documentation"
+
+## kubeconfig Files
+[kubeconfig]
+  full  = "https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/"
+  text  = "kubeconfig"
+  title = "Organizing Cluster Access Using kubeconfig Files"
+
+## kubectl CLI
+[kubectl]
+  # Kubernetes docs - "Reference" > "kubectl CLI"
+  # kubectl reference overview (the first page in the "kubctl CLI" reference)
+  [kubectl.ref]
+    full  = "https://kubernetes.io/docs/reference/kubectl/overview/"
+    text  = "kubectl"
+    title = "Overview of kubectl"
+  # kubectl reference
+  [kubectl.ref_kubectl]
+    full  = "https://kubernetes.io/docs/reference/kubectl/kubectl/"
+    text  = "kubectl reference"
+    title = "kubectl"
+  # kubectl-commands" reference page
+  # [IntInfo] (sharonl) (28.10.19) This page has a link to the generated
+  # kubectl commands reference docs - see the `kubctl.cmd.gen_ref` key.
+  [kubectl.ref_cmd]
+    full  = "https://kubernetes.io/docs/reference/kubectl/kubectl-cmds/"
+    text  = "kubectl commands reference"
+    title = "kubectl Commands"
+
+  # kubectl generated commands-reference page
+  [kubectl.gen_ref]
+    full  = "https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands/"
+    text  = "kubectl commands reference"
+    title = "Kubectl Reference Docs"
+      # [IntInfo] (sharonl) (28.10.19) This is the tab title (set with `title`
+      # HTML tags in the page source), but it doesn't appear on the page, which
+      # begins with the first h1 heading ("GETTING STARTED").
+
+  # kubectl installation page [Kubernetes docs - "Tasks" > "Install Tools"]
+  [kubectl.install]
+    full  = "https://kubernetes.io/docs/tasks/tools/install-kubectl/"
+    text  = "kubectl installation"
+    title = "Install and Set Up kubectl"
+## ===== KUBERNETES_URLS_END =====
+
+## ===== LOOKER_URLS_START =====
+## Looker (BI data-analytics application) URLs 
+
+## Looker Home Page
+[looker_home]
+  full = "https://www.looker.com/"
+  text = "Looker"
+## ===== LOOKER_URLS_END =====
+
+## ===== MATPLOTLIB_URLS_START =====
+## Matplotlib   (a Python 2D plotting library) URLs 
+# ("Matplotlib is a Python 2D plotting library which produces publication
+# quality figures in a variety of hardcopy formats and interactive environments
+# across platforms. Matplotlib can be used in Python scripts, the Python and
+# IPython shells, the Jupyter notebook, web application servers, and four
+# graphical user interface toolkits.")
+
+## Matplotlib Home Page
+[matplotlib_home]
+  full  = "https://matplotlib.org/"
+  text  = "Matplotlib"
+
+## Matplotlib Documentation
+[matplotlib_docs]
+  full = "https://matplotlib.org/contents.html"
+  text = "Matplotlib documentation"
+
+## ====================
+## Pyplot (matplotlib.pyplot - a state-based interface to matplotlib, mainly
+# for interactive plots and simple cases of programmatic plot generation)
+
+## Matplotlib Home Page
+[pyplot_home]
+  full      = "https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html"
+  text      = "Pyplot"
+  api_name  = "matplotlib.pyplot"
+## ===== MATPLOTLIB_URLS_END =====
+
+## ===== AZURE_URLS_START =====
+## Microsoft Azure (Microsoft Cloud) URLs
+
+## Azure Home Page
+[azure_home]
+  full  = "https://azure.microsoft.com" # > https://azure.microsoft.com/en-us/
+  text  = "Microsoft Azure"
+  text_short  = "Azure"
+  title = "Events Hubs"
+
+## ====================
+## Azure Event Hubs ("Simple, secure, and scalable real-time data ingestion";
+# "a fully managed, real-time data ingestion service that�s simple, trusted,
+# and scalable")
+
+## Event Hubs Home Page
+[event_hubs_home]
+  full  = "https://azure.microsoft.com/services/event-hubs/" # > https://azure.microsoft.com/en-us/services/event-hubs/
+  text  = "Azure Events Hub"
+  title = "Events Hubs"
+
+## Event Hubs Docs Home Page
+[event_hubs_docs]
+  full  = "https://docs.microsoft.com/azure/event-hubs/" # > https://docs.microsoft.com/en-us/azure/event-hubs/
+  text  = "Azure Event Hubs documentation"
+  title = "Event Hubs Documentation"
+
+## Event Hubs GitHub
+[event_hubs_gh]
+  full  = "https://github.com/Azure/azure-event-hubs"
+  text  = "Azure/azure-event-hubs"
+## ===== AZURE_URLS_END =====
+
+## ===== NVIDIA_URLS_START =====
+## NVIDIA URLs
+
+## NVIDIA Home Page
+[nvidia_home]
+  full  = "https://www.nvidia.com/en-us/"
+    # https://www.nvidia.com redirects to https://www.nvidia.com/en-eu/geforce/
+  text  = "NVIDIA"
+# NVIDIA Deep Learning & API Home Page
+[nvidia_ai]
+  full  = "https://www.nvidia.com/en-us/deep-learning-ai/"
+  text  = "NVIDIA deep-learning and API"
+
+## NVIDIA Developer Home Page
+[nvidia_dev]
+  full  = "https://developer.nvidia.com/"
+  text  = "NVIDIA Developer"
+
+## NVIDIA Pascal Architecture Page
+[nvidia_pascal_arch]
+  full  = "https://www.nvidia.com/en-us/geforce/products/10series/architecture/"
+  text  = "NVIDIA Pascal"
+  title = "NVIDIA Pascal"
+
+## ====================
+## CUDA URLs
+# "CUDA is a parallel computing platform and programming model developed by
+# NVIDIA for general computing on graphical processing units (GPUs)."
+# [https://developer.nvidia.com/cuda-zone]
+
+## CUDA Home Page = NVIDIA Developer CUDA Zone
+[cuda_home]
+  full  = "https://developer.nvidia.com/cuda-zone"
+  text  = "CUDA"
+  title = "CUDA Zone"
+
+## --------------------
+## CUDA GPUs
+
+# CUDA GPUs NVIDIA Developer Page
+[cuda_gpus]
+  full  = "https://developer.nvidia.com/cuda-gpus"
+  text  = "CUDA GPUs"
+  title = "CUDA GPUs"
+
+## --------------------
+## CUDA Toolkit
+# A development environment for creating high performance GPU-accelerated
+# applications
+
+# CUDA Toolkit Home Page
+[cuda_toolkit]
+  full  = "https://developer.nvidia.com/cuda-toolkit"
+  text  = "CUDA Toolkit"
+  title = "CUDA Toolkit"
+
+# CUDA Toolkit Documentation
+[cuda_toolkit_docs]
+  full  = "https://docs.nvidia.com/cuda/"
+  text  = "CUDA Toolkit Documentation"
+  title = "CUDA Toolki Documentation"
+
+## ====================
+## RAPIDS URLs
+# "The RAPIDS suite of open source software libraries gives you the freedom to
+# execute end-to-end data science and analytics pipelines entirely on GPUs."
+# (RAPIDS home page + there's similar text on the About page that it links to);
+# "The RAPIDS data science framework is a collection of libraries for running
+# end-to-end data science pipelines completely on the GPU." (RAPIDS docs)
+# The libraries are written in Python.
+
+## RAPIDS Home Page
+[rapids_home]
+  full      = "https://rapids.ai/"
+  text      = "RAPIDS"
+  text_long = "NVIDIA RAPIDS"
+  title     = "RAPIDS Open GPU Data Science"
+
+## RAPIDS Getting-Started Page
+# ["Prerequisites" section - https://rapids.ai/start.html#prerequisites]
+[rapids_gs]
+  full  = "https://rapids.ai/start.html"
+  text  = "RAPIDS getting-started page"
+  title = "Getting Started" # The page heading is "RAPIDS" > "Try RAPIDS Now",
+    # but the title in the main page area is "GETTING STARTED".
+
+## NVIDIA Developer RAPIDS Page
+[nvidia_dev_rapids]
+  full  = "https://developer.nvidia.com/rapids"
+  text  = "RAPIDS"
+  title = "RAPIDS" # sub-title: GPU-Accelerated Data Analytics & Machine Learning
+
+## RAPIDS GitHub Organization
+[rapids_gh_org]
+  full  = "https://github.com/rapidsai"
+  text  = "RAPIDS GitHub"
+  name  = "rapidsai"
+
+# RAPIDS Documentation
+[rapids_docs]
+  full  = "https://docs.rapids.ai/"
+  text  = "RAPIDS documentation"
+  title = "RAPIDS Docs"
+
+## --------------------
+## cuDF
+# RAPIDS GPU DataFrame library
+
+# RAPIDS cuDF Documentation
+[rapids_cudf_docs]
+  full        = "https://docs.rapids.ai/api/cudf/stable/"
+  text        = "RAPIDS cuDF documentation"
+  text_short  = "cuDF"
+  title       = "Welcome to cuDF's documentation!"
+
+# RAPIDS cuDF GitHub Repo
+[rapids_cudf_gh]
+  full  = "https://github.com/rapidsai/cudf"
+  text  = "RAPIDS cuDF GitHub repo"
+  name  = "rapidsai/cudf"
+
+## --------------------
+## cuML
+# RAPIDS machine-learning library
+
+# RAPIDS cuML Documentation
+[rapids_cuml_docs]
+  full  = "https://docs.rapids.ai/api/cuml/stable/"
+  text  = "RAPIDS cuML documentation"
+  title = "Welcome to cuML's documentation!"
+
+# RAPIDS cuML GitHub Repo
+[rapids_cuml_gh]
+  full  = "https://github.com/rapidsai/cuml"
+  text  = "RAPIDS cuML GitHub repo"
+  name  = "rapidsai/cuml"
+## ===== NVIDIA_URLS_END =====
+
+## ===== OIDC_URLS_START =====
+## OpenID Connect (OIDC)
+# ("a simple identity layer on top of the OAuth 2.0 protocol")
+#  [InfInfo] See [c-authenticator-service] in product.toml.
+
+## OIDC Home Page
+[oidc_home]
+  full        = "https://openid.net/connect/"
+  text        = "OpenID Connect"
+  text_full   = "OpenID Connect (OIDC)"
+  text_short  = "OIDC"
+  title       = "Welcome to OpenID Connect"
+## ===== OIDC_URLS_END =====
+
+## ===== PANDAS_URLS_START =====
+## pandas   (Python data analysis library/toolkit) URLs 
+# ("pandas is an open source, BSD-licensed library providing high-performance,
+# easy-to-use data structures and data analysis tools for the Python
+# programming language.")
+
+## pandas Home Page
+[pandas_home]
+  full  = "https://pandas.pydata.org/"
+  text  = "pandas"
+  title = "pandas"
+
+## pandas Documentation
+[pandas_docs]
+  full  = "http://pandas.pydata.org/pandas-docs/stable/"
+  text  = "pandas documentation"
+  title = "pandas: powerful Python data analysis toolkit"
+# pandas API Reference
+[pandas_ref]
+  full  = "https://pandas.pydata.org/pandas-docs/stable/reference/"
+  text  = "pandas API reference"
+  title = "API reference"
+# pandas User Guide
+[pandas_user_guide]
+  full  = "https://pandas.pydata.org/pandas-docs/stable/user_guide/"
+  text  = "pandas User Guide"
+  title = "User Guide"
+## ===== PANDAS_URLS_END =====
+
+## ===== PARQUET_URLS_START =====
+## Parquet URLs
+
+## Parquet Home
+[parquet_home]
+  full = "https://parquet.apache.org/"
+  text = "Apache Parquet"
+
+## Parquet Documentation
+[parquet_docs]
+  full = "https://parquet.apache.org/documentation/"
+  text = "Parquet documentation"
+[parquet_docs_latest]
+  full = "https://parquet.apache.org/documentation/latest/" 
+## ===== PARQUET_URLS_END =====
+
+## ===== PIP_URLS_START =====
+## pip (Python package installer) URLs 
+
+## pip Home Page
+[pip_home]
+  full  = "https://pip.pypa.io" # redirects to https://pip.pypa.io/en/stable/
+  text  = "pip"
+  title = "pip - The Python Package Installe"
+## ===== PIP_URLS_END =====
+
+## ===== POSTMAN_URLS_START =====
+## Postman - a free API development environment for web APIs
+
+## Postman Home Page
+[postman_home]
+  full = "https://www.getpostman.com/"
+  text = "Postman"
+## ===== POSTMAN_URLS_END =====
+
+## ===== PROMETHEUS_URLS_START =====
+## Prometheus (open-source systems monitoring and alerting toolkit) URLs 
+# [InfraInfo] See also the V3IO Prometheus URLs.
+
+## Prometheus Home Page
+[prometheus_home]
+  full = "https://prometheus.io/"
+  text = "Prometheus"
+
+## Prometheus Documentation
+# (The "DOCS" link on the Prometheus home page links to the docs Overview page.)
+[prometheus_docs]
+  full = "https://prometheus.io/docs/"
+  text = "Prometheus Documentation"
+# Prometheus Overview
+[prometheus_overview]
+  full = "https://prometheus.io/docs/introduction/overview/"
+  text = "Prometheus overview"
+## ===== PROMETHEUS_URLS_END =====
+
+## ===== PROXMOX_URLS_START =====
+## Proxmox URLs
+
+## Proxmox Home Page
+[proxmox_home]
+  full  = "https://www.proxmox.com"
+          # (redirects to https://www.proxmox.com/en/)
+  text  = "Proxmox"
+
+## Prometheus Documentation
+[proxmox_docs]
+  full  = ""
+  text  = ""
+# [InfraInfo] See pve_docs for the Proxmox VE documentation.
+
+## ====================
+## Proxmox Virtual Environment - Proxmox VE (PVE) = URLs
+# ("a complete open-source platform for enterprise virtualization"; "an
+#  open-source server management platform for your enterprise virtualization")
+
+## Proxmox VE Home Page
+[pve_home]
+  full        = "https://www.proxmox.com/proxmox-ve"
+  text        = "Proxmox VE"
+  text_long   = "Proxmox Virtual Environment"
+  text_short  = "PVE"
+  title       = "Proxmox"
+
+## Proxmox VE Documentation
+[pve_docs]
+  full        = "https://pve.proxmox.com/pve-docs/"
+  text        = "Proxmox VE documentation"
+                # (redirects to https://www.proxmox.com/en/proxmox-ve)
+
+## Proxmox VE Wiki
+[pve_wiki]
+  full        = "https://pve.proxmox.com/wiki/"
+                # (redirects to https://pve.proxmox.com/wiki/Main_Page)
+  text        = "Proxmox VE Wiki"
+                # (redirects to https://www.proxmox.com/en/proxmox-ve)
+## ===== PROXMOX_URLS_END =====
+
+## ===== PYTORCH_URLS_START =====
+## PyTorch (open-source deep-learning platform) URLs 
+
+## PyTorch Home Page
+[pytorch_home]
+  full = "https://pytorch.org/"
+  text = "PyTorch"
+
+## PyTorch Documentation
+[pytorch_docs]
+  full = "https://pytorch.org/docs/" # (redirects to https://pytorch.org/docs/stable/index.html)
+  text = "PyTorch"
+
+## PyTorch GitHub Organization
+[pytorch_gh_org]
+  full  = "https://github.com/pytorch"
+  text  = "PyTorch GitHub"
+  name  = "pytorch"
+# Main PyTorch GitHub Repository (pytorch/pytorch)
+# (Tensors and Dynamic neural networks in Python with strong GPU acceleration)
+[pytorch_gh]
+  full  = "https://github.com/pytorch/pytorch"
+  text  = "PyTorch GitHub repo"
+  name  = "pytorch/pytorch"
+# PyTorch Vision GitHub Repository (pytorch/vision) (torchvision Package)
+# (The torchvision package consists of popular datasets, model architectures,
+# and common image transformations for computer vision.)
+[pytorch_vision_gh]
+  full  = "https://github.com/pytorch/vision"
+  text  = "torchvision"
+  name  = "pytorch/vision"
+## ===== PYTORCH_URLS_END =====
+
+## ===== QLIK_URLS_START =====
+## Qlik Tools URLs
+
+## Qlik Home Page
+[qlik_home]
+  full = "https://www.qlik.com/" #(redirects to https://www.qlik.com/us/)
+  text = "Qlik"
+
+## ====================
+## QlikView (BI tool for developing guided analytics applications) URLs 
+
+## QlikView Home Page
+[qlikview_home]
+  full = "https://www.qlik.com/products/qlikview" # redirects to https://www.qlik.com/us/products/qlikview
+  text = "QlikView"
+## ===== QLIK_URLS_END =====
+
+## ===== R_URLS_START =====
+## R (a free software environment for statistical computation and graphics,
+## which including a programming language and a run-time environment) URLs
+
+## R Home Page
+[r_home]
+  full  = "https://www.r-project.org/"
+  text  = "R"
+  title = "The R Project for Statistical Computing"
+
+## ====================
+## The Comprehensive R Archive Network (CRAN)
+
+## CRAN Home Page
+[cran_home]
+  full  = "https://cran.r-project.org/"
+  text  = "CRAN"
+  title = "The Comprehensive R Archive Network"
+
+## CRAN Docs Base URL
+[cran_docs]
+  full  = "https://cran.r-project.org/doc/"
+  text  = "CRAN documentation"
+
+## CRAN R FAQ
+[cran_r_faq]
+  full  = "https://cran.r-project.org/doc/FAQ/R-FAQ.html"
+  text  = "CRAN R FAQ"
+  title = "R FAQ"
+## ===== R_URLS_END =====
+
+## ===== RFC_1123_URLS_START =====
+## RFC 1123 (Requirements for Internet Hosts -- Application and Support) URLs 
+# [c-project-name-restrictions] [IntInfo] (sharonl) This spec's DMS label-name
+# requirements are used for the product's and standalone MLRun and Nuclio
+# project-name restrictions (see sw-specifications.md #project-names).
+
+## RFC 1123 Home Page
+[rfc_1123]
+  full  = "https://tools.ietf.org/html/rfc1123"
+  text  = "RFC 1123"
+  title = "Requirements for Internet Hosts -- Application and Support"
+## ===== RFC_1123_URLS_END =====
+
+
+## ===== SQLALCHEMY_START =====
+## SQLAlchemy (a Python SQL toolkit and Object Relational Mapper)
+
+## SQLAlchemy Home Page
+[sqlalchemy_home]
+  full  = "https://www.sqlalchemy.org/"
+  text  = "SQLAlchemy"
+
+## SQLAlchemy Documentation
+[sqlalchemy_docs]
+  full  = "https://docs.sqlalchemy.org"
+    # Redirects to https://docs.sqlalchemy.org/en/<n>/
+  text  = "SQLAlchemy"
+## ===== SQLALCHEMY_END =====
+
+## ===== SCIPY_URLS_START =====
+## SciPy (a Python-based ecosystem of open-source software for mathematics,
+# science, and engineering) URLs 
+
+## SciPy Home Page
+[scipy_home]
+  full = "https://www.scipy.org/"
+  text = "SciPy"
+
+## SciPy Documentation
+[scipy_docs]
+  full  = "https://docs.scipy.org/doc/"
+  text  = "SciPy documentation"
+  title = "Numpy and Scipy Documentation"
+
+## ====================
+## NumPy (a package for scientific computing with Python) URLs 
+
+## NumPy Home Page
+[numpy_home]
+  full = "http://www.numpy.org/"
+  text = "NumPy"
+
+## NumPy Documentation
+# (SciPy.org also has NumPy documentation - https://docs.scipy.org/doc/numpy/.)
+[numpy_docs]
+  full = "https://numpy.org/devdocs/"
+  text = "NumPy documentation"
+  # (27.3.19) The title is "NumPy v<version> Manual" ("NumPy v1.16 Manual").
+## ===== SCIPY_URLS_END =====
+
+## ===== SCIKITLEARN_URLS_START =====
+## scikit-learn (tools for data mining and data analysis; a Python module for
+## machine learning built on top of SciPy) URLs 
+
+## scikit-learn Home Page
+[scikitlearn_home]
+  full = "https://scikit-learn.org"
+    # redirects to https://scikit-learn.org/stable/
+  text = "scikit-learn"
+
+## scikit-learn Documentation
+[scikitlearn_docs]
+  full  = "https://scikit-learn.org/stable/documentation.html"
+  text  = "scikit-learn documentation"
+  title = "Documentation of scikit-learn" # + the version number at the end
+
+## scikit-learn GitHub Organization
+[scikitlearn_gh_org]
+  full  = "https://github.com/scikit-learn"
+  text  = "scikit-learn GitHub"
+  name  = "scikit-learn"
+# Main scikit-learn GitHub Repository (scikit-learn/scikit-learn)
+# (a Python module for machine learning built on top of SciPy)
+[scikitlearn_gh]
+  full  = "https://github.com/scikit-learn/scikit-learn"
+  text  = "scikit-learn GitHub repo"
+  name  = "scikit-learn/scikit-learn"
+## ===== SCIKITLEARN_URLS_END =====
+
+## ===== SQOOP_URLS_START =====
+## Apache Sqoop (a tool for efficiently transfering bulk data between Apache
+## Hadoop and structured data stores such as relational databases) URLs 
+
+## Sqoop Home Page
+[sqoop_home]
+  full  = "http://sqoop.apache.org/"
+  text  = "Apache Sqoop"
+  title = "Apache Sqoop"
+## ===== SQOOP_URLS_END =====
+
+## ===== TABLEAU_URLS_START =====
+## Tableau (BI data-analytics application) URLs 
+
+## Tableau Home Page
+[tableau_home]
+  full = "https://www.tableau.com"
+  text = "Tableau"
+## ===== TABLEAU_URLS_END =====
+
+## ===== TENSORFLOW_URLS_START =====
+## Google TensorFlow (open-source library for machine intelligence) URLs 
+
+## TensorFlow Home Page
+[tensorflow_home]
+  full = "https://www.tensorflow.org/"
+  text = "TensorFlow"
+## ===== TENSORFLOW_URLS_END =====
+
+## ===== UBER_URLS_START =====
+## Uber URLS
+
+## Uber Engineering Home Page
+[uber_eng_home]
+  base = "eng.uber.com/"
+  full = "https://eng.uber.com/"
+  text  = "Uber Engineering"
+
+## ====================
+## Horovod URLs
+# "Uber's Open Source Distributed Deep Learning Framework for TensorFlow"
+# [from the https://eng.uber.com/horovod/ title]
+# "Distributed training framework for TensorFlow, Keras, PyTorch, and Apache
+# MXNet" [horovod/horovod GitHub repo tag line]
+# "The primary motivation for this project is to make it easy to take a
+# single-GPU TensorFlow program and successfully train it on many GPUs faster."
+# [from the horovod/horovod GitHub repo README.md file]
+
+## Horovod Home Page
+[horovod_home]
+  full  = "https://eng.uber.com/horovod/"
+  text  = "Horovod"
+  title = "Meet Horovod: Uber�s Open Source Distributed Deep Learning Framework for TensorFlow"
+
+# Horovod for NVIDIA GPUs Page
+[horovod_nvidia]
+  full  = "https://eng.uber.com/nvidia-horovod-deep-learning/"
+  text  = "Horovod for NVIDIA GPUs"
+  title = "NVIDIA: Accelerating Deep Learning with Uber's Horovod"
+
+## Horovod GitHub Organization
+[horovod_gh_org]
+  full  = "https://github.com/horovod/"
+  text  = "Horovod GitHub"
+  name  = "horovod"
+# Main Horovod GitHub Repository (horovod/horovod)
+[horovod_gh_]
+  full  = "https://github.com/horovod/"
+  text  = "Horovod GitHub repo"
+  name  = "horovod/horovod"
+## ===== UBER_URLS_END =====
+
+## ===== VMWARE_URLS_START =====
+## VMware URLs
+
+## VMware Home Page
+[vmware_home]
+  full  = "https://www.vmware.com/"
+  text  = "VMware"
+
+## VMware Documentation
+[vmware_docs]
+  full  = "https://docs.vmware.com/"
+  text  = "VMware documentation"
+# [InfraInfo] See vsphere_docs for the vSphere documentation.
+
+## VMware Knowledge Base
+[vmware_kb]
+  full  = "https://kb.vmware.com/s/"
+    # (https://kb.vmware.com redirects to this URL)
+  article_base = "https://kb.vmware.com/s/article/"
+    # [InfraInfo] This URL doesn't work as-is, but you can append an article
+    # number to refer to a specific article page in the KB.
+  text  = "VMware knowledge base"
+  title = "VMware Knowledge Base"
+
+## ====================
+## VMware vSphere URLs
+# ("compute virtualization platform")
+
+## VMware vSphere Home Page
+[vsphere_home]
+  full        = "https://www.vmware.com/products/vsphere.html"
+  text        = "vSphere"
+  text_long   = "VMware vSphere"
+  title       = "vSphere"
+
+## VMware vSphere Documentation
+[vsphere_docs]
+  full        = "https://docs.vmware.com/en/VMware-vSphere/index.html"
+                  # (There's no language-ignorant URL for the vSphere docs.)
+  text        = "vSphere documentation"
+  text_long   = "VMware vSphere documentation"
+# VMware vSphere documentation for the latest supported platform version
+# [IntInfo] [InfraInfo] (sharonl) (11.11.20) Use this as the base URL for
+# linking to a specific page in the vSphere documentation, but use vsphere_docs
+# to link to this documentation in general. The vSphere documentation has
+# versioned-doc links in the navigation menu, but it doesn't allow selecting
+# the base link for each version; the base versioned-doc URL that I derived
+# from the URLs of specific versioned pages shows the versioned-docs home page
+# with an HTML TOC, but ti's not a full doc site like the non-versioned URL.
+# [TODO-NEW-VER] [c-vsphere-ver] When the latest supported VMware vSphere
+# version changes (see `ver.vmware` in the product.toml), also update this URL.
+[vsphere_docs_latest]
+  full        = "https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vm_admin.doc/"
+  text        = "vSphere documentation"
+  text_long   = "VMware vSphere documentation"
+## ===== VMWARE_URLS_END =====
+
+## ===== ZEPPELIN_URLS_START =====
+## Zeppelin URLs (an Apache web-based notebook that enables data-driven,
+## interactive data analytics and collaborative documents)
+
+## Zeppelin Home
+[zeppelin_home]
+  full  = "https://zeppelin.apache.org"
+  text  = "Apache Zeppelin"
+  title = "Apache Zeppelin"
+
+## Zeppelin Documentation
+[zeppelin_docs]
+  full = "https://zeppelin.apache.org/docs/"
+  text = "Zeppelin documentation"
+## Zeppelin Latest-Release Docs
+[zeppelin_docs_latest]
+  full = "https://zeppelin.apache.org/docs/0.7.3/"
+  text = "Zeppelin documentation"
+## ===== ZEPPELIN_URLS_END =====
+

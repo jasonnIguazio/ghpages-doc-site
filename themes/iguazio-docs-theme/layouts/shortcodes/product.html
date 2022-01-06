@@ -1,0 +1,3 @@
+{{- $var := (.Get 0) | default "full" -}}
+{{- index .Site.Data.vars.product.name $var -}}
+

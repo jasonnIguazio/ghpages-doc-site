@@ -1,0 +1,27 @@
+<!-- Hardware-spec capacity-calculations note
+Optional Params
+  "note"  - 1 = !dd a note admonition; 0 (default) = add only text.
+Optional Params for "note"="1"
+  "id"  - Note ID; default = "capacity-calculation-note".
+  "title" - Note title; default = "Capacity Calculations".
+
+[IntInfo] (sharonl) (20.2.18) This note was added to the bare-metal HW spec at
+the request of Yaron Segev and Yoav E. See the "[PM Only] 3.2 TB Samsung NVMe
+raw capacity" email thread (which began on 25.12.17) and the additional
+information in DOC Task IG-5832. (20.2.18) Yoav said this information is
+specifically relevant in relation to disk capacity (for our data nodes) because
+some vendors calculate the capacity differently - e.g., 1 MB = 1024.
+(10.11.19) I created this shortcode and used it from the new HW specs index
+page and from the bare-metal and VM HW spec pages after confirming with Adi
+that this note is relevant to all deployment methods. (3.2.20) The shortcode is
+now used also from the new cloud HW specs page.
+-->
+
+{{- $text :=  "All capacity calculations in the hardware specifications are performed using the base-10 (decimal) number system. For example, 1 TB = 1,000,000,000,000 bytes." -}}
+
+{{- if eq (.Get "note") "1" -}}
+  {{- partial "content-styles/admon.html" (dict "class" "note" "title" (.Get "title" | default "Capacity Calculations") "id" (.Get "id" | default "capacity-calculation-note") "content" $text) -}}
+{{- else -}}
+  {{- printf "%s" $text -}}
+{{- end -}}
+

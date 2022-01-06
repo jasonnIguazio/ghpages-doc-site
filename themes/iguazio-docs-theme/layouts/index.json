@@ -1,0 +1,5 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range where (where .Site.Pages "Type" "not in"  (slice "page" "json")) "Section" "not in" (slice "_includes" "_test-includes") -}}
+  {{- $.Scratch.Add "index" (dict "path" .Permalink "title" .Title "content" .Plain "keywords" .Params.keywords) -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

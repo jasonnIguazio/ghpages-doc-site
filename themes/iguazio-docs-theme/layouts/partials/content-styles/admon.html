@@ -1,0 +1,14 @@
+<!-- "content" - [Required] The admonition content (.Inner). -->
+<!-- "class" - [Required] The CSS admonition class. -->
+{{- $default_title := .default_title -}}<!-- optional -->
+{{- $title := .title -}}<!-- optional -->
+{{- $id := .id -}}<!-- optional -->
+<div class="admonition {{ .class -}}"{{- with $id }} id="{{- . -}}"{{- end -}}>
+  {{- if or $title $default_title -}}
+  <div class="admonition-title">{{- $title | default $default_title -}}</div>
+  {{- end -}}
+  <div class="admonition-content">
+    {{- .content -}}
+  </div>
+</div>
+

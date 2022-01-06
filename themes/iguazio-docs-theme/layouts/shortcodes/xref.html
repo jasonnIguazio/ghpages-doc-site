@@ -1,0 +1,62 @@
+<!-- xref: Cross reference to another site page. See "fixed" to 1 to link to
+  refer to a relative path under the same parent doc-site - namely, to refer
+  to the docs for another product version or to non-versioned doc.
+PATH  - When "fixed="0" (default) - you can either set "f" to the path to the
+NOTE:   referenced site page (typically, a Markdown page; directory paths
+        ending in '/' refer to the respective _index.md file), or set the
+        section name in the "s" param and the remaining path in the "f" param
+        (in which case you can omit "f" to link to the section home / root
+        _index.md page). When s="release-notes", you can also set "f" to
+        "CURRENTVER" to refer to the latest release notes for the built
+        site version.
+        For example: `f="sec1/dir1/file1.md"` or `s="sec1" f="dir1/file1.md"`;
+        `f="sec1/dir1/"` or `f="sec1/dir1/_index.md"` or `s="sec1" f="dir1/"` or
+        `s="sec1" f="dir1/_index.md".
+      - When "fixed"="1", "s" is ignored and "f" must be set to the referenced
+        URL path relative to the parent doc-site base URL -
+        .Site.Data.vars.build.docs_home_url.full.
+        For example: `f="v2.2.0/sec1/dir1/file1/"` or `f="v2.2.0/sec1/dir1/"`.
+      To refer to the home page of the referenced site (built-site base URL
+      when fixed="0" / $.Site.Data.vars.build.docs_home_url.full when fixed==1")
+      omit "s" and either omit "f" as well or set it to "/".
+Params
+"s"   The referenced root-section directory (for example, "reference").
+      The requirement depends on "f" and "fixed". See the PATH NOTE.
+"f"   The relative site path to the referenced page or a relative directory
+      path to link to an _index.md file (when "fixed="0" - default), OR the
+      relative parent doc-site URL path (when "fixed"="1'), OR "CURRENTVER"
+      when s="release-notes" and "fixed="0" (default).
+      Required except when linking to the site home. See the PATH NOTE.
+Optional Params
+"fixed" "1" - Fixed reference path: set "f" to a fixed reference path relative
+      to the parent site base URL (.Site.Data.vars.build.docs_home_url.full);
+      "0" (default) - Set the "f" or "s" & "f" params to a relative path to
+      another page on the built site. See the PATH NOTE.
+"t"   Reference type; one of the following values:
+      - "link" (default) - Create a link to the referenced page.
+      - "title" - Return the link title of the referenced page without linking.
+                  Applicable only when "fixed"="0' (default).
+      - "url"   - Return the URL of the referenced page. (This is useful, for
+                  example, if you want to use link text with a shortcode call.)
+"text"  Custom link text; applicable only with "t"="link" (default).
+      Required when "fixed="="1" and "t"="link" (default).
+      Optional when "fixed"="0"; the default text (applicable when "t"!="url")
+      is the link title of referenced page.
+"textvar" A Hugo data variable or site param (if "tv_t" = "siteparams" | "sp")
+      whose value should be used as the xref text (get-var "tv_v").
+      This param overrides the "text" param".
+Optional "textvar" related params for referencing an array variable key; see
+the descriptions of the equivalent func/get-var.html partial parameters:
+"tv_t"                <=> get-var "t"
+"tv_arr_key"          <=> get-var "arr_key"
+"tv_arr_item_id"      <=> get-var "arr_item_id"
+"tv_arr_item_id_val"  <=> get-var "arr_item_id_val"
+Optional Doc-Filter Params - for conditional processing:
+"filter"    The name of a $Site.Params.Filters key.
+"filterval" The expected value of the specified "filter" key in order to
+            process the shortcode. Required when "filter" is provided.
+-->
+{{- if or (not (.Get "filter")) (eq (.Get "filterval") (index $.Site.Params.Filters (.Get "filter"))) -}}
+  {{- partial "func/xref.html" (dict "ctx" . "s" (.Get "s") "f" (.Get "f") "a" (.Get "a") "fixed" (.Get "fixed") "s" (.Get "s") "t" (.Get "t") "text" (.Get "text") "textvar" (.Get "textvar") "tv_v" (.Get "tv_v") "tv_arr_key" (.Get "tv_arr_key") "tv_arr_item_id" (.Get "tv_arr_item_id") "tv_arr_item_id_val" (.Get "tv_arr_item_id_val") "filter" (.Get "filter") "filterval" (.Get "filterval")) -}}
+{{- end -}}
+

@@ -1,0 +1,163 @@
+<!-- xref: Cross reference to another site page. See "fixed" to 1 to link to
+  refer to a relative path under the same parent doc-site - namely, to refer
+  to the docs for another product version or to non-versioned doc.
+PATH  - When "fixed="0" (default) - you can either set "f" to the path to the
+NOTE:   referenced site page (typically, a Markdown page; directory paths
+        ending in '/' refer to the respective _index.md file), or set the
+        section name in the "s" param and the remaining path in the "f" param
+        (in which case you can omit "f" to link to the section home / root
+        _index.md page). When s="release-notes", you can also set "f" to
+        "CURRENTVER" to refer to the latest release notes for the built
+        site version.
+        For example: `f="sec1/dir1/file1.md"` or `s="sec1" f="dir1/file1.md"`;
+        `f="sec1/dir1/"` or `f="sec1/dir1/_index.md"` or `s="sec1" f="dir1/"` or
+        `s="sec1" f="dir1/_index.md".
+      - When "fixed"="1", "s" is ignored and "f" must be set to the referenced
+        URL path relative to the parent doc-site base URL -
+        .Site.Data.vars.build.docs_home_url.full.
+        For example: `f="v2.2.0/sec1/dir1/file1/"` or `f="v2.2.0/sec1/dir1/"`.
+      To refer to the home page of the referenced site (built-site base URL
+      when fixed="0" / $.Site.Data.vars.build.docs_home_url.full when fixed==1")
+      omit "s" and either omit "f" as well or set it to "/".
+Params
+"s"   The referenced root-section directory (for example, "reference").
+      The requirement depends on "f" and "fixed". See the PATH NOTE.
+"f"   The relative site path to the referenced page or a relative directory
+      path to link to an _index.md file (when "fixed="0" - default), OR the
+      relative parent doc-site URL path (when "fixed"="1'), OR "CURRENTVER"
+      when s="release-notes" and "fixed="0" (default).
+      Required except when linking to the site home. See the PATH NOTE.
+Optional Params
+"fixed" "1" - Fixed reference path: set "f" to a fixed reference path relative
+      to the parent site base URL (.Site.Data.vars.build.docs_home_url.full);
+      "0" (default) - Set the "f" or "s" & "f" params to a relative path to
+      another page on the built site. See the PATH NOTE.
+"t"   Reference type; one of the following values:
+      - "link" (default) - Create a link to the referenced page.
+      - "title" - Return the link title of the referenced page without linking.
+                  Applicable only when "fixed"="0' (default).
+      - "url"   - Return the URL of the referenced page. (This is useful, for
+                  example, if you want to use link text with a shortcode call.)
+"text"  Custom link text; applicable only with "t"="link" (default).
+      Required when "fixed="="1" and "t"="link" (default).
+      Optional when "fixed"="0"; the default text (applicable when "t"!="url")
+      is the link title of referenced page.
+"textvar" A Hugo data variable or site param (if "tv_t" = "siteparams" | "sp")
+      whose value should be used as the xref text (get-var "tv_v").
+      This param overrides the "text" param".
+Optional "textvar" related params for referencing an array variable key; see
+the descriptions of the equivalent func/get-var.html partial parameters:
+"tv_t"                <=> get-var "t"
+"tv_arr_key"          <=> get-var "arr_key"
+"tv_arr_item_id"      <=> get-var "arr_item_id"
+"tv_arr_item_id_val"  <=> get-var "arr_item_id_val"
+Optional Doc-Filter Params - for conditional processing:
+
+[INFRA-VERSION-SITE]
+- NOTE: I decided to keep the release notes section as part of the versioned
+  site builds (with the latest RNs on each site being those of the built site
+  version). => I kept the support for s="release=notes" & f="CURRENTVER" when
+  fixed="0" (default). (I didn't change the related params logic both to
+  minimize code changes and because potentially, "CURRENTVER" could also be
+  used for other sections and not just for "release-notes".
+- TODO: Reassess the need for the "fixed" param - as its purpose was to link
+  to a specific versioned page in multi-versioned doc sites, and it's currently
+  unused even in the multi-version doc site.
+[InfraInfo] Don't move this note to a separate HTML comment, as it affects the
+output in some cases. This note should ultimately be removed anyway.
+-->
+{{- $ctx := .ctx -}}
+{{- $ref_section := .s | default "" -}}
+{{- $file := .f -}}
+{{- $anchor := .a | default "" -}}
+{{- if $anchor -}}{{- $anchor = printf "#%s" $anchor -}}{{- end -}}
+<!-- [InfraInfo] (sharonl (17.11.20) I replaced the following $anchor variable
+  initialization (copied below without the template curly braces, which are
+  interpreted also within comments) with the above, after I found that $anchor
+  isn't initialized correctly (remains empty) when the `xref` partial is called
+  from a non-theme Markdown shortcode (include-install-vm-offline-install.md) -
+  the `isset $ctx.Params "a"` didn't evaluate to true when the "a" param was
+  set in the partial call. The code worked correctly when calling the theme
+  `xref` shortcode. I suspect the different might be related to the use of a
+  Markdown and not an HTML shortcode. (The only other difference I could
+  Identify is that the other shortcode wasn't a theme shortcode, but I suspect
+  this isn't the problem.)
+- $anchor :=  (cond (isset $ctx.Params "a") (printf "%s%s" "#" .a) "" ) -
+-->
+{{- $text := .text -}}
+{{- if .textvar -}}
+  {{- $text = partial "func/get-var.html" (dict "ctx" $ctx "t" .tv_t "v" .textvar "arr_key" $.tv_arr_key "arr_item_id" $.tv_arr_item_id "arr_item_id_val" .tv_arr_item_id_val) -}}
+{{- end -}}
+{{- $type := .t | default "link" -}}
+
+{{- if .fixed -}}
+  {{- printf "[%s](%s%s)" $text $ctx.Site.Data.vars.build.docs_home_url.full $file | markdownify -}}
+
+{{- else -}}<!-- [! "fixed"] -->
+  {{- $page_type := "page" -}}
+  {{- $page := "" -}}
+  {{- $link := "" -}}
+  {{- $ref_path := "" -}}
+
+  {{- if and (eq $ref_section "release-notes") (eq $file "CURRENTVER") -}}
+    {{- $file = strings.TrimSuffix "/" (printf "version-%s/v%s.md/" $ctx.Site.Data.vars.product.ver.num_short $ctx.Site.Data.vars.product.ver.latest_rn_version) -}}
+    {{- $text = $text | default (printf "version %s release notes" $ctx.Site.Data.vars.product.ver.latest_rn_version) -}}
+  {{- else -}}<!-- [(release-notes CURRENTVER] -->
+    {{- if or (not $file) (eq (substr $file -1 1) "/") -}}
+      {{- $page_type = "section" -}}
+    {{- end -}}
+
+    {{- if eq $file "/" -}}
+      {{- $ref_path = "/" -}}
+      {{- $page = $ctx.Site.GetPage "home" -}}
+      {{- $link = "/" -}}
+    {{- end -}}
+  {{- end -}}<!-- [(release-notes CURRENTVER] -->
+
+  {{- if not $page -}}
+    {{- $ref_path = strings.TrimSuffix "/" (printf "/%s%s%s" $ref_section (cond (eq $ref_section "") "" "/") $file) -}}
+    {{- $page = $ctx.Site.GetPage $page_type $ref_path -}}
+  {{- end -}}
+
+  {{- if $page -}}
+    {{- $link_title := $page.LinkTitle -}}
+
+    {{- if or (eq $type "link") (eq $type "url") -}}
+      {{- if ne $ref_path "/" -}}
+        {{- if eq $page_type "page" -}}
+            {{- $link = relref $page $ref_path -}}
+        {{- else if eq $page_type "section" -}}
+            {{- $link = $page.RelPermalink -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- $link = printf "%s%s" $link $anchor -}}
+
+      {{- if eq $type "link" -}}
+        {{- printf "[%s](%s)" ($text | default $link_title) $link | markdownify -}}
+      {{- else -}} <!--$type = "url" -->
+        {{- printf "%s" $link -}}
+      {{- end -}}
+
+    {{- else if eq $type "title" -}}
+      {{- $page.LinkTitle -}}
+    {{- end -}}
+  {{- else -}}<!-- [!$page] -->
+    <!-- Use relref to produce an unresolved link-target warning or error,
+      depending on the refLinksErrorLevel configuration, and display the
+      reference text provided in the shortcode's "text" param, if provided.
+      NOTE:
+      - relref produces no HTML output when the link target isn't found, which
+        allows using "text" as the default.
+      - [ci-hugo-warnings] When refLinksErrorLevel = "WARNING", run the Hugo
+        CLI with the `verbose` option to view warnings.
+      See [ci-refLinksErrorLevel] in config.toml for more information.
+    -->
+    {{- relref $ctx $ref_path -}}
+    {{- $text | markdownify -}}
+  {{- end -}}<!-- [!$page] -->
+  {{- end -}}{{- if false -}}<!-- [!.fixed] -->
+    <!-- [InfraInfo] The `if false` condition is used to avoid extra space
+      after the partial output when ending the file with an HTML comment.-->
+    {{- end -}}
+

@@ -1,0 +1,56 @@
+{{- $ctx := .ctx -}}
+{{- $class := .class | default "" -}}
+  <div class="side-menu-show">
+    <i id="side-menu-show" class="fas fa-angle-double-right" aria-hidden="true">
+      <span class="side-menu-show-tooltip">Show TOC</span>
+    </i>
+  </div>
+
+  <div id="side-menu" class="{{ $class }}">
+    <div class="side-menu-action-bar">
+      <i id="side-menu-expand" class="far fa-plus-square"  aria-hidden="true">
+        <span class="expand-tooltip">Expand All</span>
+      </i>
+      <i id="side-menu-collapse" class="far fa-minus-square" aria-hidden="true">
+        <span class="collapse-tooltip">Collapse All</span>
+      </i>
+      <i id="side-menu-hide" class="fas fa-angle-double-up" aria-hidden="true">
+        <span class="side-menu-hide-tooltip">Hide TOC</span>
+      </i>
+    </div>
+
+    <!-- [INFRA-VERSION-SITE] [ci-versioned-site-version-selection] Edited
+      for versioned doc-site builds. The versions-list logic was moved to
+      the JS code to allow getting the versions list dynamically from
+      GitHub so that there's no need to -->
+    <ul class="side-menu">
+      {{ range $ctx.Site.Menus.main }}
+        {{ template "side-menu" . }}
+      {{ end }}
+    </ul>
+  </div><!-- side-menu -->
+
+{{ define "side-menu" }}
+  {{ $currentNode := .}}
+      <li class="side-menu-list hide" data-url-parent="{{.URL}}">
+  {{ if .HasChildren }}
+        <p class="side-menu__item__link">
+          <i class="{{ if .HasChildren }}fas fa-plus-square
+            {{ else }}far fa-square{{ end }}" aria-hidden="true"></i>
+          <a href="{{.URL}}" class="side-menu__item__link__text" data-url-info="{{.URL}}">{{- .Name | markdownify -}}</a>
+        </p>
+        <ul class="side-menu-sub">
+    {{ range .Children }}
+      {{ template "side-menu" . }}
+    {{ end }}
+        </ul>
+  {{else}}
+        <p class="side-menu__item__link">
+          <i class="{{ if .HasChildren }}fas fa-plus-square
+            {{ else }}far fa-square{{ end }}" aria-hidden="true"></i>
+          <a href="{{.URL}}" class="side-menu__item__link__text" data-url-info="{{.URL}}">{{- .Name | markdownify -}}</a>
+        </p>
+  {{end}}
+      </li>
+{{ end }}
+

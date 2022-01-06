@@ -1,0 +1,9 @@
+<!-- doc-tiles-container: Create a doc-tiles container.
+Required Content (.Inner): The contained doc tiles (see shortcode `doc-tile`).
+Required Parameters:
+  "type"  - Doc-tiles container type - "main" or "sub".
+-->
+<div class='{{- printf "%s-tiles-container" (.Get "type") -}}'>
+{{- .Inner -}}
+</div>
+

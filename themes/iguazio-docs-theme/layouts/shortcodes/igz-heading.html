@@ -1,0 +1,14 @@
+<!--
+"h"           [Required] Heading level (e.g., "2" for h2), or "small" for the
+              small-heading class
+"group" | "g" [Required] data/vars/headings.toml group key (e.g., "apiref")
+"type"  | "t" [Required] Heading type - Data.vars.headings.$group key (e.g.,
+              "params")
+"id"          [Optional] Heading anchor id; default = $type
+"pre"         [Optional] Text to prepend to the default text, including the
+              space at the end
+"post"        [Optional] Text to append to the default text, including the
+              space at the beginning 
+-->
+{{- partial "content-styles/igz-heading.html" (dict "ctx" . "hlevel" (.Get "h") "group" (.Get "group" | default (.Get "g")) "type" (.Get "type" | default (.Get "t")) "id" (.Get "id") "pre" (.Get "pre") "post" (.Get "post") "none" (.Get "none")) -}}
+

@@ -1,0 +1,112 @@
+/* ================================== */
+/* Top-menu Right-Navigation Menu (Top-Menu Items) for Small Views */
+
+/* ================================== */
+/* Right-Navigation Fly-Out (Hamburger) Menu Icon (Mobile View) */
+.right .hamburger-right-menu span {
+  font-size: 26px;
+  color: $color-right-nav-menu-icon;
+  cursor: pointer;
+  font-style: normal;
+} /* [.right .hamburger-right-menu] (small views) */
+/* ================================== */
+
+/* ================================== */
+/* Right-Navigation Fly-Out Menu (Mobile View) */
+.right-nav-menu {
+  display: none;
+  position: fixed;
+  right: 0;
+  background-color: $color-right-nav-bg;
+  z-index: 20;
+  width: 45%;
+  min-width: 200px;
+  height: 100%;
+  border-left: $right-nav-menu-border-left;
+  /* ================================== */
+  /* Right-Navigation "Main-Menu" Top-Menu Items (Mobile View) */
+  .main-top-menu-items {
+    margin: 40px 20px 20px;
+
+    li {
+      padding: 10px 0;
+      border-bottom: $right-nav-main-top-menu-item-link-border-bottom;
+
+      a {
+        color: $color-top-menu-item-right-nav-mobile;
+        font-weight: $font-body-bold-light;
+
+        &.active {
+          color: $color-right-nav-active-item;
+          font-weight: bold;
+          text-decoration: $top-menu-active-decoration-mobile;
+        }
+
+        &:hover {
+          color: $color-right-nav-item-hover;
+          text-decoration: none;
+          font-weight: bold;
+        }
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  } /* [.right-nav-menu .main-top-menu-items (mobile view)] */
+  /* ================================== */
+
+  /* ================================== */
+  /* Close-Menu Icon (Mobile View) */
+  .close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 7px 15px 10px;
+    font-weight: 500;
+    line-height: 25px;
+    font-size: 35px;
+    background-color: $color-right-nav-menu-close-icon-bg;
+    color: $color-right-nav-menu-close-icon;
+    cursor: pointer;
+    font-style: normal;
+
+  } /* [.right-nav-menu .close-icon (mobile view) */
+  /* ================================== */
+  
+  /* ================================== */
+  /* Tooltips (Mobile View) */
+  
+  .tooltip-inner {
+    background-color: $color-tooltip-bg;
+    color: $color-tooltip-text;
+  } /* [.righ-nav-menu .tooltipinner] */
+  
+  .tooltip.left .tooltip-arrow {
+    border-left-color: $color-tooltip-bg;
+  } /* [.right-nav-menu .tooltip.bottom .tooltip-arrow] */
+  
+  /* [Tooltips (mobile view)] */
+  /* ================================== */
+  
+} /* [.right-nav-menu] (mobile view) */
+/* ================================== */
+
+/* ================================== */
+/* Larger-Views Customizations (Tablet and Larger) */
+@media all and (min-width: $container-width-tablet) {
+
+  /* ================================== */
+  /* Hide the right-navigation fly-out (hamburger) menu */
+  .hamburger-right-menu, .right-nav-menu {
+    display: none;
+  } /* [.hamburger-right-menu .right-nav-menu (large views) */
+  /* ================================== */
+
+} /* [Larger-Views Customizations (Tablet and Larger)] */
+/* ================================== */
+
+/* [Top-menu Right-Navigation Menu (Top-Menu Items) for Small Views] */
+/* ================================== */
+

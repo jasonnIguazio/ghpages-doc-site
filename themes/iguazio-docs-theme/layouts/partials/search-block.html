@@ -1,0 +1,29 @@
+<div class="search-block">
+
+  <div class="input-group">
+    <input class="search-field form-control" type="text" name="search" placeholder="Search"
+           data-toggle="tooltip" title="" data-placement="bottom">
+    <div class="input-group-append">
+      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </button>
+      <div class="search-options dropdown-menu dropdown-menu-right">
+        <!-- Search all sections of the current doc site -->
+        <a class="dropdown-item active" data-value="/">Search all sections</a>
+        <!-- Search in a specific section of the current doc version -->
+        {{ if gt (len .Site.Params.sections) 1 }}
+          {{ range .Site.Params.sections }}
+            <a class="dropdown-item" data-value='{{ trim .url "/" }}'>
+              Search in {{ if .search_name -}}{{ .search_name -}}{{ else -}}{{ .name -}}{{ end -}}
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <div class="inline-search-results">
+    <ul>
+
+    </ul>
+  </div>
+</div>

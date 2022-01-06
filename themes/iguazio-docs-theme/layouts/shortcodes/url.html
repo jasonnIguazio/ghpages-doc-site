@@ -1,0 +1,33 @@
+<!-- url: Access a URL data-variable key (by default from data/vars/urls.toml)
+    and optionally create a URL link (when link="1"). 
+  Params
+  "g"   Optional variables group - the base name of a data/vars/ file (e.g.,
+        "spark" to access spark.toml).The default is "urls" (for urls.toml).
+  "v"   Required. The name of the base data/vars/"g".toml variable (top-level
+        key) to access.
+  "k"   The name of a "v"[.<ver>] key to access when "v" is a map.
+  "k2"  The name of a "v"[.<ver>]."k" key to access when "k" is also a map.
+  "link" Optional (default = "0"). Set to "1" to create a link using the
+        "k"/"k2" value as the link text and the "full" key of the parent map as
+        the target.
+-->
+{{- $group := (.Get "g") | default "urls" -}}
+{{- $key2 := .Get "k2" -}}
+
+{{- $base := index (index .Site.Data.vars $group) (.Get "v") -}}
+{{- $key := .Get "k" -}}
+{{- if $key2 -}}
+  {{- $base = index $base $key -}}
+  {{- $key = $key2 -}}
+{{- end -}}
+
+{{- $key_value := index $base $key -}}
+
+{{- if (eq (.Get "link") "1") -}}
+  {{- printf "[%s](%s)" $key_value (index $base "latest") | markdownify -}}
+  <!-- [InfraInfo] printf used instead of simple HTML <a> code to avoid an
+    extra space after the shortcode output. -->
+{{- else -}}
+  {{- $key_value -}}
+{{- end -}}
+

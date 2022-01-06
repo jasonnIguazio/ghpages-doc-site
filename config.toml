@@ -1,0 +1,380 @@
+# Hugo-Only Configuration File
+# [InfraInfo] Use the --config build option to override this file.
+# For shared Hugo and custom-build configurations, see config-shared.toml, and
+# for custom-build-only configurations, see config-build.toml.
+
+########## URL_CONFIG_START ##########
+## URL Configurations
+
+## Base Site URL
+baseURL = ""
+
+## URLs Canonification
+canonifyURLs = true
+
+## Relative URLs
+relativeURLs = true
+
+## Ugly URL
+uglyurls = false
+########## URL_CONFIG_END ##########
+
+## Front-Matter Metadata Format
+metadataFormat = "yaml"
+
+## Language
+languageCode = "en-us"
+
+########## CROSS_REF_CONFIGS_START ##########
+## Cross-Reference Configurations
+
+## Produce warnings, not errors, for unresolved `ref` and `relref` link targets
+# [ci-hugo-warnings] Use the --verbose Hugo CLI option to view warnings.
+refLinksErrorLevel = "WARNING"
+# [InfraInfo] [ci-refLinksErrorLevel] (sharonl) This option produces
+# REF_NOT_FOUND warnings instead of errors for unresolved relref and ref calls.
+# The option is supported beginning with Hugo v0.45
+# (https://gohugo.io/content-management/cross-references#ref-and-relref-configuration).
+# It's possible to overwrite the config-file or default configuration by
+# setting the HUGO_REFLINKSERRORLEVEL environment variable (for example,
+# `HUGO_REFLINKSERRORLEVEL="ERROR"`).
+########## CROSS_REF_CONFIGS_END ##########
+
+########## INLINE_SHORTCODES_START ##########
+enableInlineShortcodes = true
+########## INLINE_SHORTCODES_END ##########
+
+########## SYNTAX_HIGHLIGHT_START ##########
+## Syntax Highlight & Code-Block Styling
+# [INFRA-TODO] (sharonl) (8.7.20) Edit - Pygments is no longer supported as a
+# syntax highlighter since Hugo v0.60.0
+# (https://gohugo.io/news/0.60.0-relnotes/ /
+# https://github.com/gohugoio/hugo/releases/tag/v0.60.0 /
+# https://github.com/gohugoio/hugo/issues/4491).
+
+# [InfraInfo] Configure code-block style and content syntax highlighting for
+# the Hugo highlight shortcode, using the default Hugo syntax highlighter,
+# Chroma, via the Hugo `highlight` shortcode (`{{< highlight LANG [OPTIONS] >}}`
+# or Markdown GitHub-flavored code fences -code syntax (```[LANG]).
+# See https://gohugo.io/content-management/syntax-highlighting.
+
+ # Use Pygments CSS classes to format the highlighted code. See
+ # https://help.farbox.com/pygments.html for the available styles.
+ pygmentsUseClasses = true
+    # [InfraInfo] This option requires a related style sheet, which can be
+    # generated with Hugo (see `hugo gen chromastyles -h` and the Hugo doc).
+    # We store Chroma syntax file(s) in the theme's static/css/vendor/chroma/
+    # directory. The active syntax file is set in our `saas` Gulp task.
+
+ # Enable Chroma highlighting via the code-fences syntax (```[style]).
+ # This option is applicable only when pygmentsUseClasses=true.
+ pygmentsCodeFences = true
+
+ # Use Chroma/Pygments highlighting with GH code fences syntax (```[LANG])
+ pygmentsCodefencesGuessSyntax = true
+    # This option is applicable only when pygmentsUseClasses and
+    # pygmentsCodeFences are true.
+    # [InfraInfo] [sharonl] According to the Hugo doc, this option is used to
+    # attempt to guess the syntax-highlighting language automatically when
+    # using code-fences syntax (```), but I found (with Hugo v0.29) that the
+    # option works to apply the configured Chroma code-block style to
+    # code-fences code blocks, but does not result in any language syntax
+    # highlighting if the code language is not explicitly set. Perhaps the
+    # guess attempts refers to connecting the MD code-fences language ID with
+    # the Chroma/Pygments language ID. Disabling this configuration option
+    # caused the Chroma style not to be applied to MD code-fences uses without
+    # an explicit language.
+########## SYNTAX_HIGHLIGHT_END ##########
+
+## Theme
+Theme = "iguazio-docs-theme"
+
+## Title
+# The default title of the doc site's main index page.
+Title = "Iguazio MLOps Platform Documentation"
+
+## Ignored Files
+ignoreFiles = [ "\\.IGNORED", "\\.IGNORED\\.md", "\\.IGNORED\\.html" ]
+
+## Taxonomies
+[Taxonomies]
+  tag      =  "tags"
+  category =  "categories"
+
+## Output Formats
+[Outputs]
+  home = ["HTML", "JSON"]
+  page = ["HTML"]
+
+########## PARAMS_START ##########
+## Site Parameters
+# [InfraInfo] Additional site params are defined in config-shared.toml.
+
+# [InfraInfo] Additional site parameters are defined in the data/vars/ folder
+# and accessed as `.Site.Data.vars.<var file>.<key>`. For example,
+# `{{- .Site.Data.vars.product.name -}}` to access the `product` key in
+# data/vars/product.toml.
+
+## Latest Copyright Year
+[Params.copyright]
+  latest_year = 2021
+
+## Doc Filters
+# [InfraInfo] See the `condition` and `not-condition` shortcodes and additional
+# shortcodes that support conditional filter logic such as `xref`.
+# NOTE: `condition` and `filtevar`="false" doesn't produce output for if the
+# `filter` attribute filter isnt' defined here. You can use `not-condition`
+# with the same filter and `filterval` "true" to avoid defining the filter. 
+# [TODO-NEW-VER] Edit the filter keys and values for the new release, as needed.
+# When creating a new branch for an earlier release, consider removing filters
+# that are no longer required for this release (and the related uses). 
+[Params.Filters]
+  # FAQ
+  # [c-faq] [IntInfo] [InfraInfo] See info in support/_index.md.
+  faq = "false"
+  # Frames streaming
+  frames_stream = "false"
+  # Multi-tenancy
+  multi_tenancy = "false"
+  # Native/big-data application cluster installations (non k8s)
+  native_app_cluster = "false"
+  # [NOSQL-SCALA-API-REF]
+  nosql_scala_api = "false"
+  # Internal-tests filter
+  testfilter = "true"
+
+[Params]
+  ## Company
+  company     = "Iguazio"
+  company_ltd = "Iguazio Ltd."  # {{< company >}} Ltd.
+
+  ## General Site Information
+  # Author
+  author = "Iguazio"
+  
+  # Description
+  description = "Want to learn how to develop full data science workflows from development to production? Read more on the Iguazio MLOps Platform documentation site."
+
+  ## Google Analytics
+  googleAnalytics = "UA-101852366-3"
+
+  ## Images 
+  # Favicon Image
+  favicon = "/images/favicon/igz_favicon.png"
+
+  ## Included-Files Root Content Directory
+  includes_dir = "_includes"
+  # Infra-Tests Included-Files Root Content Directory
+  test_includes_dir = "_test-includes"
+
+  #========== SPECIAL_CONTENT_START ==========
+  ## "Special Content" - for product features that aren't fully supported
+  # [InfraInfo] Use the beta or techpreview shortcodes to mark or refer to
+  # beta/Tech Preview features.
+  # NOTE: Before changing the values of these variables, use the "text"
+  # shortcode param or hardcoded text string in place of existing shortcode
+  # calls in documentation that shouldn't be modified retroactively, such as
+  # release notes. See info in the shortcode and related partial template files.
+
+  ## Beta Identifier
+  beta      = "beta"
+  beta_tc   = "Beta"
+  beta_mark = "[Beta]"
+  beta_basic_desc = "not officially supported in this release."
+
+  ## Tech-Preview Identifier
+  techpreview      = "Tech Preview"
+  techpreview_mark = "[Tech Preview]"
+  # Basic description text for Tech Preview features
+  # [InfInfo] (sharonl) (17.7.18) At Ori's request (as part of the v1.7.1
+  # release-notes review), the text was edited to refer to possible harmful
+  # consequences and guide users to consult the company before usage.
+  techpreview_basic_desc = "included in the current release as a sneak peek to future release features but without official support in this release. Note that Tech Preview features don't go through QA cycles and might result in unexpected behavior. Please consult the Iguazio support team before using these features."
+  #========== SPECIAL_CONTENT_END ==========
+
+  ## Registered-Users-Only Sections (Access-Restricted Sections)
+  # [c-reg-users-only] Password-protected registered-users-only sections.
+  # [InfraInfo] This text is used from the reg-users-only-note shortcode.
+  # The registered users sections are defined in regUsersOnlyDirs in
+  # config-shared.toml (for all password-protected directories) and in the
+  # Params.sections is_reg_users_only section key (for site sections only).
+  reg_users_only_sections_desc = "the software-specifications and release-notes"
+  # Registered-Users Only Navigation-Menu Link Text
+  reg_users_only_nav_link_text = "Access to this section is restricted to registered users only. Contact support@iguazio.com to request access." # email address = .Site.Data.vars.emails.support
+    # [INFRA-VERSION-SITE] I added this and used it instead of the
+    # $reg_users_only_tooltip_text variable in the nav.html & right-nav.html
+    # theme layout partials. This isn't specific to the versioned site. TODO:
+    # Test and merge to development.
+
+  #========== DOC_SECTIONS_START ==========
+  ## Documentation Sections = Top-Menu Items
+  # [InfraInfo] You can use the optional custom search_name section key to
+  # set the text to be used in the related search option ("Search in ...").
+  # By default, `name` is used in the section search text.
+  # [INFRA-VERSION-SITE] I removed the opening '/' from the "url" and "nav_url"
+  # keys and added them in relevant locations in the theme files.
+# [TODO-SITE-RESTRUCT] Consider moving the release-notes section to a separate
+# non-versioned repo published to <non-versioned base URL>/release-notes/ and
+# link to it from the top-menu similar to the Documentation link and/or
+# redirect to it from a "Release Notes" side navigation-menu entry. The RNs
+# repo should also have a version-selection box in the top menu that links to
+# the home page of the relevant versioned doc sites for the same base URL.
+
+  # Introduction
+  [[Params.sections]]
+    id      = "intro"
+    name    = "Introduction"
+    url     = "/intro/"
+    nav_url = "/intro/"
+    start_page = "introduction.md"
+
+  # Data Science and MLOps
+  [[Params.sections]]
+    id      = "ds-and-mlops"
+    name    = "Data Science and MLOps"
+    url     = "/ds-and-mlops/"
+    nav_url = "/ds-and-mlops/"
+
+  # Data Layer
+  [[Params.sections]]
+    id      = "data-layer"
+    name    = "Data Layer"
+    url     = "/data-layer/"
+    nav_url = "/data-layer/"
+
+  # Platform Services
+  [[Params.sections]]
+    id      = "services"
+    name    = "Platform Services" # product_tc Services
+    url     = "/services/"
+    nav_url = "/services/"
+
+  # Cluster Management and Deployment
+  [[Params.sections]]
+    id      = "cluster-mgmt"
+    name    = "Cluster Management and Deployment"
+    url     = "/cluster-mgmt/"
+    nav_url = "/cluster-mgmt/"
+
+  # Platform Users and Security
+  [[Params.sections]]
+    id      = "users-and-security"
+    name    = "Platform Users and Security"
+    url     = "/users-and-security/"
+    nav_url = "/users-and-security/"
+
+  # FAQs and Best Practices ("Support")
+  # [c-faq] [IntInfo] (sharonl) (8.2.21) Filtered out until we add FAQs - see
+  # info in the support/_index.md content page.
+  #[[Params.sections]]
+  #  id      = "support"
+  #  name    = "FAQs and Best Practices"
+  #  url     = "/support/"
+  #  nav_url = "/support/"
+
+  # Release Notes
+  [[Params.sections]]
+    id                = "release-notes"
+    name              = "Release Notes"
+    url               = "/release-notes/"
+    nav_url           = "/release-notes/"
+    is_reg_users_only = true # [c-reg-users-only]
+
+  #========== DOC_SECTIONS_END ==========
+########## PARAMS_END ##########
+
+########## SOCIAL_START ##########
+[Social]
+  ## Facebook
+  facebook  = "https://www.facebook.com/iguazio/"
+
+  ## GitHub
+  # [InfraInfo] This URL is also set in public_gh.full in data/vars/urls.toml.
+  github    = "https://github.com/nuclio/nuclio"
+  
+  ## LinkedIn
+  linkedin  = "https://www.linkedin.com/company/iguazio/"
+
+  ## Twitter
+  twitter   = "https://twitter.com/iguazio"
+
+  ## YouTube
+  youtube   = "https://www.youtube.com/channel/UChmi6ZzsZd9doYYVut1ppUg"
+########## SOCIAL_END ##########
+
+########## MARKDOWN_PARSER_START ##########
+## Goldmark Markdown-Parser Go Package (CommonMark Compliant)
+# [InfraInfo] In Hugo v0.60.0, The goldmark Go Markdown-parser package replaced
+# Blackfriday as the default Hugo Markdown handler (parser/renderer) library.
+# Goldmark is CommonMark compliant, unlike Blackfriday.
+# References:
+# - https://github.com/yuin/goldmark/
+# - https://godoc.org/github.com/yuin/goldmark
+# Hugo References:
+# - https://gohugo.io/news/0.60.0-relnotes/
+# - https://github.com/gohugoio/hugo/releases/tag/v0.60.0
+# - https://gohugo.io/getting-started/configuration-markup
+# - https://gohugo.io/content-management/formats/#list-of-content-formats
+
+## Goldmark Extensions 
+[markup.goldmark.extensions]
+  typographer = false # Disable the Typographer extension.
+    # [InfraInfo] (sharonl) (1.11.20) The Typographer extension translates
+    # plain ASCII punctuation characters into typographic-punctuation HTML
+    # entities, including changing regular quotes into smart quotes and
+    # consecutive double and triple hyphens into ndash and mdash, respectively
+    # (https://github.com/yuin/goldmark/#built-in-extensions). I disabled the
+    # extension after I found that the CLI flag notation `--xxx` is translated
+    # into `<ndash>xxx` in the output, including for our custom CSS code
+    # styles, such as <opt>...</opt> (as opposed to inline Markdown code `...`).
+
+## Goldmark Renderer
+[markup.goldmark.renderer]
+  unsafe= true  # Required for rendering HTML in Markdown files
+
+# [INFRA-TODO] Remove the Blackfriday configuration (replaced with goldmark).
+#========== BLACKFRIDAY_START ==========
+## Blackfriday Markdown processor configuration
+# See the "Configure Blackfriday rendering" Hugo documentation at
+# https://gohugo.io/overview/configuration/#configure-blackfriday-rendering.
+# Note that the flag names are case sensitive.
+[Blackfriday]
+  plainIDAnchors  =  true
+  smartypants     =  true
+  fractions       =  false
+    # Hugo doc: "`false` disables smart punctuation substitutions including
+    # smart quotes, smart dashes, smart fractions, etc. If `true`, it may be
+    # fine-tuned with the angledQuotes, fractions, smartDashes and latexDashes
+    # flags (see below)."
+    # [sharonl] TODO: Test the functionality and reconsider this setting.
+    # (17.6.20) I removed the `fractions = true` configuration after I could
+    # that is also applies smart-fraction formatting to strings like
+    # "10.0.0.0/16,40.10.10.31/32" (unless formatted as code). (23.6.20) I set
+    # fractions to false explicitly after I noticed we still have smart
+    # fractions in some instances in the output.
+  smartDashes    =  false
+    # Hugo doc: "`false` disables smart dashes; i.e., the conversion of
+    # multiple hyphens into en dash or em dash. If `true`, its behavior can be
+    # modified with the latexDashes flag below."
+    # Note that this is also affected by the smartypants configuration.
+    # [sharonl] I changed the value from "true" in the vamp.io theme.
+    # TODO: Test the functionality and consider whether we want to use this.
+    # I think this will cause issues if we want to comment out with an HTML
+    # comment a doc section that has three hyphens, for example, and it's also
+    # less clear and portable.
+    # If we set think to `true`, I think I prefer to set it with latexDashes
+    # set to `true` - which is the default (so also applied in the vamp.io
+    # theme). See the Hugo latexDashes doc.
+  # [sharonl] TODO: Consider adding these configurations:
+    # extensions = [ "..." ]
+      # Hugo doc:  "Enable one or more of Blackfriday's Markdown extensions (if
+      # they aren't Hugo defaults).
+      # Example:   Include "hardLineBreak" in the list to enable Blackfriday's
+      # EXTENSION_HARD_LINE_BREAK."
+      # TODO: Check the Blackfriday extensions, such as hardcoded. See the
+      # "Extensions" section of the Blackfriday GitHub README at
+      # https://github.com/russross/blackfriday/blob/master/README.md#extensions.
+    #hrefTargetBlank = true
+      # Hugo doc: "`true` opens external links in a new window or tab."
+#========== BLACKFRIDAY_END ==========
+########## MARKDOWN_PARSER_END ##########

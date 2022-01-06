@@ -1,0 +1,4 @@
+{{- $title := .Get "title" -}}<!-- Admonition title; default - "Warning"; "none" = no title -->
+{{- $title := .Get "title" -}}
+{{- partial "content-styles/admon.html" (dict "content" (.Inner | markdownify) "class" "warning" "title" (cond (eq $title "none") "" $title) "default_title" (cond (eq $title "none") "" "Warning") "id" (.Get "id")) -}}
+

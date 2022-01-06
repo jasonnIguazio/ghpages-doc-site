@@ -1,0 +1,51 @@
+{{ partial "head" . }}
+
+<body>
+<div class="single-page">
+  {{ partial "nav" . }}
+</div>
+
+<div class="documentation">
+  <!-- Side Menu -->
+  {{ if not .Params.isSideMenuHidden }}
+    {{ partial "side-menu.html" (dict "ctx" .) }}
+  {{ end }}
+
+  <div class="content{{ if eq .Params.isSideMenuHidden true }} main{{ end }}{{ if eq .Params.iframecontent true }} iframe-content{{ end }}">
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumb">
+      {{ partial "breadcrumbs" . }}
+    </div>
+
+    <!-- Page Title & Subtitle -->
+    {{ partial "title" . }}
+
+    <!-- Mini TOC -->
+    {{- if not .Params.nominitoc -}}
+      {{ partial "mini-toc" . }}
+    {{- end -}}
+
+    <!-- Page Content -->
+    <div class="doc-content">
+      {{- if .Params.isbeta -}}
+        <!-- BETA -->
+        {{- partial "content-styles/beta.html" (dict "ctx" . "note" "1" "feature" .Params.betafeature "features" .Params.betafeatures) -}}
+      {{- end -}}
+      {{- if or (or .Params.istechpreview .Params.techpreviewfeature) .Params.techpreviewfeatures -}}
+        <!-- TECH-PREVIEW -->
+        {{- partial "content-styles/techpreview.html" (dict "ctx" . "note" "1" "feature" .Params.techpreviewfeature "features" .Params.techpreviewfeatures) -}}
+      {{- end -}}
+
+      {{ .Content }}
+    </div>
+
+  </div>
+</div>
+
+<!-- Scroll-to-Top ("Back to Top") -->
+{{ partial "scroll-top-arrow" .}}
+
+<!-- Footer -->
+{{ partial "footer" .}}
+</body>

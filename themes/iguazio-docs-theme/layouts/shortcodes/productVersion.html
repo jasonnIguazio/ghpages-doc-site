@@ -1,0 +1,8 @@
+<!-- productVersion: Return the current product version (short or long format).
+  Optional Params:
+  "key" - The version data-variable key (data/vars/product.toml "ver" key) -
+          "num" (default) for a long X.Y.Z format or "num_short" for X.Y.
+-->
+{{- $key :=  (.Get 0) | default "num" -}}
+{{- index .Site.Data.vars.product.ver $key -}}
+

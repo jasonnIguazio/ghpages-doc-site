@@ -1,0 +1,41 @@
+# Build-output directories
+/out
+/public*
+
+# Gulp generated files
+data/vars/build.toml
+themes/*/static/css/style.css
+themes/*/static/js/vendor.js
+themes/*/static/js/app.js
+themes/*/layouts/partials/func/set-javascript-vars.html
+
+# Installation files
+node_modules
+npm-shrinkwrap.json
+
+# System files
+.cache
+.DS_Store
+.DS_Store?
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.idea
+
+# npm files
+package-lock.json
+node_modules
+
+# Temporary swap files
+*.*~
+~*
+*.tmp
+
+# htmltest configuration file
+.htmltest.yml
+
+# Miscellaneous temporary files (such as tmp/.htmltest)
+tmp/*
+

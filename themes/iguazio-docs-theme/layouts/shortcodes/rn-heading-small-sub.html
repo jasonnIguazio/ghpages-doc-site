@@ -1,0 +1,2 @@
+<p{{- with (.Get "id") }} id="{{- . -}}"{{- end -}}>{{- (printf "**%s**" .Inner) | markdownify -}}</p>
+

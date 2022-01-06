@@ -1,0 +1,27 @@
+<!-- getvar: Returns the value of a data variable (Data.vars.<var>) (default)
+  or site parameter (Site.Params.<param> - "t" = "siteparams"/"sp").
+  See the "verkey" shortcode for a shorthand for accessing a key of the
+  .Site.Data.vars.product.ver map data variable.
+
+  Mandatory Params
+  "v" A period (.) delimited string denoting the path to a data/vars/ variable
+      key - $Site.Data.<"v">. For example, "product.name.full".
+  Optional Dictionary Params
+  "t"             Variable type - one of the following:
+                    "data" | "d" (default)  -  Data
+                    "siteparams" | "sp"     - Site.Params
+  "arr_key"       The name of the array-item variable key to access.
+  "arr_item_id"   The name of an array-item key that should be used to locate
+                  the array item for which to return "arr_key" - "num" (default)
+                 or "num_short".
+  "arr_item_id_val"  The expected $arr_item_id key value (e.g., "2.0.0"). The
+                  default is the product version number of the format indicated
+                  by the "arr_item_id param ((data/vars/product.toml "ver"
+                  $arr_item_id key).
+  NOTE: To access an array-item key, "arr_key" and "arr_item_id" must be set.
+  "md"            `true` - process Markdown in the variable value (markdownify);
+                  note that shortcode calls in the value aren't processed.
+                  `false` (default) - don't process Markdown in the value.
+-->
+{{- partial "func/get-var.html" (dict "ctx" . "t" (.Get "t") "v" (.Get "v") "arr_key" (.Get "arr_key") "arr_item_id" (.Get "arr_item_id") "arr_item_id_val" (.Get "arr_item_id_val") "md" (.Get "md")) -}}
+

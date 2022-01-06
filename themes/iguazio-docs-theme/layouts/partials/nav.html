@@ -1,0 +1,74 @@
+{{- $wp_site_url := .Site.Data.vars.urls.product_home.full -}}
+<!-- [InfraInfo] For an <a> tag with an external href, set is-external="1". -->
+<!-- [INFRA-VERSION-SITE] [InfInfo] Use the new data/vars/shared.toml
+  .Site.Data.vars.docs_home.nav_menu_link_text key <=>
+  .Site.Data.vars.build.docs_home_url except that the build.toml `url` var also
+  has a "full" URL key. -->
+{{- $docs_home_link_text := .Site.Data.vars.shared.docs_home.nav_menu_link_text -}}
+{{- $reg_users_only_tooltip_text := .Site.Params.reg_users_only_nav_link_text -}}
+<!-- [InfraInfo] Implement relevant changes also in right-nav-menu.html. -->
+
+<nav aria-label="Header" class="top-menu">
+  <div class="left">
+    <!-- Side menu -->
+    {{ if not $.Params.isSideMenuHidden }}
+    <div class="hamburger-side-menu">
+      <span aria-hidden="true">&#9776;</span>
+    </div>
+    {{ end }}
+
+    <!-- [INFRA-VERSION-SITE] Modified (including moving the version-selction
+      box from the side menu to the top menu) + modified related CSS styles. -->
+    <!-- Home links (main site / doc site / other versioned doc sites) -->
+    <div class="home-links">
+      <!-- Main-site home-page link using the company logo -->
+      <a href="{{- $wp_site_url -}}"><div class="logo"></div></a>
+
+      <!-- Docs-home link to the home page of the current versioned doc site -->
+      <a href="/" data-url-parent="/" class="top-menu-main-item docs-home">{{- $docs_home_link_text -}}</a>
+
+      <!-- Version selection -->
+      {{ partial "versioned-box.html" . }}
+    </div>
+
+    <!-- Doc-site section links -->
+    <!-- [SITE-RESTRUCT] [ci-small-view-right-nav-menu-rm] -->
+    <!--
+    <div class="section-links">
+    {{ range .Site.Params.sections }}
+      {{- $url := .nav_url | default .url -}}
+      {{ if .is_reg_users_only }}
+        <span class="nav-menu-tooltip" data-toggle="tooltip" title="{{- $reg_users_only_tooltip_text -}}" data-placement="bottom">
+      {{ end }}
+      <a href="{{- $url -}}" data-url-parent="{{- $url -}}" class="top-menu-main-item">
+        {{.name}}
+      </a>
+      {{ if .is_reg_users_only }}</span>{{ end }}
+    {{ end }}
+    </div>
+    -->
+
+    <div class="additional-links">
+      <a href="{{- .Site.Data.vars.urls.tutorials_playlist.full -}}" class="top-menu-main-item" target="_blank">{{- .Site.Data.vars.urls.tutorials_playlist.menu_link_text -}}</a>
+      <a href="{{- .Site.Data.vars.urls.product_blog.full -}}" class="top-menu-main-item" target="_blank">{{- .Site.Data.vars.urls.product_blog.menu_link_text -}}</a>
+    </div>
+  </div>
+
+  <!-- [INFRA-VERSION-SITE] [InfraInfo] Version selection moved from the side
+    menu to the top menu and modified + search options modified. -->
+  <div class="right">
+    <!-- Search -->
+    <div class="search-icon"></div>
+    <!-- [SITE-RESTRUCT] [ci-small-view-right-nav-menu-rm] -->
+    <div class="hamburger-right-menu">
+       <span aria-hidden="true">&#9776;</span>
+    </div>
+
+    {{ partial "search-block.html" . }}
+
+  </div>
+</nav>
+
+<!-- Right-navigation fly-out menu for small views -->
+{{ partial "right-nav-menu" . }}
+

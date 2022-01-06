@@ -1,0 +1,170 @@
+// "iguazio" Font SCSS Variables - imported from the Iguazio product UIs
+// [IntInfo] The fonts variables are ordered alphabetically.
+
+$icomoon-font-family: "iguazio" !default;
+$icomoon-font-path: "../fonts/iguazio" !default;
+
+$igz-icon-22: "\e95f";
+$igz-icon-big-alert: "\e907";
+$igz-icon-big-block: "\e908";
+$igz-icon-big-tick: "\e90a";
+$igz-icon-clusters: "\e901";
+$igz-icon-containers: "\e900";
+$igz-icon-dark-paperclip: "\e973";
+$igz-icon-dd-arrow: "\e90e";
+$igz-icon-dd-arrow2: "\e90d";
+$igz-icon-default-user-avatar: "\e94c";
+$igz-icon-e-Unread: "\e951";
+$igz-icon-events: "\e903";
+$igz-icon-external-link: "\e985";
+$igz-icon-function: "\e983";
+$igz-icon-help: "\e906";
+$igz-icon-ic-acknowledged: "\e952";
+$igz-icon-ic-add: "\e96e";
+$igz-icon-ic-add2: "\e915";
+$igz-icon-ic-add-2: "\e94d";
+$igz-icon-ic-alert: "\e953";
+$igz-icon-ic-allow-full: "\e93c";
+$igz-icon-ic-allow-partial: "\e93d";
+$igz-icon-ic-api-gateway: "\e99a"; // UI repo: $igz-icon-ic_api-gateway
+$igz-icon-ic-arrow-back: "\e911";
+$igz-icon-ic-arrow-next: "\e912";
+$igz-icon-ic-blob: "\e98e";
+$igz-icon-ic-boolean: "\e98f";
+$igz-icon-ic-bring-online: "\e960";
+$igz-icon-ic-bring-online2: "\e969";
+$igz-icon-ic-building: "\e978";
+$igz-icon-ic-camera: "\e921";
+$igz-icon-ic-cancel-path: "\e963";
+$igz-icon-ic-cancel-path2: "\e974";
+$igz-icon-ic-category: "\e93e";
+$igz-icon-ic-chart-file: "\e937";
+$igz-icon-ic-check: "\e90c";
+$igz-icon-ic-checkbox-partlyselected: "\e931";
+$igz-icon-ic-checkbox-selected: "\e92f";
+$igz-icon-ic-checkbox-unselected: "\e92e";
+$igz-icon-ic-close: "\e916";
+$igz-icon-ic-collapse-all: "\e981";
+$igz-icon-ic-collect-logs: "\e95c";
+$igz-icon-ic-compression: "\e92b";
+$igz-icon-ic-copy-to-clipboard: "\e97e";
+$igz-icon-ic-data: "\e975"; // UI repo: $igz-icon-ic_data
+$igz-icon-ic-debug-16-px: "\e97f";
+$igz-icon-ic-decreased-arrow: "\e910";
+$igz-icon-ic-dedup: "\e92c";
+$igz-icon-ic-delete: "\e920";
+$igz-icon-ic-deny-full: "\e93f";
+$igz-icon-ic-deny-partial: "\e940";
+$igz-icon-ic-directory: "\e936";
+$igz-icon-ic-directory-chart: "\e964";
+$igz-icon-ic-disable-black: "\e941";
+$igz-icon-ic-discard-delete-24px: "\ea17"; // UI repo: $igz-icon-ic_discard-delete-24px
+$igz-icon-ic-discard-edit-24px: "\ea16"; // UI repo: $igz-icon-ic_discard-edit-24px
+$igz-icon-ic-discard-restart-24px: "\ea15"; // UI repo: $igz-icon-ic_discard-restart-24px
+$igz-icon-ic-download: "\e918";
+$igz-icon-ic-drag: "\e94e";
+$igz-icon-ic-drag-file: "\e97a";
+$igz-icon-ic-duplicate: "\e922";
+$igz-icon-ic-edit: "\e923";
+$igz-icon-ic-enable-black: "\e942";
+$igz-icon-ic-encryption: "\e92d";
+$igz-icon-ic-error: "\e977";
+$igz-icon-ic-error-12-px: "\e943";
+$igz-icon-ic-events-alerts: "\e91a";
+$igz-icon-ic-expand-all: "\e982";
+$igz-icon-ic-export-csv: "\e954";
+$igz-icon-ic-export-yml: "\e988";
+$igz-icon-ic-file: "\e972";
+$igz-icon-ic-filter: "\e91c"; // UI repo: $igz-icon-ic-flter
+$igz-icon-ic-format-size-24px: "\ea11"; // UI repo: $igz-icon-ic_format_size_24px
+$igz-icon-ic-get-version: "\e95d";
+$igz-icon-ic-gridview: "\e924";
+$igz-icon-ic-help-16-px: "\ea19";
+$igz-icon-ic-img-file: "\e938";
+$igz-icon-ic-import: "\e976";
+$igz-icon-ic-increase-arrow: "\e90f";
+$igz-icon-ic-infopane: "\e909";
+$igz-icon-ic-interface: "\e944";
+$igz-icon-ic-interface2: "\e968";
+$igz-icon-ic-key: "\e986";
+$igz-icon-ic-keyboard-arrow-down: "\e913";
+$igz-icon-ic-keyboard-arrow-down2: "\e932";
+$igz-icon-ic-keyboard-arrow-right: "\e914";
+$igz-icon-ic-listview: "\e925";
+$igz-icon-ic-logs: "\e987";
+$igz-icon-ic-maintenance: "\e970"; // UI repo: $igz-icon-ic_maintenance
+$igz-icon-ic-menu: "\e967"; // UI repo: $igz-icon-ic_menu
+$igz-icon-ic-monitoring: "\e999";
+$igz-icon-ic-more: "\e91f";
+$igz-icon-ic-move-down: "\e950";
+$igz-icon-ic-move-up: "\e94f";
+$igz-icon-ic-network: "\e945";
+$igz-icon-ic-new-directory: "\e935"; // UI repo: $igz-icon-ic-new-directiry
+$igz-icon-ic-number: "\e991";
+$igz-icon-ic-p-1: "\e946";
+$igz-icon-ic-p-2: "\e947";
+$igz-icon-ic-p-3: "\e948";
+$igz-icon-ic-p-4: "\e949";
+$igz-icon-ic-pane1: "\e990";
+$igz-icon-ic-pause: "\ea12";
+$igz-icon-ic-pin: "\e97d";
+$igz-icon-ic-pipelines: "\e98b";
+$igz-icon-ic-play: "\ea13";
+$igz-icon-ic-previous: "\e92a";
+$igz-icon-ic-projects: "\e997"; // UI repo: $igz-icon-ic_projects
+$igz-icon-ic-properties: "\e91e";
+$igz-icon-ic-public: "\e993";
+$igz-icon-ic-ready: "\e979";
+$igz-icon-ic-refresh: "\e926";
+$igz-icon-ic-remove: "\e962"; // UI repo: $igz-icon-ic_remove
+$igz-icon-ic-reports: "\ea14";
+$igz-icon-ic-resolved: "\e955";
+$igz-icon-ic-restart-24px: "\ea18"; // UI repo: $igz-icon-ic_restart-24px
+$igz-icon-ic-rule-type-backup: "\e956";
+$igz-icon-ic-rule-type-migrate: "\e957";
+$igz-icon-ic-rule-type-process: "\e958";
+$igz-icon-ic-rule-type-storage: "\e959";
+$igz-icon-ic-rule-type-sync: "\e95a";
+$igz-icon-ic-script: "\e971";
+$igz-icon-ic-search: "\e919";
+$igz-icon-ic-services-36px: "\e984"; // UI repo: $igz-icon-ic_services_36px
+$igz-icon-ic-severity-critical-1: "\e95b";
+$igz-icon-ic-share: "\e927";
+$igz-icon-ic-sort: "\e91d";
+$igz-icon-ic-sortdoown: "\e928";
+$igz-icon-ic-sortdoown-2: "\e929"; // UI repo: $igz-icon-ic-sortdoown_2
+$igz-icon-ic-stacked: "\e961";
+$igz-icon-ic-star-rate: "\e93b";
+$igz-icon-ic-string: "\e992";
+$igz-icon-ic-table-view: "\e98c";
+$igz-icon-ic-tags: "\e94a";
+$igz-icon-ic-tasks: "\e91b";
+$igz-icon-ic-template: "\e96f";
+$igz-icon-ic-timestamp: "\e98d";
+$igz-icon-ic-txt-file: "\e939";
+$igz-icon-ic-undo: "\e998";
+$igz-icon-ic-unknown-file: "\e93a";
+$igz-icon-ic-upload2: "\e917";
+$igz-icon-ic-user: "\e96d";
+$igz-icon-ic-user-admin-app-32-px: "\e96c";
+$igz-icon-ic-user-admin-security-32-px: "\e96a";
+$igz-icon-ic-user-admin-tenant-32-px: "\e96b";
+$igz-icon-ic-user-group: "\e94b";
+$igz-icon-ic-verify-error: "\e995";
+$igz-icon-ic-verify-info: "\e996";
+$igz-icon-ic-verify-ok: "\e994";
+$igz-icon-ic-view-file: "\e98a";
+$igz-icon-identity: "\e905";
+$igz-icon-ill-hand: "\e97b";
+$igz-icon-ill-test: "\e97c";
+$igz-icon-list-next-arrow: "\e95e"; // UI repo: $igz-icon-list_next_arrow
+$igz-icon-menu: "\e980";
+$igz-icon-networks: "\e904";
+$igz-icon-nuclio: "\e965";
+$igz-icon-n-vme-off: "\e930";
+$igz-icon-radiobutton-off: "\e933"; // UI repo: $igz-icon-radiobutton_off
+$igz-icon-radiobutton-on: "\e934"; // UI repo: $igz-icon-radiobutton_on
+$igz-icon-services1: "\e989";
+$igz-icon-small-tick: "\e90b";
+$igz-icon-storage: "\e902";
+$igz-icon-tenants: "\e966";

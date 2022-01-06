@@ -1,0 +1,272 @@
+/* ================================== */
+/* Titles and Headings */
+
+/* ================================== */
+/* Page Title */
+.page-title {
+  display: block;
+  position: relative;
+  padding: 0 8px 8px 0;
+  min-height: 0;
+  font-family: $font-header;
+  font-weight: $font-weight-h1;
+
+  /* Page-Content Title */
+  h1.content-title {
+    margin: 0.46em 0 0.3em 0; // Vertical page-title padding
+    color: $color-page-title;
+    font-size: $font-size-content-title;
+  }
+
+  /* Page-Content Sub Title */
+  h1.content-subtitle {
+    margin: 0.3em 0 0.3em 0; // Vertical page sub-title padding
+    color: $color-page-subtitle;
+    font-size: $font-size-content-subtitle;
+  }
+
+  i {
+    display: none;
+  }
+
+  /* Small-Views Configurations */
+  @media all and (max-width: $container-width-laptop) {
+    h1.content-title {
+      font-size: $font-size-content-title-laptop;
+    }
+    h1.content-subtitle {
+      font-size: $font-size-content-subtitle-laptop;
+    }
+  }
+  @media all and (max-width: $container-width-tablet) {
+    h1.content-title {
+      font-size: $font-size-content-title-tablet;
+    }
+    h1.content-subtitle {
+      font-size: $font-size-content-subtitle-tablet;
+    }
+  }
+  @media all and (max-width: $container-width-mobile) {
+    h1.content-title {
+      font-size: $font-size-content-title-mobile;
+    }
+    h1.content-subtitle {
+      font-size: $font-size-content-subtitle-mobile;
+    }
+  }
+} /* [page-title] */
+/* ================================== */
+
+/* ================================== */
+/* Page Header */
+// [InfraInfo]: For the home landing page (currently not used), the page header
+// includes the top menu, background image, and page title (as text over the
+// image). For "single pages", "header" includes the top menu.
+// The single-page page title is added at the start of the page content using
+// the h1.content-title class.
+// Note: The "header" class is currently not in use.
+.header {
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  padding-bottom: 1.92em;
+
+  /* Small-Views Configurations */
+  font-size: $font-size-medium;
+
+  /* Medium-/Large-Views Configurations */
+  @media all and (min-width: $container-width-mobile) {
+    font-size: $font-size-header;
+  }
+} /* [header] */
+/* ================================== */
+
+/* ================================== */
+/* hN Headings */
+
+h1 {
+  font-family: $font-header;
+  font-weight: $font-weight-h1;
+  color: $color-h1;
+  font-size: $font-size-h1;
+  margin: 1em $heading-margin-right 0.4em 0;
+  line-height: 1.2em;
+
+  /* Small-Views Configurations */
+  @media all and (max-width: $container-width-laptop) {
+    font-size: $font-size-h1-laptop;
+  }
+  @media all and (max-width: $container-width-tablet) {
+    font-size: $font-size-h1-tablet;
+  }
+  @media all and (max-width: $container-width-mobile) {
+    font-size: $font-size-h1-mobile;
+  }
+}
+// See also the page-title > h1.content-title customization.
+
+h2 {
+  font-family: $font-header;
+  font-weight: $font-weight-h2;
+  color: $color-h2;
+  line-height: 1.3em;
+  font-size: $font-size-h2;
+  margin: 0.588em $heading-margin-right 0.4em 0;
+  //margin: 1.3em $heading-margin-right 0.4em 0;
+  // [InfraInfo] [c-h2-top-margin] [sharonl] Instead of setting margin-top here
+  // to 0.588em and then setting it to 1.3em for h2 headings that follow p,
+  // div, .code-block, and different list elements, I tried setting margin-top
+  // here to 1.3em and then setting margin-top for `h1 + h2` to 0.588em (which
+  // is simpler and doesn't require listing all possible elements before h2).
+  // This worked for all scenarios (including h2 after h1 elements within the
+  // page content) but not for h2 directly after the page header - created with
+  // a h1.content-title element within a page-title div. The `h1 + h2`
+  // configuration had no effect on the space between the page title and the h2
+  // heading that follows it, and the same was true when using
+  // `h1.content-title + h2`.
+
+  /* Small-Views Configurations */
+  @media all and (max-width: $container-width-laptop) {
+    font-size: $font-size-h2-laptop;
+  }
+  @media all and (max-width: $container-width-tablet) {
+    font-size: $font-size-h2-tablet;
+  }
+  @media all and (max-width: $container-width-mobile) {
+    font-size: $font-size-h2-mobile;
+  }
+}
+
+h3 {
+  font-family: $font-header;
+  font-weight: $font-weight-h3;
+  color: $color-h3;
+  font-size: $font-size-h3;
+  letter-spacing: 0.05em;
+  line-height: 1.4em;
+  margin: 1.6em $heading-margin-right 1em 0;
+
+  /* Small-Views Configurations */
+  @media all and (max-width: $container-width-laptop) {
+    font-size: $font-size-h3-laptop;
+  }
+  @media all and (max-width: $container-width-tablet) {
+    font-size: $font-size-h3-tablet;
+  }
+  @media all and (max-width: $container-width-mobile) {
+    font-size: $font-size-h3-mobile;
+  }
+}
+
+h4 {
+  font-family: $font-header;
+  font-weight: $font-weight-h4;
+  color: $color-h4;
+  font-size: $font-size-h4;
+  line-height: 1.2em;
+  letter-spacing: 0.05em;
+  margin: 2em $heading-margin-right 1em 0;
+
+  /* Small-Views Configurations */
+  @media all and (max-width: $container-width-laptop) {
+    font-size: $font-size-h4-laptop;
+  }
+  @media all and (max-width: $container-width-tablet) {
+    font-size: $font-size-h4-tablet;
+  }
+  @media all and (max-width: $container-width-mobile) {
+    font-size: $font-size-h4-mobile;
+  }
+}
+
+h5 {
+  font-family: $font-header;
+  font-weight: $font-weight-h5;
+  color: $color-h5;
+  font-size: $font-size-h5;
+  line-height: 1.2em;
+  letter-spacing: 0.1em;
+  margin: 2.22em $heading-margin-right 1em 0;
+
+  /* Small-Views Configurations */
+  @media all and (max-width: $container-width-laptop) {
+    font-size: $font-size-h5-laptop;
+  }
+  @media all and (max-width: $container-width-tablet) {
+    font-size: $font-size-h5-tablet;
+  }
+  @media all and (max-width: $container-width-mobile) {
+    font-size: $font-size-h5-mobile;
+  }
+}
+
+h6 {
+  font-family: $font-header;
+  font-weight: $font-weight-h6;
+  color: $color-h6;
+  font-size: $font-size-h6;
+  line-height: 1.1em;
+  letter-spacing: 0.1em;
+  margin: 1.81em $heading-margin-right 1em 0;
+
+  /* Small-Views Configurations */
+  @media all and (max-width: $container-width-laptop) {
+    font-size: $font-size-h6-laptop;
+  }
+  @media all and (max-width: $container-width-tablet) {
+    font-size: $font-size-h6-tablet;
+  }
+  @media all and (max-width: $container-width-mobile) {
+    font-size: $font-size-h6-mobile;
+  }
+}
+
+p + h2, ul + h2, ol + h2, dl + h2, div + h2, .code-block + h2, figure + h2, img + h2 {
+  margin-top: 1.3em;
+}
+// [InfraInfo] [sharonl] See [c-h2-top-margin] in the h2 definition.
+/*
+h1 + h2 {
+  margin-top: 0.588em;
+}
+*/
+
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 {
+  margin-top: 1.2em;
+}
+
+h2 + p, h2 + ul, h2 +ol, h2 + dl,
+h3 + p, h3 + ul, h3 + ol, h3 + dl,
+h4 + p, h4 + ul, h4 + ol, h4 + dl,
+h5 + p, h5 + ul, h5 + ol, h5 + dl {
+  margin-top: 0;
+}
+/* [hN Headings] */
+/* ================================== */
+
+/* ================================== */
+/* Small Heading */
+.small-heading {
+  font-weight: bold;
+  font-size: $font-size-regular;
+  letter-spacing: 0.05em;
+  color: $color-small-heading;
+  margin: 2em 0 1em 0;
+  // [InfraInfo] [sharonl] Setting the bottom margin to -5px (-0.33em) instead
+  // of 15px (1em) looked good in most cases, but it results in no bottom space
+  // when the heading call is followed by `{{< code-tabs >}}` (even with an
+  // empty separating line the source file). TODO: Customize so that the
+  // vertical spacing between the heading and subsequent text looks the same
+  // for all elements; the space should be quite small.
+} /* [small-heading] */
+
+h2 + .small-heading {
+  margin-top: 1em;
+}
+/* ================================== */
+
+/* [Titles and Headings] */
+/* ================================== */
+

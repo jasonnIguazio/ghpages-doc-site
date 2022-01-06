@@ -1,0 +1,8 @@
+<!-- param-default-value: Default value or behavior bullet (e.g., param value)
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Required content (.Inner) - The default value.
+Optional Params
+  "str" - The text string to follow "Default" in the heading; default: "Values".
+-->
+{{- partial "doc/param-default-value.html" (dict "ctx" . "content" .Inner "str" (.Get "str")) -}}
+

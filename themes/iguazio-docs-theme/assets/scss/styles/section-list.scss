@@ -1,0 +1,44 @@
+/* ================================== */
+/* Section Lists (Section Pages Menu) */
+
+/* Section Pages-Menu Title */
+.content .menu-pages-title {
+  @extend .small-heading;
+  color: $color-menu-page-title;
+  margin-top: -1em;
+}
+
+/* Section Pages Menu (Section Page Links) */
+.content .menu-pages {
+  margin: 1em 0 0.66em 0;
+  padding: 0.33em 0 1em 0;
+
+  /* p in the pages menu is used for the optional Pre text before the link. */
+  p {
+    padding-bottom: 0.1em;
+  }
+
+  /* dt in the pages menu is used for the page link. */
+  dt {
+    padding: 0.33em 0;
+    font-size: $font-size-regular;
+
+    a {
+      text-decoration: none;
+      color: $color-menu-page-link;
+      &:hover {
+        color: $color-menu-page-hover;
+      }
+    }
+  } /* [.content .menu-pages .dt] */
+
+  /* dd in the pages menu is used for the optional Post text after the link. */
+  dd {
+    margin: 0.1em 0 0.66em 0.66em;
+  } /* [.content .menu-pages .dd] */
+
+} /* [.content .menu-pages] */
+
+/* [Section Lists (Menu Pages)] */
+/* ================================== */
+

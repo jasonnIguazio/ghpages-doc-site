@@ -1,0 +1,43 @@
+<!-- Include a file from another content page (for code reuse).
+  Mandatory Params - You must provide either "f" or "f_datavar":
+    "f"     - Relative path to the file to include within the includes dir
+              (see the "d" param). Ignored if "f_datavar" is set.
+    "f_datavar" - A .Site.Data.vars variable for the relative file path.
+  Optional Params
+    "d"     - The root includes directory. Default = .Site.Params.includes_dir
+              or .Site.Params.test_includes_dir if "t" = "test" (for tests).
+              Ignored if "d_datavar" is set.
+    "d_datavar" - A .Site.Data.vars variable for the directory path.
+    "t"     - Includes type - "" (default) or "test" for internal infra tests.
+              This param is used to set the default root includes directory
+              (see the "d" param) and is ignored when the "d" param is set.
+
+[InfraIfo]
+- [ci-include-file-metadata] Begin included MD files with a metadata section,
+  even if it's empty (i.e., two lines with three hyphens in each); otherwise,
+  shortcode calls (such as `comment`) or HTML comments at the start of the file
+  (before any text) produce a runtime Hugo build error: "invalid character '{'
+  looking for beginning of object key string for <include path>".
+  (21.6.20) This is still true with Hugo v0.57.2.
+- Referencing .Page.Params.<param> from within an inline shortcode in the
+  included file references the metadata in the front matter of the included file
+  only (if exists) and not of the including file.
+-->
+{{ $ctx := . }}
+{{- if or (not (.Get "filter")) (eq (.Get "filterval") (index $ctx.Site.Params.Filters (.Get "filter"))) -}}
+  {{ $thisPage := $ctx.Get "thisPage" }}
+  {{- $includes_dir := .Get "d" | default (cond (eq (.Get "t") "tests") $ctx.Site.Params.test_includes_dir $ctx.Site.Params.includes_dir) -}}
+  {{- with .Get "d_datavar" -}}
+    {{- $includes_dir = partial "func/get-var.html" (dict "ctx" $ctx "t" "data" "v" .) -}}
+  {{- end -}}
+  {{- $include_file := .Get "f" -}}
+  {{- with .Get "f_datavar" -}}
+    {{- $include_file = partial "func/get-var.html" (dict "ctx" $ctx "t" "data" "v" .) -}}
+  {{- end -}}
+  {{- $include_file = printf "%s/%s" $includes_dir $include_file -}}
+
+  {{- with $ctx.Site.GetPage $include_file -}}
+    {{- .Content | markdownify -}}
+  {{- end -}}
+{{- end -}}
+

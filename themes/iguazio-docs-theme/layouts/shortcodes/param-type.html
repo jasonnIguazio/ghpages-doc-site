@@ -1,0 +1,9 @@
+<!-- param-type: Parameter-type bullet (e.g., function-parameter data type)
+NOTE: This shortcode must be called inside a definition list (<dl>...</dl>).
+Required content (.Inner) - The parameter-type text.
+Optional Params:
+  "pre" - Text to prepend to the default text, including the space at the end;
+          for example, "Property ".
+-->
+{{- partial "doc/param-type.html" (dict "ctx" . "content" .Inner "pre" (.Get "pre")) -}}
+
