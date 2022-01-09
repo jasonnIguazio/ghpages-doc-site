@@ -7,7 +7,7 @@
 ## URL Configurations
 
 ## Base Site URL
-baseURL = "https://github.com/jasonnIguazio"
+baseURL = "/"
 
 ## URLs Canonification
 canonifyURLs = true
