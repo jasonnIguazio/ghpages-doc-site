@@ -1,0 +1,12 @@
+temperature,degrees=Celsius,32,now-2d
+temperature,degrees=Celsius,29.5,now-1d
+temperature,degrees=Celsius,25.3,now
+cpu,,90,now-2d
+cpu,,82.5,now-1d
+cpu,"host=A,os=linux",23.87,now-18h
+cpu,"host=A,os=linux",47.3,now-12h
+cpu,host=A,50.2,now-6h
+cpu,os=linux,88.8,now-1h
+cpu,os=linux,91,now-30m
+cpu,"host=A,os=linux,arch=amd64",70.2,now-15m
+cpu,"host=A,os=linux,arch=amd64",55,now
